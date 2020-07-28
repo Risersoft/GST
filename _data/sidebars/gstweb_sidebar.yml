@@ -1,0 +1,181 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+
+entries:
+- title: Sidebar
+  product: GSTNirvana
+  
+  folders:
+
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+    - title:
+      url: /titlepage.html
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage.html
+      output: pdf
+      type: frontmatter
+
+  - title: Introduction
+    output: single
+    url: /gst-nirvana-web/introduction.html
+    folderitems:
+    -
+
+  - title: Getting Started 
+    url: /gst-nirvana-web/getting-started.html
+    output: single
+    folderitems:
+    -
+
+  - title: Company
+    url: /gst-nirvana-web/company.html
+    output: single
+    folderitems:
+    -
+      
+  - title: Campus
+    url: /gst-nirvana-web/campus.html
+    output: single
+    folderitems:
+    -
+      
+  - title: HSN SAC
+    url: /gst-nirvana-web/hsn-sac.html
+    output: single
+    folderitems:
+    -
+      
+  - title: Customer
+    url: /gst-nirvana-web/customer.html
+    output: single
+    folderitems:
+    -
+      
+  - title: Vendor
+    url: /gst-nirvana-web/vendor.html
+    output: single
+    folderitems:
+    -
+    
+  - title: Transporter
+    url: /gst-nirvana-web/transporter.html
+    output: single
+    folderitems:
+    -
+    
+  - title: Advance Payment
+    
+    output: web
+    folderitems:
+    - title: Advance Received (Payment Customer)
+      url: /gst-nirvana-web/advance-received-payment-customer.html
+      output: web
+      
+    - title: Advance Paid (Payment Vendor)
+      url: /gst-nirvana-web/advance-paid-payment-vendor.html
+      output: web
+    
+  - title: Invoice Sale
+    url: /gst-nirvana-web/invoice-sale.html
+    output: single
+    folderitems:
+    -
+    
+  - title: Invoice Purchase
+    url: /gst-nirvana-web/invoice-purchase.html
+    output: single
+    folderitems:
+    -
+    
+  - title: Amend Invoices
+    url: /gst-nirvana-web/amend-invoices.html
+    output: single
+    folderitems:
+    -
+    
+  - title: Eway Bill
+    url: /gst-nirvana-web/eway-bill.html
+    output: single
+    folderitems:
+    -
+    
+  - title: Sync with GSTN
+    output: web
+    folderitems:
+    - title: GSTR1
+      url: /gst-nirvana-web/gstr1.html
+      output: web
+ 
+    - title: GSTR2
+      url: /gst-nirvana-web/gstr2.html
+      output: web
+      
+    - title: GSTR3B
+      url: /gst-nirvana-web/gstr3b.html
+      output: web  
+      
+  - title: Master Menu
+    url: /gst-nirvana-web/master-menu.html
+    output: single
+    folderitems:
+    -
+
+  - title: Sale Menu
+    url: /gst-nirvana-web/sale-menu.html
+    output: single
+    folderitems:
+    -
+                 
+      
+  - title: Purchase Menu
+    url: /gst-nirvana-web/purchase-menu.html
+    output: single
+    folderitems:
+    -
+      
+  - title: GSTR1 Menu
+    url: /gst-nirvana-web/gstr1-menu.html
+    output: single
+    folderitems:
+    -
+      
+  - title: GSTR2 Menu
+    url: /gst-nirvana-web/gstr2-menu.html
+    output: single
+    folderitems:
+    -
+      
+    
+  - title: GSTR3B Menu
+    url: /gst-nirvana-web/gstr3b-menu.html
+    output: single
+    folderitems:
+    -
+    
+  - title: GSTN Menu
+    url: /gst-nirvana-web/gstn-menu.html
+    output: single
+    folderitems:
+    -
+      
+  - title: Help Menu
+    url: /gst-nirvana-web/help-menu.html
+    output: single
+    folderitems:
+    -
+      
+  - title: General Environment
+    url: /gst-nirvana-web/general-environment.html
+    output: single
+    folderitems:
+    -
+      
+ 
+    
+      
+    
