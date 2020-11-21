@@ -1,0 +1,1728 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Risersoft.GSTN.API</name>
+    </assembly>
+    <members>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcd.Cfs">
+            <summary>
+            counter party filing status
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcd.Ctin">
+            <summary>
+            ISD gstin
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Camt">
+            <summary>
+            ISD received as CGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Chksum">
+            <summary>
+            checksum
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Csamt">
+            <summary>
+            ISD received as CESS
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Docdt">
+            <summary>
+            Document Date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Docnum">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Flag">
+            <summary>
+            Flag for receiver status
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Iamt">
+            <summary>
+            ISD received as IGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Isd_Docty">
+            <summary>
+            document type
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Itc_Elg">
+            <summary>
+            Eligible for ITC
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Opd">
+            <summary>
+            Original period
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.Samt">
+            <summary>
+            ISD received as SGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.TxC">
+            <summary>
+            ITC availed as CGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.TxCs">
+            <summary>
+            ITC availed as CESS
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.TxI">
+            <summary>
+            ITC availed as IGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.IsdRcdDoclist.TxS">
+            <summary>
+            ITC availed as SGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.Chksum">
+            <summary>
+            Checksum Value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.InvDocDt">
+            <summary>
+            Invoice date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.InvDocNum">
+            <summary>
+            Invoice number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.NCg">
+            <summary>
+            This month CGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.NCs">
+            <summary>
+            This month CESS
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.NIg">
+            <summary>
+            This month IGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.NSg">
+            <summary>
+            This month SGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.OCg">
+            <summary>
+            Earlier CGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.OCs">
+            <summary>
+            Earlier CESS
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.OIg">
+            <summary>
+            Earlier IGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.OSg">
+            <summary>
+            Earlier SGST
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.Stin">
+            <summary>
+            Supplier tin
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.GSTR2.ItcRcd.Typ">
+            <summary>
+            document type
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Anx01Summary.Chksum">
+            <summary>
+            document chksum
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Anx01Summary.Gstin">
+            <summary>
+            Supplier GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Anx01Summary.Rtnprd">
+            <summary>
+            Return period
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Anx01Summary.Summtyp">
+            <summary>
+            summary level
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Secsum.Chksum">
+            <summary>
+            document chksum
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Secsum.Nettax">
+            <summary>
+            Total taxable value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Secsum.Secnm">
+            <summary>
+            Return Section
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Secsum.Ttlcess">
+            <summary>
+            total cess amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Secsum.Ttlcgst">
+            <summary>
+            total CGST amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Secsum.Ttldoc">
+            <summary>
+            total number of docs
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Secsum.Ttligst">
+            <summary>
+            total IGST amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Secsum.Ttlsgst">
+            <summary>
+            total SGST amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Secsum.Ttlval">
+            <summary>
+            Net taxable value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Actionsum.Action">
+            <summary>
+            document status
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Actionsum.Chksum">
+            <summary>
+            document chksum
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Actionsum.Ttlcess">
+            <summary>
+            total cess amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Actionsum.Ttlcgst">
+            <summary>
+            total CGST amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Actionsum.Ttldoc">
+            <summary>
+            total number of docs
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Actionsum.Ttligst">
+            <summary>
+            total IGST amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Actionsum.Ttlsgst">
+            <summary>
+            total SGST amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Actionsum.Ttltax">
+            <summary>
+            Total taxable value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Actionsum.Ttlval">
+            <summary>
+            Net taxable value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Cptysum.Chksum">
+            <summary>
+            document chksum
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Cptysum.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Cptysum.Nettax">
+            <summary>
+            Total taxable value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Cptysum.Ttlcess">
+            <summary>
+            total cess amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Cptysum.Ttlcgst">
+            <summary>
+            total CGST amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Cptysum.Ttldoc">
+            <summary>
+            total number of docs
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Cptysum.Ttligst">
+            <summary>
+            total IGST amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Cptysum.Ttlsgst">
+            <summary>
+            total SGST amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Cptysum.Ttlval">
+            <summary>
+            Net taxable value
+            </summary>
+        </member>
+        <member name="T:Risersoft.API.GSTN.ANX01.Action">
+            <summary>
+            document status
+            </summary>
+        </member>
+        <member name="T:Risersoft.API.GSTN.ANX01.Summtyp">
+            <summary>
+            summary level
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SaveAnx01.Gstin">
+            <summary>
+            Supplier GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SaveAnx01.Rtnprd">
+            <summary>
+            Tax period
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2B.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2BDoc.Diffprcnt">
+            <summary>
+            differential percentage
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2BDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2BDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2BDoc.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2BDoc.Sec7Act">
+            <summary>
+            Supply Covered Under Sec 7 of IGST Act
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2BDoc.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleItem.Cgst">
+            <summary>
+            Central Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleItem.Sgst">
+            <summary>
+            State/UT Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2C.Diffprcnt">
+            <summary>
+            differential percentage
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2C.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2C.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2C.Sec7Act">
+            <summary>
+            Supply Covered Under Sec 7 of IGST Act
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2C.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2CItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2CItem.Cgst">
+            <summary>
+            Central Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2CItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2CItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2CItem.Sgst">
+            <summary>
+            State/UT Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.B2CItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.De.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.DeDoc.Clmrfnd">
+            <summary>
+            Claim Refund
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.DeDoc.Diffprcnt">
+            <summary>
+            differential percentage
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.DeDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.DeDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.DeDoc.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.DeDoc.Sec7Act">
+            <summary>
+            Supply Covered Under Sec 7 of IGST Act
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.DeDoc.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyItem.Cgst">
+            <summary>
+            Central Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyItem.Sgst">
+            <summary>
+            State/UT Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Ecom.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Ecom.Cgst">
+            <summary>
+            Central Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Ecom.Etin">
+            <summary>
+            E-commerce GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Ecom.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Ecom.Nsup">
+            <summary>
+            net supplied amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Ecom.Sgst">
+            <summary>
+            State/UT Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Ecom.Sup">
+            <summary>
+            supplied amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Ecom.Supr">
+            <summary>
+            supplies returned amount
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Ecom.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Expwop.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Expwop.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Expwop.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwopDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwopDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwopDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwopItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwopItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwopItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwopSb.Dt">
+            <summary>
+            Shipping bill date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwopSb.Num">
+            <summary>
+            Shipping bill number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwopSb.Pcode">
+            <summary>
+            port code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Expwp.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Expwp.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Expwp.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpSb.Dt">
+            <summary>
+            Shipping bill date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpSb.Num">
+            <summary>
+            Shipping bill number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ExpwpSb.Pcode">
+            <summary>
+            port code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Impg.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpgDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpgDoc.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleBoe.Dt">
+            <summary>
+            Bill date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleBoe.Num">
+            <summary>
+            Bill of entry
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleBoe.Pcode">
+            <summary>
+            port code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.PurpleBoe.Val">
+            <summary>
+            Bill value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.TentacledItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.TentacledItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.TentacledItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.TentacledItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.TentacledItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Impgsez.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpgsezDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpgsezDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpgsezDoc.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpgsezDoc.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyBoe.Dt">
+            <summary>
+            Bill date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyBoe.Num">
+            <summary>
+            Bill of entry
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyBoe.Pcode">
+            <summary>
+            port code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.FluffyBoe.Val">
+            <summary>
+            Bill value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.StickyItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.StickyItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.StickyItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.StickyItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.StickyItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Imp.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Imp.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Imp.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.ImpItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Mi.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.MiDoc.Clmrfnd">
+            <summary>
+            Claim Refund
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.MiDoc.Diffprcnt">
+            <summary>
+            differential percentage
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.MiDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.MiDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.MiDoc.Sec7Act">
+            <summary>
+            Supply Covered Under Sec 7 of IGST Act
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.MiDoc.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.TentacledDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.TentacledDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.TentacledDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndigoItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndigoItem.Cgst">
+            <summary>
+            Central Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndigoItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndigoItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndigoItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndigoItem.Sgst">
+            <summary>
+            State/UT Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndigoItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Rev.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.RevDoc.Diffprcnt">
+            <summary>
+            differential percentage
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.RevDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.RevDoc.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.RevDoc.Sec7Act">
+            <summary>
+            Supply Covered Under Sec 7 of IGST Act
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.RevDoc.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndecentItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndecentItem.Cgst">
+            <summary>
+            Central Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndecentItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndecentItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndecentItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndecentItem.Sgst">
+            <summary>
+            State/UT Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndecentItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Sezwop.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SezwopDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SezwopDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SezwopDoc.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SezwopDoc.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.StickyDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.StickyDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.StickyDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.HilariousItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.HilariousItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.HilariousItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.Sezwp.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SezwpDoc.Clmrfnd">
+            <summary>
+            Claim Refund
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SezwpDoc.Diffprcnt">
+            <summary>
+            differential percentage
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SezwpDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SezwpDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SezwpDoc.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.SezwpDoc.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndigoDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndigoDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.IndigoDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.AmbitiousItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.AmbitiousItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.AmbitiousItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.AmbitiousItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX01.AmbitiousItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="T:Risersoft.API.GSTN.ANX01.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="T:Risersoft.API.GSTN.ANX01.Flag">
+            <summary>
+            Upload action
+            </summary>
+        </member>
+        <member name="T:Risersoft.API.GSTN.ANX01.Boolean">
+             <summary>
+             Refund eligibility
+            
+             Supply Covered Under Sec 7 of IGST Act
+            
+             Claim Refund
+             </summary>
+        </member>
+        <member name="T:Risersoft.API.GSTN.ANX01.Impgdoctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SaveAnx02.Gstin">
+            <summary>
+            Receiver GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SaveAnx02.Rtnprd">
+            <summary>
+            ITC period
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.B2B.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.B2BDoc.Action">
+            <summary>
+            action on document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.B2BDoc.Chksum">
+            <summary>
+            document chksum
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.B2BDoc.Diffprcnt">
+            <summary>
+            differential percentage
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.B2BDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.B2BDoc.Itcent">
+            <summary>
+            ITC entitlement
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.B2BDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.B2BDoc.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.B2BDoc.Sec7Act">
+            <summary>
+            Supply Covered Under Sec 7 of IGST Act
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.PurpleDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.PurpleDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.PurpleDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.PurpleItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.PurpleItem.Cgst">
+            <summary>
+            Central Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.PurpleItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.PurpleItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.PurpleItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.PurpleItem.Sgst">
+            <summary>
+            State/UT Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.PurpleItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.De.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.DeDoc.Action">
+            <summary>
+            action on document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.DeDoc.Chksum">
+            <summary>
+            document chksum
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.DeDoc.Clmrfnd">
+            <summary>
+            Claim Refund
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.DeDoc.Diffprcnt">
+            <summary>
+            differential percentage
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.DeDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.DeDoc.Itcent">
+            <summary>
+            ITC entitlement
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.DeDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.DeDoc.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.DeDoc.Sec7Act">
+            <summary>
+            Supply Covered Under Sec 7 of IGST Act
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.FluffyDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.FluffyDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.FluffyDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.FluffyItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.FluffyItem.Cgst">
+            <summary>
+            Central Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.FluffyItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.FluffyItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.FluffyItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.FluffyItem.Sgst">
+            <summary>
+            State/UT Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.FluffyItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.Sezwop.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwopDoc.Action">
+            <summary>
+            action on document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwopDoc.Chksum">
+            <summary>
+            document chksum
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwopDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwopDoc.Itcent">
+            <summary>
+            ITC entitlement
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwopDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwopDoc.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.TentacledDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.TentacledDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.TentacledDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.TentacledItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.TentacledItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.TentacledItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.Sezwp.Ctin">
+            <summary>
+            Counterparty GSTIN
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwpDoc.Action">
+            <summary>
+            action on document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwpDoc.Chksum">
+            <summary>
+            document chksum
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwpDoc.Clmrfnd">
+            <summary>
+            Claim Refund
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwpDoc.Diffprcnt">
+            <summary>
+            differential percentage
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwpDoc.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwpDoc.Itcent">
+            <summary>
+            ITC entitlement
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwpDoc.Pos">
+            <summary>
+            Place of Supply(Name of State/UT)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.SezwpDoc.Rfndelg">
+            <summary>
+            Refund eligibility
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.StickyDoc.Dt">
+            <summary>
+            Document date
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.StickyDoc.Num">
+            <summary>
+            Document number
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.StickyDoc.Val">
+            <summary>
+            Document value
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.StickyItem.Cess">
+            <summary>
+            Cess (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.StickyItem.Hsn">
+            <summary>
+            HSN code
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.StickyItem.Igst">
+            <summary>
+            Integrated Tax (₹)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.StickyItem.Rate">
+            <summary>
+            Rate (%)
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.ANX02.StickyItem.Txval">
+            <summary>
+            Taxable Value (₹)
+            </summary>
+        </member>
+        <member name="T:Risersoft.API.GSTN.ANX02.Action">
+            <summary>
+            action on document
+            </summary>
+        </member>
+        <member name="T:Risersoft.API.GSTN.ANX02.Doctyp">
+            <summary>
+            type of document
+            </summary>
+        </member>
+        <member name="T:Risersoft.API.GSTN.ANX02.Itcent">
+             <summary>
+             ITC entitlement
+            
+             Refund eligibility
+            
+             Supply Covered Under Sec 7 of IGST Act
+            
+             Claim Refund
+             </summary>
+        </member>
+        <member name="T:Risersoft.API.GSTN.My.Resources.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.My.Resources.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Risersoft.API.GSTN.My.Resources.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.AddressLine1">
+            <summary>
+            addressLine1
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.AddressLine2">
+            <summary>
+            addressLine2
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.AddressLine3">
+            <summary>
+            addressLine3
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.ConsignmentStatus">
+            <summary>
+            consignmentStatus(T)
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.EwbNo">
+            <summary>
+            Ewaybill Number
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.ExtnRemarks">
+            <summary>
+            Extension Remarks
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.ExtnRsnCode">
+            <summary>
+            Extension Reason Code
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.FromPincode">
+            <summary>
+            From Pincode
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.FromPlace">
+            <summary>
+            From Place
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.FromState">
+            <summary>
+            From State
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.RemainingDistance">
+            <summary>
+            Remaining Distance
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.TransDocDate">
+            <summary>
+            Transport Document Date
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.TransDocNo">
+            <summary>
+            Transport Document Number
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.TransitType">
+            <summary>
+            transit Type
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.CoordinateTransMode">
+            <summary>
+            Transport Mode
+            </summary>
+        </member>
+        <member name="P:GSTN.API.Library.Models.EWB.EWBExtendRequestInfo.VehicleNo">
+            <summary>
+            Vehicle Number
+            </summary>
+        </member>
+        <member name="T:Org.BouncyCastle.Bcpg.OpenPgp.Examples.DetachedSignatureProcessor">
+            A simple utility class that creates seperate signatures for messages and verifies them.
+            <p>
+            To sign a file: DetachedSignatureProcessor -s [-a] fileName secretKey passPhrase.<br/>
+            If -a is specified the output file will be "ascii-armored".</p>
+            <p>
+            To decrypt: DetachedSignatureProcessor -v  fileName signatureFile publicKeyFile.</p>
+            <p>
+            Note: this example will silently overwrite files.
+            It also expects that a single pass phrase
+            will have been used.</p>
+        </member>
+        <member name="M:Org.BouncyCastle.Bcpg.OpenPgp.Examples.DetachedSignatureProcessor.VerifySignature(System.String,System.String,System.IO.Stream)">
+            verify the signature in in against the file fileName.
+        </member>
+        <member name="M:Org.BouncyCastle.Bcpg.OpenPgp.Examples.PgpExampleUtilities.FindSecretKey(Org.BouncyCastle.Bcpg.OpenPgp.PgpSecretKeyRingBundle,System.Int64,System.Char[])">
+            Search a secret key ring collection for a secret key corresponding to keyID if it
+            exists.
+            
+            @param pgpSec a secret key ring collection.
+            @param keyID keyID we want.
+            @param pass passphrase to decrypt secret key with.
+            @return
+            @throws PGPException
+            @throws NoSuchProviderException
+        </member>
+        <member name="M:Org.BouncyCastle.Bcpg.OpenPgp.Examples.PgpExampleUtilities.ReadPublicKey(System.IO.Stream)">
+            A simple routine that opens a key ring file and loads the first available key
+            suitable for encryption.
+            
+            @param input
+            @return
+            @throws IOException
+            @throws PGPException
+        </member>
+        <member name="M:Org.BouncyCastle.Bcpg.OpenPgp.Examples.PgpExampleUtilities.ReadSecretKey(System.IO.Stream)">
+            A simple routine that opens a key ring file and loads the first available key
+            suitable for signature generation.
+            
+            @param input stream to read the secret key ring collection from.
+            @return a secret key.
+            @throws IOException on a problem with using the input stream.
+            @throws PGPException if there is an issue parsing the input stream.
+        </member>
+    </members>
+</doc>

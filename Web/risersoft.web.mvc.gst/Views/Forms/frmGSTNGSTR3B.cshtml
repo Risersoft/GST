@@ -1,0 +1,1470 @@
+﻿@using risersoft.app.mxform.gst
+@using risersoft.shared.web.Extensions
+
+@model frmGSTNGSTR3BModel
+@{
+    ViewData["Title"] = "GSTN GSTR3B Data Sync";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = Newtonsoft.Json.JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.Indented)
+}
+
+<div class="clearfix"></div>
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+<div class="container content-part" ng-controller="FormController">
+    <div id="loading" class="row" ng-show="status=='postedc'">
+        <div class="col-md-12" id="loading-text"><img src="~/Content/images/imgechange.gif" width="80" height="80" /></div>
+    </div>
+    <div class="col-md-11">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="accounts">
+                <h2>GSTR3B Data Sync</h2>
+                @using (Html.BeginForm("", "", FormMethod.Post, new { @name = "frm", @id = "frm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.Hidden("data", "", new Dictionary<string, string> { { "id", "data" } })
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2 navbar navbar-expand-md">
+                                <a class="btn btn-default sync" data-toggle="dropdown" href="#" aria-expanded="false">GSTN</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="" class="dropdown-item" ng-click="postc('upload', 'UM')">Save</a></li>
+                                    <li><a href="" class="dropdown-item" ng-click="postc('payment')">Populate Payment</a></li>
+                                    <li><a href="" class="dropdown-item" ng-click="getsign()">File</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-2 navbar navbar-expand-md">
+                                <a class="btn btn-default sync" data-toggle="dropdown" href="#" aria-expanded="false">Excel</a>
+                                <ul class="dropdown-menu">
+                                    @*<li><a href="" ng-click="postc('summary', '')">Download</a></li>*@
+                                    <li><a href="" class="dropdown-item" ng-click="postc('excel', 'FinalTax')">Final Tax Summary</a></li>
+                                    <li><a href="" class="dropdown-item" ng-click="postc('excel', 'CalcTax')">Calculated Tax Summary</a></li>
+                                    <li><a href="" class="dropdown-item" ng-click="postc('excel', 'Payment')">Payment Summary</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-2 navbar navbar-expand-md">
+                                <a class="btn btn-default sync" data-toggle="dropdown" href="#" aria-expanded="false">Data</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="" class="dropdown-item" ng-click="postc('payload', 'UM')">Generate JSON</a></li>
+                                    <li><a href="{{GstRegPP.URL}}" class="dropdown-item">Edit</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-7">
+                                <label class="control-label">Company Name : {{GstRegPP.CompName}}</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Pan No. : {{GstRegPP.PANNum}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <label class="control-label">Return Period : {{return.ret_pd}} <a href="" ng-click="changeitem()">change</a></label>
+                            </div>
+                            <div class="col-md-2"><select name="Receivergstin" ng-model="GstRegPP.returnperiodidSelected" ng-options="item.ret_pd for item in dsCombo.PostPeriod track by item.PostPeriodID" ng-change="postch(GstRegPP.returnperiodidSelected,'dbsumm')" ng-show="itmval" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.Receivergstin.$invalid]"></select></div><div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <label class="control-label">GSTIN : {{GSTIN}}</label>
+                            </div>
+
+                        </div>
+                        <div style="margin-left: 65px;">
+                            <div id="msgSyncContainer">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <i class="fa fa-2x fa-check" id="status" ng-show="(result=='success')" style="margin-right:8px;margin-left: 0px;float: left;"></i>
+                                    <div ng-show="(result=='success')" style="color:green;margin-left:8px;width: 500px;float: left;">{{message}}</div>
+
+                                    <i class="fa fa-2x fa-remove" id="failure" ng-show="(result=='failure')" style="margin-right:8px;margin-left: 0px;"></i>
+                                    <div ng-show="(result=='failure')" style="color:red;margin-left:8px;width: 500px;">{{message}}</div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div>
+
+                            <div class="" style="margin-top:8px">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped space10">
+                                        <tr class="tbld">
+                                            <td>State</td>
+                                            <td>GSTIN</td>
+                                            <td>Taxable Value</td>
+                                            <td>IGST</td>
+                                            <td>CGST</td>
+                                            <td>SGST</td>
+                                            <td>CESS</td>
+                                            @*<td>Val</td>*@
+
+                                        </tr>
+                                        <tr ng-repeat="row in AppItem">
+                                            <td><a href="" ng-click="itemc(row)">{{row.Descrip}}</a></td>
+                                            <td><a href="" ng-click="itemc(row)">{{row.GSTIN}}</a></td>
+                                            <td class="text-align-right"><label>{{row.txval}}</label></td>
+                                            <td class="text-align-right"><label>{{row.iamt}}</label></td>
+                                            <td class="text-align-right"><label>{{row.camt}}</label></td>
+                                            <td class="text-align-right"><label>{{row.samt}}</label></td>
+                                            <td class="text-align-right"><label>{{row.csamt}}</label></td>
+                                            @*<td><label>{{row.val}}</label></td>*@
+
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>PAN INDIA</td>
+                                            <td class="text-align-right"><label>{{pantax}}</label></td>
+                                            <td class="text-align-right"><label>{{panigst}}</label></td>
+                                            <td class="text-align-right"><label>{{pancgst}}</label></td>
+                                            <td class="text-align-right"><label>{{pansgst}}</label></td>
+                                            <td class="text-align-right"><label>{{pancess}}</label></td>
+
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        @*<div class="form-group" ng-show="(showdownloadlink=='downloadlink')">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-3">
+
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="fa fa-2x fa-download" id="status" style="margin-right:8px;margin-left: 0px;"></i>
+                                    <div style="color:green;margin-left:8px;">
+                                        <a href="{{downloadURL}}">Download File</a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>*@
+
+                        <div id="dialogOTP" title="OTP">
+                            <div Class="form-group">
+                                <div Class="col-md-offset-1 col-md-10 " style="margin-top:8px">
+                                    <input type="text" id="otpConnect" required Class="form-control" />
+                                </div>
+                            </div>
+
+                            <div Class="form-group" style="float:right;margin-top:8px">
+
+                                <div Class="col-md-12">
+                                    <input type="button" id="btnConnect" value="Submit" Class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="gstregid" value="{{GstRegID}}" />
+                        <input type="hidden" id="ReturnPeriodID" value="{{ReturnPeriodID}}" />
+                        <div class="row"><div class="col-md-1"></div><div class="col-md-10"></div></div><div class="row"><div class="col-md-1"></div><div class="col-md-10"><label ng-show="datajn" style="border:1px solid #000;padding:5px;word-wrap: break-word;">{{datajn}}</label></div></div>
+                        <div>
+                            <div class="txtb">
+                                <b>Summary {{GSTIN}}</b>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped space10">
+                                        <thead>
+                                            <tr class="tbld">
+                                                <th>Section</th>
+                                                <th>Date</th>
+
+                                                <th>Taxable Value</th>
+                                                <th>IGST</th>
+                                                <th>CGST</th>
+                                                <th>SGST</th>
+                                                <th>CESS</th>
+                                                <th>InterSupply</th>
+                                                <th>IntraSupply</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="row in Datac" style="padding-top:5px;">
+                                                <td>{{row.section}}</td>
+                                                <td>{{row.ret_pd}}</td>
+
+                                                <td class="text-align-right">{{row.txval}}</td>
+                                                <td class="text-align-right">{{row.iamt}}</td>
+                                                <td class="text-align-right">{{row.camt}}</td>
+                                                <td class="text-align-right">{{row.samt}}</td>
+                                                <td class="text-align-right">{{row.csamt}}</td>
+                                                <td class="text-align-right">{{row.intersupply}}</td>
+                                                <td class="text-align-right">{{row.intrasupply}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="model && model.dsForm && model.dsForm.paymentSumm && model.dsForm.paymentSumm.length > 0">
+
+                            <div class="txtb">
+                                <b>Payment</b>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped space10">
+                                        <thead>
+                                            <tr class="tbld">
+                                                <th style="vertical-align: middle; text-align: center;">GSTIN</th>
+                                                <th style="vertical-align: middle; text-align: center;">Outward GST Liability</th>
+                                                <th style="vertical-align: middle; text-align: center;">RCM_GST Liability</th>
+                                                <th style="vertical-align: middle; text-align: center;">ITC Available for the month</th>
+                                                <th style="vertical-align: middle; text-align: center;">Opening Balance of ITC</th>
+                                                <th style="vertical-align: middle; text-align: center;">ITC Utlized (As per rules)</th>
+                                                <th style="vertical-align: middle; text-align: center;">Net amount payable in Cash</th>
+                                                <th style="vertical-align: middle; text-align: center;">Cash balance available on GSTN</th>
+                                                <th style="vertical-align: middle; text-align: center;">Balance amount of cash payable</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="row in model.dsForm.paymentSumm" style="padding-top:5px;">
+                                                <td style="vertical-align: middle; text-align: center;"><a style="cursor: pointer;" ng-click="ShowPaymentDetails(row.GSTRegId)">{{row.GSTIN}}</a></td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.TAX_30002}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.TAX_30003}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.ITC}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.BALITC}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.PDITC}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.PDCASH_30002}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.BALCASH}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.NETCASH}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="filteredPaymentDetail && filteredPaymentDetail.length > 0">
+
+                            <div class="txtb">
+                                <b>Payment Detail {{filteredPaymentDetail[0].GSTIN}}</b>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped space10">
+                                        <thead>
+                                            <tr class="tbld">
+                                                <th style="vertical-align: middle; text-align: center;" rowspan="2">Type</th>
+                                                <th style="vertical-align: middle; text-align: center;" rowspan="2" ng-hide="true">Entry Type</th>
+                                                <th style="vertical-align: middle; text-align: center;" rowspan="2" ng-hide="true">Trans Type</th>
+                                                <th style="vertical-align: middle; text-align: center;" colspan="4">Tax</th>
+                                                <th style="vertical-align: middle; text-align: center;" colspan="4">Interest</th>
+                                                <th style="vertical-align: middle; text-align: center;" colspan="2">Fee</th>
+                                            </tr>
+                                            <tr style="background-color:#c2f5fc;">
+                                                <th style="vertical-align: middle; text-align: center;">IGST</th>
+                                                <th style="vertical-align: middle; text-align: center;">CGST</th>
+                                                <th style="vertical-align: middle; text-align: center;">SGST</th>
+                                                <th style="vertical-align: middle; text-align: center;">CESS</th>
+                                                <th style="vertical-align: middle; text-align: center;">IGST</th>
+                                                <th style="vertical-align: middle; text-align: center;">CGST</th>
+                                                <th style="vertical-align: middle; text-align: center;">SGST</th>
+                                                <th style="vertical-align: middle; text-align: center;">CESS</th>
+
+                                                <th style="vertical-align: middle; text-align: center;">CGST</th>
+                                                <th style="vertical-align: middle; text-align: center;">SGST</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="row in filteredPaymentDetail" style="padding-top:5px;">
+                                                <td style="vertical-align: middle; text-align: center;">{{row.Description ? row.Description : row.EntryType + (row.TransType ? "-" + row.TransType : "")}}{{row.IsManual ? " (Manually edited)" : "" }}</td>
+                                                <td style="vertical-align: middle; text-align: center;" ng-hide="true">{{row.EntryType}}</td>
+                                                <td style="vertical-align: middle; text-align: center;" ng-hide="true">{{row.TransType}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.Iamt_Tax}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.Camt_Tax}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.Samt_Tax}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.CSAMT_Tax}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.Iamt_Interest}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.Camt_Interest}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.Samt_Interest}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.CSAMT_Interest}}</td>
+
+                                                <td style="vertical-align: middle; text-align: center;">{{row.Camt_Fee}}</td>
+                                                <td style="vertical-align: middle; text-align: center;">{{row.Samt_fee}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div ng-show="newoffsetResponse && newoffsetResponse.error">
+                                    <table class="table table-bordered table-striped space10">
+                                        <thead>
+                                            <tr class="tbld">
+                                                <th>Error Code</th>
+                                                <th>Error Message</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="padding-top:5px;">
+                                                <td>{{newoffsetResponse.error.error_cd}}</td>
+                                                <td>{{newoffsetResponse.error.message}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button type="button" class="btn btn-default" ng-click="getCashITCDetails()" style="background: #0877d6; color: #ffffff; font-size: 13px; padding-right: 31px; padding-left: 23px; border-color: #868686;margin-bottom: 5px;">Cash Ledger</button>
+                                <button type="button" class="btn btn-default" ng-click="getCashLedgerDetails()" style="background: #0877d6; color: #ffffff; font-size: 13px; padding-right: 31px; padding-left: 23px; border-color: #868686;margin-bottom: 5px;">ITC Ledger</button>
+                                <button type="button" class="btn btn-default" ng-click="getLiabilityBalance()" style="background: #0877d6; color: #ffffff; font-size: 13px; padding-right: 31px; padding-left: 23px; border-color: #868686;margin-bottom: 5px;">Liab Ledger</button>
+                                <button type="button" class="btn btn-default" ng-click="postc('newoffset','')" style="background: #0877d6; color: #ffffff; font-size: 13px; padding-right: 31px; padding-left: 23px; border-color: #868686;margin-bottom: 5px; float: right;">Offset</button>
+                                <button type="button" class="btn btn-default" ng-click="ShowPDITCedit()" ng-hide="isShowPDITCedit" style="background: #0877d6; color: #ffffff; font-size: 13px; padding-right: 31px; padding-left: 23px; border-color: #868686;margin-bottom: 5px; float: right;">Edit</button>
+                                <div ng-show="isShowPDITCedit" class="table-responsive">
+                                    <table id="tblCashBalance" class="table table-bordered space10" style="width:100%;">
+                                        <thead>
+                                            <tr style="background-color:#c2f5fc">
+                                                <td rowspan="2" colspan="3" style="width: 115px;">Description</td>
+                                                <td colspan="4">Paid through ITC</td>
+                                            </tr>
+                                            <tr class="tbld">
+                                                <td>Integrated Tax</td>
+                                                <td>Central Tax</td>
+                                                <td>State/UT Tax</td>
+                                                <td>Cess</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="padding-top:5px;">
+                                                <td colspan="3" style="vertical-align: middle;">Integrated Tax</td>
+                                                <td><input type="text" class="blank" style="width: 100px;" ng-model="final_pditc.i_pdi" ng-blur="pditc('i_pdi')" /><br><span style="color: red;" ng-show="final_pditc.i_pdi < final_pditc.minimum_i_pdi || final_pditc.i_pdi > final_pditc.maximum_i_pdi">Value shoud be {{(final_pditc.minimum_i_pdi == final_pditc.maximum_i_pdi ? final_pditc.minimum_i_pdi : "between " + final_pditc.minimum_i_pdi + " & " + final_pditc.maximum_i_pdi)}}</span></td>
+                                                <td><input type="text" class="blank" style="width: 100px;" ng-model="final_pditc.i_pdc" ng-blur="pditc('i_pdc')" /></td>
+                                                <td><input type="text" class="blank" style="width: 100px;" ng-model="final_pditc.i_pds" ng-blur="pditc('i_pds')" /></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr style="padding-top:5px;">
+                                                <td colspan="3" style="vertical-align: middle;">Central Tax</td>
+                                                <td><input type="text" class="blank" style="width: 100px;" ng-model="final_pditc.c_pdi" ng-blur="pditc('c_pdi')" /></td>
+                                                <td><input type="text" class="blank" style="width: 100px;" ng-model="final_pditc.c_pdc" ng-blur="pditc('c_pdc')" /><br><span style="color: red;" ng-show="final_pditc.c_pdc < final_pditc.minimum_c_pdc || final_pditc.c_pdc > final_pditc.maximum_c_pdc">Value shoud be {{(final_pditc.minimum_c_pdc == final_pditc.maximum_c_pdc ? final_pditc.minimum_c_pdc : "between " + final_pditc.minimum_c_pdc + " & " + final_pditc.maximum_c_pdc)}}</span></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr style="padding-top:5px;">
+                                                <td colspan="3" style="vertical-align: middle;">State/UT Tax</td>
+                                                <td><input type="text" class="blank" style="width: 100px;" ng-model="final_pditc.s_pdi" ng-blur="pditc('s_pdi')" /></td>
+                                                <td></td>
+                                                <td><input type="text" class="blank" style="width: 100px;" ng-model="final_pditc.s_pds" ng-blur="pditc('s_pds')" /><br><span style="color: red;" ng-show="final_pditc.s_pds < final_pditc.minimum_s_pds || final_pditc.s_pds > final_pditc.maximum_s_pds">Value shoud be {{(final_pditc.minimum_s_pds == final_pditc.maximum_s_pds ? final_pditc.minimum_s_pds : "between " + final_pditc.minimum_s_pds + " & " + final_pditc.maximum_s_pds)}}</span></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr style="padding-top:5px;">
+                                                <td colspan="3" style="vertical-align: middle;">CESS</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><input type="text" class="blank" style="width: 100px;" ng-model="final_pditc.cs_pdcs" ng-blur="pditc('cs_pdcs')" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <button type="button" class="btn btn-default" ng-click="isShowPDITCedit=false;" style="background: #0877d6; color: #ffffff; font-size: 13px; padding-right: 31px; padding-left: 23px; border-color: #868686;margin-bottom: 5px; float: right;">Cancel</button>
+                                    <button type="button" class="btn btn-default" ng-disabled="(final_pditc.i_pdi < final_pditc.minimum_i_pdi || final_pditc.i_pdi > final_pditc.maximum_i_pdi) || (final_pditc.c_pdc < final_pditc.minimum_c_pdc || final_pditc.c_pdc > final_pditc.maximum_c_pdc) || (final_pditc.s_pds < final_pditc.minimum_s_pds || final_pditc.s_pds > final_pditc.maximum_s_pds)" ng-click="postc('savepditc','')" style="background: #0877d6; color: #ffffff; font-size: 13px; padding-right: 31px; padding-left: 23px; border-color: #868686;margin-bottom: 5px; float: right;">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="Datacn">
+
+                            <div class="">
+                                <b>Downloaded Summary</b>
+                                <div ng-show="Datacn.error">
+                                    <table class="table table-bordered table-striped space10">
+                                        <thead>
+                                            <tr class="tbld">
+                                                <th>Error Code</th>
+                                                <th>Error Message</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="padding-top:5px;">
+                                                <td>{{Datacn.error.error_cd}}</td>
+                                                <td>{{Datacn.error.message}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div ng-show="!Datacn.error">
+                                    <div style="border:1px solid #000;">
+                                        <b><i>Tax Payable</i></b>
+                                        <div class="table-responsive">
+                                            <table id="tblCashBalance" class="table table-bordered space10" style="width:100%;" ng-repeat="row in Datacn.tx_pmt.tx_py">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width: 215px;"><b style="float:left;">Liability ledger Id :</b></td>
+                                                        <td><spn style="float:left;">{{row.liab_ldg_id}}</spn></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b style="float:left;">Transaction Type :</b></td>
+                                                        <td><spn style="float:left;">{{row.trans_typ}}</spn></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b style="float:left;">Transaction Description :</b></td>
+                                                        <td><spn style="float:left;">{{row.tran_desc}}</spn></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <table id="tblCashBalance" class="table table-bordered table-striped space10" style="width:100%">
+                                                                <thead>
+                                                                    <tr class="tbld">
+                                                                        <td></td>
+                                                                        <td>Tax Amount</td>
+                                                                        <td>Interest Amount</td>
+                                                                        <td>Fee Amount</td>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr style="padding-top:5px;">
+                                                                        <td>IGST</td>
+                                                                        <td>{{row.igst.tx}}</td>
+                                                                        <td>{{row.igst.intr}}</td>
+                                                                        <td>{{row.igst.fee}}</td>
+                                                                    </tr>
+                                                                    <tr style="padding-top:5px;">
+                                                                        <td>CGST</td>
+                                                                        <td>{{row.cgst.tx}}</td>
+                                                                        <td>{{row.cgst.intr}}</td>
+                                                                        <td>{{row.cgst.fee}}</td>
+                                                                    </tr>
+                                                                    <tr style="padding-top:5px;">
+                                                                        <td>SGST</td>
+                                                                        <td>{{row.sgst.tx}}</td>
+                                                                        <td>{{row.sgst.intr}}</td>
+                                                                        <td>{{row.sgst.fee}}</td>
+                                                                    </tr>
+                                                                    <tr style="padding-top:5px;">
+                                                                        <td>CESS</td>
+                                                                        <td>{{row.cess.tx}}</td>
+                                                                        <td>{{row.cess.intr}}</td>
+                                                                        <td>{{row.cess.fee}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix" style="margin-bottom:10px;"></div>
+                                    <div style="border:1px solid #000;">
+                                        <b><i>List of Paid Through Cash</i></b>
+                                        <div class="table-responsive">
+                                            <table id="tblCashBalance" class="table table-bordered space10" style="width:100%;" ng-repeat="row in Datacn.tx_pmt.pdcash">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width: 215px;"><b style="float:left;">Liability ledger Id :</b></td>
+                                                        <td><spn style="float:left;">{{row.liab_ldg_id}}</spn></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b style="float:left;">Transaction Type :</b></td>
+                                                        <td><spn style="float:left;">{{row.trans_typ}}</spn></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <table id="tblCashBalance" class="table table-bordered table-striped space10" style="width:100%">
+                                                                <thead>
+                                                                    <tr class="tbld">
+                                                                        <td></td>
+                                                                        <td>Paid</td>
+                                                                        <td>Interest</td>
+                                                                        <td>Late Fee</td>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr style="padding-top:5px;">
+                                                                        <td style="vertical-align: middle;">IGST</td>
+                                                                        <td>{{row.ipd}}<br><input type="text" ng-show="row.isEditable" ng-disabled="Datacn.isOffsetDone" class="blank" style="width: 100px;" ng-model="final_pdcash[$index].ipd" ng-blur="pdCash($index, 'ipd');" /></td>
+                                                                        <td>{{row.i_intrpd}}<br><input type="text" ng-show="row.isEditable" ng-disabled="Datacn.isOffsetDone" class="blank" style="width: 100px;" ng-model="final_pdcash[$index].i_intrpd" ng-blur="pdCash($index, 'i_intrpd');" /></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr style="padding-top:5px;">
+                                                                        <td style="vertical-align: middle;">CGST</td>
+                                                                        <td>{{row.cpd}}<br><input type="text" ng-show="row.isEditable" ng-disabled="Datacn.isOffsetDone" class="blank" style="width: 100px;" ng-model="final_pdcash[$index].cpd" ng-blur="pdCash($index, 'cpd');" /></td>
+                                                                        <td>{{row.c_intrpd}}<br><input type="text" ng-show="row.isEditable" ng-disabled="Datacn.isOffsetDone" class="blank" style="width: 100px;" ng-model="final_pdcash[$index].c_intrpd" ng-blur="pdCash($index, 'c_intrpd');" /></td>
+                                                                        <td>{{row.c_lfeepd}}<br><input type="text" ng-show="row.isEditable" ng-disabled="Datacn.isOffsetDone" class="blank" style="width: 100px;" ng-model="final_pdcash[$index].c_lfeepd" ng-blur="pdCash($index, 'c_lfeepd');" /></td>
+                                                                    </tr>
+                                                                    <tr style="padding-top:5px;">
+                                                                        <td style="vertical-align: middle;">SGST</td>
+                                                                        <td>{{row.spd}}<br><input type="text" ng-show="row.isEditable" ng-disabled="Datacn.isOffsetDone" class="blank" style="width: 100px;" ng-model="final_pdcash[$index].spd" ng-blur="pdCash($index, 'spd');" /></td>
+                                                                        <td>{{row.s_intrpd}}<br><input type="text" ng-show="row.isEditable" ng-disabled="Datacn.isOffsetDone" class="blank" style="width: 100px;" ng-model="final_pdcash[$index].s_intrpd" ng-blur="pdCash($index, 's_intrpd');" /></td>
+                                                                        <td>{{row.s_lfeepd}}<br><input type="text" ng-show="row.isEditable" ng-disabled="Datacn.isOffsetDone" class="blank" style="width: 100px;" ng-model="final_pdcash[$index].s_lfeepd" ng-blur="pdCash($index, 's_lfeepd');" /></td>
+                                                                    </tr>
+                                                                    <tr style="padding-top:5px;">
+                                                                        <td style="vertical-align: middle;">CESS</td>
+                                                                        <td>{{row.cspd}}<br><input type="text" ng-show="row.isEditable" ng-disabled="Datacn.isOffsetDone" class="blank" style="width: 100px;" ng-model="final_pdcash[$index].cspd" ng-blur="pdCash($index, 'cspd');" /></td>
+                                                                        <td>{{row.cs_intrpd}}<br><input type="text" ng-show="row.isEditable" ng-disabled="Datacn.isOffsetDone" class="blank" style="width: 100px;" ng-model="final_pdcash[$index].cs_intrpd" ng-blur="pdCash($index, 'cs_intrpd');" /></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div style="text-align:right">
+                                                                <button type="button" class="btn btn-default" ng-show="!row.isEditable" ng-click="row.isEditable = true" style="background: #0877d6; color: #ffffff; font-size: 13px; padding-right: 31px; padding-left: 23px; border-color: #868686;margin-bottom: 5px;">Edit</button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix" style="margin-bottom:10px;"></div>
+                                    <div style="border:1px solid #000;">
+                                        <b><i>Paid Through Credit</i></b>
+                                        <div class="table-responsive">
+                                            <table id="tblCashBalance" class="table table-bordered space10" style="width:100%;">
+                                                <thead>
+                                                    <tr class="tbld">
+                                                        <td rowspan="2" colspan="3" style="width: 115px;">Description</td>
+                                                        <td colspan="4">Paid through ITC</td>
+                                                    </tr>
+                                                    <tr style="background-color:#c2f5fc">
+                                                        <td>Integrated Tax</td>
+                                                        <td>Central Tax</td>
+                                                        <td>State/UT Tax</td>
+                                                        <td>Cess</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr style="padding-top:5px;">
+                                                        <td colspan="3" style="vertical-align: middle;">Integrated Tax</td>
+                                                        <td>{{Datacn.tx_pmt.pditc.i_pdi}}<br><input type="text" class="blank" style="width: 100px;" ng-disabled="Datacn.isOffsetDone" ng-model="final_pditc.i_pdi" ng-blur="pditc('i_pdi')" /></td>
+                                                        <td>{{Datacn.tx_pmt.pditc.i_pdc}}<br><input type="text" class="blank" style="width: 100px;" ng-disabled="Datacn.isOffsetDone" ng-model="final_pditc.i_pdc" ng-blur="pditc('i_pdc')" /></td>
+                                                        <td>{{Datacn.tx_pmt.pditc.i_pds}}<br><input type="text" class="blank" style="width: 100px;" ng-disabled="Datacn.isOffsetDone" ng-model="final_pditc.i_pds" ng-blur="pditc('i_pds')" /></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr style="padding-top:5px;">
+                                                        <td colspan="3" style="vertical-align: middle;">Central Tax</td>
+                                                        <td>{{Datacn.tx_pmt.pditc.c_pdi}}<br><input type="text" class="blank" style="width: 100px;" ng-disabled="Datacn.isOffsetDone" ng-model="final_pditc.c_pdi" ng-blur="pditc('c_pdi')" /></td>
+                                                        <td>{{Datacn.tx_pmt.pditc.c_pdc}}<br><input type="text" class="blank" style="width: 100px;" ng-disabled="Datacn.isOffsetDone" ng-model="final_pditc.c_pdc" ng-blur="pditc('c_pdc')" /></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr style="padding-top:5px;">
+                                                        <td colspan="3" style="vertical-align: middle;">State/UT Tax</td>
+                                                        <td>{{Datacn.tx_pmt.pditc.s_pdi}}<br><input type="text" class="blank" style="width: 100px;" ng-disabled="Datacn.isOffsetDone" ng-model="final_pditc.s_pdi" ng-blur="pditc('s_pdi')" /></td>
+                                                        <td></td>
+                                                        <td>{{Datacn.tx_pmt.pditc.s_pds}}<br><input type="text" class="blank" style="width: 100px;" ng-disabled="Datacn.isOffsetDone" ng-model="final_pditc.s_pds" ng-blur="pditc('s_pds')" /></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr style="padding-top:5px;">
+                                                        <td colspan="3" style="vertical-align: middle;">CESS</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>{{Datacn.tx_pmt.pditc.cs_pdcs}}<br><input type="text" class="blank" style="width: 100px;" ng-disabled="Datacn.isOffsetDone" ng-model="final_pditc.cs_pdcs" ng-blur="pditc('cs_pdcs')" /></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div ng-show="offsetResponse && offsetResponse.error">
+                                            <table class="table table-bordered table-striped space10">
+                                                <thead>
+                                                    <tr class="tbld">
+                                                        <th>Error Code</th>
+                                                        <th>Error Message</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr style="padding-top:5px;">
+                                                        <td>{{offsetResponse.error.error_cd}}</td>
+                                                        <td>{{offsetResponse.error.message}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div style="text-align: right; padding: 10px;">
+                                            <button type="button" ng-show="!Datacn.isOffsetDone" class="btn btn-default" ng-click="postc('offset','')" style="background: #0877d6; color: #ffffff; font-size: 13px; padding-right: 31px; padding-left: 23px; border-color: #868686;margin-bottom: 5px;">Offset</button>
+                                            <button type="button" ng-show="!Datacn.isOffsetDone" class="btn btn-default" ng-click="autoOffset()" style="background: #0877d6; color: #ffffff; font-size: 13px; padding-right: 31px; padding-left: 23px; border-color: #868686;margin-bottom: 5px;">Auto Offset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix" style="margin-top:20px;"></div>
+                        <div ng-show="(showcashitc=='success')">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8"><b>Ledger Cash Balance</b></div>
+                            <div class="col-md-2" style="float: right;margin-right: 25px;">
+                                <a href="#" ng-click="getCashITCDetails()">See Details</a>
+                            </div>
+                            <div class="clearfix" style="margin-bottom:10px;"></div>
+
+                            <div class="">
+                                <div>
+                                    <div class="table-responsive">
+                                        <table id="tblCashBalance" class="table table-bordered table-striped space10" style="width:100%">
+                                            <thead>
+                                                <tr class="tbld">
+                                                    <td></td>
+                                                    <td>Tax Amount</td>
+                                                    <td>Interest Amount</td>
+                                                    <td>Penality Amount</td>
+                                                    <td>Fee Amount</td>
+                                                    <td>Other Amount</td>
+                                                    <td>Total Balance</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="padding-top:5px;">
+                                                    <td><b>IGST</b></td>
+                                                    <td>{{cashITCDetails.cash_bal.igst.tx}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.igst.intr}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.igst.pen}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.igst.fee}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.igst.oth}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.igst_tot_bal}}</td>
+                                                </tr>
+                                                <tr style="padding-top:5px;">
+                                                    <td><b>CGST</b></td>
+                                                    <td>{{cashITCDetails.cash_bal.cgst.tx}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.cgst.intr}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.cgst.pen}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.cgst.fee}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.cgst.oth}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.cgst_tot_bal}}</td>
+                                                </tr>
+                                                <tr style="padding-top:5px;">
+                                                    <td><b>SGST</b></td>
+                                                    <td>{{cashITCDetails.cash_bal.sgst.tx}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.sgst.intr}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.sgst.pen}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.sgst.fee}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.sgst.oth}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.sgst_tot_bal}}</td>
+                                                </tr>
+                                                <tr style="padding-top:5px;">
+                                                    <td><b>CESS</b></td>
+                                                    <td>{{cashITCDetails.cash_bal.cess.tx}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.cess.intr}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.cess.pen}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.cess.fee}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.cess.oth}}</td>
+                                                    <td>{{cashITCDetails.cash_bal.cess_tot_bal}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="clearfix"></div>
+                                        <div class="col-md-8"><b>Ledger ITC Balance</b></div>
+                                        <div class="col-md-2" style="float: right;">
+                                            <a href="#" ng-click="getCashLedgerDetails()">See Details</a>
+                                        </div>
+                                        <div class="clearfix" style="margin-bottom:10px;"></div>
+                                        <table id="tblCashBalance" class="table table-bordered table-striped space10" style="width:100%">
+                                            <thead>
+                                                <tr class="tbld">
+                                                    <td>Ledger IGST Balance</td>
+                                                    <td>Ledger CGST Balance</td>
+                                                    <td>Ledger SGST Balance</td>
+                                                    <td>Ledger CESS Balance</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="padding-top:5px;">
+                                                    <td>{{cashITCDetails.itc_bal.igst_bal}}</td>
+                                                    <td>{{cashITCDetails.itc_bal.cgst_bal}}</td>
+                                                    <td>{{cashITCDetails.itc_bal.sgst_bal}}</td>
+                                                    <td>{{cashITCDetails.itc_bal.cess_bal}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix" style="margin-top:20px;"></div>
+                        <div>
+                            <div ng-show="ledgerLiability.error">
+
+                                <div class="">
+                                    <b>RetLiab Balance</b>
+                                    <div class="col-md-2" style="float: right;" ng-show="!ledgerLiability.error">
+                                        <a href="#" ng-click="getLiabilityBalance()">See Details</a>
+                                    </div>
+                                    <div>
+                                        <table class="table table-bordered table-striped space10">
+                                            <thead>
+                                                <tr class="tbld">
+                                                    <th>Error Code</th>
+                                                    <th>Error Message</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="padding-top:5px;">
+                                                    <td>{{ledgerLiability.error.error_cd}}</td>
+                                                    <td>{{ledgerLiability.error.message}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="ledgerLiability.tr.length > 0">
+
+                                <div class="">
+                                    <b>Open Liabilities Details</b>
+                                    <div class="col-md-2" style="float: right;">
+                                        <a href="#" ng-click="getLiabilityBalance()">See Details</a>
+                                    </div>
+                                    <div ng-show="!ledgerLiability.error">
+                                        <div>
+                                            <div class="table-responsive" style="border:1px solid #000;">
+                                                <table id="tblCashBalance" class="table table-bordered space10" style="width:100%;" ng-repeat="row in ledgerLiability.tr">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="width: 215px;"><b style="float:left;">Liability Id :</b></td>
+                                                            <td><spn style="float:left;">{{row.liab_id}}</spn></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b style="float:left;">Description :</b></td>
+                                                            <td><spn style="float:left;">{{row.tran_desc}}</spn></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <table id="tblCashBalance" class="table table-bordered table-striped space10" style="width:100%">
+                                                                    <thead>
+                                                                        <tr class="tbld">
+                                                                            <td></td>
+                                                                            <td>Tax Amount</td>
+                                                                            <td>Interest Amount</td>
+                                                                            <td>Penality Amount</td>
+                                                                            <td>Fee Amount</td>
+                                                                            <td>Other Amount</td>
+                                                                            <td>Total Balance</td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr style="padding-top:5px;">
+                                                                            <td><b>IGST</b></td>
+                                                                            <td>{{row.igst.tx}}</td>
+                                                                            <td>{{row.igst.intr}}</td>
+                                                                            <td>{{row.igst.pen}}</td>
+                                                                            <td>{{row.igst.fee}}</td>
+                                                                            <td>{{row.igst.oth}}</td>
+                                                                            <td>{{row.igst.tot}}</td>
+                                                                        </tr>
+                                                                        <tr style="padding-top:5px;">
+                                                                            <td><b>CGST</b></td>
+                                                                            <td>{{row.cgst.tx}}</td>
+                                                                            <td>{{row.cgst.intr}}</td>
+                                                                            <td>{{row.cgst.pen}}</td>
+                                                                            <td>{{row.cgst.fee}}</td>
+                                                                            <td>{{row.cgst.oth}}</td>
+                                                                            <td>{{row.cgst.tot}}</td>
+                                                                        </tr>
+                                                                        <tr style="padding-top:5px;">
+                                                                            <td><b>SGST</b></td>
+                                                                            <td>{{row.sgst.tx}}</td>
+                                                                            <td>{{row.sgst.intr}}</td>
+                                                                            <td>{{row.sgst.pen}}</td>
+                                                                            <td>{{row.sgst.fee}}</td>
+                                                                            <td>{{row.sgst.oth}}</td>
+                                                                            <td>{{row.sgst.tot}}</td>
+                                                                        </tr>
+                                                                        <tr style="padding-top:5px;">
+                                                                            <td><b>CESS</b></td>
+                                                                            <td>{{row.cess.tx}}</td>
+                                                                            <td>{{row.cess.intr}}</td>
+                                                                            <td>{{row.cess.pen}}</td>
+                                                                            <td>{{row.cess.fee}}</td>
+                                                                            <td>{{row.cess.oth}}</td>
+                                                                            <td>{{row.cess.tot}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="button" id="btnSavetab" value="Save" Class="btn btn-primary" />
+
+                        <div ng-show="TaskHistory && TaskHistory.length > 0">
+
+                            <div Class="">
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Task History</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div Class="table-responsive">
+                                                    <table Class="table table-bordered table-striped space10">
+                                                        <thead>
+                                                            <tr class="tbld">
+                                                                <th style="text-align:center;">Action Type</th>
+                                                                <th style="text-align:center;">Submitted On</th>
+                                                                <th style="text-align:center;">ActionSubType</th>
+                                                                <th style="text-align:center;">Completed On</th>
+                                                                <th style="text-align:center;">Status</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="tHistory in TaskHistory" style="text-align:center;">
+                                                                <td><a href="#" data-toggle="modal" data-target="#exampleModal" ng-click="postc('infojson', tHistory.ApiTaskID)"><span class="fa fa-edit"></span></a>{{tHistory.ActionType.toUpperCase()}}</td>
+                                                                <td>{{tHistory.SubmittedOn | date: 'dd MMM yyyy, HH:mm:ss'}}</td>
+                                                                <td>{{tHistory.ActionSubType}}</td>
+                                                                <td>{{tHistory.CompletedOn | date: 'dd MMM yyyy, HH:mm:ss'}}</td>
+                                                                <td>{{tHistory.Status}}</td>
+                                                                <td><a href="#" ng-click="donwloadTaskFile(tHistory.ApiTaskID, 'apitask')" ng-show="tHistory.FileName">Download</a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:120px;">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Parameters Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr class="tbld">
+                                                    <th>Param Name</th>
+                                                    <th>Param Value</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{InfoJsonData | json }}
+                                                <tr ng-repeat="r in InfoJsonData">
+                                                    <td>{{r.ParamName}}</td>
+                                                    <td>{{r.ParamValue}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+                <form action="" method="post" name="userform">
+                    <div Class="row dipbtnc">
+                        <hr />
+                        <Label Class="control-label" style="margin-left:17px;font-size:25px">ITC Reversal</Label>
+                        <Button type="button" id="items" Class="btn btn-primary btnf" ng-click="item()">ADD</Button>
+                    </div>
+                    <div Class="row">
+                        <label style="float:right;margin-top:17px;margin-bottom:17px"></label>
+                    </div>
+                    <div class="row">
+                        <div class="marb" ng-repeat="row in ITCRev" style="padding-top:5px;">
+                            <div class="row" style="background-color: #eeeeee;padding-bottom:17px;padding-top:17px;">
+
+                                <div class="col-md-1"><label class="labeltextc" style="font-size:16px">[{{$index+1}}]</label></div>
+                                <div class="col-md-2"><Label Class="control-label labeltextc">Rule Num</Label><input type="number" ng-model="row.RuleNum" class="form-control" ng-change="calculate(row)" /></div>
+                                <div class="col-md-2"><Label Class="control-label labeltextc">Rule Section</Label><input type="text" ng-model="row.RuleSection" Class="form-control" /></div>
+                                <div class="col-md-2"><Label Class="control-label labeltextc">IGST</Label><input type="number" ng-model="row.Iamt" Class="form-control" /></div>
+                                <div class="col-md-2"><Label Class="control-label labeltextc">CGST</Label><input type="number" ng-model="row.Camt" Class="form-control" /></div>
+                                <div class="col-md-2"> <a href="" class="delete" ng-click="delete($index)"><span class="fa fa-trash" style="color: #d83e3b;margin-right: 8px;"></span></a></div>
+                            </div>
+                            <div class="row" style="background-color: #eeeeee;padding-bottom:17px;padding-top:17px;">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><Label Class="control-label labeltextc">SGST</Label><input type="number" ng-model="row.Samt" Class="form-control" /></div>
+                                <div class="col-md-2"><Label Class="control-label labeltextc">CESS</Label><input type="number" ng-model="row.CsAmt" Class="form-control" /></div>
+                                <div class="col-md-2"><label class="control-label labeltextc">Action</label><select ng-model="row.ActionSelected" ng-options="txdn.DisplayText for txdn in ValueLists.Action.ValueListItems track by txdn.DataValue" class="form-control"></select></div>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.Partial("_SavePanel")
+                </form>
+
+                @Html.Partial("_GSTNGSTR3B")
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<Style>
+    .clshid {
+        display: none;
+    }
+
+    #dialogOTP {
+        display: none;
+    }
+
+    .messageerror {
+        display: none;
+        color: red;
+    }
+
+    .messagesuccess {
+        display: none;
+    }
+
+    .messagedis {
+        display: block !important;
+    }
+
+    .messagehid {
+        display: none;
+    }
+
+    .showbtn {
+        display: none;
+    }
+
+    .conbtn {
+        display: none;
+        color: red;
+        font-size: 2em;
+    }
+
+    #tblCashBalance thead td {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    #tblCashBalance tbody td {
+        text-align: center;
+    }
+</Style>
+@section BotScripts{
+
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http, $interval) {
+            $scope.modelUrl = 'frmGSTNGSTR3B';
+            $scope.result = '';
+            $scope.showcashitc = '';
+            $scope.model = JSON.parse($("#model_json").val());
+            $scope.dsCombo = $scope.model.dsCombo;
+            $scope.GstRegPP = $scope.model.dsForm.DT[0];
+            $scope.AppItem = $scope.model.dsForm.gstreg;
+            $scope.TaskHistory = $scope.model.dsForm.TaskHistoryData;
+            $scope.InfoJsonData = null;
+            //$scope.TaskHistory.forEach(function (v) {
+            //    v.Success = v.Success == 1 ? "org" : "err"
+            //});
+            $scope.ValueLists = $scope.model.ValueLists;
+            $scope.return = $scope.model.dsForm.return[0];
+            $scope.ReturnPeriodID = $scope.return.PostPeriodID;
+            $scope.AppItemData = {};
+
+            var msgHTML = '<div></div><div class="form-group" id="syncPanel"><div>';
+            msgHTML += '<div class="form-group" style="font-size: 10px;background-color: #efefef;width: 815px;" id="syncMessagePanel">';
+            msgHTML += '<div><a href="#" class="delete" id="removeSyncDiv"><span class="fa fa-remove" style="color: #d83e3b;margin-right: 8px;"></span></a>';
+            msgHTML += '<div class="row" style="padding-top:5px;margin-left: 15px;">';
+            msgHTML += '<div id="syncExecutedMsg" style="padding:5px;"></div>';
+            msgHTML += '<i class="fa fa-2x fa-link" style="color:green; display:none; padding: 5px;" id="syncDownloadLink"></i>';
+            msgHTML += '</div></div></div></div></div>';
+
+            @Html.RenderLookup("GstRegPP", Model, Model.dsForm.Tables[0])
+
+            $scope.itemc = function (row) {
+                $scope.GstRegID = row.GSTRegID; $scope.GSTIN = row.GSTIN;
+                $scope.Datac = $.grep($scope.model.dsForm.detail, function (item, index) { return item.gstregid === row.GSTRegID });
+                $scope.ITCRev = $.grep($scope.model.dsForm.itcrev, function (item, index) { return item.GstRegID === row.GSTRegID });
+                $.each($scope.ITCRev, function (index, row) {
+                    row.ActionSelected = $.grep($scope.ValueLists.Action.ValueListItems, function (item, index) { return item.DataValue == row.Action })[0];
+
+                });
+            }
+
+            $scope.changeitem = function () {
+                $scope.itmval = true;
+            }
+
+            $scope.postch = function (retp, key) {
+                $scope.ReturnPeriodID = retp.PostPeriodID;
+                $scope.postc(key, '');
+            }
+
+            $scope.IsInitializing = false;
+            $scope.appitemchange = function () {
+                $scope.pantax = 0;
+                $scope.panigst = 0;
+
+                $scope.pancgst = 0;
+                $scope.pansgst = 0;
+                $scope.pancess = 0;
+
+
+
+                $.each($scope.AppItem, function (index, row) {
+                    $scope.pantax = $scope.pantax + row.txval;
+                    $scope.panigst = $scope.panigst + row.iamt;
+                    $scope.pancgst = $scope.pancgst + row.camt;
+
+                    $scope.pansgst = $scope.pansgst + row.samt;
+                    $scope.pancess = $scope.pancess + row.csamt;
+
+                });
+
+
+                $scope.pantax = $scope.pantax.toFixed(2);
+                $scope.panigst = $scope.panigst.toFixed(2);
+
+                $scope.pancgst = $scope.pancgst.toFixed(2);
+
+
+                $scope.pansgst = $scope.pansgst.toFixed(2);
+                $scope.pancess = $scope.pancess.toFixed(2);
+            }; $scope.appitemchange();
+            $scope.item = function () {
+                var item = {};
+                if ($scope.GstRegID === undefined) { alert("Please Select Any GSTIN"); return; };
+                item.GSTRegID = $scope.GstRegID;
+                $scope.ITCRev.push(item);
+            };
+            $scope.delete = function (index) {
+                $scope.ITCRev.splice(index, 1);
+            };
+            $scope.postc = function (key, UploadType) {
+                $scope.IsInitializing = true;
+                $scope.result = ''; $scope.status = 'postedc';
+                var url = '/' + $scope.modelUrl + '/ParamsOutput' + location.search;
+                var payload = { GstRegID: (((key == 'cashitcbal' || key == 'retlibbal' || key == 'summary' || key == 'savepditc') && $scope.filteredPaymentDetail && $scope.filteredPaymentDetail.length > 0 && $scope.filteredPaymentDetail[0].GSTRegId) ? $scope.filteredPaymentDetail[0].GSTRegId : $scope.GstRegID), CompanyID: $scope.GstRegPP.CompanyID, ReturnPeriodID: $scope.ReturnPeriodID, UploadType: UploadType };
+
+                if (key == "savepditc") {
+                    payload.pditc = JSON.stringify($scope.final_pditc);
+                } else if (key == "offset") {
+                    payload.offsetdata = JSON.stringify({
+                        pdcash: $scope.final_pdcash,
+                        pditc: $scope.final_pditc
+                    });
+                } else if (key == "newoffset") {
+                    if ($scope.filteredPaymentDetail && $scope.filteredPaymentDetail.length > 0) {
+                        var PDITC = $scope.filteredPaymentDetail.filter(function (x) {
+                            return x.EntryType == "PDITC";
+                        });
+                        if (PDITC && PDITC.length > 0) {
+                            PDITC = PDITC[0];
+                        }
+
+                        var PDCASH_30002 = $scope.filteredPaymentDetail.filter(function (x) {
+                            return x.EntryType == "PDCASH" && x.TransType == "30002";
+                        });
+                        if (PDCASH_30002 && PDCASH_30002.length > 0) {
+                            PDCASH_30002 = PDCASH_30002[0];
+                        }
+
+                        var PDCASH_30003 = $scope.filteredPaymentDetail.filter(function (x) {
+                            return x.EntryType == "PDCASH" && x.TransType == "30003";
+                        });
+                        if (PDCASH_30003 && PDCASH_30003.length > 0) {
+                            PDCASH_30003 = PDCASH_30003[0];
+                        }
+
+                        if (PDITC && PDCASH_30002 && PDCASH_30003) {
+                            payload.gstregid = PDITC.GSTIN || PDCASH_30002.GSTIN || PDCASH_30003.GSTIN;
+                            payload.offsetdata = JSON.stringify({
+                                pdcash: [
+                                    {
+                                        liab_ldg_id: PDCASH_30002.liab_ldg_id,
+                                        trans_typ: PDCASH_30002.TransType,
+                                        ipd: PDCASH_30002.Iamt_Tax,
+                                        cpd: PDCASH_30002.Camt_Tax,
+                                        spd: PDCASH_30002.Samt_Tax,
+                                        cspd: PDCASH_30002.CSAMT_Tax,
+                                        i_intrpd: PDCASH_30002.Iamt_Interest,
+                                        c_intrpd: PDCASH_30002.Camt_Interest,
+                                        s_intrpd: PDCASH_30002.Samt_Interest,
+                                        cs_intrpd: PDCASH_30002.CSAMT_Interest,
+                                        c_lfeepd: PDCASH_30002.Camt_Fee,
+                                        s_lfeepd: PDCASH_30002.Samt_fee
+                                    },
+                                    {
+                                        liab_ldg_id: PDCASH_30003.liab_ldg_id,
+                                        trans_typ: PDCASH_30003.TransType,
+                                        ipd: PDCASH_30003.Iamt_Tax,
+                                        cpd: PDCASH_30003.Camt_Tax,
+                                        spd: PDCASH_30003.Samt_Tax,
+                                        cspd: PDCASH_30003.CSAMT_Tax,
+                                        i_intrpd: PDCASH_30003.Iamt_Interest,
+                                        c_intrpd: PDCASH_30003.Camt_Interest,
+                                        s_intrpd: PDCASH_30003.Samt_Interest,
+                                        cs_intrpd: PDCASH_30003.CSAMT_Interest,
+                                        c_lfeepd: PDCASH_30003.Camt_Fee,
+                                        s_lfeepd: PDCASH_30003.Samt_fee
+                                    }
+                                ],
+                                pditc: {
+                                    i_pdi: PDITC.Iamt_I,
+                                    i_pdc: PDITC.Iamt_C,
+                                    i_pds: PDITC.Iamt_S,
+                                    c_pdi: PDITC.Camt_I,
+                                    c_pdc: PDITC.Camt_C,
+                                    s_pdi: PDITC.Samt_I,
+                                    s_pds: PDITC.Samt_S,
+                                    cs_pdcs: PDITC.CsAmt_Cs
+                                }
+                            });
+                        }
+                    }
+                }
+
+                $.post(url, {
+                    key: key,
+                    Params: JSON.stringify(payload),
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                }, function (result) {
+                    $scope.status = 'loaded';
+                    //$scope.message = result.message;
+
+                    if (result && result.Data && result.Data.Description != "" && result.message != "") {
+                        $scope.status = '';
+                        $scope.result = '';
+
+                        var msg = $('#msgSyncContainer').find("[data-syncTaskid='" + result.Data.Description + "']");
+                        if (msg.length <= 0) {
+                            msg = $(msgHTML);
+                            $(msg.get(1)).attr("data-syncTaskid", result.Data.Description);
+                            $('#msgSyncContainer').prepend(msg);
+                        }
+                        msg.find("div#syncExecutedMsg").html('<i class="fa fa-2x fa-check" style="color:green"> ' + result.message + '</i>');
+                    }
+                    else {
+                        $scope.status = '';
+                        $scope.result = 'success';
+                        $scope.message = result.message;
+                    }
+
+                    if (result.success) {
+                        if (result.Data) {
+                            if (key == 'dbsumm') {
+                                $scope.model.dsForm.detail = result.Data.Data.detail;
+                                $scope.AppItem = result.Data.Data.gstreg;
+                                $scope.return = result.Data.Data.return[0];
+                                $scope.ITCRev = result.Data.Data.itecrev; if ($scope.ITCRev == undefined) { $scope.ITCRev = []; }
+                                $scope.itmval = false;
+                                $scope.$apply();
+                            }
+
+                            if (typeof (result.Data) === "string") {
+                                result.Data = JSON.parse(result.Data);
+                            }
+
+                            if (result.Data.CalcList && result.Data.CalcList.trans && result.Data.CalcList.trans.length > 0 && result.Data.CalcList.trans[0].ResponsePayload) {
+                                var data = JSON.parse(result.Data.CalcList.trans[0].ResponsePayload);
+
+                                if (key == "summary") {
+                                    $scope.final_pdcash = [];
+                                    $scope.final_pditc = {};
+
+                                    if (data.tx_pmt) {
+                                        if (!data.tx_pmt.tx_py) {
+                                            data.tx_pmt.tx_py = [];
+                                        }
+
+                                        if (!data.tx_pmt.pdcash) {
+                                            data.tx_pmt.pdcash = [];
+                                        }
+
+                                        if (!data.tx_pmt.pditc) {
+                                            data.tx_pmt.pditc = {};
+                                        }
+
+                                        for (var tx_py_index in data.tx_pmt.tx_py) {
+                                            var tx_py = data.tx_pmt.tx_py[tx_py_index];
+                                            var isPdcashFound = false;
+
+                                            for (var pdcash_index in data.tx_pmt.pdcash) {
+                                                var pdcash = data.tx_pmt.pdcash[pdcash_index];
+
+                                                if (tx_py.trans_typ == pdcash.trans_typ) {
+                                                    isPdcashFound = true;
+
+                                                    break;
+                                                }
+                                            }
+
+                                            if (!isPdcashFound) {
+                                                data.tx_pmt.pdcash.push({
+                                                    "liab_ldg_id": tx_py.liab_ldg_id,
+                                                    "trans_typ": tx_py.trans_typ,
+                                                    "ipd": 0,
+                                                    "cpd": 0,
+                                                    "spd": 0,
+                                                    "cspd": 0,
+                                                    "i_intrpd": 0,
+                                                    "c_intrpd": 0,
+                                                    "s_intrpd": 0,
+                                                    "cs_intrpd": 0,
+                                                    "c_lfeepd": 0,
+                                                    "s_lfeepd": 0
+                                                });
+                                            }
+                                        }
+
+                                        data.tx_pmt.pdcash.forEach(function (cashEntry) {
+                                            $scope.final_pdcash.push($.extend({}, cashEntry));
+                                        });
+                                        $scope.final_pditc = $.extend({}, data.tx_pmt.pditc);
+                                    }
+
+                                    $scope.Datacn = data;
+                                } else if (key == "retlibbal") {
+                                    $scope.ledgerLiability = data;
+                                } else if (key == "offset") {
+                                    if (data.error) {
+                                        $scope.offsetResponse = data;
+                                    } else {
+                                        $scope.offsetResponse = null;
+                                        $scope.Datacn.isOffsetDone = true;
+                                    }
+                                } else if (key == "newoffset") {
+                                    if (data.error) {
+                                        $scope.newoffsetResponse = data;
+                                    } else {
+                                        $scope.newoffsetResponse = null;
+                                    }
+                                }
+                            }
+
+                            if (key === "cashitcbal") {
+                                $scope.showcashitc = 'success';
+                                $scope.cashITCDetails = result.Data.Data;
+                            }
+
+                            if (key == 'dbsumm' || key === "payment" || key == 'savepditc') {
+                                if (result.Data.Data && result.Data.Data.paymentSumm && result.Data.Data.paymentSumm.length > 0 && result.Data.Data.paymentdetail && result.Data.Data.paymentdetail.length > 0) {
+                                    $scope.model.dsForm.paymentSumm = result.Data.Data.paymentSumm;
+                                    $scope.model.dsForm.paymentdetail = result.Data.Data.paymentdetail;
+                                } else {
+                                    $scope.model.dsForm.paymentSumm = [];
+                                    $scope.model.dsForm.paymentdetail = [];
+                                }
+
+                                $scope.ShowPaymentDetails(payload.GstRegID);
+                            }
+
+                            if (key == 'infojson') {
+                                $scope.InfoJsonData = JSON.parse(result.Data.Description);
+                            }
+
+                            if ($scope.IsInitializing && result.Data.Description) {
+                                $scope.taskID = result.Data.Description;
+                                $scope.checkStatusInterval($scope.taskID, msg);
+                            }
+                        }
+                    }
+                    else {
+                        if (result.message === '') {
+                            result.message = 'Unknown Error!'
+                        };
+
+                        $scope.status = '';
+                        $scope.result = 'failure';
+                    }
+
+
+                    $scope.appitemchange();
+                    $scope.$apply();
+                    return;
+                });
+            };
+
+            $scope.connect = function (row) {
+                $scope.status = 'postedc';
+                var datainfo = {
+                    GstRegID: row.GSTRegID,
+                    ReturnPeriodID: row.ReturnPeriodID
+                };
+
+                datainfo = JSON.stringify(datainfo);
+                var data = {
+                    key: 'otp',
+                    Params: datainfo,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                };
+                $.post("/frmGSTNGSTR3B/ParamsOutput" + location.search, data, function (result) {
+                    if (result.status = "200") {
+                        if (result.token == 1) {
+                            $('.messagesuccess').html('Success: Existing token');
+                            $scope.status = ''; $scope.connectdist = false;
+
+                        } else {
+                            $scope.status = '';
+                            row.itemc = false;
+                            $('.cldis').addClass('clshid');
+
+
+
+                        }
+                    }
+                    else {
+                        $scope.status = '';
+
+
+                    }
+
+                    $scope.$apply();
+                });
+
+            };
+
+            $scope.btnconnect = function (row) {
+                $scope.status = 'postedc';
+                $scope.connectdis = true;
+
+                var datainfo = {
+                    GstRegID: row.GSTRegID,
+                    ReturnPeriodID: row.ReturnPeriodID,
+                    OTP: row.OTP
+                };
+
+                datainfo = JSON.stringify(datainfo);
+                var data = {
+                    key: 'token',
+                    Params: datainfo,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                };
+
+                $.post("/frmGSTNGSTR3B/ParamsOutput" + location.search, data, function (result) {
+                    if (result.status = "200") {
+                        $scope.status = '';
+                        row.ExpiryMins = result.ExpiryMins * 60; row.itemc = true;
+                        $scope.connectdis = false; $('.cldis').removeClass('clshid');
+                    }
+                    else {
+                        $scope.status = '';
+                        $scope.connectdis = true;
+                    }
+
+                    $scope.$apply();
+                });
+            };
+
+            $scope.btnconnectdel = function (row) {
+                row.itemc = true;
+                $('.cldis').removeClass('clshid');
+                $scope.$apply();
+            }
+
+            $scope.currencyRegex = /^\d{1,15}(\.\d{1,2})?$/;
+
+            $scope.pdCash = function (index, property) {
+                var value = $scope.final_pdcash[index][property];
+
+                if (!$scope.currencyRegex.test(value) || value == "") {
+                    $scope.final_pdcash[index][property] = 0;
+                }
+            };
+
+            $scope.pditc = function (property) {
+                var value = $scope.final_pditc[property];
+                if (!$scope.currencyRegex.test(value) || value == "") {
+                    $scope.final_pditc[property] = 0;
+                }
+            };
+
+            $scope.ShowPaymentDetails = function (GSTRegId) {
+                $scope.isShowPDITCedit = false;
+
+                $scope.filteredPaymentDetail = [];
+                if ($scope.model && $scope.model.dsForm && $scope.model.dsForm.paymentdetail && $scope.model.dsForm.paymentdetail.length > 0) {
+                    $scope.filteredPaymentDetail = $scope.model.dsForm.paymentdetail.filter(function (x) {
+                        return x.GSTRegId == GSTRegId;
+                    });
+                }
+            };
+
+            $scope.ShowPDITCedit = function () {
+                if ($scope.filteredPaymentDetail && $scope.filteredPaymentDetail.length > 0) {
+                    var pditc = $scope.filteredPaymentDetail.filter(function (x) {
+                        return x.EntryType == "PDITC";
+                    });
+
+                    if (pditc && pditc.length > 0) {
+                        pditc = pditc[0];
+
+                        $scope.final_pditc = { i_pdi: pditc.Iamt_I || 0, i_pdc: pditc.Iamt_C || 0, i_pds: pditc.Iamt_S || 0, c_pdi: pditc.Camt_I || 0, c_pdc: pditc.Camt_C || 0, s_pdi: pditc.Samt_I || 0, s_pds: pditc.Samt_S || 0, cs_pdcs: pditc.CsAmt_Cs || 0 };
+                    } else {
+                        $scope.final_pditc = { i_pdi: 0, i_pdc: 0, i_pds: 0, c_pdi: 0, c_pdc: 0, s_pdi: 0, s_pds: 0, cs_pdcs: 0 };
+                    }
+
+                    var tax_30002 = $scope.filteredPaymentDetail.filter(function (x) {
+                        return x.EntryType == "TAX" && x.TransType == "30002";
+                    });
+                    if (tax_30002 && tax_30002.length > 0) {
+                        tax_30002 = tax_30002[0];
+                    }
+
+                    var balitc = $scope.filteredPaymentDetail.filter(function (x) {
+                        return x.EntryType == "BALITC";
+                    });
+                    if (balitc && balitc.length > 0) {
+                        balitc = balitc[0];
+                    }
+
+                    var itc = $scope.filteredPaymentDetail.filter(function (x) {
+                        return x.EntryType == "ITC";
+                    });
+                    if (itc && itc.length > 0) {
+                        itc = itc[0];
+                    }
+
+                    $scope.final_pditc.minimum_i_pdi = (tax_30002 ? tax_30002.Iamt || 0 : 0);
+                    $scope.final_pditc.minimum_c_pdc = (tax_30002 ? tax_30002.Camt || 0 : 0);
+                    $scope.final_pditc.minimum_s_pds = (tax_30002 ? tax_30002.Samt || 0 : 0);
+
+                    $scope.final_pditc.maximum_i_pdi = (balitc ? balitc.Iamt || 0 : 0) + (itc ? itc.Iamt || 0 : 0);
+                    $scope.final_pditc.maximum_c_pdc = (balitc ? balitc.Camt || 0 : 0) + (itc ? itc.Camt || 0 : 0);
+                    $scope.final_pditc.maximum_s_pds = (balitc ? balitc.Samt || 0 : 0) + (itc ? itc.Samt || 0 : 0);
+                }
+
+                $scope.isShowPDITCedit = true;
+            };
+
+            @Html.RenderFile("~/scripts/rsgstn.js")
+            @*
+                @Html.RenderFile("~/scripts/rsdata.js");
+                $scope.final_pdcash = [];
+                $scope.Datacn.tx_pmt.pdcash.forEach(function (cashEntry) {
+                    $scope.final_pdcash.push($.extend({}, cashEntry));
+                });
+                $scope.final_pditc = $.extend({}, $scope.Datacn.tx_pmt.pditc);
+            *@
+
+            $scope.cleanupmodel = function (datamodel) {
+                //empty function
+            };
+
+            var loadmodel = function (result) { $scope.model = result; };
+            loadmodel($scope.model);
+            $scope.calculatemodel = function () {
+                $scope.model.dsForm.itcrev = $scope.ITCRev;
+            };
+
+             @Html.RenderFile("~/scripts/rsforms.js");
+        });
+
+        $(document).ready(function () {
+            $('.hidbtn').on('click', function () {
+                $('.conbtn').addClass('messagedis');
+            });
+        });
+    </script>
+}

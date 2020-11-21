@@ -1,0 +1,36 @@
+﻿
+Enteries to be Done from Backend for Getting started with New Tenant.
+
+1- DocNumSys Entries, for generation of CampusCode.
+2- PostPeriod Entries
+3- GstUqc Entries 
+
+Enteries to be Done from UI.
+
+1- Company
+2- Campus
+3- GSTReg
+4- PartyMain
+5- Party
+6- Customer
+7- Vendor
+8- TaxArea
+9- SystemOptions
+10- Division
+11- ValidationRule
+12- GSTRSection
+13- HSNSac
+14- Invoice
+15- InvoiceItemGst
+16- GstAdvanceVouch
+17- GstAdvanceVouchItem
+18- ImportFile
+19- GstRegPP
+20- GstDocNumSeries
+21- GstDocNumTemplate
+22- DashboardSetting
+23- CPInvoice
+24- GSTNAction
+25- Ewaybill
+26- EWayBillVehicle
+27- EWayBillItem

@@ -1,0 +1,191 @@
+﻿<Schema connectioncode="" connectiontype="Source" createdby="user">
+  <RecordTypes>
+    <RecordType Name="Company and Campus Master">
+      <Fields>
+        <Field Name="CompName">
+          <Name>CompName</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Company Name</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="PANNum">
+          <Name>PANNum</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>PAN No. </Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="FinStartDate">
+          <Name>FinStartDate</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Fin Start Date </Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="GSTIN">
+          <Name>GSTIN</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>GSTIN</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="GSTNUserId">
+          <Name>GSTNUserId</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>GSTN UserId </Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="PartialCredit">
+          <Name>PartialCredit</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Partial Credit </Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="RegDate">
+          <Name>RegDate</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Registration Date </Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="GstRegTypeDescrip">
+          <Name>GstRegTypeDescrip</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>GST Registration Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="TurnOver">
+          <Name>TurnOver</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Turn Over </Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="DispName">
+          <Name>DispName</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Campus Name</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelAddress">
+          <Name>SelAddress</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Address</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelPinCode">
+          <Name>SelPinCode</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Pincode</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelCity">
+          <Name>SelCity</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>City</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelCountry">
+          <Name>SelCountry</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Country</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelState">
+          <Name>SelState</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>State</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="CampusType">
+          <Name>CampusType</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Campus Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="HOCampus">
+          <Name>HOCampus</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Whether Head Office</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningCode">
+          <Name>WarningCode</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Warning Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningText">
+          <Name>WarningText</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Warning Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorCode">
+          <Name>ErrorCode</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Error Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorText">
+          <Name>ErrorText</Name>
+          <RecordType>Company and Campus Master</RecordType>
+          <Description>Error Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+      </Fields>
+      <ValidationExpressions />
+      <Name>Company and Campus Master</Name>
+      <Config Ignore="False" IgnoreRows="2" />
+    </RecordType>
+    <RecordType Name="Look_Up_Values">
+      <Fields />
+      <ValidationExpressions />
+      <Name>Look_Up_Values</Name>
+      <Config Ignore="False" IgnoreRows="0" />
+    </RecordType>
+    <RecordType Name="State Code">
+      <Fields />
+      <ValidationExpressions />
+      <Name>State Code</Name>
+      <Config Ignore="False" IgnoreRows="0" />
+    </RecordType>
+  </RecordTypes>
+</Schema>

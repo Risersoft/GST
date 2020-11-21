@@ -1,0 +1,738 @@
+﻿@using risersoft.app.mxform.gst
+@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+
+@model frmGstPartyMainModel
+@{
+    ViewData["Title"] = " Party";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = JsonConvert.SerializeObject(Model, Formatting.Indented,
+                            new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml, NullValueHandling = NullValueHandling.Ignore })
+}
+
+<link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+<div class="container cbackground">
+    <form action="" method="post" name="userform" ng-controller="FormController">
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+        <div Class="form-horizontal">
+
+            <div class="row"></div>
+            <div Class="row" style="margin-top: 40px;">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-10">
+                    <Label Class="control-label labeltext">Party Name  <span class="red">*</span></Label>
+
+                    <input type="text" name="party" ng-model="PartyInfo.MPName" style="max-width: 781px;" class="form-control" required ng-class="{true: 'error'}[submitted() && userform.party.$invalid]" />
+                </div>
+
+
+
+
+            </div>
+
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Address <span class="red">*</span></Label>
+                    <input type="text" name="paddress" ng-model="PartyInfo.Address" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.paddress.$invalid]" />
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">City <span class="red">*</span></Label>
+                    <input type="text" name="pcity" ng-model="PartyInfo.City" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.pcity.$invalid]" />
+                </div>
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Web Address</Label>
+                    <input type="text" ng-model="PartyInfo.Web" Class="form-control" />
+                </div>
+
+            </div>
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">PinCode <span class="red">*</span></Label>
+
+                    <input name="pcode" type="text" numbers-only ng-model="PartyInfo.Pincode" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.pcode.$invalid]" />
+                </div>
+                <div Class="col-md-1">
+                    <Label Class="control-label labeltext">Ph.Code</Label>
+                    <input type="text" ng-model="PartyInfo.PhCountry" Class="form-control" />
+                </div>
+                <div Class="col-md-2">
+                    <Label Class="control-label labeltext">&nbsp;</Label>
+                    <input type="text" ng-model="PartyInfo.PhArea" Class="form-control" />
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Phone Numbers</Label>
+                    <input type="text" ng-model="PartyInfo.Phnum" Class="form-control" />
+
+                </div>
+
+
+
+
+            </div>
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Country <span class="red">*</span></Label>
+                    <select name="country" ng-model="PartyInfo.CountrySelected" ng-options="itemcoun.country for itemcoun in dsCombo.CO track by itemcoun.country" ng-change="changestate(PartyInfo.CountrySelected)" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.country.$invalid]"></select>
+
+
+                </div>
+
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">State <span class="red">*</span></Label>
+                    <select name="countrystate" ng-model="PartyInfo.StateSelected" ng-options="itemsu.SubDivisionName for itemsu in State track by itemsu.SubDivisionName" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.countrystate.$invalid]"></select>
+
+
+                </div>
+
+
+
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">E-mail</Label>
+
+                    <input type="text" ng-model="PartyInfo.Email" class="form-control" />
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-md-1"></div>
+
+
+
+
+
+                <div class="col-md-3" ng-show="PartyInfo.PartyType=='C'"><label class="control-label labeltext">Type</label><input type="text" class="form-control" value="C-Customer" readonly /></div>
+                <div class="col-md-3" ng-show="PartyInfo.PartySubType=='C'"><label class="control-label labeltext">Sub Type</label><input type="text" class="form-control" value="" readonly /></div>
+
+
+
+                <div class="col-md-3" ng-show="PartyInfo.PartyType=='V' && PartyInfo.PartySubType=='MS'"><label class="control-label labeltext">Type</label><input type="text" class="form-control" value="V-Vendor" readonly /></div>
+                <div class="col-md-3" ng-show="PartyInfo.PartyType=='V' && PartyInfo.PartySubType=='MS'"><label class="control-label labeltext">Sub Type</label><input type="text" class="form-control" value="MS-Materail / Service" readonly /></div>
+                <div class="col-md-3" ng-show="PartyInfo.PartyType=='V' && PartyInfo.PartySubType=='TR'"><label class="control-label labeltext">Type</label><input type="text" class="form-control" value="V-Vendor" readonly /></div>
+                <div class="col-md-3" ng-show="PartyInfo.PartyType=='V' && PartyInfo.PartySubType=='TR'"><label class="control-label labeltext">Sub Type</label><input type="text" class="form-control" value="TR-Transpoter" readonly /></div>
+            </div>
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-10"><hr /></div>
+
+            </div>
+            <div Class="row dipbtnc">
+
+
+
+                <Label Class="control-label" style="margin-left:17px;font-size:25px">Branch Details</Label>
+
+
+                <Button type="button" id="items" Class="btn btn-primary btnf" ng-click="item()">ADD BRANCH</Button>
+
+
+            </div>
+            <div Class="row">
+
+                <span style="float:right;margin-top:17px;margin-bottom:17px"></span>
+
+            </div>
+
+
+            <div class="row">
+                <div class="container marb" ng-repeat="row in Party" style="background-color: #eeeeee;padding-top: 17px;padding-bottom:17px;">
+
+
+
+
+
+
+
+
+                    <div class="">
+
+                        <a href="" ng-show="!row.PartyID" class="btn btn-danger" style="float:right;margin-top:15px;z-index:35;position:relative" ng-click="delete($index)"><span class="fa fa-trash"></span></a>
+                        <a href="" ng-show="row.PartyID" class="btn btn-danger" style="float:right;margin-top:15px;z-index:35;position:relative" ng-click="btnPartydel(row)"><span class="fa fa-trash"></span></a>
+
+                        <div class="row">
+
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3" style="margin-left:-7px">
+
+
+                                <label class="control-label">Pan No.</label>
+                                <input name="" type="text" ng-model="row.PANNum" class="form-control" />
+
+
+                            </div>
+                            <div class="col-md-3" style="margin-left:16px" ng-hide="row.GSTRegTypeSelected.codeword=='N'">
+
+
+                                <label class="control-label">GST No.</label>
+                                <input type="text" ng-model="row.GSTIN" class="form-control" />
+
+
+                            </div>
+                            <div class="col-md-3" style="margin-top: 24px;">
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <label class="control-label"> </label>
+                                        <button type="button" class="btn btn-primary" ng-click="gstindata(row)">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+                        <div class="row">
+
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <label class="control-label">Division</label>
+                                        <input type="text" ng-model="row.Division" class="form-control" style="margin-bottom:10px" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <label class="control-label">City <span class="red">*</span></label>
+                                        <input name="city{{$index}}" type="text" ng-model="row.SelCity" class="form-control" style="margin-bottom:10px" required ng-class="{true: 'error'}[submitted() && userform.city{{$index}}.$invalid]" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+
+                                <a href="" ng-click="copycontent(row)" class="btn btn-default" style="margin-top:5px;float: right;">Copy Address <br />From <br /> Main Party</a>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="row" style="margin-bottom:15px">
+                                    <div class="col-md-11">
+                                        <Label Class="control-label">Gst RegType <span class="red">*</span></Label>
+                                        <select name="pstatec" ng-model="row.GSTRegTypeSelected" ng-options="itemc.Descrip for itemc in dsCombo.GSTRegType track by itemc.codeword" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.pstatec.$invalid]"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div Class="col-md-3">
+                                <div class="row" style="margin-bottom:15px">
+                                    <div class="col-md-11">
+                                        <Label Class="control-label">ITC Ineligible</Label>
+                                        <select ng-model="row.itcinelgSelected" ng-options="itemtax.DisplayText for itemtax in ValueLists.ITCInElg.ValueListItems track by itemtax.DataValue" Class="form-control"></select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <ul class="nav nav-tabs">
+                                    <li><a href="#tab{{$index}}_1" class="nav-link active" data-toggle="tab">Address</a></li>
+
+
+
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab{{$index}}_1">
+
+
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+                                                <label class="control-label">Address <span class="red">*</span></label>
+                                                <input name="cadd{{$index}}" type="text" ng-model="row.SelAddress" class="form-control" style="max-width:580px" required ng-class="{true: 'error'}[submitted() && userform.cadd{{$index}}.$invalid]" />
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+
+                                            <div class="col-md-4">
+                                                <label class="control-label">PinCode <span class="red">*</span></label>
+                                                <input type="text" name="pincode{{$index}}" numbers-only ng-model="row.SelPinCode" class="form-control" required ng-class="{true: 'error'}[submitted() && userform.pincode{{$index}}.$invalid]" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <Label Class="control-label">Tax Area Code <span class="red">*</span></Label>
+                                                <select name="tcode{{$index}}" ng-model="row.TaxAreaIDSelected" ng-options="itemid.Descrip for itemid in dsCombo.TaxAreaCode track by itemid.TaxAreaID" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.tcode{{$index}}.$invalid]"></select>
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-4">
+                                                <Label Class="control-label">Country <span class="red">*</span></Label>
+                                                <select name="pcountry{{$index}}" ng-model="row.SelCountrySelected" ng-options="itemcoun.country for itemcoun in dsCombo.CO track by itemcoun.country" ng-change="rowchangestate(row)" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.pcountry{{$index}}.$invalid]"></select>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <Label Class="control-label">State <span class="red">*</span></Label>
+                                                <select name="pstate{{$index}}" ng-model="row.SelStateSelected" ng-options="itemsu.SubDivisionName for itemsu in row.State track by itemsu.SubDivisionName" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.pstate{{$index}}.$invalid]"></select>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-4">
+                                                <label class="control-label">Email</label>
+                                                <input type="text" ng-model="row.SelEmail" class="form-control" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label">Web</label>
+                                                <input type="text" ng-model="row.SelWeb" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-4">
+
+
+                                                <label class="control-label">Email CC</label>
+                                                <input type="text" ng-model="row.SelEMailCc" class="form-control" style="margin-bottom:10px" />
+
+
+
+                                            </div>
+                                            <div class="col-md-6">
+
+
+                                                <label class="control-label">Email BCC</label>
+                                                <input type="text" ng-model="row.SelEMailBcc" class="form-control" style="margin-bottom:10px" />
+
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">Ph No.</label>
+                                                <input type="text" ng-model="row.SelPhCountry" class="form-control" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">&nbsp;</label>
+                                                <input type="text" ng-model="row.SelPhArea" class="form-control" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label">&nbsp;</label>
+                                                <input type="text" ng-model="row.SelPhNum" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+                                                <label class="control-label">Contact Person Name</label>
+                                                <input type="text" ng-model="row.ContactPersonName" class="form-control" style="max-width:580px" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="dial-confirm">{{Messagedata}}</div>
+            @Html.Partial("_SavePanel")
+        </div>
+    </form>
+</div>
+
+@section botscripts{
+
+
+
+
+    <script type="text/javascript">
+
+        rsApp.controller('FormController', function ($scope, $http) {
+            $scope.model = JSON.parse($("#model_json").val());
+            $scope.status = 'loaded';
+
+            var loadmodel = function (result) {
+
+                $scope.model = result;
+                $scope.PartyInfo = $scope.model.dsForm.DT[0];
+                $scope.Party = $scope.model.dsForm.party;
+                $scope.dsCombo = $scope.model.dsCombo;
+                $scope.ValueLists = $scope.model.ValueLists;
+
+
+                $scope.item = function () {
+
+                    $scope.Party.push({});
+                };
+                $scope.delete = function (index) {
+
+                    $scope.Party.splice(index, 1);
+                };
+
+            @Html.RenderLookup("PartyInfo", Model, Model.dsForm.Tables(0))
+
+
+
+
+                $.each($scope.Party, function (index, row) {
+                    row.State = [];
+
+                    row.SelCountrySelected = $.grep($scope.dsCombo.CO, function (item, index) { return item.country === row.SelCountry })[0];
+
+                    if (angular.isObject(row.SelCountrySelected)) {
+                        $.each($scope.dsCombo.SU, function (item, indext) {
+
+                            if (indext.countrycode === row.SelCountrySelected.countrycode) {
+
+                                row.State.push(indext);
+
+                            }
+                        });
+                    }
+
+
+                    row.SelStateSelected = $.grep($scope.dsCombo.SU, function (item, index) { return item.SubDivisionName === row.SelState })[0];
+
+                    row.GSTRegTypeSelected = $.grep($scope.dsCombo.GSTRegType, function (item, index) { return item.codeword === row.GSTRegType })[0];
+
+                    row.TaxAreaIDSelected = $.grep($scope.dsCombo.TaxAreaCode, function (item, index) { return item.TaxAreaID === row.TaxAreaID })[0];
+                    row.itcinelgSelected = $.grep($scope.ValueLists.ITCInElg.ValueListItems, function (item, index) { return item.DataValue === row.ITCInElg })[0];
+
+                });
+
+
+
+
+
+
+
+
+                $scope.changestate = function (id) {
+
+                    $scope.State = [];
+                    if (id) {
+
+                        $.each($scope.dsCombo.SU, function (item, index) {
+
+                            if (index.countrycode === id.countrycode) {
+
+                                $scope.State.push(index);
+
+                            }
+                        });
+                    }
+
+                };
+
+                $scope.changestate($scope.PartyInfo.CountrySelected);
+
+                $scope.rowchangestate = function (row) {
+                    row.State = [];
+
+                    if (angular.isObject(row.SelCountrySelected)) {
+                        $.each($scope.dsCombo.SU, function (item, indext) {
+
+                            if (indext.countrycode === row.SelCountrySelected.countrycode) {
+
+                                row.State.push(indext);
+
+                            }
+                        });
+                    }
+                };
+                $scope.copycontent = function (row) {
+                    row.SelAddress = $scope.PartyInfo.Address;
+                    row.SelCity = $scope.PartyInfo.City;
+                    row.SelPinCode = $scope.PartyInfo.Pincode;
+                    row.SelCountrySelected = $scope.PartyInfo.CountrySelected;
+                    row.State = [];
+                    $.each($scope.dsCombo.SU, function (item, indext) {
+
+                        if (indext.countrycode === row.SelCountrySelected.countrycode) {
+
+                            row.State.push(indext);
+
+                        }
+                    });
+                    row.SelStateSelected = $scope.PartyInfo.StateSelected;
+                    row.SelPhCountry = $scope.PartyInfo.PhCountry;
+                    row.SelPhArea = $scope.PartyInfo.PhArea;
+                    row.SelPhNum = $scope.PartyInfo.Phnum;
+                    row.SelFaxCountry = $scope.PartyInfo.FaxCountry;
+                    row.SelFaxArea = $scope.PartyInfo.FaxArea;
+                    row.SelFaxNum = $scope.PartyInfo.Faxnum;
+
+
+                };
+
+
+
+
+            };
+
+
+            $scope.btnPartydel = function (row) {
+
+
+
+                var payload = '';
+                var Partydel = $.grep($scope.model.dsForm.sub, function (item, index) { return item.PartyID === row.PartyID })[0];
+                if ($scope.PartyInfo.PartyType == 'V') {
+
+
+                    payload = { EntityKey: 'vendor', ID: Partydel.VendorID, AcceptWarning: false };
+                }
+                if ($scope.PartyInfo.PartyType == 'C') {
+
+
+                    payload = { EntityKey: 'customer', ID: Partydel.CustomerID, AcceptWarning: false };
+                }
+
+                $scope.result = '';
+                $scope.status = '';
+
+
+
+                var base = window.location.pathname;
+                var basurl = '/' + base.split('/')[1] + '/Delete' + location.search;
+                $scope.status = 'posted';
+                $http.post(basurl, payload).success(function (result) {
+                    $scope.status = '';
+                    if (result.status && result.success == true) {
+                        $scope.status = '';
+
+
+
+
+                        if (result.message) {
+
+                            $('#dialog-confirm')
+                                .dialog("option", "title", result.message)
+                                .dialog({
+                                    autoOpen: false,
+                                    resizable: false,
+                                    height: "auto",
+                                    width: 500,
+                                    modal: true,
+                                    buttons: [
+                                        {
+                                            text: "Save",
+
+                                            click: function () {
+
+
+
+
+
+                                                debugger; payload.AcceptWarning = true;
+                                                var $dialog = this; $scope.status = 'posted'; $($dialog).dialog("close");
+
+
+                                                $http.post(basurl, payload)
+                                                    .success(function (result) {
+
+                                                        $scope.status = '';
+                                                        if (result.status && result.success == true) { //error
+
+                                                            document.location.href = "/App";
+                                                        }
+
+
+
+                                                        else {
+                                                            $('#dialog-confirm')
+                                                                .dialog("option", "title", result.message).dialog(
+                                                                    { buttons: [] }).dialog("open");
+                                                            $scope.result = 'failure';
+                                                        }
+                                                    },
+                                                        function (e) {
+                                                            $scope.status = '';
+                                                            $scope.result = 'failure';
+                                                            return false;
+                                                        });
+                                            }
+
+                                            //showText: false
+                                        },
+                                        {
+                                            text: "Cancel",
+
+                                            click: function () {
+
+                                                $(this).dialog("close");
+                                            }
+                                        }
+                                    ]
+                                }).dialog("open");
+
+                            //var cnt = confirm(result.message);
+                            if (cnt == true) {
+                                var payload = $scope.GenerateDelPayload(); payload.AcceptWarning = true;
+                                $scope.status = 'posted';
+                                $.post(basurd, payload, function (result) {
+                                    $scope.status = ''; $scope.$apply();
+                                    if (result.status && result.success == true) {
+                                        document.location.href = "/App";
+                                    } else {
+                                        $scope.result = 'failure'; alert(result.message);
+                                    }
+                                });
+                            }
+                            else { return false }
+
+                        }
+
+
+
+
+
+
+                    }
+                    else {
+                        $scope.status = '';
+
+                        $scope.result = 'failure'; alert(result.message);
+
+                    }
+
+
+
+                    $scope.$apply();
+                    return;
+
+
+                });
+
+
+
+            };
+
+
+
+
+
+
+
+
+            $scope.gstindata = function (row) {
+
+
+                var payload = { GSTIN: row.GSTIN };
+
+                payload = JSON.stringify(payload);
+                var basurl = '/frmGstPartyMain/ParamsOutput' + location.search;
+
+                var payloaddata = { key: 'search', Params: payload, __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() };
+                $scope.status = 'postedc';
+                $.post(basurl, payloaddata, function (result) {
+                    $scope.status = 'loaded';
+                    $scope.Messagedata = result;
+                    $('#dial-confirm')
+
+                        .dialog({
+                            autoOpen: false,
+                            resizable: false,
+                            height: "auto",
+                            width: 500,
+                            modal: true,
+                            buttons: [
+
+                                {
+                                    text: "Cancel",
+
+                                    click: function () {
+
+                                        $(this).dialog("close");
+                                    }
+                                }
+                            ]
+                        }).dialog("open");
+                    $scope.$apply();
+                    return;
+                });
+            }
+            $scope.GenerateDelPayload = function () {
+
+            };
+            $scope.cleanupmodel = function (datamodel) {
+                $.each(datamodel.dsForm.Party, function (index, row) {
+                    row.State = null;
+                });
+            };
+            $scope.calculatemodel = function () {
+                //empty function
+            };
+
+
+            $scope.visdel = false;@Html.RenderFile("~/scripts/rsforms.js")
+
+            loadmodel($scope.model);
+
+
+
+        });
+    </script>
+
+}

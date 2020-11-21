@@ -1,0 +1,264 @@
+﻿@using risersoft.app.mxform.gst
+@using risersoft.shared.web.Extensions
+
+@model frmOTPModel
+@{
+    ViewData["Title"] = "OTP Management";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = Newtonsoft.Json.JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.Indented);
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" /><div class="container content-part" ng-controller="FormController">
+    <div id="loading" class="row" ng-show="status=='postedc'">
+        <div class="col-md-12" id="loading-text"><img src="~/Content/images/imgechange.gif" width="80" height="80" /></div>
+    </div>
+    <div class="row">
+        <div class="col-md-11">
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="accounts">
+                    <h2>OTP Management</h2>
+                    @using (Html.BeginForm("", "", FormMethod.Post, new { @name = "frm", @id = "frm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+
+                        <div class="form-horizontal">
+                            <hr />
+                            @Html.Hidden("data", "", new Dictionary<string, string> { { "id", "data" } })
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-7">
+                                    <label class="control-label">Company Name : {{GstRegPP.CompName}}</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="control-label">Pan No. : {{GstRegPP.PANNum}}</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10" style="margin-top:8px">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped space10">
+                                            <tr class="tbld">
+                                                <td>State</td>
+                                                <td>GSTIN</td>
+                                                <td>Enter OTP</td>
+                                                <td>Session Timeout In</td>
+                                                <td>Current Status</td>
+                                                <td>Action</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr ng-repeat="row in AppItemData">
+                                                <td><a href="" ng-click="itemc(row)">{{row.Descrip}}</a></td>
+                                                <td><a href="" ng-click="itemc(row)">{{row.GSTIN}}</a></td>
+                                                <td><input type="text" ng-hide="row.itemc" ng-model="row.OTP" class="form-control" /><label ng-show="row.itemc" class="control-label">{{row.OTP}}</label></td>
+                                                <td><label ng-show="row.ExpiryMins==0" class="control-label">Timeout</label><label ng-show="row.ExpiryMins>0" class="control-label">{{row.ExpiryMins}} Min</label></td>
+                                                <td><span ng-show="row.ExpiryMins==0" class="fa fa-lightbulb-o fa-2x" style="color:red"></span><span ng-show="row.ExpiryMins>0" class="fa fa-lightbulb-o fa-2x" style="color:green"></span></td>
+                                                <td>
+                                                    <button type="button" ng-show="row.ExpiryMins==0 && row.itemc" style="background: #2d475d;color: #ffffff;font-size: 13px;border-color: #868686;" class="btn btn-default" ng-click="connect(row)">Connect</button>
+                                                    <button type="button" ng-show="row.ExpiryMins>0 && row.itemc" style="background: #2d475d;color: #ffffff;font-size: 13px;border-color: #868686;" class="btn btn-default" ng-click="refresh(row)">Refresh</button>
+                                                    <button type="button" ng-hide="row.itemc" style="background: #2d475d;color: #ffffff;font-size: 13px;border-color: #868686;" class="btn btn-default" ng-click="btnconnect(row)">Submit</button>
+                                                </td>
+                                                <td><button type="button" ng-hide="row.itemc" style="background:red;color: #ffffff;font-size: 13px;border-color: #868686;" class="btn btn-default" ng-click="btnconnectdel(row)">Cancel</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1"></div><div class="col-md-5"></div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <i class="fa fa-2x fa-check" id="status" ng-show="(result=='success')" style="margin-right:8px;margin-left: 0px;float: left;"></i>
+                                        <div ng-show="(result=='success')" style="color:green;margin-left: 35px;float: left;">{{message}}</div>
+                                        <i class="fa fa-2x fa-remove" id="failure" ng-show="(result=='failure')" style="margin-right:8px;margin-left: 0px;"></i>
+                                        <div ng-show="(result=='failure')" style="color:red;margin-left:8px;">{{message}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div id="dialogOTP" title="OTP">
+                                <div Class="form-group">
+                                    <div Class="col-md-offset-1 col-md-10 " style="margin-top:8px">
+                                        <input type="text" id="otpConnect" required Class="form-control" />
+                                    </div>
+                                </div>
+                                <div Class="form-group" style="float:right;margin-top:8px">
+                                    <div Class="col-md-12">
+                                        <input type="button" id="btnConnect" value="Submit" Class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="gstregid" value="{{GstRegID}}" />
+                            <input type="hidden" id="ReturnPeriodID" value="{{ReturnPeriodID}}" />
+                            <input type="button" id="btnSavetab" value="Save" Class="btn btn-primary" />
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<Style>
+    #dialogOTP {
+        display: none;
+    }
+
+    .messageerror {
+        display: none;
+        color: red;
+    }
+
+    .messagesuccess {
+        display: none;
+    }
+
+    .messagedis {
+        display: block !important;
+    }
+
+    .messagehid {
+        display: none;
+    }
+
+    .showbtn {
+        display: none;
+    }
+
+    .conbtn {
+        display: none;
+        color: red;
+        font-size: 2em;
+    }
+</Style>
+@section BotScripts{
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http, $interval) {
+            $scope.modelUrl = 'frmOTP';
+            $scope.result = '';
+            $scope.model = JSON.parse($("#model_json").val());
+            $scope.status = 'loaded';
+            var loadmodel = function (result) {
+                $scope.model = result;
+                $scope.dsCombo = $scope.model.dsCombo;
+                $scope.GstRegPP = $scope.model.dsForm.DT[0];
+                $scope.AppItem = $scope.model.GridViews.GSTReg.MainGrid.myDS.dt;
+                $scope.ITCRev = $scope.model.dsForm.ITCRev;
+                $scope.item = function () {
+                    var item = {};
+                    if ($scope.GstRegID === undefined) { return; };
+                    item.GSTRegID = $scope.GstRegID;
+                    $scope.ITCRev.push(item);
+                };
+                $scope.AppItemData = {};
+                $.each($scope.AppItem, function (index,item) {
+                        $scope.AppItemData[index] = $scope.AppItem[index]; $scope.AppItemData[index].itemc = true;
+                });
+                @Html.RenderLookup("GstRegPP", Model, Model.dsForm.Tables[0])
+                $scope.itemc = function (row) {
+                    $scope.Datac = $.grep($scope.model.dsForm.Invoice, function (item, index) { return item.gstregid === row.GSTRegID });
+                    $scope.GstRegID = row.GSTRegID; $scope.ReturnPeriodID = row.ReturnPeriodID; $scope.GSTIN = row.GSTIN;
+                }
+                $scope.IsInitializing = false;
+                $scope.connect = function (row) {
+                    $scope.status = 'postedc';
+                    var datainfo = {
+                        GstRegID: row.GSTRegID,
+
+                    };
+                    datainfo = JSON.stringify(datainfo);
+                    var data = {
+                        key: 'otp',
+                        Params: datainfo,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    };
+                    $.post("/frmOTP/ParamsOutput" + location.search, data, function (result) {
+                        if (result.status == "200") {
+                            if (result.token == 1) {
+                                $('.messagesuccess').html('Success: Existing token');
+                                $scope.status = ''; $scope.connectdist = false;
+
+                            } else {
+                                $scope.status = '';
+                                row.itemc = false;
+                            }
+                        } else {
+                            $scope.status = '';
+                        }
+
+                        $scope.$apply();
+                    });
+
+                };
+                $scope.refresh = function (row) {
+                    $scope.status = 'postedc';
+                    var datainfo = {
+                        GstRegID: row.GSTRegID,
+                    };
+                    datainfo = JSON.stringify(datainfo);
+                    var data = {
+                        key: 'refreshtoken',
+                        Params: datainfo,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    };
+                    $.post("/frmOTP/ParamsOutput" + location.search, data, function (result) {
+                        $scope.status = '';
+                        if (result.status == "200") {
+                            window.location.reload(true);
+                        }
+                    });
+                };
+                $scope.btnconnect = function (row) {
+                    $scope.status = 'postedc';
+                    $scope.connectdis = true;
+                    var datainfo = {
+                        GstRegID: row.GSTRegID,
+                        ReturnPeriodID: row.ReturnPeriodID,
+                        OTP: row.OTP
+                    };
+                    datainfo = JSON.stringify(datainfo);
+                    var data = {
+                        key: 'token',
+                        Params: datainfo,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    };
+                    $.post("/frmOTP/ParamsOutput" + location.search, data, function (result) {
+                        if (result.status == "200") {
+                            $scope.status = '';
+                            row.ExpiryMins = result.ExpiryMins * 60; row.itemc = true;
+                            $scope.connectdis = false;
+                        } else {
+                            $scope.status = '';
+                            $scope.connectdis = true;
+                        }
+
+                        $scope.$apply();
+                    });
+                };
+                $scope.btnconnectdel = function (row) {
+                    row.itemc = true;
+
+                    $scope.$apply();
+                }
+            };
+            $scope.cleanupmodel = function (datamodel) {
+            //empty function
+            };
+            loadmodel($scope.model);
+            $scope.calculatemodel = function () {
+            };
+            $scope.visdel = false; $scope.visdelete = false;
+            @Html.RenderFile("~/scripts/rsforms.js")
+        });
+        $(document).ready(function () {
+            $('.hidbtn').on('click', function () {
+                $('.conbtn').addClass('messagedis');
+            });
+        });
+    </script>
+    <link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    @Html.RenderJsCss(false, "jqueryui")
+}

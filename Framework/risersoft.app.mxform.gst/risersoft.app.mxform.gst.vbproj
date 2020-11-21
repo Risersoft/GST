@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA7FA4CE-13DD-4B73-87EF-DC98B6F6D207}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>risersoft.app.mxform.gst</RootNamespace>
+    <AssemblyName>risersoft.app.mxform.gst</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>risersoft.app.mxform.gst.xml</DocumentationFile>
+    <NoWarn>42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug2|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>risersoft.app.mxform.gst.xml</DocumentationFile>
+    <NoWarn>42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>risersoft.app.mxform.gst.xml</DocumentationFile>
+    <NoWarn>42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Choose>
+    <When Condition="'$(Configuration)' == 'Debug2'">
+      <ItemGroup>
+        <ProjectReference Include="..\..\..\Framework\Shared\risersoft.shared\risersoft.shared.vbproj">
+          <Project>{678f7367-71bb-425c-a388-b45d25822ca3}</Project>
+          <Name>risersoft.shared</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Framework\Shared\risersoft.shared.dotnetfx\risersoft.shared.dotnetfx.vbproj">
+          <Project>{3dc06d9d-b9b9-414c-b83c-2b9eeaaf5ea6}</Project>
+          <Name>risersoft.shared.dotnetfx</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Framework\Shared\risersoft.app.mxent\risersoft.app.mxent.vbproj">
+          <Project>{2693738b-de66-476d-afda-fd39e4579f27}</Project>
+          <Name>risersoft.app.mxent</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Framework\Shared\risersoft.shared.portable\risersoft.shared.portable.csproj">
+          <Project>{1742c540-4c7d-4397-8a46-f6a6ade33c5e}</Project>
+          <Name>risersoft.shared.portable</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Framework\Shared\risersoft.shared.dal\risersoft.shared.dal.vbproj">
+          <Project>{68B77483-9004-404B-B649-0E8BB780158E}</Project>
+          <Name>risersoft.shared.dal</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Framework\Shared\risersoft.app.dataporter\risersoft.app.dataporter.vbproj">
+          <Project>{419585b1-cecd-49bc-a00b-48b0c6725e7f}</Project>
+          <Name>risersoft.app.dataporter</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Framework\Shared\risersoft.shared.cloud\risersoft.shared.cloud.vbproj">
+          <Project>{f5b5afa9-af4a-4b86-8d8d-502976813633}</Project>
+          <Name>risersoft.shared.cloud</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Framework\Web\risersoft.shared.web\risersoft.shared.web.vbproj">
+          <Project>{cdfe0943-b942-4857-a99d-98230791fd8d}</Project>
+          <Name>risersoft.shared.web</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Framework\Web\risersoft.shared.bot\risersoft.shared.bot.vbproj">
+          <Project>{74342eba-7988-4c32-a826-ad62540b74ac}</Project>
+          <Name>risersoft.shared.bot</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Framework\Shared\risersoft.shared.console\risersoft.shared.agent.csproj">
+          <Project>{39e6633f-2d15-4a82-a033-ac89108616e4}</Project>
+          <Name>risersoft.shared.agent</Name>
+        </ProjectReference>
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="risersoft.app.mxent">
+          <HintPath>..\..\..\common\depends\risersoft.app.mxent.dll</HintPath>
+        </Reference>
+        <Reference Include="risersoft.shared">
+          <HintPath>..\..\..\common\depends\risersoft.shared.dll</HintPath>
+        </Reference>
+        <Reference Include="risersoft.shared.dotnetfx">
+          <HintPath>..\..\..\common\depends\risersoft.shared.dotnetfx.dll</HintPath>
+        </Reference>
+        <Reference Include="risersoft.shared.portable">
+          <HintPath>..\..\..\common\depends\risersoft.shared.portable.dll</HintPath>
+        </Reference>
+        <Reference Include="risersoft.shared.dal">
+          <HintPath>..\..\..\common\depends\risersoft.shared.dal.dll</HintPath>
+        </Reference>
+        <Reference Include="risersoft.shared.cloud">
+          <HintPath>..\..\..\common\depends\risersoft.shared.cloud.dll</HintPath>
+        </Reference>
+        <Reference Include="risersoft.shared.web">
+          <HintPath>..\..\..\common\depends\risersoft.shared.web.dll</HintPath>
+        </Reference>
+        <Reference Include="risersoft.app.dataporter">
+          <HintPath>..\..\..\common\depends\risersoft.app.dataporter.dll</HintPath>
+        </Reference>
+        <Reference Include="risersoft.shared.bot">
+          <HintPath>..\..\..\common\depends\risersoft.shared.bot.dll</HintPath>
+        </Reference>
+        <Reference Include="risersoft.shared.agent">
+          <HintPath>..\..\..\common\depends\risersoft.shared.agent.dll</HintPath>
+        </Reference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Reference Include="Infragistics.Shared,Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Common\lib\Infragistics\Infragistics.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics.Win,Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Common\lib\Infragistics\Infragistics.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.Extensions.Logging" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="risersoft.shared.dotnetfx" />
+    <Import Include="risersoft.shared.portable" />
+    <Import Include="risersoft.shared.portable.Models.Nav" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bot\PublicDialog.vb" />
+    <Compile Include="DB\Campus.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Company.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\CPInvoice.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\CPInvoiceItem.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Customer.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Division.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\EwayBill.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\EWayBillVehicle.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\FinYears.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\GstAdvanceVouch.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\GstAdvanceVouchItem.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\GSTReg.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Invoice.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\InvoiceItemGst.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\mxgstEntities.vb" />
+    <Compile Include="DB\mxgstdb.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mxgstdb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\mxgstdb.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mxgstdb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DB\mxgstdb.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Party.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\PartyMain.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\PostPeriod.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\TaxArea.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ValidationRule.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Vendor.vb">
+      <DependentUpon>mxgstdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Docs\clsGSTPaymentBase.vb" />
+    <Compile Include="Docs\clsGSTPartyBase.vb" />
+    <Compile Include="Docs\clsGSTEWB.vb" />
+    <Compile Include="Docs\clsGSTAdvanceBase.vb" />
+    <Compile Include="Docs\clsGSTDocBase.vb" />
+    <Compile Include="Docs\clsGSTInvoiceBase.vb" />
+    <Compile Include="GSTN\clsGSTNEwayBill.vb" />
+    <Compile Include="GSTN\clsGSTNFileDownloader.vb" />
+    <Compile Include="GSTN\clsGSTNPublic.vb" />
+    <Compile Include="GSTN\clsGSTNReturnANX02.vb" />
+    <Compile Include="GSTN\clsGSTNReturnBase.vb" />
+    <Compile Include="GSTN\clsGSTNReturnANX01.vb" />
+    <Compile Include="GSTN\clsGSTNReturnGSTR1.vb" />
+    <Compile Include="GSTN\clsGSTNReturnGSTR2.vb" />
+    <Compile Include="GSTN\clsGSTNReturnGSTR3B.vb" />
+    <Compile Include="GSTN\clsGSTNTrackedAPIBase.vb" />
+    <Compile Include="GSTN\clsGSTNTypedReturnBase.vb" />
+    <Compile Include="GSTN\JsonDataResult.vb" />
+    <Compile Include="Returns\frmChallanModel.vb" />
+    <Compile Include="Vouch\frmDashboardSettingModel.vb" />
+    <Compile Include="Vouch\frmGstDocNumSeriesModel.vb" />
+    <Compile Include="Vouch\frmGstImportEWBModel.vb" />
+    <Compile Include="Vouch\frmGstImportVouchNewModel.vb" />
+    <Compile Include="Vouch\frmGstImportVouchOldModel.vb" />
+    <Compile Include="Vouch\frmGstInvoicePurchModel.vb" />
+    <Compile Include="Vouch\frmGstInvoiceSaleModel.vb" />
+    <Compile Include="Vouch\frmGstCompanyModel.vb" />
+    <Compile Include="Vouch\frmGstPaymentVendorModel.vb" />
+    <Compile Include="Vouch\frmGstPaymentCustomerModel.vb" />
+    <Compile Include="Vouch\frmGSTRSectionModel.vb" />
+    <Compile Include="Vouch\frmGstValidationRuleModel.vb" />
+    <Compile Include="Vouch\frmGstPartyMainModel.vb" />
+    <Compile Include="Vouch\frmGstImportVouchModel.vb" />
+    <Compile Include="Vouch\frmGstDocNumTemplateModel.vb" />
+    <Compile Include="Import\ImportTaskProviderAdvanceBase.vb" />
+    <Compile Include="Import\ImportTaskProviderInvoiceBase.vb" />
+    <Compile Include="Import\ImportTaskProviderPartyBase.vb" />
+    <Compile Include="Import\Import_CustomerTaskProvider.vb" />
+    <Compile Include="Import\Import_EWBTaskProvider.vb" />
+    <Compile Include="Import\Import_GSTR1TaskProvider.vb" />
+    <Compile Include="Import\Import_HSNTaskProvider.vb" />
+    <Compile Include="Import\Import_RoleTaskProvider.vb" />
+    <Compile Include="Import\Import_TPTaskProvider.vb" />
+    <Compile Include="Import\Import_VendorTaskProvider.vb" />
+    <Compile Include="Recon\clsInvoiceReconBase.vb" />
+    <Compile Include="Recon\clsReconBase.vb" />
+    <Compile Include="Repo\ExtMessage.vb" />
+    <Compile Include="Repo\InvoiceRepo.vb" />
+    <Compile Include="myFuncs2.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Repo\IRepository\IEWBRepository.vb" />
+    <Compile Include="Repo\Mock\EWBRepository.vb" />
+    <Compile Include="Repo\Repository\ServerRepositoryBase.vb" />
+    <Compile Include="Returns\frmCPInvoiceModel.vb" />
+    <Compile Include="Returns\frmEwayBillModel.vb" />
+    <Compile Include="Returns\frmGSTNANX01Model.vb" />
+    <Compile Include="Returns\frmGSTNANX02Model.vb" />
+    <Compile Include="Returns\frmGSTNEWBModel.vb" />
+    <Compile Include="Returns\frmGSTNEWBPastModel.vb" />
+    <Compile Include="Returns\frmGSTNGSTR3BPastModel.vb" />
+    <Compile Include="Returns\frmGSTNGSTR1PastModel.vb" />
+    <Compile Include="Returns\frmOTPModel.vb" />
+    <Compile Include="Returns\frmGSTNGSTR1Model.vb" />
+    <Compile Include="Returns\frmGSTNGSTR2Model.vb" />
+    <Compile Include="Returns\frmGSTR3BModel.vb" />
+    <Compile Include="Returns\frmGSTNGSTR3BModel.vb" />
+    <Compile Include="Import\clsJINTFuncsGSTN.vb" />
+    <Compile Include="Returns\frmSystemOptionsModel.vb" />
+    <Compile Include="Task\ANX02TaskProvider.vb" />
+    <Compile Include="Task\ANX01TaskProvider.vb" />
+    <Compile Include="Task\Operate_EWBOpTaskProvider.vb" />
+    <Compile Include="Task\ConvertJsonTaskProvider.vb" />
+    <Compile Include="Task\EWBTaskProvider.vb" />
+    <Compile Include="Task\PublicAPITaskProvider.vb" />
+    <Compile Include="Task\OTPTaskProvider.vb" />
+    <Compile Include="Task\FMTaskProvider.vb" />
+    <Compile Include="Task\GSTR3BTaskProvider.vb" />
+    <Compile Include="Task\GSTR2TaskProvider.vb" />
+    <Compile Include="Task\GSTR1TaskProvider.vb" />
+    <Compile Include="Import\ImportTaskProviderGstBase.vb" />
+    <Compile Include="Import\Import_DelTaskProvider.vb" />
+    <Compile Include="Import\Import_GSTR2ATaskProvider.vb" />
+    <Compile Include="Import\Import_PVTaskProvider.vb" />
+    <Compile Include="Import\Import_PCTaskProvider.vb" />
+    <Compile Include="Import\Import_IPTaskProvider.vb" />
+    <Compile Include="Import\Import_ISTaskProvider.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EntityDeploy Include="DB\mxgstdb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>mxgstdb.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DB\mxgstdb.edmx.diagram">
+      <DependentUpon>mxgstdb.edmx</DependentUpon>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <EmbeddedResource Include="Templates\Advance_Paid_Refund.xlsx" />
+    <EmbeddedResource Include="Templates\Advance_Receipt_Refund.xlsx" />
+    <EmbeddedResource Include="Templates\InvoiceSale.xlsx" />
+    <EmbeddedResource Include="Templates\InvoicePurch.xlsx" />
+    <EmbeddedResource Include="Templates\Ewaybill.xlsx" />
+    <None Include="Repo\Mock\ewb.json" />
+    <EmbeddedResource Include="Templates\Customer.xlsx" />
+    <EmbeddedResource Include="Templates\HSNSAC.xlsx" />
+    <EmbeddedResource Include="Templates\Vendor.xlsx" />
+    <EmbeddedResource Include="Templates\RoleManagement.xlsx" />
+    <EmbeddedResource Include="Templates\CompanyAndCampus.xlsx" />
+    <EmbeddedResource Include="Templates\Ewaybill-UCE.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bot\GstNirvanaBot.vb" />
+    <Content Include="DB\mxgstdb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>mxgstdb.edmx</DependentUpon>
+      <LastGenOutput>mxgstdb.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="DB\mxgstdb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>mxgstdb.edmx</DependentUpon>
+      <LastGenOutput>mxgstdb.vb</LastGenOutput>
+    </Content>
+    <Content Include="NewTenantData.txt" />
+    <Content Include="Templates\Notes.txt" />
+    <EmbeddedResource Include="Schemas\Ewaybill-UCE.edpsa.xml" />
+    <EmbeddedResource Include="Schemas\CompanyAndCampus.edpsa.xml" />
+    <EmbeddedResource Include="Schemas\RoleManagement.edpsa.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schemas\Customer.edpsa.xml" />
+    <EmbeddedResource Include="Schemas\HSNSAC.edpsa.xml" />
+    <EmbeddedResource Include="Schemas\Vendor.edpsa.xml" />
+    <Content Include="DB\SNumUpdater.sql" />
+    <EmbeddedResource Include="Maps\IP_A.edpmap.xml" />
+    <EmbeddedResource Include="Maps\IP_B.edpmap.xml" />
+    <EmbeddedResource Include="Maps\IS_A.edpmap.xml" />
+    <Content Include="notes.txt" />
+    <EmbeddedResource Include="Schemas\ewaybill.edpsa.xml" />
+    <EmbeddedResource Include="Schemas\Advance_Paid_Refund.edpsa.xml" />
+    <EmbeddedResource Include="Schemas\Advance_Receipt_Refund.edpsa.xml" />
+    <EmbeddedResource Include="Schemas\InvoicePurch.edpsa.xml" />
+    <EmbeddedResource Include="Schemas\InvoiceSale.edpsa.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Forms\risersoft.app.mxform\risersoft.app.mxform.vbproj">
+      <Project>{0e5882d2-22b1-4716-99df-680a77ae3e19}</Project>
+      <Name>risersoft.app.mxform</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\Reports\risersoft.app.reports.gst\risersoft.app.reports.gst.vbproj">
+      <Project>{3b307ae8-bae2-406d-9c44-51db92850361}</Project>
+      <Name>risersoft.app.reports.gst</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\GSTN.API.Library\GSTN.API.Library.csproj">
+      <Project>{b3fc4b26-9c24-43ff-b55f-3b1ae5642050}</Project>
+      <Name>GSTN.API.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AdaptiveCards">
+      <Version>2.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="AutoMapper">
+      <Version>10.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="CommonServiceLocator">
+      <Version>2.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bot.Builder.Dialogs">
+      <Version>4.11.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bot.Builder">
+      <Version>4.11.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Owin">
+      <Version>4.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog">
+      <Version>2.10.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpZipLib">
+      <Version>1.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="SSH.NET">
+      <Version>2016.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Configuration.ConfigurationManager">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit">
+      <Version>4.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.Principal.Windows">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="Unity">
+      <Version>5.11.7</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

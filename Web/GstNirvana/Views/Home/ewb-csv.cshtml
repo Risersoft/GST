@@ -1,0 +1,677 @@
+﻿@{
+    ViewData["Title"] = "GST Community Services: Eway Bill Format";
+}
+
+
+<div class="clearfix"></div>
+<div Class="container body-content tabl">
+    <br />
+    <div class="col-sm-9">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="table-main-heading">EWB CSV format definition</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">1&nbsp; Table Name: E-way Bill Generation</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>userGstin</td>
+                                <td>GSTIN</td>
+                                <td>&nbsp;</td>
+                                <td>GSTIN of API User</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>supplyType</td>
+                                <td>Supply</td>
+                                <td></td>
+                                <td>Supply whether it is outward/inward.</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>subSupplyType</td>
+                                <td>Sub types of Supply </td>
+                                <td>&nbsp;</td>
+                                <td>Sub types of Supply</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>docType</td>
+                                <td>Document Type</td>
+                                <td>CHL</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>docNo</td>
+                                <td>Document No</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>docDate</td>
+                                <td>Document Date</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>fromGstin</td>
+                                <td>GSTIN</td>
+                                <td></td>
+                                <td>GSTIN of the Consignor</td>
+                            </tr>
+
+                            <tr>
+                                <td>8</td>
+                                <td>fromTrdName</td>
+                                <td>LegalName</td>
+                                <td>&nbsp;</td>
+                                <td>LegalName of consignor</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>fromAddr1</td>
+                                <td>Address</td>
+                                <td></td>
+                                <td>Address of consignor - Line 1</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>fromAddr2</td>
+                                <td>Address</td>
+                                <td></td>
+                                <td>Address of consignor - Line 2</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>fromPlace</td>
+                                <td>Place</td>
+                                <td>&nbsp;</td>
+                                <td>Place of consignor</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>fromPincode</td>
+                                <td>Pincode</td>
+                                <td></td>
+                                <td>Pincode of consignor</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>fromStateCode</td>
+                                <td>State</td>
+                                <td></td>
+                                <td>State of consignor</td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td>toGstin</td>
+                                <td>GSTIN</td>
+                                <td></td>
+                                <td>GSTIN of consignee</td>
+                            </tr>
+
+                            <tr>
+                                <td>15</td>
+                                <td>toTrdname</td>
+                                <td>Legalname</td>
+                                <td>&nbsp;</td>
+                                <td>Legalname of consignee</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>16</td>
+                                <td>toAddr1</td>
+                                <td>Address</td>
+                                <td>&nbsp;</td>
+                                <td>Address of consignee - Line 1</td>
+                            </tr>
+
+                            <tr>
+                                <td>17</td>
+                                <td>toAddr2</td>
+                                <td>Address</td>
+                                <td>&nbsp;</td>
+                                <td>Address of consignee- Line 2</td>
+                            </tr>
+
+                            <tr>
+                                <td>18</td>
+                                <td>toPlace</td>
+                                <td>Place</td>
+                                <td>&nbsp;</td>
+                                <td>Place of consignee</td>
+                            </tr>
+
+                            <tr>
+                                <td>19</td>
+                                <td>toPincode</td>
+                                <td>Pincode</td>
+                                <td>&nbsp;</td>
+                                <td>Pincode of the consignee</td>
+                            </tr>
+
+                            <tr>
+                                <td>20</td>
+                                <td>toStateCode</td>
+                                <td>State of Supply</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>21</td>
+                                <td>totalValue</td>
+                                <td>Amount</td>
+                                <td>&nbsp;</td>
+                                <td>Total Amount/ Taxable Amount</td>
+                            </tr>
+
+                            <tr>
+                                <td>22</td>
+                                <td>cgstValue</td>
+                                <td>Amount</td>
+                                <td>&nbsp;</td>
+                                <td>CGST Amount</td>
+                            </tr>
+
+
+                            <tr>
+                                <td>23</td>
+                                <td>sgstValue</td>
+                                <td>Amount</td>
+                                <td>&nbsp;</td>
+                                <td>SGST Amount</td>
+                            </tr>
+
+                            <tr>
+                                <td>24</td>
+                                <td>igstValue</td>
+                                <td>Amount</td>
+                                <td>&nbsp;</td>
+                                <td>IGST Amount</td>
+                            </tr>
+
+                            <tr>
+                                <td>25</td>
+                                <td>cessValue</td>
+                                <td>Amount</td>
+                                <td>&nbsp;</td>
+                                <td>CESS Amount</td>
+                            </tr>
+
+                            <tr>
+                                <td>26</td>
+                                <td>transMode</td>
+                                <td>Mode of transportation</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>27</td>
+                                <td>transDistance</td>
+                                <td>Distance of transportation</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>28</td>
+                                <td>transporterId</td>
+                                <td>Transporter Id</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>29</td>
+                                <td>transporterName</td>
+                                <td>Transporter Name</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>30</td>
+                                <td>transDocNo</td>
+                                <td>Transporter Doc No</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>31</td>
+                                <td>transDocDate</td>
+                                <td>Transporter Doc Date</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>32</td>
+                                <td>vehicleNo</td>
+                                <td>Vehicle No.</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>33</td>
+                                <td>productName</td>
+                                <td>Name of the Product</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>34</td>
+                                <td>productDesc</td>
+                                <td>Description of the Product</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>35</td>
+                                <td>hsnCode</td>
+                                <td>HSN Code</td>
+                                <td>&nbsp;</td>
+                                <td>HSN Code of the Product</td>
+                            </tr>
+
+                            <tr>
+                                <td>36</td>
+                                <td>quantity</td>
+                                <td>Quantity</td>
+                                <td>&nbsp;</td>
+                                <td>Quantity of Product in Numbers</td>
+                            </tr>
+
+                            <tr>
+                                <td>37</td>
+                                <td>qtyUnit</td>
+                                <td>Unit of the Product</td>
+                                <td>&nbsp;</td>
+                                <td>Unit of the Product, like Liter,Kg etc</td>
+                            </tr>
+
+                            <tr>
+                                <td>38</td>
+                                <td>taxableAmount</td>
+                                <td>Amount</td>
+                                <td>&nbsp;</td>
+                                <td>Total Amount/ Taxable Amount</td>
+                            </tr>
+
+                            <tr>
+                                <td>39</td>
+                                <td>cgstRate</td>
+                                <td>Rate</td>
+                                <td>&nbsp;</td>
+                                <td>CGST Rate</td>
+                            </tr>
+
+                            <tr>
+                                <td>40</td>
+                                <td>sgstRate</td>
+                                <td>Rate</td>
+                                <td>&nbsp;</td>
+                                <td>SGST Rate</td>
+                            </tr>
+                            <tr>
+                                <td>41</td>
+                                <td>igstRate</td>
+                                <td>Rate</td>
+                                <td>&nbsp;</td>
+                                <td>IGST Rate</td>
+                            </tr>
+
+                            <tr>
+                                <td>42</td>
+                                <td>cessRate</td>
+                                <td>Rate</td>
+                                <td>&nbsp;</td>
+                                <td>CESS Rate</td>
+                            </tr>
+
+                            <tr>
+                                <td>43</td>
+                                <td>Status</td>
+                                <td>Status code</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>44</td>
+                                <td>errorCodes</td>
+                                <td>Error Codes</td>
+                                <td>&nbsp;</td>
+                                <td>Refer Error Codes</td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>45</td>
+                                <td>docNo</td>
+                                <td>Document number</td>
+                                <td>&nbsp;</td>
+                                <td>Document number of EwayBill</td>
+                            </tr>
+
+
+
+
+                            <tr>
+                                <td>46</td>
+                                <td>ewayBillNo</td>
+                                <td>E-Way Bill No</td>
+                                <td>&nbsp;</td>
+                                <td>Unique E-Way Bill No</td>
+                            </tr>
+
+                            <tr>
+                                <td>47</td>
+                                <td>ewayBillDate</td>
+                                <td>Date and Time  of E-Way Bill</td>
+                                <td>&nbsp;</td>
+                                <td>Date and Time  of E-Way Bill Generation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">2&nbsp; Table Name: Consolidated E-way bill generation</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>vehicleNo</td>
+                                <td>vehicle number</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>fromPlace</td>
+                                <td>from place</td>
+                                <td></td>
+                                <td>from place of consignor</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>transMode</td>
+                                <td>Mode of Transportation</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>transDocNo</td>
+                                <td>Transporter Document number</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>transDocDate</td>
+                                <td>Transporter Document Date</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>fromState</td>
+                                <td>State</td>
+                                <td>&nbsp;</td>
+                                <td>State of Consignor</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>ewbNo</td>
+                                <td>E-way bill Number generated</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">3&nbsp; Table Name: Update Vehicle number</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>EwbNo</td>
+                                <td>E-way bill Generated</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+
+                            <tr>
+                                <td>2</td>
+                                <td>VehicleNo</td>
+                                <td>Vehicle number</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>FromPlace</td>
+                                <td>Place</td>
+                                <td>&nbsp;</td>
+                                <td>Place of Consignor</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>FromState</td>
+                                <td>State</td>
+                                <td>&nbsp;</td>
+                                <td>State of Consignor</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>ReasonCode</td>
+                                <td>Reason code</td>
+                                <td></td>
+                                <td>Reason code for vehicle updation</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>ReasonRem</td>
+                                <td>Reason</td>
+                                <td>&nbsp;</td>
+                                <td>Reason for Vehicle Updation</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>TransDocNo</td>
+                                <td>Transporter Document number</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>TransDocDate</td>
+                                <td>Transporter Document Date</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>TransMode</td>
+                                <td>Mode of Transport</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">4&nbsp; Table Name: Cancel E-way bill</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>1</td>
+                                <td>ewbNo</td>
+                                <td>E-way bill Generated</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td>cancelRsnCode</td>
+                                <td>Reason code for cancelling</td>
+                                <td>&nbsp;</td>
+                                <td>Reason code for cancelling eway bill</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>cancelRmrk</td>
+                                <td>Reason for - cancelling</td>
+                                <td>&nbsp;</td>
+                                <td>Reason for - cancelling eway bill</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">5&nbsp; Table Name: Reject e-way bill</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>ewbNo</td>
+                                <td>E-way bill Generated</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

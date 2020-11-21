@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
+
+namespace Risersoft.API.GSTN.GSTR3
+{
+    public class Pdcash
+    {
+        
+
+        [Required]
+        [Display(Name = "Igst paid")]
+        public double ipd { get; set; }
+
+        [Required]
+        [Display(Name = "Cgst paid")]
+        public double cpd { get; set; }
+
+        [Required]
+        [Display(Name = "Sgst paid ")]
+        public double spd { get; set; }
+
+        [Required]
+        [Display(Name = "Cess paid")]
+        public double cspd { get; set; }
+    }
+}

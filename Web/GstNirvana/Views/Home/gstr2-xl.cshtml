@@ -1,0 +1,614 @@
+﻿@{
+    ViewData["Title"] = "GST Community Services: GSTR2 Format";
+}
+
+<div class="clearfix"></div>
+<div Class="container body-content tabl">
+    @*<div class="col-sm-3 no-padding tablist">
+            <h3>GSTNirvana</h3>
+            <ul class="nav nav-tabs tablist" role="tablist">
+                <li role="presentation">@Html.ActionLink("Home", "Index", "Gst")</li>
+                <li role="presentation">@Html.ActionLink("Features", "Features", "Gst")</li>
+                <li role="presentation">@Html.ActionLink("Invoice API", "API-Invoice", "Gst")</li>
+                <li role="presentation">@Html.ActionLink("EwayBill API", "API-EwayBill", "Gst")</li>
+        <li role="presentation">@Html.ActionLink("Pricing", "Pricing", "Gst")</li>
+                <li role="presentation" class="active">@Html.ActionLink("Community", "Community", "Gst")</li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>*@
+    <div class="col-sm-9">
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="table-main-heading">GSTR2 XLS format definition</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">Table Name: Invoice Inward</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-heading-code">Table Code: inv</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>gstin</td>
+                                <td>GSTIN / UIN of taxpayer</td>
+                                <td>&nbsp;</td>
+                                <td rowspan="12">INVOICE</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Invoice TypeCode</td>
+                                <td>&nbsp;</td>
+                                <td>B2B-Sale to Registered Person , B2C-Sale to Unregistered Person , EXP-Export , CDN-Credit / Debit Note</td>
+
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>inv_typ</td>
+                                <td>B2B Invoice Type</td>
+                                <td>R-Regular B2B Invoices, DE-Deemed Exports , SEWP-SEZ Exports with payment, SEWOP-SEZ exports without payment</td>
+
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Zero Rated_type</td>
+                                <td>Zero Rated Type</td>
+                                <td>nil-Nil rated , expt-Exempted , ngsup-Non GST</td>
+
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>sply_ty</td>
+                                <td>Nature of Supply</td>
+                                <td>INTER-Inter State Supplies , INTRA-Intra State Supplies</td>
+
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>inum</td>
+                                <td>Invoice number</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>idt</td>
+                                <td>Invoice date</td>
+                                <td>Y/N</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>8</td>
+                                <td>PartyName</td>
+                                <td>Name of Customer</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>ctin</td>
+                                <td>GSTIN/UID of Customer</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>pos</td>
+                                <td>State of supply(may be different than state of receipient)</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>rchrg</td>
+                                <td>Is reverse charge mechanism applicable?</td>
+                                <td>Y-Yes,N-No</td>
+
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>val</td>
+                                <td> Invoice Value</td>
+                                <td></td>
+
+                            </tr>
+
+                            <tr>
+                                <td>13</td>
+                                <td>num</td>
+                                <td>Sr No for Item Details</td>
+                                <td></td>
+                                <td rowspan="6" class="table-row-background-white">HSN </td>
+                            </tr>
+
+                            <tr>
+                                <td>14</td>
+                                <td>hsn_sc</td>
+                                <td>HSN or SAC of Goods or Services</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>15</td>
+                                <td>description</td>
+                                <td>Description of goods purchased</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>16</td>
+                                <td>uqc</td>
+                                <td>UQC (Unit of Measure) of goods purchased</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>17</td>
+                                <td>qty</td>
+                                <td>Quantity of goods purchased</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>18</td>
+                                <td>BasicRate</td>
+                                <td>Unit Rate of goods purchased</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>txval</td>
+                                <td>Taxable value</td>
+                                <td></td>
+                                <td rowspan="7">Item Details</td>
+                            </tr>
+
+                            <tr>
+                                <td>20</td>
+                                <td>rt</td>
+                                <td>Rate</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>21</td>
+                                <td>iamt</td>
+                                <td>IGST Tax Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>22</td>
+                                <td>camt</td>
+                                <td>CGST Tax Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>23</td>
+                                <td>samt</td>
+                                <td>SGST Tax Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>24</td>
+                                <td>csamt</td>
+                                <td>Cess Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>txpd</td>
+                                <td>Amount of Advance to be adjusted</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>26</td>
+                                <td>tx_i</td>
+                                <td>ITC IGST Tax Amount</td>
+                                <td></td>
+                                <td rowspan="5"> ITC  Details</td>
+                            </tr>
+
+                            <tr>
+                                <td>27</td>
+                                <td>tx_c</td>
+                                <td>ITC CGST  Tax Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>28</td>
+                                <td>tx_s</td>
+                                <td> ITC SGST Tax Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>29</td>
+                                <td>tx_cs</td>
+                                <td>ITC CESS Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>30</td>
+                                <td>elg</td>
+                                <td>Eligibility</td>
+                                <td>ip-Input , cp-Capital , is-Service , no-None</td>
+
+                            </tr>
+
+
+
+                            <tr>
+                                <td>31</td>
+                                <td>is_sez</td>
+                                <td>SEZ Flag</td>
+                                <td>Y-Yes , N-No</td>
+                                <td rowspan="5">Import of Goods</td>
+                            </tr>
+
+                            <tr>
+                                <td>32</td>
+                                <td>stin</td>
+                                <td>SEZ GSTIN</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>33</td>
+                                <td>boe_num</td>
+                                <td>Bill of Entry No</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>34</td>
+                                <td>boe_dt</td>
+                                <td>Bill of Entry Date</td>
+                                <td></td>
+
+                            </tr>
+
+                            <tr>
+                                <td>35</td>
+                                <td>boe_val</td>
+                                <td>Bill of Entry Value</td>
+                                <td></td>
+
+                            </tr>
+
+                            <tr>
+                                <td>36</td>
+                                <td>otin</td>
+                                <td>Original Invoice CTIN</td>
+                                <td></td>
+                                <td rowspan="6">Amended Invoice Details</td>
+                            </tr>
+
+                            <tr>
+                                <td>37</td>
+                                <td>ntty</td>
+                                <td>Is this a Credit Note / Debit Note / Refund Voucher?</td>
+                                <td>A-Amendment , C-Credit Note , D-Debit Note , R-Refund Voucher</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>38</td>
+                                <td>oinum</td>
+                                <td>Original Invoice Number</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>39</td>
+                                <td>oidt</td>
+                                <td>Original Invoice Date</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td>40</td>
+                                <td>pre_gst</td>
+                                <td>Pre GST Regime Dr. / Cr. Notes</td>
+                                <td>Y-Yes , N-No</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>41</td>
+                                <td>rsn</td>
+                                <td>Reason for Issuing Dr. / Cr. Notes</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">Table Name: Supplier Master</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-heading-code">Table Code : supp</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>PartyCode</td>
+                                <td>Customer Code &nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td>PartyName</td>
+                                <td>Name of Customer</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>gstin</td>
+                                <td>GSTIN OF CUSTOMER</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Address</td>
+                                <td>Address</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+
+                            <tr>
+                                <td>5</td>
+                                <td>City</td>
+                                <td>City</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Pincode</td>
+                                <td>PINcode</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>7</td>
+                                <td>State</td>
+                                <td>State</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>8</td>
+                                <td>PhNum</td>
+                                <td>Phone</td>
+                                <td>&nbsp;</td>
+                                <td></td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">Table Name: Advance Payments</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-heading-code">Table Code : Adv</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>gstin</td>
+                                <td>GSTIN / UIN of Taxpayer</td>
+                                <td>&nbsp;</td>
+                                <td rowspan="6">Payment Voucher Header</td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td>doc_num</td>
+                                <td>Document number</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>doc_dt</td>
+                                <td>Document date</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>PartyName</td>
+                                <td>Name of Customer</td>
+                                <td></td>
+
+                            </tr>
+
+
+
+                            <tr>
+                                <td>5</td>
+                                <td>ctin</td>
+                                <td>GSTIN / UIN of customer</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>pos</td>
+                                <td>State of supply(may be different than state of receipient)</td>
+                                <td>UP-Uttar Pradesh</td>
+
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>ad_amt</td>
+                                <td>Amount of Advance received</td>
+                                <td>&nbsp;</td>
+                                <td rowspan="6" class="table-row-background-white">Item Details</td>
+                            </tr>
+
+                            <tr>
+                                <td>8</td>
+                                <td>rt</td>
+                                <td>Rate</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>9</td>
+                                <td>iamt</td>
+                                <td>IGST Tax Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>10</td>
+                                <td>camt</td>
+                                <td>CGST Tax Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>10</td>
+                                <td>samt</td>
+                                <td>SGST Tax Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>csamt</td>
+                                <td>Cess Amount</td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,251 @@
+[
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "10-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875463pv",
+    "Dated": "2018-10-04T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "TN",
+    "diff_percent": 100.0,
+    "CTIN": "33BKMPS9109M1ZH",
+    "PartyName": "Sri Vallinatraj Metal Alloys",
+    "PartyTaxAreaCode": "TN",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 176485.0,
+        "C_RT": 9.0,
+        "CAMT": 15883.65,
+        "S_RT": 9.0,
+        "SAMT": 15883.65
+      }
+    ]
+  },
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "11-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875464pv",
+    "Dated": "2018-10-09T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "TN",
+    "diff_percent": 65.0,
+    "CTIN": "33AADPT2039F1ZZ",
+    "PartyName": "DHEEN TRADERS",
+    "PartyTaxAreaCode": "TN",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 3700.0,
+        "C_RT": 2.5,
+        "CAMT": 92.5,
+        "S_RT": 2.5,
+        "SAMT": 92.5
+      }
+    ]
+  },
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "11-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875465pv",
+    "Dated": "2018-10-09T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "TN",
+    "diff_percent": 100.0,
+    "CTIN": "33ABXPV8855C1ZX",
+    "PartyName": "DURGA TRADERS",
+    "PartyTaxAreaCode": "TN",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 154374.8,
+        "C_RT": 9.0,
+        "CAMT": 13893.73,
+        "S_RT": 9.0,
+        "SAMT": 13893.73
+      }
+    ]
+  },
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "11-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875466pv",
+    "Dated": "2018-10-09T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "TN",
+    "diff_percent": 100.0,
+    "CTIN": "33AGPPJ3277R1ZM",
+    "PartyName": "SOUTHERN POWER INDUSTRIES",
+    "PartyTaxAreaCode": "TN",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 153450.0,
+        "C_RT": 9.0,
+        "CAMT": 13810.5,
+        "S_RT": 9.0,
+        "SAMT": 13810.5
+      }
+    ]
+  },
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "11-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875467pv",
+    "Dated": "2018-10-09T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "TN",
+    "diff_percent": 100.0,
+    "CTIN": "33BKMPS9109M1ZH",
+    "PartyName": "Sri Vallinatraj Metal Alloys",
+    "PartyTaxAreaCode": "TN",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 413600.0,
+        "C_RT": 9.0,
+        "CAMT": 37224.0,
+        "S_RT": 9.0,
+        "SAMT": 37224.0
+      }
+    ]
+  },
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "11-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875468pv",
+    "Dated": "2018-10-11T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "MH",
+    "diff_percent": 100.0,
+    "CTIN": "27AACCA3454H1ZU",
+    "PartyName": "METALYST FORGINGS LIMITED",
+    "PartyTaxAreaCode": "MH",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 724725.75,
+        "I_RT": 18.0,
+        "IAMT": 130450.64
+      }
+    ]
+  },
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "11-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875469pv",
+    "Dated": "2018-10-11T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "TN",
+    "diff_percent": 65.0,
+    "CTIN": "33ABXPV8855C1ZX",
+    "PartyName": "DURGA TRADERS",
+    "PartyTaxAreaCode": "TN",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 258130.8,
+        "C_RT": 9.0,
+        "CAMT": 23231.77,
+        "S_RT": 9.0,
+        "SAMT": 23231.77
+      }
+    ]
+  },
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "11-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875470pv",
+    "Dated": "2018-10-15T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "TN",
+    "diff_percent": 100.0,
+    "CTIN": "33BKMPS9109M1ZH",
+    "PartyName": "Sri Vallinatraj Metal Alloys",
+    "PartyTaxAreaCode": "TN",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 201395.0,
+        "C_RT": 9.0,
+        "CAMT": 18125.55,
+        "S_RT": 9.0,
+        "SAMT": 18125.55
+      }
+    ]
+  },
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "11-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875471pv",
+    "Dated": "2018-10-24T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "TN",
+    "diff_percent": 65.0,
+    "CTIN": "33BKMPS9109M1ZH",
+    "PartyName": "Sri Vallinatraj Metal Alloys",
+    "PartyTaxAreaCode": "TN",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 133245.0,
+        "C_RT": 9.0,
+        "CAMT": 11992.05,
+        "S_RT": 9.0,
+        "SAMT": 11992.05
+      }
+    ]
+  },
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "11-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875472pv",
+    "Dated": "2018-10-24T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "TN",
+    "diff_percent": 65.0,
+    "CTIN": "33BKMPS9109M1ZH",
+    "PartyName": "Sri Vallinatraj Metal Alloys",
+    "PartyTaxAreaCode": "TN",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 188800.0,
+        "C_RT": 9.0,
+        "CAMT": 16992.0,
+        "S_RT": 9.0,
+        "SAMT": 16992.0
+      }
+    ]
+  },
+  {
+    "GSTIN": "33GSPTN6192G1ZA",
+    "ReturnPeriod": "11-2018",
+    "DocumentType": "Advance payment",
+    "VouchNum": "100875473pv",
+    "Dated": "2018-10-01T00:00:00",
+    "SupplyFrom": "TN",
+    "POS": "HR",
+    "diff_percent": 65.0,
+    "CTIN": "06AAACM0829Q1Z8",
+    "PartyName": "MARUTI SUZUKI INDIA LTD",
+    "PartyTaxAreaCode": "HR",
+    "PartyGstRegType": "Registered",
+    "Items": [
+      {
+        "AD_AMT": 70808.4,
+        "I_RT": 28.0,
+        "IAMT": 19826.35
+      }
+    ]
+  }
+]

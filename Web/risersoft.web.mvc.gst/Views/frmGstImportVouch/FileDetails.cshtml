@@ -1,0 +1,702 @@
+﻿@using AuthorizationFramework.Proxies
+@using risersoft.shared.portable
+@using risersoft.app.mxform
+@using risersoft.shared.portable.Proxies
+@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "File Details";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = JsonConvert.SerializeObject(Model, Formatting.Indented,
+                    new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml, NullValueHandling = NullValueHandling.Ignore });
+
+    var pageSize = System.Configuration.ConfigurationManager.AppSettings["PageSize"]
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<style type="text/css" rel="stylesheet">
+    .mb-lft {
+        margin-left: 110px;
+    }
+
+    .bg-pnl {
+        background-color: #fff;
+        min-height: 350px;
+    }
+
+    .mb-top {
+        margin-top: 10px;
+    }
+
+    .xls-icon {
+        color: #1bce1b;
+    }
+
+    .spn-algn {
+        float: left;
+        margin-top: -25px;
+        margin-left: 25px;
+        text-decoration: none !important;
+        cursor: pointer;
+    }
+
+    .zip-algn {
+        float: left;
+        margin-left: 25px;
+        text-decoration: none !important;
+        cursor: pointer;
+    }
+
+    .cpointer {
+        cursor: pointer
+    }
+
+    .select-control {
+        float: right;
+        margin-right: 20px;
+        width: 90px;
+        border-radius: 2px;
+    }
+
+    table tr th {
+        text-align: center;
+    }
+
+    .modal.in .modal-dialog {
+        margin-top: 190px !important;
+    }
+</style>
+<div><h5>File Details</h5></div>
+<div class="clearfix"></div>
+<form action="" method="post" name="importfile" ng-controller="FormController">
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+    <input type="hidden" id="model_pageSize" value='@pageSize' />
+    <div class="container content-part bg-pnl">
+        <div class="tab-content">
+            <div class="form-horizontal" ng-show="model != null">
+                <div class="form-group">
+                    @Html.Label("Original File Name:", htmlAttributes: new { @class = "control-label col-md-2", @style = "text-align: left;" })
+                    <div class="col-md-10 mb-top">
+                        <i class="xls-icon" ng-class="fileExtention == 'zip' ? 'fa fa-file-archive-o' : 'fa fa-file-excel-o'" style="font-size: 20px;" aria-hidden="true"></i> {{flName}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Doc Type:", htmlAttributes: new { @class = "control-label col-md-2", @style = "text-align: left;" })
+                    <div class="col-md-10 mb-top">
+                        <select class="form-control" name="DocType" id="DocType" disabled>
+                            <option value="IS">Invoice Sale</option>
+                            <option value="IP">Invoice Purchase</option>
+                            <option value="PC">Advance Recieved</option>
+                            <option value="PV">Advance Paid</option>
+                            <option value="GSTR2A">GSTR2A</option>
+                            <option value="Recon">Manual Reconciliation</option>
+                            <option value="Defer">Invoice Deferment</option>
+                            <option value="GSTR1">GSTR1</option>
+                            <option value="HSN">HSN</option>
+                            <option value="ISD">ISD Sale</option>
+                            <option value="GSTR6IP">ISD Purchase</option>
+                            <option value="EWB">Eway Bill</option>
+                            <option value="CHL">ITC04 Challan</option>
+                            <option value="Role">Role</option>
+                            <option value="TP">Company+Campus</option>
+                            <option value="Vendor">Vendor</option>
+                            <option value="Customer">Customer</option>
+                            <option value="TCS">TCS</option>
+                            <option value="TDS">TDS</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Corrected File Last:", htmlAttributes: new { @class = "control-label col-md-2", @style = "text-align: left;" })
+                    <div class="clearfix"></div>
+                    <div class="col-md-12 ">
+                        <table class="table table-bordered table-striped space10">
+                            <thead>
+                                <tr class="tbld">
+                                    <th style="width: 300px;">File Name</th>
+                                    <th style="width: 155px;">File Date</th>
+                                    <th style="width: 110px;">File Size(kbs)</th>
+                                    <th style="width: 75px;">Row Count</th>
+                                    <th style="width: 75px;">Record Count</th>
+                                    <th style="">Error Count</th>
+                                    <th style="">Last Run Time</th>
+                                    <th>Download Error File</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="summary in model.tableSummary" class="tbldc">
+                                    <td>
+                                        <i class="xls-icon" ng-class="fileExtention == 'zip' ? 'fa fa-file-archive-o' : 'fa fa-file-excel-o'" style="float: left;font-size: 20px;" aria-hidden="true"></i>
+                                        <a ng-class="fileExtention == 'zip' ? 'zip-algn' : 'spn-algn'" ng-click="changeSummary(summary.ImportFileID, DocType,summary.FileName)">{{summary.FileName}}</a>
+                                    </td>
+                                    <td>{{summary.FileTime | date:'dd/MM/yyyy, HH:mm:ss'}}</td>
+                                    <td>{{summary.FileSizeKB}}</td>
+                                    <td>{{summary.DataRowCount}}</td>
+                                    <td>{{summary.DataRecordCount}}</td>
+                                    <td>{{summary.DataErrorCount}}</td>
+                                    <td>{{summary.LastRunTime | date:'dd/MM/yyyy, HH:mm:ss'}}</td>
+                                    <td>
+                                        <div class="navbar navbar-expand-md">
+                                            <button class="btn btn-primary" data-toggle="dropdown">
+                                                Download
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#" ng-click="donwloadFile(summary.ImportFileID, 'org')">Download Original File</a></li>
+                                                <li><a class="dropdown-item" href="#" ng-click="donwloadFile(summary.ImportFileID, 'err')" ng-show="summary.ErrorFileURL">Download Error File</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="navbar navbar-expand-md">
+                                            <button class="btn btn-primary" data-toggle="dropdown">
+                                                Action
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/frmGstImportVouch/Index/{{fileID}}?ActionType=import&DocType={{model.docType + locationSearch}}">Upload Correction File</a></li>
+                                                <li><a class="dropdown-item" href="#" ng-click="executeTask(summary.ImportFileID, summary.DocType,summary.FileName)">Execute Again</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="margin-top:10px;">
+                        <div id="msgSyncContainer">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="{{summary}}"><span style="margin-left:15px;font-size: 17px;color:red">{{message}}</span></div>
+                <div ng-show="{{summary}}">
+                    <div class="form-group">
+                        @Html.Label("Record Summary:", htmlAttributes: new { @class = "control-label col-md-2", @style = "text-align: left;margin-top: -7px;" })
+                        <span><i class="xls-icon" ng-class="fileExtention == 'zip' ? 'fa fa-file-archive-o' : 'fa fa-file-excel-o'" style="font-size: 20px;" aria-hidden="true"></i> {{cflName}}</span><br />
+
+                        <div class="clearfix"></div>
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-bordered table-striped space10">
+                                <thead>
+                                    <tr class="tbld">
+                                        <th>GSTIN</th>
+                                        <th>State</th>
+                                        <th>Return Period</th>
+                                        <th>Total Row Count</th>
+                                        <th>Total Record Count</th>
+                                        <th>Total Error Count</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-show="model.lstGSTIN.length > 0">
+                                    <tr ng-repeat="lstSummary in model.lstGSTIN">
+                                        <td>{{lstSummary.GSTIN}}</td>
+                                        <td>{{lstSummary.State}}</td>
+                                        <td>{{lstSummary.ret_pd}}</td>
+                                        <td>{{lstSummary.RowCount}}</td>
+                                        <td>{{lstSummary.RecordCount}}</td>
+                                        <td>{{lstSummary.ErrorCount}}</td>
+                                    </tr>
+                                </tbody>
+                                <tbody ng-show="model.lstGSTIN.length <= 0">
+                                    <tr>
+                                        <td colspan="6" style="text-align:center;">No Record Found...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Tax Summary:", htmlAttributes: new { @class = "control-label col-md-2", @style = "text-align: left;margin-top: -7px;" })
+                        <div class="clearfix"></div>
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-bordered table-striped space10">
+                                <thead>
+                                    <tr class="tbld">
+                                        <th>GSTIN</th>
+                                        <th>State</th>
+                                        <th>Return Period</th>
+                                        <th>TXVAL</th>
+                                        <th>IGST</th>
+                                        <th>CGST</th>
+                                        <th>SGST</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-show="model.lstGSTIN.length > 0">
+                                    <tr ng-repeat="lstSummary in model.lstGSTIN">
+                                        <td>{{lstSummary.GSTIN}}</td>
+                                        <td>{{lstSummary.State}}</td>
+                                        <td>{{lstSummary.ret_pd}}</td>
+                                        <td>{{lstSummary.txval}}</td>
+                                        <td>{{lstSummary.iamt}}</td>
+                                        <td>{{lstSummary.camt}}</td>
+                                        <td>{{lstSummary.samt}}</td>
+                                    </tr>
+                                </tbody>
+                                <tbody ng-show="model.lstGSTIN.length <= 0">
+                                    <tr>
+                                        <td colspan="7" style="text-align:center;">No Record Found...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div><label class="control-label" style="text-align:left;">Total No. Of Document Stored = {{DocumentStoredCount}}</label></div>
+                    <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                    <div class="form-group" ng-show="model.SummaryDetails.length > 0">
+                        <div class="clearfix"></div>
+                        @Html.Label("Erroneous Documents:", htmlAttributes: new { @class = "control-label col-md-4", @style = "text-align: left;" })
+                        <select class="select-control" ng-model="numPerPage" ng-change="current = 1">
+                            <option value="15">15</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        <div class="clearfix"></div>
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-bordered table-striped space10">
+                                <thead>
+                                    <tr class="tbld">
+                                        <th>Number</th>
+                                        <th>Date</th>
+                                        <th>Value</th>
+                                        <th>Counter Party</th>
+                                        <th>Error</th>
+                                        <th>Warning</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-show="model.SummaryDetails.length > 0">
+                                    <tr ng-repeat="invoice in model.SummaryDetails">
+                                        <td><a href="{{invoice.Params}}">{{invoice.VouchNum}}</a></td>
+                                        <td>{{invoice.Dated | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{invoice.TotalAmount}}</td>
+                                        <td>{{invoice.CTIN}}</td>
+                                        <td>{{invoice.ErrorCSV}}</td>
+                                        <td>{{invoice.WarningCSV}}</td>
+                                    </tr>
+                                </tbody>
+                                <tbody ng-show="model.SummaryDetails.length <= 0">
+                                    <tr>
+                                        <td colspan="6" style="text-align:center;">No Record Found...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- pager -->
+                            <nav aria-label="Page navigation" align="center" ng-show="model.SummaryDetails.length > 0">
+                                <pagination ng-model="current" total-items="model.InvoicePageCount" max-size="maxSize" boundary-links="true" items-per-page="numPerPage"></pagination>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-horizontal" ng-show="model == null">
+                <div style="text-align: center;padding-top: 150px;font-weight: bold;display: block;font-size: 30px;">{{errorMessage}}</div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="form-horizontal" ng-show="{{summary}}">
+                <button type="button" class="btn btne" style="float:right;" ng-click="open()">Delete</button>
+            </div>
+
+            <div class="clearfix" style="margin-bottom:20px;"></div>
+
+            <div class="form-group hide" id="showMessage">
+                <div class="col-md-12">
+                    <i class="fa fa-2x fa-check cprocess" style="color:green; font-size:20px;"> Your data has been submited.</i>
+                    <i class="fa fa-2x fa-remove cfailure" style="color: red; font-size:20px;"> Failure</i>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <script type="text/ng-template" id="myModalContent.html" style="margin-top: 190px;" class="modal-dialog">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Delete</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            Are you sure ?
+        </div>
+        <div class="modal-footer">
+            @*fileID : {{fileID }}<br />*@
+            <button class="btn btn-info" type="button" ng-click="Delete(fileID)">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="myModalSuccessContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Success</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            Done <i class="fa fa-2x fa-check"></i>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-info" type="button" ng-click="cancel()">OK</button>
+        </div>
+    </script>
+</form>
+
+@section BotScripts{
+    <script type="text/javascript" src="~/Scripts/jquery.form.js"></script>
+    <link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $rootScope, $http, $modal, usSpinnerService, $interval) {
+            var stop;
+            $scope.model = JSON.parse($("#model_json").val());
+            $scope.status = 'loaded';
+            $scope.flName;
+            $scope.fileExtention;
+            $rootScope.fileID;
+            $scope.errorMessage = "";
+            $scope.summary = '';
+
+            //For Paging
+            $scope.current = 1;
+            $scope.numPerPage = $('#model_pageSize').val();
+            $scope.maxSize = 10;
+
+            //Root Scope Varibales
+            $rootScope.DocumentStoredCount = "";
+
+            var msgHTML = '<div></div><div class="form-group" id="syncPanel"><div>';
+            msgHTML += '<div class="form-group" style="font-size: 10px;background-color: #efefef;width: 815px;" id="syncMessagePanel">';
+            msgHTML += '<div><a href="#" class="delete" id="removeSyncDiv"><span class="fa fa-remove" style="color: #d83e3b;margin-right: 8px;"></span></a>';
+            msgHTML += '<div class="row" style="padding-top:5px;margin-left: 15px;">';
+            msgHTML += '<div id="syncExecutedMsg" style="padding:5px;"></div>';
+            msgHTML += '<i class="fa fa-2x fa-link" style="color:green; display:none; padding: 5px;" id="syncDownloadLink"></i>';
+            msgHTML += '</div></div></div></div></div>';
+
+            //Add Query in URL
+            $scope.locationSearch = "&" + location.search.split('?')[1];
+            var loadmodel = function (result) {
+                //debugger;
+                //console.log($scope.model);
+                if (result != null) {
+                    $scope.model = result;
+                    $scope.flName = result.fileName;
+
+                    $scope.DocType = result.docType;
+                    $("#DocType").val(result.docType);
+
+                    $scope.fileExtention = result.fileName.split('.').pop();
+                    $rootScope.fileID = result.fileID;
+                    $rootScope.DocumentStoredCount = result.documentStoredCount;
+                    $scope.model.InvoicePageCount = result.InvoicePageNumbers;
+
+                    //Corrected File Last
+                    let tableSummary = JSON.parse($scope.model.tableSummary);
+                    $scope.cflName = tableSummary[0].FileName;
+                    $scope.message = tableSummary[0].Message;
+                    tableSummary.forEach(function (x) {
+                        x.FileTime = new Date(x.FileTime);
+                        x.LastRunTime = new Date(x.LastRunTime);
+                    });
+                    $scope.model.tableSummary = tableSummary;
+
+                    $scope.summary = true;
+                    //Summary JSON Data
+                    let summaryJson = JSON.parse($scope.model.SummaryJson);
+                    if (summaryJson != null && summaryJson[0].SummaryJson != null) {
+                        summaryJson = JSON.parse(summaryJson[0].SummaryJson);
+                        $scope.model.lstGSTIN = summaryJson.GSTIN_List;
+                    }
+                    else {
+                        $scope.model.lstGSTIN = []
+                    }
+
+                    ////Summary DETAILS JSON Data
+                    let summaryDetails = JSON.parse($scope.model.SummaryDetails);
+                    summaryDetails.forEach(function (x) {
+                        x.Dated = x.Dated != null ? new Date(x.Dated.substring(0, 10)) : "";
+                    });
+                    $scope.model.SummaryDetails = summaryDetails;
+                }
+                else {
+                    $scope.errorMessage = "Please provide a valid file id";
+                }
+            };
+
+            $scope.setActive = function (flID, currentpage, ptype) {
+                //debugger;
+                var params = location.search.split('?')[1];
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+                $http({
+                    method: 'GET',
+                    url: "/frmGstImportVouch/GetPaging?fileID=" + flID + "&pageNumber=" + currentpage + "&pagesize=" + $scope.numPerPage + "&pagetype=" + ptype + "&" + params
+                }).then(function successCallback(result) {
+                    if (result.data.pType == ptype) {
+                        let summaryDetails = JSON.parse(result.data.data);
+                        summaryDetails.forEach(function (x) {
+                            x.Dated = x.Dated != null ? new Date(x.Dated.substring(0, 10)) : "";
+                        });
+
+                        $scope.model.InvoicePageCount = result.data.pgCount;
+                        $scope.model.SummaryDetails = summaryDetails;
+                        $scope.current = currentpage;
+                    }
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            }
+
+            $scope.donwloadFile = function (fileId, fltype) {
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+
+                $http({
+                    method: 'GET',
+                    url: "/frmGstImportVouch/Downloads/" + fileId + "/" + fltype + location.search
+                }).then(function successCallback(result) {
+                    window.location.href = result.data.data;
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            }
+
+            $scope.changeSummary = function (fileId, pType, Filen) {
+                $rootScope.fileID = fileId;
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+                $http({
+                    method: 'GET',
+                    url: "/frmGstImportVouch/GetSummary/" + fileId + "/" + pType + location.search
+                }).then(function (response) {
+                    let tableSummary = JSON.parse(response.data.data.tableSummary);
+                    if (tableSummary[0].SummaryJson) {
+                        summaryJSON = JSON.parse(tableSummary[0].SummaryJson);
+                        $scope.model.lstGSTIN = summaryJSON.GSTIN_List;
+                    } else {
+                        $scope.model.lstGSTIN = [];
+                    }
+
+                    let summaryDetails = JSON.parse(response.data.data.InvoiceSummary);
+                    summaryDetails.forEach(function (x) {
+                        x.Dated = x.Dated != null ? new Date(x.Dated.substring(0, 10)) : "";
+                    });
+
+                    $scope.model.InvoicePageCount = response.data.data.InvoicePageNumbers; //result.pgCount;
+                    $scope.model.SummaryDetails = summaryDetails;
+                    $scope.cflName = Filen;
+
+                    setTimeout(function () {
+                        $rootScope.fileID = fileId;
+                        $rootScope.DocumentStoredCount = response.data.data.documentStoredCount;
+                        $rootScope.$apply();
+                    }, 1000);
+
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            }
+
+            /* START TEST UI BOOTSTRAP PAGINATION */
+            $scope.IsInitializing = true;
+            $scope.$watch('current + numPerPage', function () {
+                //debugger
+                if (!$scope.IsInitializing) {
+                    $scope.setActive($rootScope.fileID, $scope.current, $scope.DocType);
+                }
+                $scope.IsInitializing = false;
+            });
+
+            /* END TEST UI BOOTSTRAP PAGINATION */
+
+            $scope.open = function () {
+                $rootScope.isPopWindow = true;
+                $rootScope.modalInstance = $modal.open({
+                    templateUrl: 'myModalContent.html',
+                    controller: 'FormController',
+
+                    resolve: {
+                        items: function () {
+                            return;
+                        }
+                    }
+                });
+            };
+
+            $scope.cancel = function () {
+                $rootScope.modalInstance.dismiss('cancel');
+            };
+
+            $scope.Delete = function (fileID) {
+                if (fileID) {
+                    $scope.cancel();
+                    $http({
+                        method: 'GET',
+                        url: "/frmGstImportVouch/Delete/" + fileID + location.search
+                    }).then(function (result) {
+                        if (result.data.success) {
+                            $scope.checkStatusInterval(result.data.description, fileID, $scope.DocType);
+                        }
+                    }).finally(function () {
+                        $("div.spinnerTarget").removeClass("backdrop");
+                        $("body").css("overflow", "auto");
+                        usSpinnerService.stop('spinner-1');
+                    });
+                }
+            }
+
+            $scope.checkStatusInterval = function (taskId, fileID, pType) {
+                stop = $interval(function () {
+                    $http({
+                        method: 'GET',
+                        url: '/frmGstImportVouch/GetStatus/' + taskId + location.search
+                    }).then(function successCallback(result) {
+                        if (result.data.success) {
+                            if (result.data.taskStatus == "Executed") {
+                                $scope.stopFight();
+                                $http({
+                                    method: 'GET',
+                                    url: '/frmGstImportVouch/UpdateDeltedRecord/' + fileID + '/' + pType + location.search
+                                }).then(function (result) {
+                                    if (result.data.success) {
+                                        setTimeout(function () {
+                                            $rootScope.DocumentStoredCount = result.data.data.documentStoredCount;
+                                            $rootScope.$apply();
+                                        }, 1000);
+                                    }
+                                });
+                            }
+
+                            $('#showMessage').removeClass('hide').show();
+                            $('.cprocess').addClass('progressdis').show();
+                            $('.cprocess').html(result.message);
+                            $('.cfailure').removeClass('progressdis').hide();
+                        }
+                        else {
+                            $('#showMessage').removeClass('hide').show();
+                            $('.cprocess').removeClass('progressdis').hide();
+                            $('.cfailure').html(result.message);
+                            $('.cfailure').addClass('progressdis').show();
+                        }
+                    })
+                }, 5000);
+            };
+
+            $scope.stopFight = function () {
+                $interval.cancel(stop);
+                stop = undefined;
+                $scope.IsInitializing = false;
+            };
+
+            $scope.IsInitializing = false;
+            $scope.executeTask = function (importFileId, taskType, FileName) {
+                $scope.IsInitializing = true;
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+
+                $http({
+                    method: 'GET',
+                    url: "/frmGstImportVouch/ExecuteTask?id=" + importFileId + " &fileId=" + taskType + " &fileName=" + FileName + $scope.locationSearch
+                }).then(function successCallback(result) {
+                    console.log(result);
+                    if (result.data.success) {
+                        if (result.data.description != "" && result.data.message != "") {
+                            var msg = $('#msgSyncContainer').find("[data-syncTaskid='" + result.data.description + "']");
+                            if (msg.length < 0) {
+                                msg = $(msgHTML);
+                                $(msg.get(1)).attr("data-syncTaskid", result.description);
+                                $('#msgSyncContainer').prepend(msg);
+                            }
+                            msg.find("div#syncExecutedMsg").html('<i class="fa fa-2x fa-check" style="color:green"> ' + result.data.message + '</i>');
+                            if ($scope.IsInitializing && result.data.description) {
+                                $scope.checkStatusInterval(result.data.description, msg);
+                            }
+                        }
+                        else {
+                            if (result.data.message === '') {
+                                msg.find("div#syncExecutedMsg").html('<i class="fa fa-2x fa-remove" style="color:red"> Unknown Error!</i>');
+                            };
+                        }
+                    }
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            }
+
+            $scope.checkStatusInterval = function (taskId, msg) {
+                //debugger;
+                var msg = $(msgHTML);
+                $('#msgSyncContainer').prepend(msg);
+                var stop = $interval(function () {
+                    $http({
+                        method: 'GET',
+                        url: '/frmGstImportVouch/GetStatus/' + taskId + location.search
+                    }).then(function successCallback(result) {
+                        if (result.data.success) {
+                            if (result.data.taskStatus == "Executed") {
+                                $scope.stopFight(stop);
+                                msg.find("div#syncExecutedMsg").html('<i class="fa fa-2x fa-check" style="color:green"> ' + result.data.message + '</i>');
+                            }
+                            else {
+                                msg.find("div#syncExecutedMsg").html('<i class="fa fa-2x fa-check" style="color:green"> ' + result.data.message + '</i>');
+                            }
+                        }
+                        else {
+                            msg.find("div#syncExecutedMsg").html('<i class="fa fa-2x fa-remove" style="color:red"> ' + result.data.message + '</i>');
+                        }
+                    })
+                }, 1000);
+                return;
+            }
+
+            $scope.stopFight = function (stop) {
+                $interval.cancel(stop);
+                $scope.IsInitializing = false;
+            };
+
+            if (!$rootScope.isPopWindow)
+                loadmodel($scope.model);
+
+            $scope.visdel = true;
+            $scope.visdelete = false;
+            @Html.RenderFile("~/scripts/rsforms.js")
+        });
+
+        $(document).on("click", "#removeSyncDiv", function (e) {
+            e.preventDefault();
+            $(this).closest('div#syncMessagePanel').hide();
+            return;
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function removecls() {
+                $.each($('.tbldc'), function () {
+                    $(this).removeClass('tblchn');
+                });
+            }
+
+            $('.tbldc').on('click', function () {
+                removecls();
+                $(this).addClass('tblchn');
+            });
+        });
+    </script>
+
+    @Html.RenderJsCss(false, "jqueryui")
+}

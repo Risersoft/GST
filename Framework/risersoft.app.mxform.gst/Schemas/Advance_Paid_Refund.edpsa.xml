@@ -1,0 +1,344 @@
+<Schema connectioncode="" connectiontype="Source" createdby="user">
+  <RecordTypes>
+    <RecordType Name="Advance Payment Template ">
+      <Fields>
+        <Field Name="GSTIN">
+          <Name>GSTIN</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>GSTIN</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ReturnPeriod">
+          <Name>ReturnPeriod</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Return Month And Year (MM-YYYY)</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="DocumentType">
+          <Name>DocumentType</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Document Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="VouchNum">
+          <Name>VouchNum</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Document Number</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="Dated">
+          <Name>Dated</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Document Date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SupplyFrom">
+          <Name>SupplyFrom</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Ship from State</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="POS">
+          <Name>POS</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Place of Supply (POS)</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="AD_AMT">
+          <Name>AD_AMT</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Transaction Value</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="RCHRG">
+          <Name>RCHRG</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>RCM Applicable</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="LineSNum">
+          <Name>LineSNum</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Item ID</Description>
+          <DataType>Integer</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" ThousandsChar="None" />
+        </Field>
+        <Field Name="Diff_Percent">
+          <Name>Diff_Percent</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Applicable % of tax rate</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="I_Rt">
+          <Name>I_Rt</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>IGST Rate</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="IAMT">
+          <Name>IAMT</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>IGST</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="C_Rt">
+          <Name>C_Rt</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>CGST Rate</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="CAMT">
+          <Name>CAMT</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>CGST</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="S_Rt">
+          <Name>S_Rt</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>SGST Rate</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="SAMT">
+          <Name>SAMT</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>SGST</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="Cess_Rt">
+          <Name>Cess_Rt</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Cess Rate</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="CSAMT">
+          <Name>CSAMT</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Cess</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="OrigVouchNum">
+          <Name>OrigVouchNum</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Original Document Number</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="OrigDated">
+          <Name>OrigDated</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Original Document date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="CTIN">
+          <Name>CTIN</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Supplier GSTIN / UIN</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="PartyName">
+          <Name>PartyName</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Supplier Name</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="PartyLocation">
+          <Name>PartyLocation</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Supplier Location Name</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="PartyGstRegType">
+          <Name>PartyGstRegType</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Supplier Registration Status</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+<Field Name="ERPRefNum">
+          <Name>ERPRefNum</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>ERP Reference No.</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="RemarkItem">
+          <Name>RemarkItem</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Remarks</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+<Field Name="RemarkItem2">
+          <Name>RemarkItem2</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Remarks2</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningCode">
+          <Name>WarningCode</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Warning Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningText">
+          <Name>WarningText</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Warning Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorCode">
+          <Name>ErrorCode</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Error Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorText">
+          <Name>ErrorText</Name>
+          <RecordType>Advance Payment Template </RecordType>
+          <Description>Error Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+                
+      </Fields>
+      <ValidationExpressions />
+      <Name>Advance Payment Template </Name>
+      <Config Ignore="False" IgnoreRows="2" />
+    </RecordType>
+    <RecordType Name="Look Up Values">
+      <Fields>
+        <Field Name="A">
+          <Name>A</Name>
+          <RecordType>Look Up Values</RecordType>
+          <Description>S.No.</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="B">
+          <Name>B</Name>
+          <RecordType>Look Up Values</RecordType>
+          <Description>Lookup Document Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+      </Fields>
+      <ValidationExpressions />
+      <Name>Look Up Values</Name>
+      <Config Ignore="True" IgnoreRows="0" />
+    </RecordType>
+    <RecordType Name="State Code and POS">
+      <Fields>
+        <Field Name="A">
+          <Name>A</Name>
+          <RecordType>State Code and POS</RecordType>
+          <Description>Index</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="B">
+          <Name>B</Name>
+          <RecordType>State Code and POS</RecordType>
+          <Description>Look-Up State Codes &amp; Name (For Latest Always Refer GST Portal)</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="C">
+          <Name>C</Name>
+          <RecordType>State Code and POS</RecordType>
+          <Description>Column1</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="D">
+          <Name>D</Name>
+          <RecordType>State Code and POS</RecordType>
+          <Description>Column2</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="E">
+          <Name>E</Name>
+          <RecordType>State Code and POS</RecordType>
+          <Description>Column3</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+      </Fields>
+      <ValidationExpressions />
+      <Name>State Code and POS</Name>
+      <Config Ignore="True" IgnoreRows="0" />
+    </RecordType>
+    <RecordType Name="R1">
+      <Fields />
+      <ValidationExpressions />
+      <Name>R1</Name>
+      <Config Ignore="False" IgnoreRows="0" />
+    </RecordType>
+  </RecordTypes>
+</Schema>

@@ -1,0 +1,169 @@
+﻿@using System
+@using System.Data
+@using risersoft.shared.web.Extensions
+
+@model DataSet
+@{
+    ViewData["Title"] = "GST Invoice Import utility";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+}
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<div class="clearfix"></div>
+<div class="container content-part">
+    <div class="col-md-11">
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="accounts">
+                <h2>Data Import Utility</h2>
+
+                @using (Html.BeginForm("", "", FormMethod.Post, new { @name = "frm", @id = "frm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <h4>Conversion Utility</h4>
+                        <a href="~/Content/template/GSTR2_Excel_format.xlsx" class="file"><i class="fa fa-file filed"></i> Dowload Template GSTR2</a>&nbsp;&nbsp;&nbsp;&nbsp;            <a href="~/Content/template/GSTR1_Excel_format.xlsx" class="file"><i class="fa fa-file filed"></i> Dowload Template GSTR1</a><hr />
+                        @Html.Hidden("data", "", new Dictionary<string, string> { { "id", "data" } })
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.Label("Return", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                <select class="form-control" name="ReturnKey" id="ReturnKey" required>
+                                    <option value="">--Select Type--</option>
+                                    <option value="GSTR1"> GSTR1</option>
+                                    <option value="GSTR2"> GSTR2</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-2">
+
+                                <button type="button" class="btn btn-default import">Import File</button>
+                            </div>
+                            <div class="col-md-2">
+                                <i class="fa fa-2x fa-check" id="statuc">Success</i><i class="fa fa-2x fa-remove" id="failurc">Failure</i>
+                            </div>
+                        </div>
+
+                        <div id="dialogFilterfile" title="File">
+                            <div Class="form-group">
+                                <div Class="col-md-offset-1 col-md-10 " style="margin-top:8px">
+                                    <input type="file" id="filename" name="filename" Class="form-control" autocomplete="off" accept=".xlsx,.xls" />
+                                </div>
+                            </div>
+                            <div Class="form-group">
+                                <div Class="col-md-offset-1 col-md-10 " style="margin-top:8px">
+                                    <Label id="labelid"></Label>
+                                </div>
+                            </div>
+                            <div Class="form-group" style="float:right;margin-top:8px">
+
+                                <div Class="col-md-12">
+                                    <input type="button" id="btnSaveFile" value="Submit" Class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="displ">
+                    <label id="message"></label>
+                </div>
+                <div class="table-overflowt">
+                    <table id="displayTable1" title="Invoices" Class="table table-bordered detailcolumn filtertable table-overflowt"></table>
+                    <table id="displayTable2" title="Payments" Class="table table-bordered detailcolumn filtertable table-overflowt"></table>
+                    <table id="displayTable3" title="Customers" Class="table table-bordered detailcolumn filtertable table-overflowt"></table>
+
+                </div>
+                <input type="button" id="btnSavetab" value="Save" Class="btn btn-primary" style="float:left;" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+@section BotScripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.import').on('click', function (e) {
+                $("#dialogFilterfile").dialog({
+                    autoOpen: false,
+                    modal: true,
+                    width: 600,
+                    hide: {
+                        effect: "fade",
+                        duration: 1000
+                    }
+                });
+                $("#dialogFilterfile").dialog("open");
+            });
+
+            var table;
+            var tabledata;
+            $("#btnSaveFile").on("click", function () {
+                //alert('');
+                var filesd = $('#filename').get(0);
+                var files = filesd.files;
+                var dataf = new FormData();
+                dataf.append("filename", files[0]);
+                dataf.append("ReturnKey", $('#ReturnKey').val());
+                $.ajax({
+                    url: '/frmGstImportVouch/File',
+                    type: "POST",
+                    data: dataf,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        if (result.status == "200") {
+                            $(".displ").removeClass('displb');
+                            table = JSON.parse(result.data);
+                            tabledata = result.data;
+                            //$('#displayTable').html(result.data);
+                            $('#btnSavetab').addClass('btnSavedis');
+                            $('#displayTable1').text('INV');
+                            $('#displayTable1').append(tablehtml(table.inv));
+                            $('#displayTable2').text('AT');
+                            $('#displayTable2').append(tablehtml(table.at));
+
+                            if (table.hasOwnProperty("customer")) { $('#displayTable3').text('CUSTOMER'); $('#displayTable3').append(tablehtml(table.customer)); };
+                            if (table.hasOwnProperty("vendor")) { $('#displayTable3').text('VENDOR'); $('#displayTable3').append(tablehtml(table.vendor)); }
+                            $('#filename').val('');
+                            $("#dialogFilterfile").dialog("close");
+                        }
+                        if (result.message) {
+                            $(".displ").addClass('displb');
+                            $("#message").text(result.message);
+                            $('#filename').val('');
+                            $("#dialogFilterfile").dialog("close");
+                        }
+                    }
+                });
+            });
+
+            $("#btnSavetab").on("click", function () {
+                var data = {
+                    ReturnKey: $('#ReturnKey').val(),
+                    TableName: '',
+                    data: tabledata
+                };
+
+                $.post("/frmGstImportVouch/Index", data, function (result) {
+                    if (result.status == '200') {
+                        $('#statuc').addClass('displb');
+                        $('#failurc').removeClass('displb');
+                        $('#displayTable1').text('');
+                        $('#displayTable2').text('');
+                        $('#displayTable3').text('');
+                        $('#btnSavetab').removeClass('btnSavedis');
+                    }
+                    else {
+                        $('#failurc').addClass('displb');
+                        $('#statuc').removeClass('displb');
+                        $('#btnSavetab').removeClass('btnSavedis');
+                    }
+                });
+            });
+        });
+    </script>
+    @Html.RenderJsCss(false, "jqueryui")
+}
+

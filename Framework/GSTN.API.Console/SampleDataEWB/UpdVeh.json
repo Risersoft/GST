@@ -1,0 +1,12 @@
+﻿{
+  "ewbNo": 341001798531,
+  "vehicleNo": "MH04KA1234",
+  "fromPlace": "BANGALORE",
+  "fromState": 24,
+  "reasonCode": "1",
+  "reasonRem": "vehicle broke down",
+  "transDocNo": "1235",
+  "transDocDate": "17/06/2019",
+  "transMode": "1",
+  "vehicleType": "R"
+}

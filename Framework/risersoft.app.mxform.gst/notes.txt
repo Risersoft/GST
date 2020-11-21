@@ -1,0 +1,32 @@
+﻿update invoice set
+uniquekey=case when doctype='IS' then campus.campuscode + '|' + finyears.Descrip +'|' + invoice.invoicenum + '|' + convert(varchar,isnull(invoice.isamendment,0))
+else vendor.vendorcode + '|' + finyears.Descrip +'|' + invoice.invoicenum + '|' + convert(varchar,isnull(invoice.isamendment,0)) end
+
+
+from invoice
+inner join campus on invoice.campusid = campus.campusid
+left join vendor on invoice.vendorid = vendor.vendorid
+inner join postperiod on invoice.postperiodid = postperiod.postperiodid
+inner join finyears on finyears.FinYearID=postperiod.FinYearID
+
+
+
+
+--- Web Sockets ------
+- Install emSigner from emsigner.com and RUN in administrator mode after install.
+- Install docsigner from gst.gov.in and RUN in administrator mode after install
+- Run https://127.0.0.1:1585 and get "No response"
+- Now run the script in rsgstn.js and it should work
+- USB token may be required to insert and re-insert
+- Chrome Websocket add-ins may be used to test websocket servers
+
+
+
+--- queue connection string
+ {
+    "HostName": "salamander.rmq.cloudamqp.com",
+    "VirtualHost": "dvpmmldc",
+    "UserName": "dvpmmldc",
+    "Password": "MBV9MDVtAow4VZXdRZ3CQ1wPC4NmOtlM",
+    "ExchangeName": "TestEnv.Exchange",
+  }

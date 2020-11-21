@@ -1,0 +1,62 @@
+﻿@using risersoft.shared.web
+@using risersoft.shared.portable
+@{
+    ViewData["Title"] = "Sign Gateway";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var urlPath = Url.RequestContext.HttpContext.Request.Url.GetLeftPart(UriPartial.Authority);
+}
+
+<form action="https://testgateway.emsigner.com/eMsecure/SignerGateway/Index" id="frmdata" method="post">
+    <input id="File" Name="File" type="hidden" />
+    <input id="Name" name="Name" type="hidden" value="Basava">
+    <input id="SelectPage" name="SelectPage" type="hidden" value="ALL">
+    <input data-val="true" data-val-number="The field SignatureType must be a number." data-val-required="The SignatureType field is required." id="SignatureType" name="SignatureType" type="hidden" value="1">
+    <input id="SignaturePosition" name="SignaturePosition" type="hidden" value="Middle-Center">
+    <input id="AuthToken" name="AuthToken" type="hidden" value="">
+    <input id="PageNumber" name="PageNumber" type="hidden" value="">
+    <input id="Data" name="Data" type="hidden" value="">
+    <input id="FileType" name="FileType" type="hidden" value="PDF">
+    <input data-val="true" data-val-required="The PreviewRequired field is required." id="PreviewRequired" name="PreviewRequired" type="hidden" value="True">
+    <input id="CustomizeCoordinates" name="CustomizeCoordinates" type="hidden" value="">
+    <input id="PagelevelCoordinates" name="PagelevelCoordinates" type="hidden" value="">
+    <input id="AadhaarNumber" name="AadhaarNumber" type="hidden" value="">
+    <input id="ReferenceNumber" name="ReferenceNumber" type="hidden" value="REF12345679890">
+    <input id="SUrl" name="SUrl" type="hidden" value="https://testgateway.emsigner.com/Success">
+    <input id="CUrl" name="CUrl" type="hidden" value="http://localhost:61395/home/ErrorResponse">
+    <input id="FUrl" name="FUrl" type="hidden" value="http://localhost:61395/home/ErrorResponse">
+    <input data-val="true" data-val-required="The UploadSignatureOption field is required." id="UploadSignatureOption" name="UploadSignatureOption" type="hidden" value="True">
+    <input data-val="true" data-val-required="The SelectFontOption field is required." id="SelectFontOption" name="SelectFontOption" type="hidden" value="True">
+    <input data-val="true" data-val-required="The DrawSignatureOption field is required." id="DrawSignatureOption" name="DrawSignatureOption" type="hidden" value="True">
+    <input data-val="true" data-val-required="The eSignaturePadOption field is required." id="eSignaturePadOption" name="eSignaturePadOption" type="hidden" value="True">
+    <center style="position:absolute;top:35%;left:33%">
+        <div>
+            <img src="/Content/Img/ajax-loader.gif">
+            <div>
+                <h4>
+                    You will be redirected to emSigner signature gateway please wait...
+                </h4>
+            </div>
+        </div>
+    </center>
+</form>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('DATA' == 'DATA') {
+				$('#File').val('@ViewData["data"]');
+                $('#FileType').val('DATA');
+                $('#SignatureType').val('5');
+                $('#AuthToken').val('YR4j4Hj5WK33f/HjOqSPgOoe8Lvc0DgcQcMaTU8kqYGWusjnXmosFJ4mkZTPIYYO');
+            }
+            //$("#Password").val('');
+            $("#ReferenceNumber").val('testShaikh2');
+            $('#AadhaarNumber').val('');
+            $('#SUrl').val('@urlPath/file/SuccessResponse');
+            $('#CUrl').val('@urlPath/file/ErrorResponse');
+            $('#FUrl').val('@urlPath/file/ErrorResponse');
+            $('#frmdata').submit();
+        });
+    </script>
+}
+

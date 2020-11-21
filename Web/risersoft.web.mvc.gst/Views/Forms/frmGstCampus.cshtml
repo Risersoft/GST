@@ -1,0 +1,345 @@
+﻿@using risersoft.app.mxform
+@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+
+@model frmCampusModel
+@{
+    ViewData["Title"] = "Campus";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = JsonConvert.SerializeObject(Model, Formatting.Indented, new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml });
+}
+
+<link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<div class="container cbackground">
+    <form action="" method="post" name="userform" ng-controller="FormController">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+        <div Class="form-horizontal">
+            <div class="row"></div>
+            <div Class="row" style="margin-top: 40px;">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-6">
+                    <Label Class="control-label labeltext">Display Name <span class="red">*</span></Label>
+                    <input type="text" name="disname" ng-model="Campus.DispName" style="max-width: 540px;" class="form-control" required ng-class="{true: 'error'}[submitted() && userform.disname.$invalid]" />
+                </div>
+
+
+
+
+            </div>
+
+
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">GST Registration <span class="red">*</span></Label>
+                    <select name="gret" ng-model="Campus.GSTRegIDSelected" ng-options="itgstc.GSTIN for itgstc in dsCombo.GstReg track by itgstc.GSTRegID" ng-change="changestate(Campus.SelCountrySelected)" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.gret.$invalid]"></select>
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">City <span class="red">*</span></Label>
+                    <input name="city" type="text" ng-model="Campus.SelCity" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.city.$invalid]" />
+
+                </div>
+
+
+                <div Class="col-md-3">
+
+                </div>
+
+            </div><div Class="row">
+
+
+                <div Class="col-md-1"></div>
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Print Name</Label>
+                    <input type="text" ng-model="Campus.TCName" Class="form-control" />
+                </div>
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Unique Code</Label>
+                    <input type="text" ng-model="Campus.CampusCode" Class="form-control" readonly />
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Division </Label> {{Campus.DivisionCodeList}}
+
+
+
+                </div>
+
+                <div class="col-md-3">
+                    <label class="control-label"> </label>
+                    <button type="button" style="float:right;margin-top: 15px;" Class="btn btn-primary" ng-click="pitem()">Select</button>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+
+                <div class="col-md-3">
+                    <label class="control-label">Type <span class="red">*</span></label>
+                    <select name="grcamp" ng-model="Campus.CampusTypeSelected" ng-options="itgscamp.descriptot for itgscamp in dsCombo.CampusType track by itgscamp.codeword" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.grcamp.$invalid]"></select>
+                </div>
+            </div>
+
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-10"><hr /></div>
+
+            </div>
+
+
+
+
+            <div class="row marb" style="margin-top:17px;">
+
+
+
+                <div class="">
+
+
+
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <ul class="nav nav-tabs">
+                            <li class="active labeltext"><a href="#tab{{$index}}_1" class="labeltext" data-toggle="tab">Address</a></li>
+
+
+
+                        </ul>
+                        <div class="tab-content">
+
+
+
+
+                            <div class="tab-pane active" id="tab{{$index}}_1">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10">
+                                        <label class="control-label">Address <span class="red">*</span></label>
+                                        <input name="cadd" type="text" ng-model="Campus.SelAddress" class="form-control" style="max-width:580px;" required ng-class="{true: 'error'}[submitted() && userform.cadd.$invalid]" />
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2">
+                                        <label class="control-label">PinCode <span class="red">*</span></label>
+                                        <input name="pincode" type="text" numbers-only ng-model="Campus.SelPinCode" class="form-control" required ng-class="{true: 'error'}[submitted() && userform.pincode.$invalid]" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <Label Class="control-label">Country <span class="red">*</span></Label>
+                                        <select name="country" ng-model="Campus.SelCountrySelected" ng-options="itemcoun.country for itemcoun in dsCombo.CO track by itemcoun.country" ng-change="changestate(Campus.SelCountrySelected)" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.country.$invalid]"></select>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <Label Class="control-label">State <span class="red">*</span></Label>
+                                        <select name="state" ng-model="Campus.SelStateSelected" ng-options="itemsu.SubDivisionName for itemsu in State track by itemsu.SubDivisionName" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.state.$invalid]"></select>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Email</label>
+                                        <input type="text" ng-model="Campus.EmailGen" class="form-control" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="control-label">Web</label>
+                                        <input type="text" ng-model="Campus.SelWeb" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2">
+                                        <label class="control-label">Ph No.</label>
+                                        <input type="text" ng-model="Campus.SelPhCountry" class="form-control" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label">&nbsp;</label>
+                                        <input type="text" ng-model="Campus.SelPhArea" class="form-control" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="control-label">&nbsp;</label>
+                                        <input type="text" ng-model="Campus.SelPhNum" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2">
+                                        <label class="control-label">Fax No.</label>
+                                        <input type="text" ng-model="Campus.SelFaxCountry" class="form-control" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="control-label">&nbsp;</label>
+                                        <input type="text" ng-model="Campus.SelFaxArea" class="form-control" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="control-label">&nbsp;</label>
+                                        <input type="text" ng-model="Campus.SelFaxNum" class="form-control" />
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div id="dialogFilterfile">
+                <div ng-repeat="row in Division">
+
+
+
+
+                    {{row.DivisionName}} <input type="checkbox" ng-model="row.DivisionCode" />
+
+                </div>
+            </div>
+
+            @Html.Partial("_SavePanel")
+        </div>
+    </form>
+</div>
+
+@section botscripts{
+
+
+
+
+    <script type="text/javascript">
+
+        rsApp.controller('FormController', function ($scope, $http) {
+            $scope.model = JSON.parse($("#model_json").val());
+            $scope.status = 'loaded';
+            $scope.ShowAddMore = ($scope.model.frmMode == 2);
+
+            var loadmodel = function (result) {
+                $scope.model = result;
+                $scope.Campus = $scope.model.dsForm.DT[0];
+                $scope.dsCombo = $scope.model.dsCombo;
+
+                $scope.Division = $scope.model.dsCombo.Division;
+                $scope.ValueLists = $scope.model.ValueLists;
+
+                @Html.RenderLookup("Campus", Model, Model.dsForm.Tables[0])
+
+                $scope.changestate = function (id) {
+                    $scope.State = [];
+                    if (id) {
+                        $.each($scope.dsCombo.SU, function (item, index) {
+                            if (index.countrycode === id.countrycode) {
+                                $scope.State.push(index);
+                            }
+                        });
+                    }
+                };
+
+                $scope.copycontent = function (row) {
+                    row.SelAddress = $scope.Campus.Address;
+                    row.SelCity = $scope.Campus.City;
+                    row.SelPinCode = $scope.Campus.Pincode;
+                    row.CountrySelected = $scope.Campus.CountrySelected;
+                    row.State = [];
+                    $.each($scope.dsCombo.SU, function (item, indext) {
+                        if (indext.countrycode === row.CountrySelected.countrycode) {
+                            row.State.push(indext);
+                        }
+                    });
+
+                    row.StateSelected = $scope.Campus.StateSelected;
+                    row.SelPhCountry = $scope.Campus.PhCountry;
+                    row.SelPhArea = $scope.Campus.PhArea;
+                    row.SelPhNum = $scope.Campus.Phnum;
+                    row.SelFaxCountry = $scope.Campus.FaxCountry;
+                    row.SelFaxArea = $scope.Campus.FaxArea;
+                    row.SelFaxNum = $scope.Campus.Faxnum;
+
+                    return false;
+                };
+
+                $scope.changestate($scope.Campus.SelCountrySelected);
+
+                $scope.pitem = function () {
+                    $('#dialogFilterfile').dialog({
+                        autoOpen: false,
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true,
+                        buttons: [
+                            {
+                                text: "Save",
+                                click: function () {
+                                    var string = '';
+                                    $.each($scope.Division, function (index, row) {
+                                        if (row.DivisionCode == true) {
+                                            string = string + row.DivisionName + ',';
+                                        };
+                                        $scope.Campus.DivisionCodeList = string;
+                                    });
+                                    $scope.$apply();
+                                    $(this).dialog("close");
+                                }
+                                //showText: false
+                            },
+                            {
+                                text: "Cancel",
+                                click: function () {
+                                    $(this).dialog("close");
+                                }
+                            }
+                        ]
+                    }).dialog("open");
+                }
+            };
+
+            loadmodel($scope.model);
+
+            $scope.cleanupmodel = function (datamodel) { };
+            $scope.calculatemodel = function () { };
+            $scope.nform = function () {
+                window.location = window.location.href;
+            }
+
+            $scope.visdel = false;
+            @Html.RenderFile("~/scripts/rsforms.js")
+        });
+
+    </script>
+    @Html.RenderJsCss(false, "jqueryui")
+}
+

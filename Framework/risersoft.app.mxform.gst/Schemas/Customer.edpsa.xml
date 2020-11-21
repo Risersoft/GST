@@ -1,0 +1,175 @@
+﻿<Schema connectioncode="" connectiontype="Source" createdby="user">
+  <RecordTypes>
+    <RecordType Name="Customer Master">
+      <Fields>
+        <Field Name="PartyName">
+          <Name>PartyName</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Customer Name</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="GSTIN">
+          <Name>GSTIN</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>GSTIN</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="PANNum">
+          <Name>PANNum</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Pan Number</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="GstRegTypeDescrip">
+          <Name>GstRegTypeDescrip</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Category</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ContactPersonName">
+          <Name>ContactPersonName</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Contact Person</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelEmail">
+          <Name>SelEmail</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Email ID</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelEMailCc">
+          <Name>SelEmailCc</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Email ID (CC)</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelEMailBcc">
+          <Name>SelEmailBcc</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Email ID (BCC)</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelPhNum">
+          <Name>SelPhNum</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Mobile Number</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelAddress">
+          <Name>SelAddress</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Address</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelCity">
+          <Name>SelCity</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>City</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelStateCode">
+          <Name>SelStateCode</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>State</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelPinCode">
+          <Name>SelPinCode</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Pincode</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SelCountry">
+          <Name>SelCountry</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Country </Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ITCInElg">
+          <Name>ITCInElg</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>ITC Ineligible</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningCode">
+          <Name>WarningCode</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Warning Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningText">
+          <Name>WarningText</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Warning Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorCode">
+          <Name>ErrorCode</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Error Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorText">
+          <Name>ErrorText</Name>
+          <RecordType>Customer Master</RecordType>
+          <Description>Error Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+      </Fields>
+      <ValidationExpressions />
+      <Name>Customer Master</Name>
+      <Config Ignore="False" IgnoreRows="2" />
+    </RecordType>
+    <RecordType Name="Look_Up_Values">
+      <Fields />
+      <ValidationExpressions />
+      <Name>Look_Up_Values</Name>
+      <Config Ignore="False" IgnoreRows="0" />
+    </RecordType>
+    <RecordType Name="State Code">
+      <Fields />
+      <ValidationExpressions />
+      <Name>State Code</Name>
+      <Config Ignore="False" IgnoreRows="0" />
+    </RecordType>
+  </RecordTypes>
+</Schema>

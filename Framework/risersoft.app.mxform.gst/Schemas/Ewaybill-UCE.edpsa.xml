@@ -1,0 +1,307 @@
+<Schema connectioncode="" connectiontype="Source" createdby="user">
+  <RecordTypes>
+    <RecordType Name="Input">
+      <Fields>
+        <Field Name="GSTIN">
+          <Name>GSTIN</Name>
+          <RecordType>Input</RecordType>
+          <Description>GSTIN</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ewbNo">
+          <Name>ewbNo</Name>
+          <RecordType>Input</RecordType>
+          <Description>E-Way Bill No.</Description>
+          <DataType>Long</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ewbDate">
+          <Name>ewbDate</Name>
+          <RecordType>Input</RecordType>
+          <Description>E-Way Bill Date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="action">
+          <Name>action</Name>
+          <RecordType>Input</RecordType>
+          <Description>Action</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="rsnCode">
+          <Name>rsnCode</Name>
+          <RecordType>Input</RecordType>
+          <Description>Reason for Update/Cancel/Extend</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="rmrk">
+          <Name>rmrk</Name>
+          <RecordType>Input</RecordType>
+          <Description>Update/Cancel/Extend Reason Remarks</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="vehicleNo">
+          <Name>vehicleNo</Name>
+          <RecordType>Input</RecordType>
+          <Description>Vehicle No.</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="fromPlace">
+          <Name>fromPlace</Name>
+          <RecordType>Input</RecordType>
+          <Description>From Place</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="fromState">
+          <Name>fromState</Name>
+          <RecordType>Input</RecordType>
+          <Description>From State</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="transDocNo">
+          <Name>transDocNo</Name>
+          <RecordType>Input</RecordType>
+          <Description>Transport Document No.</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="transDocDate">
+          <Name>transDocDate</Name>
+          <RecordType>Input</RecordType>
+          <Description>Transport Document Date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="transMode">
+          <Name>transMode</Name>
+          <RecordType>Input</RecordType>
+          <Description>Transport Mode</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="vehicleType">
+          <Name>vehicleType</Name>
+          <RecordType>Input</RecordType>
+          <Description>Vehicle Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="transporterId">
+          <Name>transporterId</Name>
+          <RecordType>Input</RecordType>
+          <Description>Transporter ID</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="remainingDistance">
+          <Name>remainingDistance</Name>
+          <RecordType>Input</RecordType>
+          <Description>Remaining Distance Level (KM)</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="fromPincode">
+          <Name>fromPincode</Name>
+          <RecordType>Input</RecordType>
+          <Description>From Pincode</Description>
+          <DataType>Integer</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="consignmentStatus">
+          <Name>consignmentStatus</Name>
+          <RecordType>Input</RecordType>
+          <Description>Consignment Status</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="transitType">
+          <Name>transitType</Name>
+          <RecordType>Input</RecordType>
+          <Description>Transit Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="addressLine1">
+          <Name>addressLine1</Name>
+          <RecordType>Input</RecordType>
+          <Description>Address Line 1</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="addressLine2">
+          <Name>addressLine2</Name>
+          <RecordType>Input</RecordType>
+          <Description>Address Line 2</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="addressLine3">
+          <Name>addressLine3</Name>
+          <RecordType>Input</RecordType>
+          <Description>Address Line 3</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="cancelDate">
+          <Name>cancelDate</Name>
+          <RecordType>Input</RecordType>
+          <Description>Cancel Date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="vehUpdDate">
+          <Name>vehUpdDate</Name>
+          <RecordType>Input</RecordType>
+          <Description>Vehicle Update Date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="validUpto">
+          <Name>validUpto</Name>
+          <RecordType>Input</RecordType>
+          <Description>Valid Upto</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="transUpdateDate">
+          <Name>transUpdateDate</Name>
+          <RecordType>Input</RecordType>
+          <Description>Transport Update Date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="updatedDate">
+          <Name>updatedDate</Name>
+          <RecordType>Input</RecordType>
+          <Description>Updated Date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="Remarks">
+          <Name>Remarks</Name>
+          <RecordType>Input</RecordType>
+          <Description>Remarks</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningCode">
+          <Name>WarningCode</Name>
+          <RecordType>Input</RecordType>
+          <Description>Warning Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+<Field Name="WarningText">
+          <Name>WarningText</Name>
+          <RecordType>Input</RecordType>
+          <Description>Warning Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorCode">
+          <Name>ErrorCode</Name>
+          <RecordType>Input</RecordType>
+          <Description>Error Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorText">
+          <Name>ErrorText</Name>
+          <RecordType>Input</RecordType>
+          <Description>Error Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        
+      </Fields>
+      <ValidationExpressions />
+      <Name>Input</Name>
+      <Config Ignore="False" IgnoreRows="0" />
+    </RecordType>
+    <RecordType Name="Help">
+      <Fields>
+        <Field Name="A">
+          <Name>A</Name>
+          <RecordType>Help</RecordType>
+          <Description>Cancel Reason Lookup</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="B">
+          <Name>B</Name>
+          <RecordType>Help</RecordType>
+          <Description>Column1</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="C">
+          <Name>C</Name>
+          <RecordType>Help</RecordType>
+          <Description>Update Reason lookup</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="D">
+          <Name>D</Name>
+          <RecordType>Help</RecordType>
+          <Description>Column2</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="E">
+          <Name>E</Name>
+          <RecordType>Help</RecordType>
+          <Description>Vehicle Type Lookup</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+      </Fields>
+      <ValidationExpressions />
+      <Name>Help</Name>
+      <Config Ignore="False" IgnoreRows="0" />
+    </RecordType>
+  </RecordTypes>
+</Schema>

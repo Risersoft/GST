@@ -1,0 +1,517 @@
+<Schema connectioncode="" connectiontype="Source" createdby="user">
+  <RecordTypes>
+    <RecordType Name="Eway Bill Generation Template">
+      <Fields>
+        <Field Name="GSTIN">
+          <Name>GSTIN</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>GSTIN</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SupplyType">
+          <Name>SupplyType</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Transaction Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SubSupplyType">
+          <Name>SubSupplyType</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Sub Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="SubSupplyDesc">
+          <Name>SubSupplyDesc</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Sub Type Description</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="DocType">
+          <Name>DocType</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Document Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="DocNum">
+          <Name>DocNum</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Document Number</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="DocDate">
+          <Name>DocDate</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Document Date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="transactionType">
+          <Name>transactionType</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Movement Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="CounterPartyType">
+          <Name>CounterPartyType</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Counter Party Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="PartyName">
+          <Name>PartyName</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Counter Party Name</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="CTIN">
+          <Name>CTIN</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Counter Party GSTIN</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="PartyGstRegType">
+          <Name>PartyGstRegType</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Counter Party Status</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="CounterPartyAddress">
+          <Name>CounterPartyAddress</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Counter Party Address</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="CounterPartyCity">
+          <Name>CounterPartyCity</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Counter Party City</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="CounterPartyPincode">
+          <Name>CounterPartyPincode</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Counter Party Pincode</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="PartyTaxAreaCode">
+          <Name>PartyTaxAreaCode</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Counter Party State</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="dispatchFromGstin">
+          <Name>dispatchFromGstin</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Dispatch From GSTIN</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="DispatchFromTradeName">
+          <Name>DispatchFromTradeName</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Dispatch From Trade Name</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="FromAddr1">
+          <Name>FromAddr1</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Dispatch From Address</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="FromPlace">
+          <Name>FromPlace</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Dispatch From-Place</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="FromPinCode">
+          <Name>FromPinCode</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Dispatch From Pincode</Description>
+          <DataType>Integer</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" ThousandsChar="None" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="FromStateCode">
+          <Name>FromStateCode</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Dispatch From State</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ShipToGSTIN">
+          <Name>ShipToGSTIN</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Ship To GSTIN</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ShipToTradeName">
+          <Name>ShipToTradeName</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Ship To Trade Name</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ToAddr1">
+          <Name>ToAddr1</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Ship To-Address</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ToPlace">
+          <Name>ToPlace</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Ship To-Place</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ToPinCode">
+          <Name>ToPinCode</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Ship To Pincode</Description>
+          <DataType>Integer</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" ThousandsChar="None" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ToStateCode">
+          <Name>ToStateCode</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Ship To State</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="LineSNum">
+          <Name>LineSNum</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Line Item Id</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="Description">
+          <Name>Description</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Description</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="Details">
+          <Name>Details</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Product</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="Hsn_sc">
+          <Name>Hsn_sc</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>HSN</Description>
+          <DataType>Integer</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" ThousandsChar="None" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="UQC">
+          <Name>UQC</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Product Unit</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="QTY">
+          <Name>QTY</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Qty</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="TXVAL">
+          <Name>TXVAL</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Taxable Amount</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="True" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="RT">
+          <Name>RT</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Rate of Tax</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="Cess_RT">
+          <Name>Cess_RT</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Cess Rate</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="CessNonAdvolRt">
+          <Name>CessNonAdvolRt</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Cess Non Advalorem Rate</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="IAMT">
+          <Name>IAMT</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>IGST Amount</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="CAMT">
+          <Name>CAMT</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>CGST Amount</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="SAMT">
+          <Name>SAMT</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>SGST Amount</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="CSAMT">
+          <Name>CSAMT</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Cess Amount</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="CessNonAdvolValue">
+          <Name>CessNonAdvolValue</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Cess Non Advalorem Amount</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="OtherValue">
+          <Name>OtherValue</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Other Amount</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="VAL">
+          <Name>VAL</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Total Invoice Amount</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="TransMode">
+          <Name>TransMode</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Transport Mode</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="VehicleType">
+          <Name>VehicleType</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Vehicle Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="TransDistance">
+          <Name>TransDistance</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Distance level(km)</Description>
+          <DataType>Integer</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" ThousandsChar="None" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="TransporterName">
+          <Name>TransporterName</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Transporter Name</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="TransporterID">
+          <Name>TransporterID</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Transporter ID</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="TransDocNo">
+          <Name>TransDocNo</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Transport Document No</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="TransDocDate">
+          <Name>TransDocDate</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Transport Date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="TransEmail">
+          <Name>TransEmail</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Transporter e-mail</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="VehicleNo">
+          <Name>VehicleNo</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Vehicle No</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+<Field Name="ERPRefNum">
+          <Name>ERPRefNum</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>ERP Reference No.</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+<Field Name="RemarkItem">
+          <Name>RemarkItem</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Remarks</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="RemarkItem2">
+          <Name>RemarkItem2</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Remarks2</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="EwayBillNum">
+          <Name>EwayBillNum</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Eway Bill No.</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="EwayBillDate">
+          <Name>EwayBillDate</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Eway Bill Date</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningCode">
+          <Name>WarningCode</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Warning Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningText">
+          <Name>WarningText</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Warning Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorCode">
+          <Name>ErrorCode</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Error Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorText">
+          <Name>ErrorText</Name>
+          <RecordType>Eway Bill Generation Template</RecordType>
+          <Description>Error Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        
+        
+      </Fields>
+      <ValidationExpressions />
+      <Name>Eway Bill Generation Template</Name>
+      <Config Ignore="False" IgnoreRows="2" />
+    </RecordType>
+  </RecordTypes>
+</Schema>

@@ -1,0 +1,32 @@
+{
+  "GSTIN": "33GSPTN6192G1ZA",
+  "ReturnPeriod": "10-2018",
+  "TransactionType": "Sales",
+  "InvoiceType": "Regular",
+  "DocumentType": "Tax Invoice",
+  "InvoiceNum": "1006569320",
+  "InvoiceDate": "22-10-2018",
+  "VAL": 108935.91,
+  "PartyGstRegType": "Registered",
+  "CTIN": "25AADCS0472N1Z6",
+  "ShipFrom": "TN",
+  "ShipTo": "DD",
+  "POS": "DD",
+  "RCHRG": "No",
+  "PartyName": "SUZLON ENERGY LIMITED",
+  "PartyTaxAreaCode": "DD",
+  "Items": [
+    {
+      "TY": "Goods",
+      "GstTaxType": "Taxable",
+      "GrossValue": 92318.67,
+      "TXVAL": 92318.67,
+      "I_RT": 18.0,
+      "IAMT": 16617.24,
+      "Hsn_sc": "73182200",
+      "Hsn_Desc": "Item.73181657",
+      "Uqc": "PCS",
+      "Qty": 5344.0
+    }
+  ]
+}

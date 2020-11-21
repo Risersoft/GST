@@ -1,0 +1,46 @@
+﻿@using risersoft.shared
+@{
+    ViewData["Title"] = "Home Page";
+    var baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+    var banner = GlobalCore.GetConfigSetting("banner");
+    if (string.IsNullOrEmpty(banner)) { banner = "/Content/images/GstNirvanabanner.png"; }
+    else { banner = baseUrl + banner; }
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <img src="@banner" style="width:650px;" class="img-responsive banner-img">
+    </div>
+    <div class="col-md-3 gst-banner-text">
+        <h1 class="gst-banner-text-title">GstNirvana</h1>
+        <p class="lead gst-banner-text-para">Entrust your Gst filings to GstNirvana for enhanced peace of mind.</p>
+        <p><a href="/app" class="btn btn-primary btn-lg">Start Now &raquo;</a></p>
+
+        <div class="col-md-12" style="margin-top:85px;">
+            <a href="https://play.google.com/store/apps/details?id=com.risersoft.gstnirvana" target="_blank"><img class="play" src="~/Content/images/playstore-button.png" style="width:100px;"></a>&nbsp;
+            <a href="javascript:void(0)" target="_blank"><img class="app" src="~/Content/images/appstore-button.png" style="width:100px;"></a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 footer-nav footer-text">
+        <h2>Return Filing</h2>
+        <p>
+            GstNirvana automatically prepares your Gst returns and files to Gstn.
+        </p>
+    </div>
+    <div class="col-md-3 footer-nav footer-text">
+        <h2>Invoice Reconciliation</h2>
+        <p>
+            GstNirvana compares invoice data from Gstn to your purchase register.
+        </p>
+    </div>
+    <div class="col-md-3 footer-nav footer-text">
+        <h2>Data Export/Import</h2>
+        <p>GstNirvana allows easy import and export of data from/to csv and xls formats</p>
+    </div>
+    <div class="col-md-3 footer-text">
+        <h2>Mobile App</h2>
+        <p>GstNirvana allows you to monitor Gst data on the go</p>
+    </div>
+</div>

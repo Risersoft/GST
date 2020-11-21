@@ -1,0 +1,5 @@
+﻿NuGet:
+
+https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package
+https://stackoverflow.com/questions/6536629/packing-nuget-projects-compiled-in-release-mode
+nuget push Risersoft.GSTN.API.Library.1.0.0.nupkg a3c34913-3a88-40d9-8dd5-15342df53217 -Source https://www.nuget.org/api/v2/package

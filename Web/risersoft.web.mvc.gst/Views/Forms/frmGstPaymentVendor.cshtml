@@ -1,0 +1,419 @@
+﻿@using risersoft.app.mxform.gst
+@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+
+@model frmGstPaymentVendorModel
+@{
+    ViewData["Title"] = "Vendor Advance Payment";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = JsonConvert.SerializeObject(Model, Formatting.Indented,
+                            new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml, NullValueHandling = NullValueHandling.Ignore })
+}
+
+<link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+<div class="container cbackground" style="margin-top: 135px;">
+    <form action="" method="post" name="userform" id="userform" ng-controller="FormController">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+        <div Class="form-horizontal">
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <Label Class="control-label labeltext">Party GstReg Type <span class="red">*</span></Label>
+                    <select name="Receivergstin" ng-model="PaymentInfo.PartyGstRegTypeSelected" ng-options="item.descriptot for item in dsCombo.PartyGSTReg track by item.codeword" style="max-width: 540px;" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.Receivergstin.$invalid]"></select>
+                </div>
+                <div class="col-md-3"><Label Class="control-label labeltext"></Label></div>
+            </div>
+            <div class="row" style="margin-top: 40px;" ng-show="OrgInvoice">
+                <div class="col-md-1"></div>
+
+                <div class="col-md-6"><Label Class="control-label labeltext">Vendor :</Label><h4>{{OrgInvoice.PartyName}}</h4></div>
+                <div class="col-md-3"><Label Class="control-label labeltext">GST No. :</Label><h4>{{OrgInvoice.CTIN}}</h4><label>{{Paymentcdn}}</label></div>
+            </div>
+            <div Class="row" ng-hide="OrgInvoice">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-6">
+                    <Label Class="control-label labeltext">Vendor <label class="hdisp" id="party">Required Field</label></Label>
+                    <select ng-model="PaymentInfo.VendorIDSelected"
+                            ng-options="item.PartyName for item in dsCombo.Vendor track by item.VendorID" ng-change="partyfn(PaymentInfo.VendorIDSelected)" style="max-width: 540px;" Class="form-control"></select>
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">GST No.</Label>
+                    <input type="text" ng-model="PaymentInfo.CTIN" class="form-control" readonly />
+                </div>
+
+
+
+            </div>
+
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+
+
+
+
+
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Return Month and Year <span class="red">*</span></Label>
+
+                    <select name="campn" ng-model="PaymentInfo.ReturnPeriodIDSelected" ng-options="bizc.Month for bizc in dsCombo.ReturnPeriod track by bizc.PostPeriodID  " Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.campn.$invalid]"></select>
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Vouch Type</Label>
+
+                    <select ng-model="PaymentInfo.AdvanceVouchTypeSelected" ng-options="bizvc.descriptot for bizvc in dsCombo.AdvanceVouchType track by bizvc.codeword " Class="form-control"></select>
+
+                </div>
+
+
+
+                <div Class="col-md-3" ng-hide="OrgInvoice">
+                    <Label Class="control-label labeltext">Place Of Supply <span class="red">*</span></Label>
+                    <select name="POS" ng-model="PaymentInfo.POSTaxAreaIDSelected" ng-options="itempos.Descrip for itempos in dsCombo.POS track by itempos.TaxAreaID" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.POS.$invalid]"></select>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Voucher Date</Label>
+                    <input type="text" id="invoicedate" datetime="yyyy-mm-dd" ng-model="PaymentInfo.Dated" Class="form-control" />
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Voucher No. <span class="red">*</span></Label>
+                    <input type="text" name="INUM" ng-model="PaymentInfo.VouchNum" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.INUM.$invalid]" />
+                </div>
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Transaction Value</Label>
+                    <input type="text" ng-model="PaymentInfo.AmountTot" Class="form-control" readonly />
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Campus</Label>
+
+                    <select name="camp" ng-model="PaymentInfo.CampusIDSelected" ng-options="biz.DispName for biz in dsCombo.Campus track by biz.CampusID " ng-change="partycampfn(PaymentInfo.CampusIDSelected.CampusID)" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.camp.$invalid]"></select>
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Division</Label>
+
+                    <select name="division" ng-model="PaymentInfo.DivisionIDSelected" ng-options="itemdiv.division for itemdiv in dsCombo.Division track by itemdiv.Divisionid" Class="form-control"></select>
+
+                </div>
+                <div class="col-md-3">
+                    <Label Class="control-label labeltext">Applicable % of Tax Rate</Label>
+                    <select name="difftax" ng-model="PaymentInfo.Diff_PercentSelected"
+                            ng-options="itemtax.DisplayText for itemtax in ValueLists.Diff_Percent.ValueListItems track by itemtax.DataValue" ng-change="calculateAll()" style="max-width: 540px;" Class="form-control"></select>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-1"></div>
+
+                <div class="col-md-3"><Label Class="control-label labeltext">Remark</Label><input type="text" ng-model="PaymentInfo.Remark" class="form-control" /></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Supplier State</Label>
+                    <select name="supplytypestate" ng-model="PaymentInfo.SupplyFromTaxAreaIDSelected" ng-options="itemin.Descrip for itemin in dsCombo.POS track by itemin.TaxAreaID" Class="form-control"></select>
+
+                </div>
+
+
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Reverse Charge</Label>
+
+                    <select ng-model="PaymentInfo.RCHRGSelected" ng-options="bizc.DisplayText for bizc in ValueLists.RCHRG.ValueListItems track by bizc.DataValue  " Class="form-control"></select>
+
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3"><Label Class="control-label labeltext">ERP Ref No.</Label><input type="text" ng-model="PaymentInfo.ERPRefNum" class="form-control" /></div>
+            </div>
+
+            <div class="row" ng-show="OrgInvoice" style="margin-top:15px">
+                <div class="col-md-1"></div>
+                <div class="col-md-3"><label>Change Type : {{changetype}}</label></div>
+                <div class="col-md-3"><label>Document Number : {{OrgInvoice.vouchnum}}</label></div>
+                <div class="col-md-4"><label>Document Date : {{OrgInvoice.dated}}</label></div>
+            </div>
+
+
+
+
+
+            <div class="row" ng-show="OrgInvoice">
+                <div class="col-md-1"></div>
+                <div class="col-md-3"><label>GSTIN : {{OrgInvoice.CTIN}}</label></div>
+                <div class="col-md-3"><label>GSTN Party : {{OrgInvoice.PartyName}}</label></div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div Class="row dipbtnc">
+
+
+
+                <hr />
+                <Label Class="control-label" style="margin-left:17px;font-size:25px">Item Details</Label>
+
+
+
+                <Button type="button" id="items" Class="btn btn-primary btnf" ng-click="item()">ADD ITEM</Button>
+
+
+
+            </div>
+            <div Class="row dipbtnc">
+
+
+                <label style="float:right;margin-top:17px;margin-bottom:17px">G=GOODS And S=SERVICES</label>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="container marb" ng-repeat="row in PaymentItem" style="padding-top:5px;">
+
+
+
+
+
+
+
+                    <div class="row" style="background-color: #eeeeee;padding-bottom:17px;padding-top:17px;">
+
+
+
+
+                        <div class="col-md-1"><label class="labeltextc" style="font-size:16px">[{{$index+1}}]</label></div>
+                        <div class="col-md-2"><Label Class="control-label labeltextc">Amount</Label><input type="text" ng-model="row.AD_AMT" class="form-control" ng-change="calculate(row)" /></div>
+                        <div class="col-md-2"><Label Class="control-label labeltextc">IGST Rate</Label><select name="ci" ng-model="row.I_RTSelected" ng-options="itemtc.DisplayText for itemtc in ValueLists.gstrate1.ValueListItems track by itemtc.DataValue" ng-change="calculate(row)" Class="form-control" style="padding:5px"></select></div>
+                        <div class="col-md-2"><Label Class="control-label labeltextc">CGST Rate</Label><select name="cl" ng-model="row.C_RTSelected" ng-options="itemtn.DisplayText for itemtn in ValueLists.gstrate2.ValueListItems track by itemtn.DataValue" ng-change="calculate(row)" Class="form-control" style="padding:5px"></select></div>
+                        <div class="col-md-2"><Label Class="control-label labeltextc">SGST Rate</Label><select name="c" ng-model="row.S_RTSelected" ng-options="itemty.DisplayText for itemty in ValueLists.gstrate2.ValueListItems track by itemty.DataValue" ng-change="calculate(row)" Class="form-control" style="padding:5px"></select></div>
+                        <div class="col-md-2"><label class="control-label labeltextc">CESS Rate</label><input type="text" ng-model="row.Cess_Rt" ng-change="calculate(row)" class="form-control" /></div>
+
+
+                        <div> <a href="" class="delete" ng-click="delete($index)"><span class="fa fa-trash" style="color: #d83e3b;margin-right: 8px;"></span></a></div>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="row" style="background-color: #eeeeee;padding-bottom:17px;padding-top:17px;">
+
+
+
+
+
+
+                        <div class="col-md-1"></div>
+
+
+                        <div class="col-md-2"><label class="control-label labeltextc">Line ItemID</label><input type="text" value="{{$index+1}}" class="form-control" readonly /></div>
+                        <div class="col-md-2"><Label Class="control-label labeltextc">Integrated Tax</Label><input type="text" readonly numbers-only ng-model="row.IAMT" Class="form-control" /></div>
+                        <div class="col-md-2"><Label Class="control-label labeltextc">Central Tax</Label><input type="text" readonly numbers-only ng-model="row.CAMT" Class="form-control" /></div>
+                        <div class="col-md-2"><Label Class="control-label labeltextc">State Tax</Label><input type="text" readonly numbers-only ng-model="row.SAMT" Class="form-control" /></div>
+                        <div class="col-md-2"><Label Class="control-label labeltextc">CESS</Label><input type="text" readonly numbers-only ng-model="row.CSAMT" Class="form-control" /></div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="row" style="background-color: #eeeeee;padding-bottom:17px;padding-top:17px;">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4"><label class="control-label">Remark</label><input type="text" ng-model="row.RemarkItem" class="form-control" style="max-width:520px;" /></div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+
+            @Html.Partial("_SavePanel")
+        </div>
+    </form>
+</div>
+
+@section botscripts{
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http) {
+            $scope.model = JSON.parse($("#model_json").val());
+            $scope.status = 'loaded';
+            var loadmodel = function (result) {
+
+                $scope.model = result;
+                $scope.PaymentInfo = $scope.model.dsForm.DT[0];
+
+
+                $scope.PaymentItem = $scope.model.dsForm.GstAdvanceVouchItem;
+                $('#invoicedate').datepicker({ dateFormat: 'yy-mm-dd' });
+
+                $scope.item = function () {
+                    $scope.PaymentItem.push({});
+                };
+
+                $scope.delete = function (index) {
+                    $scope.PaymentItem.splice(index, 1);
+                };
+
+                $scope.ValueLists = $scope.model.ValueLists;
+                $scope.dsCombo = $scope.model.dsCombo;
+
+            @Html.RenderLookup("PaymentInfo", Model, Model.dsForm.Tables[0])
+
+                $.each($scope.dsCombo.Vendor, function (index, row) {
+                    $scope.SelectedParty = $.grep($scope.dsCombo.Vendor, function (item, index) { return item.VendorID === $scope.PaymentInfo.VendorID })[0];
+
+                    if ($scope.SelectedParty == undefined) { } else {
+
+                        $scope.PaymentInfo.CTIN = $scope.SelectedParty.GSTIN;
+
+                    }
+                });
+
+                $.each($scope.PaymentItem, function (index, row) {
+                    row.I_RTSelected = $.grep($scope.ValueLists.gstrate1.ValueListItems, function (item, index) { return item.DisplayText == row.I_RT })[0];
+                    row.C_RTSelected = $.grep($scope.ValueLists.gstrate2.ValueListItems, function (item, index) { return item.DisplayText == row.C_RT })[0];
+                    row.S_RTSelected = $.grep($scope.ValueLists.gstrate2.ValueListItems, function (item, index) { return item.DisplayText == row.S_RT })[0];
+                });
+
+                $scope.partyfn = function (code) {
+                    $scope.SelectedParty = $.grep($scope.dsCombo.Vendor, function (item, index) { return item.VendorID === code.VendorID })[0];
+                    if ($scope.SelectedParty == undefined) { } else {
+                        $scope.PaymentInfo.CTIN = $scope.SelectedParty.GSTIN;
+                    }
+                };
+
+                $scope.partycampfn = function (coden) {
+
+                    var url = '/frmGstInvoicePurch/IDOutput' + location.search;
+                    var payloaddata = { key: 'division', ID: coden };
+                    $.post(url, payloaddata, function (result) {
+
+                        if (result.success) {
+
+                            $scope.DivisionList = result.Data.Data.Table;
+                            $scope.dsCombo.Division = $scope.DivisionList;
+                        }
+                        $scope.$apply();
+                        return;
+                    });
+                }
+
+                if ($scope.PaymentInfo.OrigVouchID) {
+
+                    $scope.OrgInvoice = $scope.model.DatasetCollection.OrigVouch.dt[0];
+                    $scope.changetype = 'Amendment'
+                } if ($scope.PaymentInfo.RefundVouchID) { $scope.OrgInvoice = $scope.model.DatasetCollection.RefundVouch.dt[0]; $scope.changetype = 'Refund/Cancellation' }
+
+                $scope.partycampfn($scope.PaymentInfo.CampusID);
+            };
+
+            loadmodel($scope.model);
+
+            $scope.inctype = function (cval) {
+                $scope.invc = $.grep($scope.dsCombo.GstInvoiceSubType, function (item, index) { return item.Tag === cval });
+            }
+
+            $scope.calculate = function (row) {
+                if (row.I_RTSelected) {
+                    valc = (row.I_RTSelected.DataValue * row.AD_AMT) / 100 * ($scope.PaymentInfo.Diff_PercentSelected.DataValue / 100) + 0.00000000001; row.IAMT = valc.toFixed(2);
+                }
+                if (row.C_RTSelected) {
+                    valc = (row.C_RTSelected.DataValue * row.AD_AMT) / 100 * ($scope.PaymentInfo.Diff_PercentSelected.DataValue / 100) + 0.00000000001; row.CAMT = valc.toFixed(2);
+                }
+                if (row.S_RTSelected) {
+                    valc = (row.S_RTSelected.DataValue * row.AD_AMT) / 100 * ($scope.PaymentInfo.Diff_PercentSelected.DataValue / 100) + 0.00000000001; row.SAMT = valc.toFixed(2);
+                }
+                if (row.Cess_Rt) {
+                    valc = (row.Cess_Rt * row.AD_AMT) / 100 * ($scope.PaymentInfo.Diff_PercentSelected.DataValue / 100) + 0.00000000001; row.CSAMT = valc.toFixed(2);
+                }
+            }
+
+            $scope.GenerateDelPayload = function () {
+                var payload = { EntityKey: 'payment', ID: $scope.model.dsForm.DT[0].GstAdvanceVouchID, AcceptWarning: false };
+                return payload;
+            };
+            $scope.cleanupmodel = function (datamodel) {
+                //empty function
+            };
+            $scope.calculatemodel = function () {
+                var totalamount = 0;
+                $.each($scope.PaymentItem, function (index, row) {
+
+                    totalamount = totalamount + parseFloat(row.AD_AMT);
+
+                });
+                totalamount = totalamount + 0.00000000001;
+                $scope.PaymentInfo.AmountTot = parseFloat(totalamount.toFixed(2));
+            };
+
+            $scope.visdel = true;@Html.RenderFile("~/scripts/rsforms.js")
+        });
+    </script>
+}

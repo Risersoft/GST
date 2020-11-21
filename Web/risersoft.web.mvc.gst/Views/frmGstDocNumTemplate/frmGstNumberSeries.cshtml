@@ -1,0 +1,321 @@
+﻿@model IEnumerable<risersoft.web.mvc.gst.Controllers.GSTREGModel>
+@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+@{
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    ViewData["Title"] = "GST Template Number Series";
+}
+
+<div class="clearfix"></div>
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+<div class="container content-part" ng-controller="FormController">
+    <div class="row">
+        <div class="col-md-5">
+            <input type="hidden" value="@ViewBag.CompanyID" id="CompanyID" />
+            <label class="control-label">Company Name : @ViewBag.CompanyName </label>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <input type="hidden" value="@ViewBag.GstRegPeriodID" id="GstRegPeriodID" />
+            <label class="control-label">Return Period : @ViewBag.GstRegPeriod</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-11" style="margin-top:8px">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped space10">
+                    <tr class="tbld">
+                        <th>State</th>
+                        <th>GSTIN</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><a href="#" ng-click="itemc(@item.GSTRegID, @ViewBag.GstRegPeriodID)">@item.Description</a></td>
+                            <td><a href="#" ng-click="itemc(@item.GSTRegID, @ViewBag.GstRegPeriodID)">@item.GSTINNumber</a></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-11" ng-show="showTemplate">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="accounts">
+                <div class="row">
+                    <div class="col-md-6"><h2>Invoice Number Series</h2></div>
+                    <div class="col-md-6">
+                        <button type="button" Class="btn btn-primary btnf" ng-click="Recalculate()" style="margin-top: 20px;">Recalculate</button>
+                        <button type="button" id="btnsave" Class="btn btn-primary btnf" ng-click="SaveGstDocNumSeries()" style="margin-top: 20px;" ng-disabled="(documentNumberSeries.length <= 0 && documentDeletedNumberSeries.length <= 0)">Save</button>
+                        <button type="button" id="items" Class="btn btn-primary btnf" ng-click="item()" style="margin-top: 20px;">Add</button>
+                        <button type="button" id="items" Class="btn btn-primary btnf" ng-click="AutoGenerateGstDocNumSeries()" style="margin-top: 20px;">Auto</button>
+                    </div>
+                </div>
+                <div Class="clearfix" style="margin-bottom:10px;"></div>
+                <div class="row" ng-show="documentNumberSeries.length > 0">
+                    <div class="marb" ng-repeat="row in documentNumberSeries" style="padding-top:5px;">
+                        <div class="row" style="padding-top:5px;background-color: #eeeeee;">
+                            <div class="col-md-1">
+                                <label class="labeltextc" style="font-size:16px">[{{$index+1}}]</label>
+                            </div>
+                            <div class="col-md-11" style="float:right">
+                                <a href="" class="delete" ng-click="delete($index)" name="documentNumberSeries" ng-model="row.InvoiceNumberSeriesId" ng-value="InvoiceNumberSeriesId" id="{{InvoiceNumberSeriesId}}">
+                                    <span class="fa fa-trash" style="color: #d83e3b;margin-right: 8px;float: right;"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #eeeeee;">
+                            <div class="col-md-12">
+                                <Label Class="control-label labeltextc">Template Number</Label>
+                                <select id="InvoiceNumberTemplateId" class="form-control" ng-model="row.InvoiceNumberTemplateIdSelected" ng-options="item.Descrip for item in GstDocNumTemplate track by item.InvoiceNumberTemplateId" style="padding: 6px 5px;"></select>
+                            </div>
+                        </div>
+
+                        <div class="row" style="background-color: #eeeeee;padding-bottom:17px;">
+                            <input type="number" ng-model="row.InvoiceNumberSeriesId" class="form-control" style="width: 75px; display:none" />
+                            <div class="col-md-2"><Label Class="control-label labeltextc">From</Label><input type="number" ng-model="row.NumFrom" class="form-control" ng-change="calculate(row)" /></div>
+                            <div class="col-md-2"><Label Class="control-label labeltextc">To</Label><input type="number" ng-model="row.NumTo" Class="form-control" /></div>
+                            <div class="col-md-2"><Label Class="control-label labeltextc">Total Count</Label><input type="number" ng-model="row.TotCount" Class="form-control" /></div>
+                            <div class="col-md-2"><Label Class="control-label labeltextc">Cancelled</Label><input type="number" ng-model="row.CancelledCount" Class="form-control" /></div>
+                            <div class="col-md-2"><Label Class="control-label labeltextc">Issued Count</Label><input type="number" ng-model="row.IssuedCount" Class="form-control" /></div>
+                            <div class="col-md-2"><Label Class="control-label labeltextc">Missing Count</Label><input type="number" ng-model="row.MissingCount" Class="form-control" /></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="documentNumberSeries.length <= 0">
+                    <div class="col-md-12" style="text-align: center;border: 1px solid #efefef;">
+                        <label class="labeltextc" style="font-size:16px">No Series Found...</label>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-left:-30px">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-primary btnf" style="float: left;margin-top: 20px;" ng-click="AutoGenerateGstDocNumDiff()">CalculateClosingDifference</button>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="documentNumberDiff.length > 0">
+                    <div class="">
+                        <table class="table table-bordered table-striped space10">
+                            <tr class="tbld">
+                                <th>Nature</th>
+                                <th>Prefix</th>
+                                <th>Suffix</th>
+                                <th>CurrentPeriodStart</th>
+                                <th>LastPeriodEnd</th>
+                            </tr>
+                            <tr ng-repeat="row in documentNumberDiff">
+                                <td>{{row.DocumentNatureDescrip}}</td>
+                                <td>{{row.Prefix}}</td>
+                                <td>{{row.Suffix}}</td>
+                                <td>{{row.CurrentPeriodStart}}</td>
+                                <td>{{row.LastPeriodEnd}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div Class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+@section BotScripts{
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http, usSpinnerService) {
+            $scope.result = '';
+            $scope.showTemplate = false;
+            $scope.documentNumberSeries = [];
+            $scope.documentDeletedNumberSeries = [];
+            $scope.GstDocNumTemplate = [];
+            $scope.addNewItem = false;
+
+            $scope.GstRegID = '';
+            $scope.GSTINReturnPeriodID = '';
+
+            $scope.itemc = function (gstRegID, gstReturnPeriodID) {
+                //debugger;
+                $scope.GstRegID = gstRegID;
+                $scope.GSTINReturnPeriodID = gstReturnPeriodID;
+                $scope.showTemplate = true;
+                $scope.addNewItem = false;
+                $scope.documentNumberSeries = [];
+                gstNumberTemplate(gstRegID, gstReturnPeriodID);
+            }
+
+            $scope.item = function () {
+                var item = {};
+                if ($scope.GstRegID === undefined) { return; };
+                item.GSTRegID = $scope.GstRegID;
+                $scope.addNewItem = true;
+
+                //gstNumberTemplate($scope.GstRegID, $scope.GSTINReturnPeriodID);
+                $scope.documentNumberSeries.push(item);
+            };
+
+            $scope.btnconnectdel = function (row) {
+                $('.cldis').removeClass('clshid');
+                row.itemc = true;
+                $scope.$apply();
+            }
+
+            function gstNumberTemplate(gstRegID, gstReturnPeriodID) {
+                $scope.GstDocNumTemplate = [];
+                //debugger;
+                $http({
+                    method: 'GET',
+                    url: "/frmGstDocNumTemplate/NumberTemplate/" + gstRegID + location.search
+                }).then(function (result) {
+                    if (result && result.data && result.data.success) {
+                        $scope.GstDocNumTemplate = JSON.parse(result.data.data);
+                        if (!$scope.addNewItem) {
+                            GetGstDocNumSeries(gstRegID, gstReturnPeriodID);
+                        }
+                    } else {
+                        $scope.GstDocNumTemplate = [];
+                    }
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            };
+
+            $scope.AutoGenerateGstDocNumSeries = function () {
+                //debugger;
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+
+                $http({
+                    method: 'GET',
+                    url: "/frmGstDocNumTemplate/AutoGenerateGstDocNumSeries/" + $scope.GstRegID + "/" + $scope.GSTINReturnPeriodID + location.search
+                }).then(function (result) {
+                    //debugger;
+                    if (result && result.data && result.data.success) {
+                        //debugger;
+                        $scope.documentNumberSeries = result.data.data;
+                        $.each($scope.documentNumberSeries, function (index, row) {
+                            row.InvoiceNumberTemplateIdSelected = $.grep($scope.GstDocNumTemplate, function (item, index) {
+                                return item.InvoiceNumberTemplateId === row.InvoiceNumberTemplateId
+                            })[0];
+                        });
+
+                    } else {
+                        $scope.documentNumberSeries = [];
+                    }
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            };
+            $scope.AutoGenerateGstDocNumDiff = function () {
+
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+
+                $http({
+                    method: 'GET',
+                    url: "/frmGstDocNumTemplate/AutoGenerateGstDocNumDiff/" + $scope.GstRegID + "/" + $scope.GSTINReturnPeriodID + location.search
+
+                }).then(function (result) {
+                    debugger;
+                    if (result && result.data && result.data.success) {
+                        $scope.documentNumberDiff = result.data.data;
+                    } else {
+                        $scope.documentNumberDiff = [];
+                    }
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            };
+
+            $scope.Recalculate = function () {
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+
+                $http({
+                    method: 'GET',
+                    url: "/frmGstDocNumTemplate/Recalculate/" + $scope.GstRegID + "/" + $scope.GSTINReturnPeriodID + location.search
+                }).then(function (result) {
+                    //debugger;
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            };
+
+            $scope.delete = function (index) {
+                $scope.documentNumberSeries.splice(index, 1);
+                if (this.row.InvoiceNumberSeriesId) {
+                    $scope.documentDeletedNumberSeries.push(this.row.InvoiceNumberSeriesId);
+                }
+            };
+
+            $scope.SaveGstDocNumSeries = function (gstRegID, returnPeriodID) {
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+
+                $scope.documentNumberSeries.forEach(function (v) {
+                    v.GSTRegID = $scope.GstRegID;
+                    v.ReturnPeriodID = $scope.GSTINReturnPeriodID;
+                });
+
+                console.log($scope.documentNumberSeries);
+
+                var datac = { id: $scope.documentNumberSeries, deletedItemId: $scope.documentDeletedNumberSeries };
+                $http({
+                    method: 'POST',
+                    url: "/frmGstDocNumTemplate/SaveGstDocNumSeries/" + location.search,
+                    data: datac
+                }).then(function (result) {
+                    if (result && result.data && result.data.success) {
+                    } else {
+                    }
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            };
+
+            function GetGstDocNumSeries(gstRegID, returnPeriodID) {
+                $http({
+                    method: 'GET',
+                    url: "/frmGstDocNumTemplate/GstDocNumSeries/" + gstRegID + "/" + returnPeriodID + location.search
+                }).then(function (result) {
+                    if (result && result.data && result.data.success) {
+                        $scope.documentNumberSeries = result.data.data;
+                        $.each($scope.documentNumberSeries, function (index, row) {
+                            row.InvoiceNumberTemplateIdSelected = $.grep($scope.GstDocNumTemplate, function (item, index) {
+                                return item.InvoiceNumberTemplateId === row.InvoiceNumberTemplateId
+                            })[0];
+                        });
+
+                    } else {
+                        $scope.documentNumberSeries = [];
+                    }
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            }
+
+            @Html.RenderFile("~/scripts/rsgstn.js")
+        });
+    </script>
+
+    @Html.RenderJsCss(false, "jqueryui")
+}

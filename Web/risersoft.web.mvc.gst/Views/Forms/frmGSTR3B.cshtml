@@ -1,0 +1,392 @@
+﻿@using risersoft.app.mxform.gst
+@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+
+@model frmGSTR3BModel
+@{
+    ViewData["Title"] = "GSTR3B";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = JsonConvert.SerializeObject(Model, Formatting.Indented,
+                            new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml, NullValueHandling = NullValueHandling.Ignore })
+}
+
+<link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+<div class="container cbackground">
+    <form action="" method="post" name="userform" id="userform" ng-controller="FormController">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+        <div Class="form-horizontal">
+            <div class="row"></div>
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-md-1"></div>
+                <div class="col-md-7">
+                    <label class="control-label">Company Name : {{PaymentInfo.CompName}}</label>
+                </div>
+                <div class="col-md-3">
+                    <label class="control-label">Pan No. : {{PaymentInfo.PANNum}}</label>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label class="control-label">Return Period : {{return.ret_pd}} <a href="" ng-click="changeitem()">change</a></label>
+                </div>
+                <div class="col-md-2"><select name="Receivergstin" ng-model="PaymentInfo.returnperiodidSelected" ng-options="item.ret_pd for item in dsCombo.PostPeriod track by item.PostPeriodID" ng-change="postch(PaymentInfo.returnperiodidSelected,'dbsumm')" ng-show="itmval" Class="form-control"></select></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10" style="margin-top:8px">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped space10">
+                            <tr class="tbld">
+                                <td>State</td>
+                                <td>GSTIN</td>
+                            </tr>
+                            <tr ng-repeat="row in AppItem">
+                                <td><a href="" ng-click="itemc(row)">{{row.Descrip}}</a></td>
+                                <td><a href="" ng-click="itemc(row)">{{row.GSTIN}}</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label class="control-label">GSTIN : {{GSTIN}}</label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div><div class="col-md-10"><button type="button" class="btn btn-primary btnf" ng-click="changeval('populate','')">Auto Fill</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div><div class="col-md-10">
+                    <label> 3.1 Details of Outward Supplies and inward supplies liable to reverse charge</label>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped space10">
+                            <thead>
+                                <tr class="tbld">
+                                    <th>Nature of Supplies</th>
+                                    <th>Total Taxable Value</th>
+                                    <th>IntegratedTax</th>
+                                    <th>CentralTax</th>
+                                    <th>State/UTTax</th>
+                                    <th>Cess</th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="row in Sec31info" style="padding-top:5px;">
+                                <td> ({{row.SectionNum}}) {{row.Description}}</td>
+                                <td> <input type="text" ng-model="row.txval" class="form-control" /></td>
+                                <td> <input type="text" ng-model="row.iamt" class="form-control" /></td>
+                                <td> <input type="text" ng-model="row.camt" class="form-control" /></td>
+                                <td> <input type="text" ng-model="row.samt" class="form-control" /></td>
+                                <td><input type="text" ng-model="row.csamt" class="form-control" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div><div class="col-md-10">
+                    <label>
+                        3.2 Of the supplies shown in 3.1 (a) above, details of inter-State supplies made to unregistered persons,
+                        composition taxable persons and UIN holders
+                    </label>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped space10">
+                            <thead>
+                                <tr class="tbld">
+                                    <th>Nature of Supplies</th>
+                                    <th>Place of Supply(State/UT)</th>
+                                    <th>Total Taxable value</th>
+                                    <th>Amount of Integrated Tax</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="row in Sec32info" style="padding-top:5px;">
+                                <td>{{row.Description}}</td>
+                                <td> <select name="division" ng-model="row.POSTaxAreaIDSelected" ng-options="itemdiv.Descrip for itemdiv in dsCombo.POS track by itemdiv.TaxAreaID" Class="form-control"></select></td>
+                                <td> <input type="text" ng-model="row.txval" class="form-control" /></td>
+                                <td> <input type="text" ng-model="row.iamt" class="form-control" /></td>
+                                <td><a href="" class="delete" ng-click="delete(row,$index)"><span class="glyphicon glyphicon-remove-circle" style="color: #d83e3b;margin-right: 8px;"></span></a></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="height:50px"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:26px;">
+                <div class="col-md-1"></div><div class="col-md-3  navbar-expand-md">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown" style="border-left:0px">
+
+
+
+                            <a id="dLabel" data-toggle="dropdown" class="dropdown-item" data-target="#">
+
+
+
+                                Add More
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                <li ng-repeat="row in sec32Item">
+                                    <a class="dropdown-item" href="" ng-click="item(row)">
+
+
+                                        {{row.Description}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div><div class="col-md-10">
+
+
+                    <label>4. Eligible ITC</label>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped space10">
+                            <thead>
+
+
+                                <tr class="tbld">
+                                    <th>Nature of Supplies</th>
+
+
+                                    <th>IntegratedTax</th>
+                                    <th>CentralTax</th>
+                                    <th>State/UTTax</th>
+                                    <th>Cess</th>
+
+
+
+                                </tr>
+                            </thead>
+
+                            <tr ng-repeat="row in Sec4info" style="padding-top:5px;">
+                                <td> ({{row.SectionNum}}) {{row.Description}}</td>
+
+
+
+                                <td> <input type="text" ng-model="row.iamt" class="form-control" /></td>
+
+
+                                <td> <input type="text" ng-model="row.camt" class="form-control" /></td>
+
+
+                                <td> <input type="text" ng-model="row.samt" class="form-control" /></td>
+
+
+                                <td><input type="text" ng-model="row.csamt" class="form-control" /></td>
+
+
+
+
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-md-1"></div><div class="col-md-10">
+                    <label>5. Values of exempt, nil-rated and non-GST inward supplies</label>
+
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped space10">
+                            <thead>
+
+
+                                <tr class="tbld">
+                                    <th>Nature of Supplies</th>
+
+                                    <th>Inter-State supplies</th>
+                                    <th>Intra-State supplies</th>
+
+
+
+
+
+
+                                </tr>
+                            </thead>
+
+                            <tr ng-repeat="row in Sec5info" style="padding-top:5px;">
+                                <td> ({{row.SectionNum}}) {{row.Description}}</td>
+                                <td> <input type="text" ng-model="row.Intersuply" class="form-control" /></td>
+                                <td> <input type="text" ng-model="row.Intrasuply" class="form-control" /></td>
+
+
+
+
+
+
+
+
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+            @Html.Partial("_SavePanel")
+        </div>
+    </form>
+</div>
+
+
+
+@section botscripts{
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http) {
+            $scope.model = JSON.parse($("#model_json").val());
+
+            $scope.status = 'loaded';
+            var loadmodel = function (result) {
+
+                $scope.model = result;
+                $scope.PaymentInfo = $scope.model.dsForm.DT[0];
+                $scope.dsCombo = $scope.model.dsCombo;
+                $scope.sec32Item = $scope.model.dsCombo.sec32;
+                $scope.return = $scope.model.dsForm.return[0];
+                $scope.ReturnPeriodID = $scope.return.PostPeriodID;
+                $scope.AppItem = $scope.model.dsForm.gstreg;
+                $scope.GSTRegID = '';
+
+
+                $scope.item = function (section) {
+                    var row = {};
+                    row.SectionNum = section.SectionNum;
+                    row.TableNum = section.TableNum;
+                    row.Description = section.Description;
+                    row.GSTRegID = $scope.GSTRegID;
+                    row.ReturnPeriodID = $scope.ReturnPeriodID;
+                    $scope.Sec32info.push(row);
+                    $scope.model.dsForm.Sec32.push(row);
+                };
+
+                $scope.delete = function (row, index) {
+                    $scope.Sec32info.splice(index, 1);
+                    var index = $scope.model.dsForm.Sec32.indexOf(row);
+                    $scope.model.dsForm.Sec32.splice(index, 1);
+                };
+
+                $scope.itemc = function (rowitem) {
+                    $scope.GSTRegID = rowitem.GSTRegID; $scope.GSTIN = rowitem.GSTIN;
+                    //$scope.Datac = $.grep($scope.model.dsForm.detail, function (item, index) { return item.GSTRegID === row.GSTRegID });
+                    $scope.Sec31info = $.grep($scope.model.dsForm.Sec31, function (item, index) { return item.GSTRegID === rowitem.GSTRegID });
+                    $scope.Sec32info = $.grep($scope.model.dsForm.Sec32, function (item, index) { return item.GSTRegID === rowitem.GSTRegID });
+                    $scope.Sec4info = $.grep($scope.model.dsForm.Sec4, function (item, index) { return item.GSTRegID === rowitem.GSTRegID });
+                    $scope.Sec5info = $.grep($scope.model.dsForm.Sec5, function (item, index) { return item.GSTRegID === rowitem.GSTRegID });
+                    $scope.Sec31info = $.grep($scope.model.dsForm.Sec31, function (item, index) { return item.GSTRegID === rowitem.GSTRegID });
+
+                    $.each($scope.Sec32info, function (index, row) {
+                        row.POSTaxAreaIDSelected = $.grep($scope.dsCombo.POS, function (item, index) { return item.TaxAreaID === row.POSTaxAreaID })[0];
+                    });
+                }
+
+                $scope.changeitem = function () {
+                    $scope.itmval = true;
+                }
+
+                $scope.postch = function (retp, key) {
+                    $scope.ReturnPeriodID = retp.PostPeriodID;
+                    $scope.changeval(key, '');
+                }
+
+                $scope.changeval = function (key, UploadType) {
+                    var url = '/frmGSTR3B/ParamsOutput' + location.search;
+                    var payload = { GSTRegID: $scope.GSTRegID, CompanyID: $scope.PaymentInfo.CompanyID, ReturnPeriodID: $scope.ReturnPeriodID, UploadType: '' };
+                    payload = JSON.stringify(payload);
+                    var payloaddata = { key: key, Params: payload, __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() };
+                    $.post(url, payloaddata, function (result) {
+                        $scope.status = 'loaded';
+                        $scope.message = result.message;
+                        if (result.success) {
+                            $scope.status = '';
+                            $scope.result = 'success';
+                            if (result.Data) {
+                                if (key == 'dbsumm') {
+                                    $scope.model.dsForm.detail = result.Data.Data.detail;
+                                    $scope.AppItem = result.Data.Data.gstreg;
+                                    $scope.return = result.Data.Data.return[0];
+
+                                    $scope.itmval = false;
+                                    $scope.$apply();
+                                }
+
+                                if ($scope.IsInitializing && result.Data.Description) {
+                                    $scope.taskID = result.Data.Description;
+                                    $scope.checkStatusInterval($scope.taskID, msg);
+                                }
+                            };
+                            location.reload();
+
+
+                        }
+                        else {
+                            if (result.message === '') { result.message = 'Unknown Error!' };
+                            $scope.status = '';
+                            $scope.result = 'failure';
+                        }
+                        $scope.$apply();
+                        return;
+                    });
+                }
+            };
+
+            loadmodel($scope.model);
+
+            $scope.calculate = function (row) {
+                debugger;
+            }
+
+            $scope.GenerateDelPayload = function () {
+                var payload = { EntityKey: 'payment', ID: $scope.model.dsForm.DT[0].PaymentID, AcceptWarning: false };
+                return payload;
+            };
+            $scope.cleanupmodel = function (datamodel) {
+                //empty function
+            };
+            $scope.calculatemodel = function () {
+            };
+
+            $scope.visdel = true;@Html.RenderFile("~/scripts/rsforms.js")
+        });
+    </script>
+}

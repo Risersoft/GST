@@ -1,0 +1,1303 @@
+<Map>
+  <Options>
+    <RecordTypeSource>GST Inward Transactions STD</RecordTypeSource>
+    <RecordTypeTarget>Inward Transactions Template</RecordTypeTarget>
+  </Options>
+  <Source>
+    <Connection code="excel" connectiontype="Source">
+      <FileNameRelative>Z:\ERPv2\files\swati\KPMG Project\Templates for mapping\KPMG Old Template Inward\Data mapping file Inward 07042019.xlsx</FileNameRelative>
+      <FileName>Z:\ERPv2\files\swati\KPMG Project\Templates for mapping\KPMG Old Template Inward\Data mapping file Inward 07042019.xlsx</FileName>
+      <Config Encoding="UTF-8" />
+      <Props Remark="" />
+    </Connection>
+    <Schema connectioncode="excel" connectiontype="Source" createdby="user">
+      <RecordTypes>
+        <RecordType Name="GST Inward Transactions STD">
+          <Fields>
+
+            <Field Name="GSTIN">
+              <Name>GSTIN</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Location / Unit / Sub Org GSTIN</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+
+
+            <Field Name="InvoiceNum">
+              <Name>InvoiceNum</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Bill / Invoice No</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="InvoiceDate">
+              <Name>InvoiceDate</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Bill / Invoice Date</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="VAL">
+              <Name>VAL</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Bill / Invoice Value</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+
+            <Field Name="TransactionType">
+              <Name>TransactionType</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Transaction Type</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+
+            <Field Name="InvoiceType">
+              <Name>InvoiceType</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Invoice Type</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="OrigInvoiceNum">
+              <Name>OrigInvoiceNum</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Original Bill / Invoice / Bill of Entry Number</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="OrigInvoiceDate">
+              <Name>OrigInvoiceDate</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Original Bill / Invoice / Bill of Entry Date</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+
+
+
+
+            <Field Name="CTIN">
+              <Name>CTIN</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Supplier GSTIN / UIN</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+
+            <Field Name="POS">
+              <Name>POS</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Place of Supply (POS)</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+
+            <Field Name="GstTaxType">
+              <Name>GstTaxType</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>GST Supply Category</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+
+
+            <Field Name="RT">
+              <Name>RT</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>GST Rate</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DecimalChar="." Level="2" NumDecimals="2" DefaultExpr="" ThousandsChar="None" />
+            </Field>
+
+
+
+
+
+            <Field Name="RCHRG">
+              <Name>RCHRG</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Indicate if Supply Attracts Reverse Charge</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+
+            <Field Name="TXVAL">
+              <Name>TXVAL</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Taxable Value</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="I_RT">
+              <Name>I_RT</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>IGST Rate</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="IAMT">
+              <Name>IAMT</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>IGST Amount</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="C_RT">
+              <Name>C_RT</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>CGST Rate</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="CAMT">
+              <Name>CAMT</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>CGST Amount</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="S_RT">
+              <Name>S_RT</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>SGST / UT Rate</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="SAMT">
+              <Name>SAMT</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>SGST / UT GST Amount</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+
+            <Field Name="CSAMT">
+              <Name>CSAMT</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>GST Compensation Cess Amount</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+
+
+            <Field Name="RemarkItem">
+              <Name>RemarkItem</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Entity -1</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="RemarkItem2">
+              <Name>RemarkItem2</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Entity - 2</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="Remarks">
+              <Name>Remarks</Name>
+              <RecordType>GST Inward Transactions STD</RecordType>
+              <Description>Remarks</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+
+          </Fields>
+          <ValidationExpressions />
+          <Name>GST Inward Transactions STD</Name>
+          <Config Ignore="False" />
+        </RecordType>
+        <RecordType Name="Schema">
+          <Fields>
+            <Field Name="A">
+              <Name>A</Name>
+              <RecordType>Schema</RecordType>
+              <Description>S.No.</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="B">
+              <Name>B</Name>
+              <RecordType>Schema</RecordType>
+              <Description>Mapping Type</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="C">
+              <Name>C</Name>
+              <RecordType>Schema</RecordType>
+              <Description>Entity</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="D">
+              <Name>D</Name>
+              <RecordType>Schema</RecordType>
+              <Description>Column-Heading</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="E">
+              <Name>E</Name>
+              <RecordType>Schema</RecordType>
+              <Description>Mandatory (M) / Optional (O)</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="F">
+              <Name>F</Name>
+              <RecordType>Schema</RecordType>
+              <Description>Reference-Points</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="G">
+              <Name>G</Name>
+              <RecordType>Schema</RecordType>
+              <Description>Data-Type</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="H">
+              <Name>H</Name>
+              <RecordType>Schema</RecordType>
+              <Description>Max-Length</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="I">
+              <Name>I</Name>
+              <RecordType>Schema</RecordType>
+              <Description>Lookup / Remarks</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="J">
+              <Name>J</Name>
+              <RecordType>Schema</RecordType>
+              <Description>Additional Remarks</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+          </Fields>
+          <ValidationExpressions />
+          <Name>Schema</Name>
+          <Config Ignore="False" />
+        </RecordType>
+      </RecordTypes>
+    </Schema>
+  </Source>
+  <Target>
+    <Connection />
+    <Schema connectioncode="" connectiontype="Target" createdby="user">
+      <RecordTypes>
+        <RecordType Name="Inward Transactions Template">
+          <Fields>
+            <Field Name="GSTIN">
+              <Name>GSTIN</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>GSTIN</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="ReturnPeriod">
+              <Name>ReturnPeriod</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Month And Year (MM-YYYY)</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="TransactionType">
+              <Name>TransactionType</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Type of Transaction</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="InvoiceType">
+              <Name>InvoiceType</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Invoice Type</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="InvoiceNum">
+              <Name>InvoiceNum</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Bill / Invoice No</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="InvoiceDate">
+              <Name>InvoiceDate</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Bill/Invoice Date</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="TY">
+              <Name>TY</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Goods/Services</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="Hsn_sc">
+              <Name>Hsn_sc</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>HSN</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="Hsn_Desc">
+              <Name>Hsn_Desc</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>HSN Description</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="Description">
+              <Name>Description</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Supply Description</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="Uqc">
+              <Name>Uqc</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>UQC</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="Qty">
+              <Name>Qty</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Quantity</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="GstTaxType">
+              <Name>GstTaxType</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>GST Supply Type</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="CTIN">
+              <Name>CTIN</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Supplier GSTIN / UIN</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="PartyName">
+              <Name>PartyName</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Supplier Name</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="PartyLocation">
+              <Name>PartyLocation</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Supplier Location Name</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="PartyGstRegType">
+              <Name>PartyGstRegType</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Supplier Registration Status</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="ShipFrom">
+              <Name>ShipFrom</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Ship from State</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="ShipTo">
+              <Name>ShipTo</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Ship to State</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="POS">
+              <Name>POS</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Place of Supply (POS)</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="RCHRG">
+              <Name>RCHRG</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Reverse Charge Applicable </Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="VAL">
+              <Name>VAL</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Bill /Invoice Value</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="LineSNum">
+              <Name>LineSNum</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Item ID</Description>
+              <DataType>Integer</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" ThousandsChar="None" />
+            </Field>
+            <Field Name="TXVAL">
+              <Name>TXVAL</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Taxable Value</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="I_RT">
+              <Name>I_RT</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>IGST Rate</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="IAMT">
+              <Name>IAMT</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>IGST Amount</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="C_RT">
+              <Name>C_RT</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>CGST Rate</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="CAMT">
+              <Name>CAMT</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>CGST Amount</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="S_RT">
+              <Name>S_RT</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>SGST / UT Rate</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="SAMT">
+              <Name>SAMT</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>SGST / UT GST Amount</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="Cess_Rt">
+              <Name>Cess_Rt</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Cess Rate</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="CSAMT">
+              <Name>CSAMT</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Cess Amount</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="elg">
+              <Name>elg</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Eligibility of ITC</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="ITCReversal_4243">
+              <Name>ITCReversal_4243</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Reversal under Rule 42/43</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="ITCDate">
+              <Name>ITCDate</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>ITC Date</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="tx_i">
+              <Name>tx_i</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>IGST - ITC Available</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="tx_c">
+              <Name>tx_c</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>CGST - ITC Available</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="tx_s">
+              <Name>tx_s</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>SGST/UT GST - ITC Available</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="tx_cs">
+              <Name>tx_cs</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Cess - ITC Available</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="rfndelg">
+              <Name>rfndelg</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Auto Refund</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="sec7act">
+              <Name>sec7act</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Supply Covered Under sec 7 of IGST Act</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="Port_Code">
+              <Name>Port_Code</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Port Code</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="boe_num">
+              <Name>boe_num</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Bill of Entry No.</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" ThousandsChar="None" />
+            </Field>
+            <Field Name="boe_dt">
+              <Name>boe_dt</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Bill of Entry Date</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="boe_val">
+              <Name>boe_val</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Bill of Entry Value</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+            </Field>
+            <Field Name="OrigInvoiceTransactionType">
+              <Name>OrigInvoiceTransactionType</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Original Type of Transaction</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="OTIN">
+              <Name>OTIN</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Original Supplier GSTIN / UIN</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="OrigInvoiceNum">
+              <Name>OrigInvoiceNum</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Original Bill/Invoice/Bill of Entry No.</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="OrigInvoiceDate">
+              <Name>OrigInvoiceDate</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Original Bill/Invoice/Bill of Entry Date </Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="P_gst">
+              <Name>P_gst</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Pre GST Regime CN/DN</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="Rsn">
+              <Name>Rsn</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Reason for issuing DN/CN</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="OrigNoteNum">
+              <Name>OrigNoteNum</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Original DN/CN Number</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="OrigNoteDate">
+              <Name>OrigNoteDate</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Original DN/CN date</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="CancelDate">
+              <Name>CancelDate</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Transaction Cancellation Date</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="IsCreditISD">
+              <Name>IsCreditISD</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Credit Received under ISD</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="IsForeignCurrency">
+              <Name>IsForeignCurrency</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Currency</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="Ex_Rt">
+              <Name>Ex_Rt</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Exchange Rate</Description>
+              <DataType>Decimal</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" NumDecimals="2" DecimalChar="." ThousandsChar="None" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="ERPRefNum">
+              <Name>ERPRefNum</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>ERP Reference No.</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+            </Field>
+
+            <Field Name="RemarkItem">
+              <Name>RemarkItem</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Remarks</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="RemarkItem2">
+              <Name>RemarkItem2</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Remarks2</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="WarningCode">
+              <Name>WarningCode</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Warning Codes</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="WarningText">
+              <Name>WarningText</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Warning Descriptions</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="ErrorCode">
+              <Name>ErrorCode</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Error Codes</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="ErrorText">
+              <Name>ErrorText</Name>
+              <RecordType>Inward Transactions Template</RecordType>
+              <Description>Error Descriptions</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="2" PadChar=" " Alignment="Left" />
+            </Field>
+          </Fields>
+          <ValidationExpressions />
+          <Name>Inward Transactions Template</Name>
+          <Config Ignore="False" />
+        </RecordType>
+        <RecordType Name="Look_Up_Values">
+          <Fields>
+            <Field Name="A">
+              <Name>A</Name>
+              <RecordType>Look_Up_Values</RecordType>
+              <Description>S.No.</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="B">
+              <Name>B</Name>
+              <RecordType>Look_Up_Values</RecordType>
+              <Description>Type of Transaction</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="C">
+              <Name>C</Name>
+              <RecordType>Look_Up_Values</RecordType>
+              <Description>Explanation</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="D">
+              <Name>D</Name>
+              <RecordType>Look_Up_Values</RecordType>
+              <Description>Column1</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="E">
+              <Name>E</Name>
+              <RecordType>Look_Up_Values</RecordType>
+              <Description>Column2</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="F">
+              <Name>F</Name>
+              <RecordType>Look_Up_Values</RecordType>
+              <Description>Column3</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="G">
+              <Name>G</Name>
+              <RecordType>Look_Up_Values</RecordType>
+              <Description>Column4</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="H">
+              <Name>H</Name>
+              <RecordType>Look_Up_Values</RecordType>
+              <Description>Column5</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="I">
+              <Name>I</Name>
+              <RecordType>Look_Up_Values</RecordType>
+              <Description>Column6</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+          </Fields>
+          <ValidationExpressions />
+          <Name>Look_Up_Values</Name>
+          <Config Ignore="True" />
+        </RecordType>
+        <RecordType Name="State Code &amp; POS">
+          <Fields>
+            <Field Name="A">
+              <Name>A</Name>
+              <RecordType>State Code &amp; POS</RecordType>
+              <Description>Column1</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="B">
+              <Name>B</Name>
+              <RecordType>State Code &amp; POS</RecordType>
+              <Description>Look-Up State Codes &amp; Name (For Latest Always Refer GST Portal)</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="C">
+              <Name>C</Name>
+              <RecordType>State Code &amp; POS</RecordType>
+              <Description>Column2</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="D">
+              <Name>D</Name>
+              <RecordType>State Code &amp; POS</RecordType>
+              <Description>Column3</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="E">
+              <Name>E</Name>
+              <RecordType>State Code &amp; POS</RecordType>
+              <Description>Column4</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="F">
+              <Name>F</Name>
+              <RecordType>State Code &amp; POS</RecordType>
+              <Description>Column5</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="G">
+              <Name>G</Name>
+              <RecordType>State Code &amp; POS</RecordType>
+              <Description>Column6</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="H">
+              <Name>H</Name>
+              <RecordType>State Code &amp; POS</RecordType>
+              <Description>Column7</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="I">
+              <Name>I</Name>
+              <RecordType>State Code &amp; POS</RecordType>
+              <Description>Column8</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="J">
+              <Name>J</Name>
+              <RecordType>State Code &amp; POS</RecordType>
+              <Description>Column9</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+          </Fields>
+          <ValidationExpressions />
+          <Name>State Code &amp; POS</Name>
+          <Config Ignore="False" />
+        </RecordType>
+        <RecordType Name="Country Code">
+          <Fields>
+            <Field Name="A">
+              <Name>A</Name>
+              <RecordType>Country Code</RecordType>
+              <Description>Column1</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="B">
+              <Name>B</Name>
+              <RecordType>Country Code</RecordType>
+              <Description>Look-Up Country Codes &amp; Name (For Latest Always Refer GST Portal)</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="C">
+              <Name>C</Name>
+              <RecordType>Country Code</RecordType>
+              <Description>Column2</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="D">
+              <Name>D</Name>
+              <RecordType>Country Code</RecordType>
+              <Description>Column3</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="E">
+              <Name>E</Name>
+              <RecordType>Country Code</RecordType>
+              <Description>Column4</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="F">
+              <Name>F</Name>
+              <RecordType>Country Code</RecordType>
+              <Description>Column5</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="G">
+              <Name>G</Name>
+              <RecordType>Country Code</RecordType>
+              <Description>Column6</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="H">
+              <Name>H</Name>
+              <RecordType>Country Code</RecordType>
+              <Description>Column7</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+          </Fields>
+          <ValidationExpressions />
+          <Name>Country Code</Name>
+          <Config Ignore="False" />
+        </RecordType>
+        <RecordType Name="UQC Lookup">
+          <Fields>
+            <Field Name="A">
+              <Name>A</Name>
+              <RecordType>UQC Lookup</RecordType>
+              <Description>Column1</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="B">
+              <Name>B</Name>
+              <RecordType>UQC Lookup</RecordType>
+              <Description>UQC Look-Up (For Latest Always Refer GST Portal)</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="C">
+              <Name>C</Name>
+              <RecordType>UQC Lookup</RecordType>
+              <Description>Column2</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+          </Fields>
+          <ValidationExpressions />
+          <Name>UQC Lookup</Name>
+          <Config Ignore="False" />
+        </RecordType>
+        <RecordType Name="HSN_Code_Validation">
+          <Fields>
+            <Field Name="A">
+              <Name>A</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>HSN Code Validation</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="B">
+              <Name>B</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column1</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="C">
+              <Name>C</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column2</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="D">
+              <Name>D</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column3</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="E">
+              <Name>E</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column4</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="F">
+              <Name>F</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column5</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="G">
+              <Name>G</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column6</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="H">
+              <Name>H</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column7</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="I">
+              <Name>I</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column8</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="J">
+              <Name>J</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column9</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="K">
+              <Name>K</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column10</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+            <Field Name="L">
+              <Name>L</Name>
+              <RecordType>HSN_Code_Validation</RecordType>
+              <Description>Column11</Description>
+              <DataType>Text</DataType>
+              <Size>0</Size>
+              <Config DefaultExpr="" Level="1" PadChar=" " Alignment="Left" />
+            </Field>
+          </Fields>
+          <ValidationExpressions />
+          <Name>HSN_Code_Validation</Name>
+          <Config Ignore="False" />
+        </RecordType>
+      </RecordTypes>
+    </Schema>
+  </Target>
+  <MapExpressions>
+    <RecordType Name="Inward Transactions Template">
+      <MapExpression FieldName="GSTIN">SourceField("GSTIN")</MapExpression>
+      <MapExpression FieldName="ReturnPeriod">SourceField("ReturnPeriod")</MapExpression>
+      <MapExpression FieldName="TransactionType">
+        IF(FindText("Debit",SourceField("TransactionType"),1)&gt;=1,"DN for Purchase",
+        IF(FindText("Credit",SourceField("TransactionType"),1)&gt;=1,"CN for Purchase","Purchase"))
+      </MapExpression>
+      <MapExpression FieldName="InvoiceType">IF(FindText("Amendment",sourcefield("InvoiceType"),1)&gt;=1,"Amendment",SourceField("InvoiceType"))</MapExpression>
+      <MapExpression FieldName="InvoiceNum">SourceField("InvoiceNum")</MapExpression>
+      <MapExpression FieldName="InvoiceDate">SourceField("InvoiceDate")</MapExpression>
+      <MapExpression FieldName="TY">SourceField("TY")</MapExpression>
+      <MapExpression FieldName="Hsn_sc">SourceField("Hsn_sc")</MapExpression>
+      <MapExpression FieldName="Hsn_Desc">SourceField("Hsn_Desc")</MapExpression>
+      <MapExpression FieldName="Description">SourceField("Description")</MapExpression>
+      <MapExpression FieldName="Uqc">SourceField("Uqc")</MapExpression>
+      <MapExpression FieldName="Qty">SourceField("Qty")</MapExpression>
+      <MapExpression FieldName="GstTaxType">SourceField("GstTaxType")</MapExpression>
+      <MapExpression FieldName="CTIN">SourceField("CTIN")</MapExpression>
+      <MapExpression FieldName="PartyName">SourceField("PartyName")</MapExpression>
+      <MapExpression FieldName="PartyLocation">SourceField("PartyLocation")</MapExpression>
+      <MapExpression FieldName="PartyGstRegType">
+        If(Length(Sourcefield("CTIN"))=0,"Unregistered",
+        If(FindText("UIN",Sourcefield("PartyGstRegType"),1)&gt;=1,
+        "UIN",
+        if(Findtext("SEZ Unit",SourceField("PartyGstRegType"),1)&gt;=1,"SEZ_Unit",
+        if(Findtext("SEZ Developer",SourceField("PartyGstRegType"),1)&gt;=1,"SEZ_Developer",
+        if(Findtext("Compounding Dealer",SourceField("PartyGstRegType"),1)&gt;=1,
+        "Composition_dealer","Registered")))))
+      </MapExpression>
+      <MapExpression FieldName="ShipFrom">SourceField("ShipFrom")</MapExpression>
+      <MapExpression FieldName="ShipTo">SourceField("ShipTo")</MapExpression>
+      <MapExpression FieldName="POS">SourceField("POS")</MapExpression>
+      <MapExpression FieldName="RCHRG">IF(FindText("Other than",SourceField("Rchrg"),1)&gt;=1,"No","Yes")</MapExpression>
+      <MapExpression FieldName="VAL">SourceField("VAL")</MapExpression>
+      <MapExpression FieldName="LineSNum">SourceField("LineSNum")</MapExpression>
+      <MapExpression FieldName="TXVAL">SourceField("TXVAL")</MapExpression>
+      <MapExpression FieldName="I_RT">SourceField("I_RT")</MapExpression>
+      <MapExpression FieldName="IAMT">SourceField("IAMT")</MapExpression>
+      <MapExpression FieldName="C_RT">SourceField("C_RT")</MapExpression>
+      <MapExpression FieldName="CAMT">SourceField("CAMT")</MapExpression>
+      <MapExpression FieldName="S_RT">SourceField("S_RT")</MapExpression>
+      <MapExpression FieldName="SAMT">SourceField("SAMT")</MapExpression>
+      <MapExpression FieldName="Cess_Rt">SourceField("Cess_Rt")</MapExpression>
+      <MapExpression FieldName="CSAMT">SourceField("CSAMT")</MapExpression>
+      <MapExpression FieldName="elg">
+        If(Findtext("Capital Goods",SourceField("elg"),1)&gt;=1,"Capital Goods",If(Findtext("Input Goods",SourceField("elg"),1)&gt;=1,"Input",
+        If(Findtext("Service",SourceField("elg"),1)&gt;=1,"Input Service","Ineligible ")))
+      </MapExpression>
+      <MapExpression FieldName="ITCDate">SourceField("ITCDate")</MapExpression>
+      <MapExpression FieldName="tx_i">SourceField("tx_i")</MapExpression>
+      <MapExpression FieldName="tx_c">SourceField("tx_c")</MapExpression>
+      <MapExpression FieldName="tx_s">SourceField("tx_s")</MapExpression>
+      <MapExpression FieldName="tx_cs">SourceField("tx_cs")</MapExpression>
+      <MapExpression FieldName="Port_Code">SourceField("Port_Code")</MapExpression>
+      <MapExpression FieldName="boe_num">SourceField("boe_num")</MapExpression>
+      <MapExpression FieldName="boe_dt">SourceField("boe_dt")</MapExpression>
+      <MapExpression FieldName="boe_val">SourceField("boe_val")</MapExpression>
+      <MapExpression FieldName="OrigInvoiceTransactionType">
+        IF(FindText("Debit",SourceField("OrigTransactionType"),0)&gt;=0,"DN for Purchase",
+        IF(FindText("Credit",SourceField("OrigTransactionType"),0)&gt;=0,"CN for Purchase","Purchase"))
+      </MapExpression>
+      <MapExpression FieldName="OTIN">SourceField("OTIN")</MapExpression>
+      <MapExpression FieldName="OrigInvoiceNum">SourceField("OrigInvoiceNum")</MapExpression>
+      <MapExpression FieldName="OrigInvoiceDate">SourceField("OrigInvoiceDate")</MapExpression>
+      <MapExpression FieldName="P_gst">SourceField("P_gst")</MapExpression>
+      <MapExpression FieldName="Rsn">SourceField("Rsn")</MapExpression>
+      <MapExpression FieldName="CancelDate">SourceField("CancelDate")</MapExpression>
+      <MapExpression FieldName="ERPRefNum">SourceField("ERPRefNum")</MapExpression>
+      <MapExpression FieldName="RemarkItem">SourceField("RemarkItem")</MapExpression>
+      <MapExpression FieldName="RemarkItem2">SourceField("RemarkItem2")</MapExpression>
+    </RecordType>
+    <RecordType Name="Look_Up_Values" />
+    <RecordType Name="State Code &amp; POS" />
+    <RecordType Name="Country Code" />
+    <RecordType Name="UQC Lookup" />
+    <RecordType Name="HSN_Code_Validation" />
+  </MapExpressions>
+</Map>

@@ -1,0 +1,274 @@
+﻿@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "GST Document Number Series Settings";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+}
+
+<div class="container content-part" ng-controller="FormController">
+    <div id="loading" class="row" ng-show="status=='postedc'">
+        <div class="col-md-12" id="loading-text"><img src="~/Content/images/imgechange.gif" width="80" height="80" /></div>
+    </div>
+    <div role="tabpanel" class="tab-pane active" id="accounts">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active">
+                <h2>GST Document Number Series Settings</h2>
+                @*
+                    <button class="btn btn-primary" ng-click="GetInvoiceNumberDynamicPart()">GetInvoiceNumberDynamicPart</button>
+                    <button class="btn btn-primary" ng-click="AutoGenerateGstDocNumSeries()">AutoGenerateGstDocNumSeries</button>
+                *@
+                <div class="clearfix" style="margin-top: 30px;"></div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div style="margin-left:15px" class="form-group">
+
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>@Html.Label("Level", htmlAttributes: new { @class = "control-label", @style = "margin-left: 15px;margin-right: 15px;" })</label>
+                                    <select class="form-control" ng-disabled="isEditingTemplate" ng-model="selectedLevelId" ng-change="selectedCompanyId=selectedGSTRegId='';isEditingTemplate=false;getTemplates()">
+                                        <option value="">Select Level</option>
+                                        <option ng-repeat="level in levels" value="{{level.Id}}">{{level.Name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-primary" ng-disabled="isEditingTemplate" ng-show="selectedLevelId && (selectedLevelId=='tenant' || (selectedLevelId=='company' && selectedCompanyId!='') || (selectedLevelId=='gstreg' && selectedGSTRegId!=''))" ng-click="templateId=0;selectedCodeWord=selectedPrefix=selectedSuffix='';isEditingTemplate=true;">Add New Series</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group" ng-show="selectedLevelId && selectedLevelId == 'company'">
+                            <div class="col-sm-12">
+                                <label>@Html.Label("Company", htmlAttributes: new { @class = "control-label", @style = "margin-left: 15px;margin-right: 15px;" })</label>
+                                <select class="form-control" ng-disabled="isEditingTemplate" ng-model="selectedCompanyId" ng-change="getTemplates()">
+                                    <option value="">Select Company</option>
+                                    <option ng-repeat="company in companies" value="{{company.CompanyId}}">{{company.CompanyName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="selectedLevelId && selectedLevelId == 'gstreg'">
+                            <div class="col-sm-12">
+                                <label>@Html.Label("GSTReg", htmlAttributes: new { @class = "control-label", @style = "margin-left: 15px;margin-right: 15px;" })</label>
+                                <select class="form-control" ng-disabled="isEditingTemplate" ng-model="selectedGSTRegId" ng-change="getTemplates()">
+                                    <option value="">Select GSTReg</option>
+                                    <option ng-repeat="gstReg in gstRegs" value="{{gstReg.GSTRegId}}">{{gstReg.GSTIN}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12" ng-show="selectedLevelId && (selectedLevelId=='tenant' || (selectedLevelId=='company' && selectedCompanyId!='') || (selectedLevelId=='gstreg' && selectedGSTRegId!='')) && !isEditingTemplate && templates">
+                            <table class="table-bordered" style="width:100%; margin-top: 30px;">
+                                <thead>
+                                    <tr>
+                                        <th>Document Type</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th style="text-align: center;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="template in templates" ng-show="templates.length > 0">
+                                        <td>{{template.Description}}</td>
+                                        <td>{{template.Prefix}}</td>
+                                        <td>{{template.Suffix}}</td>
+                                        <td style="text-align: center;">
+                                            <a style="cursor: pointer;" ng-click="editTemplate(template)"><i class="fa fa-edit"></i></a>
+                                            <a style="cursor: pointer; padding-left: 10px;" ng-click="deleteTemplate(template)"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="templates.length <= 0">
+                                        <td colspan="4" style="text-align: center; font-weight: bold;">No templates defined!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div ng-show="isEditingTemplate">
+                            <form>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>@Html.Label("Document Type", htmlAttributes: new { @class = "control-label", @style = "margin-left: 15px;margin-right: 15px;" })</label>
+                                        <select class="form-control" required ng-model="selectedCodeWord">
+                                            <option value="">Select Document Type</option>
+                                            <option ng-repeat="codeWord in codeWords" value="{{codeWord.CodeWord}}">{{codeWord.Description}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>@Html.Label("Prefix", htmlAttributes: new { @class = "control-label", @style = "margin-left: 15px;margin-right: 15px;" })</label>
+                                        <input type="text" class="form-control" maxlength="50" required ng-model="selectedPrefix" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>@Html.Label("Suffix", htmlAttributes: new { @class = "control-label", @style = "margin-left: 15px;margin-right: 15px;" })</label>
+                                        <input type="text" class="form-control" maxlength="50" required ng-model="selectedSuffix" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12" style="margin-top: 30px;">
+                                        <button type="submit" class="btn btn-primary" ng-click="saveTemplate()">Submit</button>
+                                        <button type="button" class="btn btn-secondary" ng-click="cancelEditTemplate()">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section BotScripts{
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http, usSpinnerService) {
+            $scope.levels = [
+                { Id: "tenant", Name: "Tenant" },
+                { Id: "company", Name: "Company" },
+                { Id: "gstreg", Name: "GST Reg" }
+            ];
+            $scope.companies = @Html.Raw(JsonConvert.SerializeObject(ViewBag.lstCompany));
+            $scope.gstRegs = @Html.Raw(JsonConvert.SerializeObject(ViewBag.lstGstReg));
+            $scope.codeWords = @Html.Raw(JsonConvert.SerializeObject(ViewBag.lstCodeWords));
+            $scope.isEditingTemplate = false;
+            $scope.templates = [];
+            $scope.getTemplates = function () {
+                if (!$scope.isEditingTemplate && $scope.selectedLevelId && ($scope.selectedLevelId == 'tenant' || ($scope.selectedLevelId == 'company' && $scope.selectedCompanyId != '') || ($scope.selectedLevelId == 'gstreg' && $scope.selectedGSTRegId != ''))) {
+                    $("div.spinnerTarget").addClass("backdrop");
+                    $("body").css("overflow", "hidden");
+                    usSpinnerService.spin('spinner-1');
+
+                    $http({
+                        method: 'GET',
+                        url: "/frmGstDocNumTemplate/GetTemplates/" + $scope.selectedLevelId + ($scope.selectedLevelId == 'company' ? "/" + $scope.selectedCompanyId : ($scope.selectedLevelId == 'gstreg' ? "/" + $scope.selectedGSTRegId : "")) + location.search
+                    }).then(function (result) {
+                        if (result && result.data && result.data.templates) {
+                            result.data.templates = JSON.parse(result.data.templates);
+
+                            if (result.data.templates.length > 0) {
+                                $scope.templates = result.data.templates;
+                            } else {
+                                $scope.templates = [];
+                            }
+                        } else {
+                            $scope.templates = [];
+                        }
+                    }).finally(function () {
+                        $("div.spinnerTarget").removeClass("backdrop");
+                        $("body").css("overflow", "auto");
+                        usSpinnerService.stop('spinner-1');
+                    });
+                } else {
+                    $scope.templates = [];
+                }
+            };
+
+            $scope.editTemplate = function (template) {
+                $scope.templateId = template.TemplateId;
+                $scope.selectedCodeWord = template.DocNature;
+                $scope.selectedPrefix = template.Prefix;
+                $scope.selectedSuffix = template.Suffix;
+                $scope.isEditingTemplate = true;
+            };
+            $scope.deleteTemplate = function (template) {
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+
+                $http({
+                    method: "POST",
+                    url: "/frmGstDocNumTemplate/DeleteTemplate/" + template.TemplateId + location.search
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+
+                    $scope.getTemplates();
+                });
+            };
+
+            $scope.saveTemplate = function () {
+                if ($scope.selectedCodeWord && ($scope.selectedPrefix || $scope.selectedSuffix)) {
+                    $("div.spinnerTarget").addClass("backdrop");
+                    $("body").css("overflow", "hidden");
+                    usSpinnerService.spin('spinner-1');
+
+                    $http({
+                        method: "POST",
+                        url: "/frmGstDocNumTemplate/SaveTemplate" + location.search,
+                        data: {
+                            LevelId: $scope.selectedLevelId,
+                            CompanyId: $scope.selectedCompanyId,
+                            GSTRegId: $scope.selectedGSTRegId,
+                            TemplateId: $scope.templateId,
+                            DocNature: $scope.selectedCodeWord,
+                            Prefix: $scope.selectedPrefix,
+                            Suffix: $scope.selectedSuffix
+                        }
+                    }).finally(function () {
+                        $("div.spinnerTarget").removeClass("backdrop");
+                        $("body").css("overflow", "auto");
+                        usSpinnerService.stop('spinner-1');
+
+                        $scope.cancelEditTemplate();
+
+                        $scope.getTemplates();
+                    });
+                }
+            };
+
+            $scope.cancelEditTemplate = function () {
+                $scope.templateId = 0;
+                $scope.selectedCodeWord = $scope.selectedPrefix = $scope.selectedSuffix = '';
+                $scope.isEditingTemplate = false;
+            };
+            @*
+            $scope.GetInvoiceNumberDynamicPart = function () {
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+
+                $http({
+                    method: 'GET',
+                    url: "/frmGstDocNumTemplate/GetInvoiceNumberDynamicPart/abcd-2019-01" + location.search
+                }).then(function (result) {
+                    debugger;
+                    if (result && result.data && result.data.invoiceNumberDynamicPart && result.data.invoiceNumberTemplateId) {
+                        debugger;
+                    } else {
+                        debugger;
+                    }
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            };
+            $scope.AutoGenerateGstDocNumSeries = function () {
+                $("div.spinnerTarget").addClass("backdrop");
+                $("body").css("overflow", "hidden");
+                usSpinnerService.spin('spinner-1');
+
+                $http({
+                    method: 'GET',
+                    url: "/frmGstDocNumTemplate/AutoGenerateGstDocNumSeries" + location.search
+                }).then(function (result) {
+                    debugger;
+                    if (result && result.data && result.data.success) {
+                        debugger;
+                    } else {
+                        debugger;
+                    }
+                }).finally(function () {
+                    $("div.spinnerTarget").removeClass("backdrop");
+                    $("body").css("overflow", "auto");
+                    usSpinnerService.stop('spinner-1');
+                });
+            };
+            *@
+        });
+    </script>
+
+    @Html.RenderJsCss(false, "jqueryui")
+}

@@ -1,0 +1,642 @@
+﻿@using risersoft.app.mxform.gst
+@using risersoft.shared.web.Extensions;
+
+@model frmGSTNEWBModel
+@{
+    ViewData["Title"] = "GSTNEWB Data Sync";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = Newtonsoft.Json.JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.Indented)
+}
+
+<div class="clearfix"></div>
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<div class="container content-part" ng-controller="FormController">
+    <div id="loading" class="row" ng-show="status=='postedc'">
+        <div class="col-md-12" id="loading-text"><img src="~/Content/images/imgechange.gif" width="80" height="80" /></div>
+    </div>
+    <div class="col-md-11">
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="accounts">
+                <h2>GSTNEWB Data Sync</h2>
+
+                @using (Html.BeginForm("", "", FormMethod.Post, new { @name = "frm", @id = "frm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.Hidden("data", "", new Dictionary<string, string> { { "id", "data" } })
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2 navbar navbar-expand-md">
+                                <a class="btn btn-default sync" data-toggle="dropdown" href="#" aria-expanded="false">
+                                    GSTN
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li> <a href="" class="dropdown-item" ng-click="postc('generate','')">Generate</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-2 navbar navbar-expand-md">
+                                <a class="btn btn-default sync" data-toggle="dropdown" href="#" aria-expanded="false">
+                                    Reconcile
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li> <a href="" class="dropdown-item" ng-click="postc('reconcile','')">Perform Reconcilation</a></li>
+
+                                    <li> <a href="" class="dropdown-item" ng-click="postc('generatereport','')">Generate Report</a></li>
+
+                                </ul>
+                            </div>
+                            <div class="col-md-2 navbar navbar-expand-md">
+                                <a class="btn btn-default sync" data-toggle="dropdown" href="#" aria-expanded="false">
+                                    Download
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li> <a href="" class="dropdown-item" ng-click="postc('template','')">Consolidated EwayBill Data</a></li>
+                                    <li> <a href="" class="dropdown-item" ng-click="postc('gstn_error','')">GSTN Error Report</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix" style="margin-top:10px;"></div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-7">
+                                <label class="control-label">Company Name : {{GstRegPP.CompName}}</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Pan No. : {{GstRegPP.PANNum}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <label class="control-label">Return Period : {{return.ret_pd}} <a href="" ng-click="changeitem()">change</a></label>
+                            </div>
+                            <div class="col-md-2"><select name="Receivergstin" ng-model="GstRegPP.returnperiodidSelected" ng-options="item.ret_pd for item in dsCombo.PostPeriod track by item.PostPeriodID" ng-change="postch(GstRegPP.returnperiodidSelected,'dbsumm')" ng-show="itmval" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.Receivergstin.$invalid]"></select></div><div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <label class="control-label">GSTIN : {{GSTIN}}</label>
+                            </div>
+                        </div>
+                        <div style="margin-top:10px;margin-left: 65px;">
+                            <div id="msgSyncContainer">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <i class="fa fa-2x fa-check" id="status" ng-show="(result=='success')" style="margin-right:8px;margin-left: 0px;float: left;"></i>
+                                        <div ng-show="(result=='success')" style="color:green;margin-left:8px;width: 500px;float: left;">{{message}}</div>
+
+                                        <i class="fa fa-2x fa-remove" id="failure" ng-show="(result=='failure')" style="margin-right:8px;margin-left: 0px;"></i>
+                                        <div ng-show="(result=='failure')" style="color:red;margin-left:8px;width: 500px;">{{message}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top:8px">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped space10">
+                                        <tr class="tbld">
+                                            <td>State</td>
+                                            <td>GSTIN</td>
+                                            <td>Taxable Value</td>
+                                            <td>IGST</td>
+                                            <td>CGST</td>
+                                            <td>SGST</td>
+                                            <td>CESS</td>
+
+                                        </tr>
+                                        <tr ng-repeat="row in AppItem">
+                                            <td><a href="" ng-click="itemc(row)">{{row.Descrip}}</a></td>
+                                            <td><a href="" ng-click="itemc(row)">{{row.GSTIN}}</a></td>
+                                            <td class="text-align-right"><label>{{row.txval}}</label></td>
+
+                                            <td class="text-align-right"><label>{{row.iamt}}</label></td>
+                                            <td class="text-align-right"><label>{{row.camt}}</label></td>
+                                            <td class="text-align-right"><label>{{row.samt}}</label></td>
+                                            <td class="text-align-right"><label>{{row.csamt}}</label></td>
+
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="dialogOTP" title="OTP">
+                            <div Class="form-group">
+                                <div Class="col-md-offset-1 col-md-10 " style="margin-top:8px">
+                                    <input type="text" id="otpConnect" required Class="form-control" />
+                                </div>
+                            </div>
+
+                            <div Class="form-group" style="float:right;margin-top:8px">
+
+                                <div Class="col-md-12">
+                                    <input type="button" id="btnConnect" value="Submit" Class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="gstregid" value="{{GstRegID}}" />
+                        <input type="hidden" id="ReturnPeriodID" value="{{ReturnPeriodID}}" />
+                        <div Class="row"><div class="col-md-1"></div><div class="col-md-10"></div></div><div class="row"><div class="col-md-1"></div><div class="col-md-10"><label ng-show="datajn" style="border:1px solid #000;padding:5px;word-wrap: break-word;">{{datajn}}</label></div></div><div>
+                            <div class="txtb">
+                                Summary {{GSTIN}}
+                                <div Class="table-responsive">
+                                    <table Class="table table-bordered table-striped space10">
+                                        <thead>
+                                            <tr class="tbld">
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Count</th>
+                                                <th>Taxable Value</th>
+                                                <th>IGST</th>
+                                                <th>CGST</th>
+                                                <th>SGST</th>
+                                                <th>CESS</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="row in Datac" style="padding-top:5px;">
+                                                <td>{{row.EwayBillStatus}}</td>
+                                                <td>{{row.ret_pd}}</td>
+                                                <td class="text-align-right">{{row.EwayBillCount}}</td>
+                                                <td class="text-align-right">{{row.Txval}}</td>
+                                                <td class="text-align-right">{{row.Iamt}}</td>
+                                                <td class="text-align-right">{{row.camt}}</td>
+                                                <td class="text-align-right">{{row.Samt}}</td>
+                                                <td class="text-align-right">{{row.CSamt}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="Difference && Difference.length > 0">
+
+                            <div class=" txtb">
+                                Difference
+                                <div Class="table-responsive">
+                                    <table Class="table table-bordered table-striped space10">
+                                        <thead>
+                                            <tr class="tbld">
+                                                <th>Invoice Type</th>
+                                                <th>Taxable Value</th>
+                                                <th>Tax Amount</th>
+                                                <th>CESS</th>
+                                                <th>Download</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="row in Difference" style="padding-top:5px;">
+                                                <td>{{row.invoiceType}}</td>
+                                                <td class="text-align-right">{{row.taxableValue.toFixed(2)}}</td>
+                                                <td class="text-align-right">{{row.taxAmount.toFixed(2)}}</td>
+                                                <td class="text-align-right">{{row.cess.toFixed(2)}}</td>
+                                                <td><a href="#" ng-click="postc('gstn_error', row.invoiceType)">Error Report</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="TaskHistory && TaskHistory.length > 0">
+
+                            <div Class="">
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Task History</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div Class="table-responsive">
+                                                    <table Class="table table-bordered table-striped space10">
+                                                        <thead>
+                                                            <tr class="tbld">
+                                                                <th style="text-align:center;">Action Type</th>
+                                                                <th style="text-align:center;">Submitted On</th>
+                                                                <th style="text-align:center;">ActionSubType</th>
+                                                                <th style="text-align:center;">Completed On</th>
+                                                                <th style="text-align:center;">Status</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="tHistory in TaskHistory" style="text-align:center;">
+                                                                <td><a href="#" data-toggle="modal" data-target="#exampleModal" ng-click="postc('infojson', tHistory.ApiTaskID)"><span class="fa fa-edit"></span></a>{{tHistory.ActionType.toUpperCase()}}</td>
+                                                                <td>{{tHistory.SubmittedOn | date: 'dd MMM yyyy, HH:mm:ss'}}</td>
+                                                                <td>{{tHistory.ActionSubType}}</td>
+                                                                <td>{{tHistory.CompletedOn | date: 'dd MMM yyyy, HH:mm:ss'}}</td>
+                                                                <td>{{tHistory.Status}}</td>
+                                                                <td><a href="#" ng-click="donwloadTaskFile(tHistory.ApiTaskID, 'apitask')" ng-show="tHistory.FileName">Download</a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:120px;">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Parameters Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr class="tbld">
+                                                    <th>Param Name</th>
+                                                    <th>Param Value</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="r in InfoJsonData">
+                                                    <td>{{r.ParamName}}</td>
+                                                    <td>{{r.ParamValue}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <input type="button" id="btnSavetab" value="Save" Class="btn btn-primary" />
+
+            </div>
+            <div Class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<Style>
+    .clshid {
+        display: none;
+    }
+
+    #dialogOTP {
+        display: none;
+    }
+
+    .messageerror {
+        display: none;
+        color: red;
+    }
+
+    .messagesuccess {
+        display: none;
+    }
+
+    .messagedis {
+        display: block !important;
+    }
+
+    .messagehid {
+        display: none;
+    }
+
+    .showbtn {
+        display: none;
+    }
+
+    .conbtn {
+        display: none;
+        color: red;
+        font-size: 2em;
+    }
+</Style>
+@section BotScripts{
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http, $interval, usSpinnerService) {
+            $scope.modelUrl = 'frmGSTNEWB';
+            $scope.result = '';
+            $scope.model = JSON.parse($("#model_json").val());
+            $scope.dsCombo = $scope.model.dsCombo;
+            $scope.GstRegPP = $scope.model.dsForm.DT[0]; $scope.datajn = '';
+            $scope.AppItem = $scope.model.dsForm.gstreg;
+            $scope.return = $scope.model.dsForm.return[0];
+            $scope.AppItemData = {};
+            $scope.TaskHistory = $scope.model.dsForm.TaskHistoryData;
+            $scope.InfoJsonData = null;
+            //$scope.TaskHistory.forEach(function (v) {
+            //    v.Success = v.Success == 1 ? "org" : "err"
+            //});
+
+            $scope.ReturnPeriodID = $scope.return.PostPeriodID;
+            @Html.RenderLookup("GstRegPP", Model, Model.dsForm.Tables[0])
+            $scope.token = '';
+
+            var msgHTML = '<div></div><div class="form-group" id="syncPanel"><div>';
+            msgHTML += '<div class="form-group" style="font-size: 10px;background-color: #efefef;width: 815px;" id="syncMessagePanel">';
+            msgHTML += '<div><a href="#" class="delete" id="removeSyncDiv"><span class="fa fa-remove" style="color: #d83e3b;margin-right: 8px;"></span></a>';
+            msgHTML += '<div class="row" style="padding-top:5px;margin-left: 15px;">';
+            msgHTML += '<div id="syncExecutedMsg" style="padding:5px;"></div>';
+            msgHTML += '<i class="fa fa-2x fa-link" style="color:green; display:none; padding: 5px;" id="syncDownloadLink"></i>';
+            msgHTML += '</div></div></div></div></div>';
+
+            $scope.itemc = function (row) {
+                $scope.GstRegID = row.GSTRegID; $scope.GSTIN = row.GSTIN;
+                $scope.Datac = $.grep($scope.model.dsForm.detail, function (item, index) {
+                    return item.Gstregid === row.GSTRegID
+                });
+            }
+
+            $scope.changeitem = function () {
+                $scope.itmval = true;
+            }
+
+            $scope.postch = function (retp, key) {
+                $scope.ReturnPeriodID = retp.PostPeriodID;
+                $scope.postc(key, '');
+            }
+
+            $scope.IsInitializing = false;
+
+            $scope.postc = function (key, UploadType) {
+                $scope.IsInitializing = true;
+                $scope.result = ''; $scope.status = 'postedc';
+
+                var url = '/' + $scope.modelUrl + '/ParamsOutput' + location.search;
+                var payload = { GstRegID: $scope.GstRegID, CompanyID: $scope.GstRegPP.CompanyID, ReturnPeriodID: $scope.ReturnPeriodID, UploadType: UploadType };
+
+                payload = JSON.stringify(payload);
+                var token = $('input[name="__RequestVerificationToken"]').val();
+                var payloaddata = { key: key, Params: payload, __RequestVerificationToken: token };
+
+                $.post(url, payloaddata, function (result) {
+                    if (result.Data.Description != "" && result.message != "") {
+                        $scope.status = '';
+                        $scope.result = '';
+                        var msg = $('#msgSyncContainer').find("[data-syncTaskid='" + result.Data.Description + "']");
+                        if (msg.length <= 0) {
+                            msg = $(msgHTML);
+                            $(msg.get(1)).attr("data-syncTaskid", result.Data.Description);
+                            $('#msgSyncContainer').prepend(msg);
+                        }
+                        msg.find("div#syncExecutedMsg").html('<i class="fa fa-2x fa-check" style="color:green"> ' + result.message + '</i>');
+                    }
+                    else {
+                        $scope.status = '';
+                        $scope.result = result.message == "" ? '' : 'success';
+                        $scope.message = result.message;
+                    }
+
+                    if (result.success) {
+                        if (result.Data) {
+                            if (key == 'dbsumm') {
+                                $scope.model.dsForm.detail = result.Data.Data.detail;
+                                $scope.model.dsForm.counter = result.Data.Data.counter;
+                                $scope.AppItem = result.Data.Data.gstreg;
+                                $scope.return = result.Data.Data.return[0];
+                                $scope.itmval = false;
+                            }
+
+                            if (typeof (result.Data) === "string") {
+                                result.Data = JSON.parse(result.Data);
+                            }
+
+                            if (result.Data.CalcList && result.Data.CalcList.trans && result.Data.CalcList.trans.length > 0 && result.Data.CalcList.trans[0].ResponsePayload) {
+                                var responsePayload = JSON.parse(result.Data.CalcList.trans[0].ResponsePayload);
+
+                                $scope.Datacn_RetPeriod = responsePayload.ret_period;
+                                $scope.setDatacn(responsePayload.sec_sum);
+                            } else {
+                                $scope.setDatacn([]);
+                            }
+
+                            if ($scope.IsInitializing && result.Data.Description) {
+                                $scope.taskID = result.Data.Description;
+                                $scope.checkStatusInterval($scope.taskID, msg);
+                            }
+
+                            if (key == 'infojson') {
+                                $scope.InfoJsonData = JSON.parse(result.Data.Description);
+                            }
+                        };
+                    }
+                    else {
+                        if (result.message === '') {
+                            msg.find("div#syncExecutedMsg").html('<i class="fa fa-2x fa-remove" style="color:red"> Unknown Error!</i>');
+                            //result.message = 'Unknown Error!'
+                        };
+                        $scope.message = result.message;
+                        $scope.status = '';
+                        $scope.result = 'failure';
+                    }
+                    $scope.$apply();
+                    return;
+                });
+            };
+
+            $scope.connect = function (row) {
+                $scope.status = 'postedc';
+                var datainfo = {
+                    GstRegID: row.GSTRegID,
+                    ReturnPeriodID: row.ReturnPeriodID
+                };
+
+                datainfo = JSON.stringify(datainfo);
+                var token = $('input[name="__RequestVerificationToken"]').val();
+
+                var data = {
+                    key: 'otp',
+                    Params: datainfo,
+                    __RequestVerificationToken: token
+                };
+                $.post("/frmGSTNEWB/ParamsOutput" + location.search, data, function (result) {
+                    if (result.status = "200") {
+                        if (result.token == 1) {
+                            $('.messagesuccess').html('Success: Existing token');
+                            $scope.status = ''; $scope.connectdist = false;
+
+                        } else {
+                            $scope.status = '';
+                            row.itemc = false;
+                            $('.cldis').addClass('clshid');
+                        }
+                    }
+                    else {
+                        $scope.status = '';
+                    }
+                    $scope.$apply();
+                });
+            };
+
+            $scope.btnconnect = function (row) {
+                $scope.status = 'postedc';
+                $scope.connectdis = true;
+
+                var datainfo = {
+                    GstRegID: row.GSTRegID,
+                    ReturnPeriodID: row.ReturnPeriodID,
+                    OTP: row.OTP
+                };
+
+                datainfo = JSON.stringify(datainfo);
+                var token = $('input[name="__RequestVerificationToken"]').val();
+
+                var data = {
+                    key: 'token',
+                    Params: datainfo,
+                    __RequestVerificationToken: token
+                };
+
+                $.post("/frmGSTNEWB/ParamsOutput" + location.search, data, function (result) {
+                    if (result.status = "200") {
+                        $scope.status = '';
+                        $scope.connectdis = false; row.ExpiryMins = result.ExpiryMins * 60; row.itemc = true; $('.cldis').removeClass('clshid');
+                    }
+                    else {
+                        $scope.status = '';
+                    }
+                    $scope.$apply();
+                });
+            };
+
+            $scope.btnconnectdel = function (row) {
+                $('.cldis').removeClass('clshid');
+                row.itemc = true;
+                $scope.$apply();
+            }
+
+            //$scope.AutoGenerateGstDocNumSeries = function () {
+            //    $("div.spinnerTarget").addClass("backdrop");
+            //    $("body").css("overflow", "hidden");
+            //    usSpinnerService.spin('spinner-1');
+
+            //    $http({
+            //        method: 'GET',
+            //        url: "/frmGstDocNumTemplate/AutoGenerateGstDocNumSeries" + location.search
+            //    }).then(function (result) {
+            //        debugger;
+            //        if (result && result.data && result.data.success) {
+            //            debugger;
+            //            $scope.documentNumberSeries = result.data.data;
+            //        } else {
+            //            $scope.documentNumberSeries = [];
+            //        }
+            //    }).finally(function () {
+            //        $("div.spinnerTarget").removeClass("backdrop");
+            //        $("body").css("overflow", "auto");
+            //        usSpinnerService.stop('spinner-1');
+            //    });
+            //};
+
+            //$scope.delete = function (index) {
+            //    $scope.documentNumberSeries.splice(index, 1);
+            //    $scope.documentDeletedNumberSeries.push(this.row.InvoiceNumberSeriesId);
+            //};
+
+            //$scope.SaveGstDocNumSeries = function () {
+            //    $("div.spinnerTarget").addClass("backdrop");
+            //    $("body").css("overflow", "hidden");
+            //    usSpinnerService.spin('spinner-1');
+
+            //    $http({
+            //        method: 'POST',
+            //        url: "/frmGstDocNumTemplate/SaveGstDocNumSeries" + location.search,
+            //        data: JSON.stringify({ id: $scope.documentNumberSeries, deletedItemId: $scope.documentDeletedNumberSeries})
+            //    }).then(function (result) {
+            //        if (result && result.data && result.data.success) {
+            //        } else {
+            //        }
+            //    }).finally(function () {
+            //        $("div.spinnerTarget").removeClass("backdrop");
+            //        $("body").css("overflow", "auto");
+            //        usSpinnerService.stop('spinner-1');
+            //    });
+            //};
+
+            //function GetGstDocNumSeries() {
+            //    $http({
+            //        method: 'GET',
+            //        url: "/frmGstDocNumTemplate/GstDocNumSeries" + location.search
+            //    }).then(function (result) {
+            //        if (result && result.data && result.data.success) {
+            //            $scope.documentNumberSeries = result.data.data;
+            //        } else {
+            //            $scope.documentNumberSeries = [];
+            //        }
+            //    }).finally(function () {
+            //        $("div.spinnerTarget").removeClass("backdrop");
+            //        $("body").css("overflow", "auto");
+            //        usSpinnerService.stop('spinner-1');
+            //    });
+            //}
+
+            $scope.gstNumberSeries = function () {
+                location.href = "/frmGstDocNumTemplate/frmGstNumberSeries/" + $scope.GstRegPP.CompanyID + "/" + $("#ReturnPeriodID").val() + location.search;
+            };
+
+            $scope.setDatacn = function (datacn) {
+                if ($scope.Datac && $scope.Datac.length > 0 && datacn && datacn.length > 0) {
+                    $scope.Datacn = datacn;
+
+                    $scope.Difference = $scope.Datacn.map(function (datacnItem) {
+                        if (datacnItem && datacnItem.sec_nm) {
+                            var datacItem = $scope.Datac.filter(function (datacItem) {
+                                return (datacItem && datacItem.SectionName && datacItem.SectionName == datacnItem.sec_nm);
+                            });
+
+                            if (datacItem && datacItem.length > 0) {
+                                datacItem = datacItem[0];
+                            }
+
+                            return {
+                                invoiceType: datacnItem.sec_nm,
+                                taxableValue: (datacItem ? (datacItem.Txval || 0) : 0) - (datacnItem.ttl_tax || 0),
+                                taxAmount: (datacItem ? ((datacItem.Iamt || 0) + (datacItem.camt || 0) + (datacItem.samt || 0)) : 0) - ((datacnItem.ttl_igst || 0) + (datacnItem.ttl_cgst || 0) + (datacnItem.ttl_sgst || 0)),
+                                cess: (datacItem ? (datacItem.csamt || 0) : 0) - (datacnItem.ttl_cess || 0)
+                            };
+                        }
+                    }).filter(function (item) {
+                        return item;
+                    });
+                } else {
+                    $scope.Datacn = [];
+                    $scope.Difference = [];
+                }
+            };
+
+            @Html.RenderFile("~/scripts/rsgstn.js")
+        });
+
+        $(document).ready(function () {
+            $('.hidbtn').on('click', function () {
+                $('.conbtn').addClass('messagedis');
+            });
+        });
+    </script>
+    <link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    @Html.RenderJsCss(false, "jqueryui")
+}

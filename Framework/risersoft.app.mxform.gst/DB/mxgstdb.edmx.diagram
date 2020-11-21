@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64aff9d21eb0482cb131f447ad4ff264" Name="Diagram1" ZoomLevel="54">
+        <EntityTypeShape EntityType="mxgstdbModel.Campus" Width="1.5" PointX="10.5" PointY="24.25" />
+        <EntityTypeShape EntityType="mxgstdbModel.Company" Width="1.5" PointX="3" PointY="30.25" />
+        <EntityTypeShape EntityType="mxgstdbModel.CPInvoice" Width="1.5" PointX="10.5" PointY="53" />
+        <EntityTypeShape EntityType="mxgstdbModel.CPInvoiceItem" Width="1.5" PointX="12.75" PointY="55.875" />
+        <EntityTypeShape EntityType="mxgstdbModel.Customer" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="mxgstdbModel.Division" Width="1.5" PointX="5.25" PointY="33.5" />
+        <EntityTypeShape EntityType="mxgstdbModel.EwayBill" Width="1.5" PointX="12.75" PointY="29.375" />
+        <EntityTypeShape EntityType="mxgstdbModel.EWayBillVehicle" Width="1.5" PointX="15" PointY="31.75" />
+        <EntityTypeShape EntityType="mxgstdbModel.FinYears" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="mxgstdbModel.GstAdvanceVouch" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="mxgstdbModel.GstAdvanceVouchItem" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="mxgstdbModel.GSTReg" Width="1.5" PointX="8.25" PointY="31.5" />
+        <EntityTypeShape EntityType="mxgstdbModel.Invoice" Width="1.5" PointX="12.75" PointY="16.125" />
+        <EntityTypeShape EntityType="mxgstdbModel.InvoiceItemGst" Width="1.5" PointX="15" PointY="17.75" />
+        <EntityTypeShape EntityType="mxgstdbModel.Party" Width="1.5" PointX="3" PointY="17.25" />
+        <EntityTypeShape EntityType="mxgstdbModel.PartyMain" Width="1.5" PointX="0.75" PointY="22.75" />
+        <EntityTypeShape EntityType="mxgstdbModel.PostPeriod" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="mxgstdbModel.TaxArea" Width="1.5" PointX="6" PointY="30.625" />
+        <EntityTypeShape EntityType="mxgstdbModel.ValidationRule" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="mxgstdbModel.Vendor" Width="1.5" PointX="5.25" PointY="19.875" />
+        <AssociationConnector Association="mxgstdbModel.FK_Campus_GSTRegID" />
+        <AssociationConnector Association="mxgstdbModel.FK_Campus_Party" />
+        <AssociationConnector Association="mxgstdbModel.FK_EwayBill_Campus" />
+        <AssociationConnector Association="mxgstdbModel.FK_Invoice_Campus" />
+        <AssociationConnector Association="mxgstdbModel.FK_Company_PartyMain" />
+        <AssociationConnector Association="mxgstdbModel.FK_Division_Company" />
+        <AssociationConnector Association="mxgstdbModel.FK_GSTReg_Company" />
+        <AssociationConnector Association="mxgstdbModel.FK_CPInvoice_GSTReg" />
+        <AssociationConnector Association="mxgstdbModel.FK_CPInvoiceItemSale_InvoiceSale" />
+        <AssociationConnector Association="mxgstdbModel.FK_EWayBillVehicle_EwayBill" />
+        <AssociationConnector Association="mxgstdbModel.FK_PostPeriod_FinYears" />
+        <AssociationConnector Association="mxgstdbModel.FK_AdvanceCustomerTax_AdvanceCustomer" />
+        <AssociationConnector Association="mxgstdbModel.FK_GSTReg_TaxArea" />
+        <AssociationConnector Association="mxgstdbModel.FK_InvoiceItemSale_InvoiceSale" />
+        <AssociationConnector Association="mxgstdbModel.FK_Party_PartyMain" />
+        <AssociationConnector Association="mxgstdbModel.FK_Vendor_Party" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

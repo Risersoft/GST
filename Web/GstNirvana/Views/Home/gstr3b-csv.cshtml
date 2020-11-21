@@ -1,0 +1,666 @@
+﻿@{
+    ViewData["Title"] = "GST Community Services: GSTR3 Format";
+}
+
+
+<div class="clearfix"></div>
+<div Class="container body-content tabl">
+    @*<div class="col-sm-3 no-padding tablist">
+             <h3>GSTNirvana</h3>
+             <ul class="nav nav-tabs tablist" role="tablist">
+                 <li role="presentation">@Html.ActionLink("Home", "Index", "Gst")</li>
+                 <li role="presentation">@Html.ActionLink("Features", "Features", "Gst")</li>
+                 <li role="presentation">@Html.ActionLink("Invoice API", "API-Invoice", "Gst")</li>
+                 <li role="presentation">@Html.ActionLink("EwayBill API", "API-EwayBill", "Gst")</li>
+        <li role="presentation">@Html.ActionLink("Pricing", "Pricing", "Gst")</li>
+                 <li role="presentation" class="active">@Html.ActionLink("Community", "Community", "Gst")</li>
+             </ul>
+             <div class="clearfix"></div>
+         </div>*@
+
+    <div class="col-sm-9">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="table-main-heading">GSTR3B format definition</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">6&nbsp; Outward Supplies and Inward Supplies</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">6.1&nbsp; Table Name: Details of Outward Supplies and inward supplies liable to reverse charge</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-heading-code">Table Code: sup_details</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                            <tr>
+                                <td>1</td>
+                                <td>osup_det</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">txval</td><td>Total Taxable value</td></tr>
+
+                                        <tr><td>iamt</td><td>Integrated Tax</td></tr>
+                                        <tr><td>camt</td><td>Central Tax</td></tr>
+
+                                        <tr><td>samt</td><td>State/UT Tax</td></tr>
+                                        <tr><td>csamt</td><td>Cess</td></tr>
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Outward taxable  supplies  (other than zero rated, nil rated and exempted)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>osup_zero</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">txval</td><td>Total Taxable value</td></tr>
+
+                                        <tr><td>iamt</td><td>Integrated Tax</td></tr>
+
+                                        <tr><td>csamt</td><td>Cess</td></tr>
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Outward taxable  supplies  (zero rated )
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>3</td>
+                                <td>osup_nil_exmp</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">txval</td><td>Total Taxable value</td></tr>
+
+
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Other outward supplies (Nil rated, exempted)
+                                </td>
+                            </tr>
+                            <tr>
+
+
+                                <td>4</td>
+                                <td>isup_rev</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">txval</td><td>Total Taxable value</td></tr>
+
+                                        <tr><td>iamt</td><td>Integrated Tax</td></tr>
+                                        <tr><td>camt</td><td>Central Tax</td></tr>
+
+                                        <tr><td>samt</td><td>State/UT Tax</td></tr>
+                                        <tr><td>csamt</td><td>Cess</td></tr>
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Inward supplies (liable to reverse charge)
+                                </td>
+                            </tr>
+
+
+                            <tr>
+
+
+                                <td>5</td>
+                                <td>osup_nongst</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">txval</td><td>Total Taxable value</td></tr>
+
+
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Non-GST outward supplies
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">6.2&nbsp; Table Name: Inter-State supplies made to unregistered persons, composition taxable persons and UIN holders</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-heading-code">Table Code: sup_inter</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                            <tr>
+                                <td>1</td>
+                                <td>unreg_details</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">pos</td><td>Place of Supply (State/UT)</td></tr>
+
+                                        <tr><td>txval</td><td>Total Taxable value</td></tr>
+
+
+                                        <tr><td>iamt</td><td>Amount of Integrated Tax</td></tr>
+
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Supplies made to Unregistered Persons
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>comp_details</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">pos</td><td>Place of Supply (State/UT)</td></tr>
+
+                                        <tr><td>txval</td><td>Total Taxable value</td></tr>
+
+
+                                        <tr><td>iamt</td><td>Amount of Integrated Tax</td></tr>
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Supplies made to Composition Taxable Persons
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+
+
+                                <td>3</td>
+                                <td>uin_details</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">pos</td><td>Place of Supply (State/UT)</td></tr>
+
+                                        <tr><td>txval</td><td>Total Taxable value</td></tr>
+
+
+                                        <tr><td>iamt</td><td>Amount of Integrated Tax</td></tr>
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Supplies made to UIN holders
+                                </td>
+                            </tr>
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">7&nbsp; Table Name: Eligible ITC</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-heading-code">Table Code: itc_elg</h4>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+
+                            <tr>
+                                <td>1</td>
+                                <td>itc_avl</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">ty</td><td>Type</td></tr>
+
+                                        <tr><td>iamt</td><td>Integrated Tax</td></tr>
+                                        <tr><td>camt</td><td>Central Tax</td></tr>
+
+                                        <tr><td>samt</td><td>State/UT Tax</td></tr>
+                                        <tr><td>csamt</td><td>Cess</td></tr>
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    ITC Available (whether in full or part)
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+
+
+                                <td>2</td>
+                                <td>itc_rev</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">ty</td><td>Type</td></tr>
+
+                                        <tr><td>iamt</td><td>Integrated Tax</td></tr>
+                                        <tr><td>camt</td><td>Central Tax</td></tr>
+
+                                        <tr><td>samt</td><td>State/UT Tax</td></tr>
+                                        <tr><td>csamt</td><td>Cess</td></tr>
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    ITC Reversed
+                                </td>
+                            </tr>
+                            <tr>
+
+
+                                <td>3</td>
+                                <td>itc_net</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+
+
+                                        <tr><td>iamt</td><td>Integrated Tax</td></tr>
+                                        <tr><td>camt</td><td>Central Tax</td></tr>
+
+                                        <tr><td>samt</td><td>State/UT Tax</td></tr>
+                                        <tr><td>csamt</td><td>Cess</td></tr>
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Net ITC Available
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>itc_inelg</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">ty</td><td>Type</td></tr>
+
+                                        <tr><td>iamt</td><td>Integrated Tax</td></tr>
+                                        <tr><td>camt</td><td>Central Tax</td></tr>
+
+                                        <tr><td>samt</td><td>State/UT Tax</td></tr>
+                                        <tr><td>csamt</td><td>Cess</td></tr>
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Ineligible ITC
+                                </td>
+                            </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">8&nbsp; Table Name: Values of exempt, nil-rated and non-GST  inward supplies</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-heading-code">Table Code : inward_sup</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                            <tr>
+                                <td>1</td>
+                                <td>isup_details</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">ty</td><td>type</td></tr>
+
+                                        <tr><td>inter</td><td>Inter - State supplies</td></tr>
+
+
+                                        <tr><td>intra</td><td>Intra - State supplies</td></tr>
+
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Inward Supply Details
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">9&nbsp; Table Name : Interest & late fee payable</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-heading-code">Table Code : intr_ltfee</h4>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                            <tr>
+                                <td>1</td>
+                                <td>intr_details</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td>iamt</td><td>Integrated Tax</td></tr>
+                                        <tr><td>camt</td><td>Central Tax</td></tr>
+
+                                        <tr><td>samt</td><td>State/UT Tax</td></tr>
+                                        <tr><td>csamt</td><td>Cess</td></tr>
+                                    </table>
+                                </td>
+                                <td></td>
+
+
+                                <td>
+                                    Interest
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>ltfee_details</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+
+                                        <tr><td>camt</td><td>Central Tax</td></tr>
+
+                                        <tr><td>samt</td><td>State/UT Tax</td></tr>
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Interest
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-sub-heading">10&nbsp;Table Name : Payment of tax</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="table-heading-code">Table Code : tax_pmt</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <table style="width:100%" class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr class="table-tr">
+                                <td rowspan="2" class="table-srno">S. No</td>
+                                <td rowspan="2" class="table-srno">Column Name</td>
+                                <td colspan="3" class="table-coldes">Column Description</td>
+                            </tr>
+                            <tr class="table-tr">
+                                <td>Full Value</td>
+                                <td class="table-sample">Sample Value</td>
+                                <td class="table-des">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>tx_py</td>
+
+
+
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">liab_ldg_id</td><td>Liability ledgerid </td></tr>
+                                        <tr><td>trans_typ</td><td>transaction type</td></tr>
+                                        <tr><td>trans_desc</td><td>transaction description</td></tr>
+                                        <tr><td>sgst</td><td><table class="table table-bordered table-striped text-center"><tr><td>intr</td><td>Interest payable</td></tr><tr><td>tx</td><td>Tax payable</td></tr><tr><td>fee</td><td>Late fee payable</td></tr></table></td></tr>
+                                        <tr><td>igst</td><td><table class="table table-bordered table-striped text-center"><tr><td>intr</td><td>Interest payable</td></tr><tr><td>tx</td><td>Tax payable</td></tr></table></td></tr>
+                                        <tr><td>cgst</td><td><table class="table table-bordered table-striped text-center"><tr><td>intr</td><td>Interest payable</td></tr><tr><td>tx</td><td>Tax payable</td></tr><tr><td>fee</td><td>Late fee payable</td></tr></table></td></tr>
+                                        <tr><td>cess</td><td><table class="table table-bordered table-striped text-center"><tr><td>intr</td><td>Interest payable</td></tr><tr><td>tx</td><td>Tax payable</td></tr></table></td></tr>
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Tax Payable
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>pdcash</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">liab_ldg_id</td><td>Liability ledger Id</td></tr>
+                                        <tr><td>tran_typ</td><td>Transaction type</td></tr>
+                                        <tr><td>ipd</td><td>Igst paid</td></tr>
+                                        <tr><td>cpd</td><td>Cgst paid</td></tr>
+                                        <tr><td>spd</td><td>Sgst paid </td></tr>
+                                        <tr><td>cspd</td><td>Cess paid</td></tr>
+                                        <tr><td>i_intrpd</td><td>Interest Paid  against IGST</td></tr>
+                                        <tr><td>c_intrpd</td><td>Interest Paid  against CGST</td></tr>
+                                        <tr><td>s_intrpd</td><td>Interest Paid  against SGST</td></tr>
+                                        <tr><td>cs_intrpd</td><td>Interest Paid  against CESS</td></tr>
+
+
+                                        <tr><td>c_lfeepd</td><td>Late Fee Paid against CGST</td></tr>
+                                        <tr><td>s_lfeepd</td><td>Late Fee Paid against SGST</td></tr>
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    List of Paid Through Cash
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>3</td>
+                                <td>pditc</td>
+                                <td>
+                                    <table style="width:100%;margin:0px!important" class="table table-bordered table-striped text-center">
+                                        <tr><td style="width:28%">i_pdi</td><td>IGST paid using igst</td></tr>
+
+                                        <tr><td>i_pdc</td><td>IGST paid using Cgst</td></tr>
+
+
+                                        <tr><td>i_pds</td><td>IGST paid using Sgst</td></tr>
+                                        <tr><td>c_pdi</td><td>CGST paid using igst</td></tr>
+                                        <tr><td>c_pdc</td><td>CGST paid using cgst</td></tr>
+                                        <tr><td>s_pdi</td><td>SGST paid using igst</td></tr>
+                                        <tr><td>s_pds</td><td>SGST paid using sgst </td></tr>
+                                        <tr><td>cs_pdcs</td><td>Cess paid using cess</td></tr>
+
+
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Paid Through Credit
+                                </td>
+                            </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

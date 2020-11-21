@@ -1,0 +1,176 @@
+﻿@using risersoft.app.mxform.gst
+@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+
+@model frmGstValidationRuleModel
+@{
+    ViewData["Title"] = "ValidationRule";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = JsonConvert.SerializeObject(Model, Formatting.Indented,
+                            new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml, NullValueHandling = NullValueHandling.Ignore });
+
+}
+
+<link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<div class="container cbackground">
+    <form action="" method="post" name="userform" id="userform" ng-controller="FormController">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+        <div Class="form-horizontal">
+            <div class="row"></div>
+            <div Class="row" style="margin-top: 40px;">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Code</Label>
+                    <input type="text" ng-model="DBValidation.Code" Class="form-control" />
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Doc Type<label class="hdisp" id="party">Required Field</label></Label>
+                    <select name="Appc" ng-model="DBValidation.DocTypeSelected"
+                            ng-options="item.descriptot for item in dsCombo.DocType track by item.Code" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.appc.$invalid]"></select>
+                </div>
+            </div>
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Validation Text</Label>
+                    <input type="text" ng-model="DBValidation.ValidationText" Class="form-control" />
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Rule Type</Label>
+                    <select name="userc" ng-model="DBValidation.RuleTypeSelected" ng-options="itemc.descriptot for itemc in dsCombo.RuleType track by itemc.Code" class="form-control" required ng-class="{true: 'error'}[submitted() && userform.userc.$invalid]"></select>
+
+                </div>
+
+
+
+
+            </div>
+
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Field Name</Label>
+                    <input type="text" ng-model="DBValidation.FieldName" Class="form-control" />
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Rule Level<label class="hdisp" id="party">Required Field</label></Label>
+                    <select name="Appn" ng-model="DBValidation.RuleLevelSelected"
+                            ng-options="itemn.descriptot for itemn in dsCombo.RuleLevel track by itemn.Code" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.appn.$invalid]"></select>
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+            <div Class="row">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Result Type</Label>
+                    <select name="Appc" ng-model="DBValidation.ResultTypeSelected"
+                            ng-options="item.descriptot for item in dsCombo.ResultType track by item.Code" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.appc.$invalid]"></select>
+                </div>
+
+
+
+
+
+
+
+            </div>
+            <div Class="row">
+
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-10">
+                    <Label Class="control-label labeltext"></Label>
+                    <textarea ng-model="DBValidation.Expression" style="height:185px;max-width: 523px;" class="form-control"></textarea>
+
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div Class="row" style="margin-bottom: 15px;">
+
+
+                <div Class="col-md-1"></div>
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">IsDisabled</Label>
+                    <input type="checkbox" ng-model="DBValidation.IsDisabled" />
+
+
+                </div>
+            </div>
+            @Html.Partial("_SavePanel")
+        </div>
+    </form>
+</div>
+
+
+
+@section botscripts{
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http) {
+            $scope.model = JSON.parse($("#model_json").val());
+            $scope.status = 'loaded';
+
+            var loadmodel = function (result) {
+                $scope.model = result;
+                $scope.DBValidation = $scope.model.dsForm.DT[0];
+                //alert($scope.AppItem);
+                $scope.dsCombo = $scope.model.dsCombo;
+            @Html.RenderLookup("DBValidation", Model, Model.dsForm.Tables[0]);
+            };
+
+            loadmodel($scope.model);
+
+            $scope.cleanupmodel = function (datamodel) {
+                //empty function
+            };
+
+            $scope.calculatemodel = function () { };
+
+            $scope.visdel = true;
+            @Html.RenderFile("~/scripts/rsforms.js")
+        });
+    </script>
+    <link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    @Html.RenderJsCss(false, "jqueryui")
+}

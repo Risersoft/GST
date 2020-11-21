@@ -1,0 +1,222 @@
+﻿@using risersoft.app.mxform
+@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+
+@model frmApiTaskModel
+@{
+    ViewData["Title"] = "Purchase Invoice";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = JsonConvert.SerializeObject(Model, Formatting.Indented,
+                    new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml, NullValueHandling = NullValueHandling.Ignore });
+}
+
+<link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+<div class="container cbackground">
+    <form action="" method="post" name="userform" ng-controller="FormController">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+        <div Class="form-horizontal">
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-md-1"></div>
+
+                <div class="col-md-3"><Label Class="control-label labeltext">Action Type</Label><input type="text" ng-model="frmTask.ActionType" class="form-control" readonly /></div>
+                <div class="col-md-3"><Label Class="control-label labeltext">Submitted ON</Label><input type="text" ng-model="frmTask.SubmittedOn" class="form-control" readonly /></div>
+                <div class="col-md-3"><Label Class="control-label labeltext">File Name</Label><input type="text" ng-model="frmTask.FileName" class="form-control" readonly /></div>
+            </div>
+            <div Class="row" ng-hide="OrgInvoice">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Action Sub Type</Label>
+                    <input type="text" ng-model="frmTask.ActionSubType" class="form-control" readonly />
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Completed On</Label>
+                    <input type="text" ng-model="frmTask.CompletedOn" class="form-control" readonly />
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Node Name</Label>
+                    <input type="text" ng-model="frmTask.NodeName" class="form-control" readonly />
+                </div>
+            </div>
+            <div Class="row">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">User</Label>
+                    <input type="text" ng-model="frmTask.UserID" Class="form-control" readonly />
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Run At</Label>
+                    <input type="text" ng-model="frmTask.RunAt" Class="form-control" readonly />
+                </div>
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Message</Label>
+                    <input type="text" ng-model="frmTask.Message" Class="form-control" readonly />
+                </div>
+            </div>
+
+            <div Class="row">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Status</Label>
+                    <input type="text" ng-model="frmTask.Status" class="form-control" readonly />
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Duration</Label>
+                    <input type="text" ng-model="frmTask.DurationMs" class="form-control" readonly />
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Success</Label>
+                    <input type="text" ng-model="frmTask.Success" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div Class="row">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">File Time</Label>
+                    <input type="text" ng-model="frmTask.FileTime" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="row"><hr /></div>
+            <div class="row">
+                <div class="container marb" ng-repeat="row in TransItem" style="padding-top:5px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active labeltext"><a href="#tab{{$index}}_1" class="labeltext" data-toggle="tab" ng-show="frmTask.ActionType=='import'">Import</a></li>
+                        <li class="active labeltext"><a href="#tab{{$index}}_2" class="labeltext" data-toggle="tab" ng-show="frmTask.ActionType!='import'">Transaction</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab{{$index}}_1" ng-show="frmTask.ActionType=='import'">
+
+                            <div class="row" style="background-color: #eeeeee;padding-top:17px;">
+                                <a href="" class="delete" ng-click="delete($index)"><span class="glyphicon glyphicon-remove-circle" style="color: #d83e3b;margin-right: 8px;"></span></a>
+
+
+                                <div class="col-md-1"><Label Class="control-label">S.No.</Label><br />[{{$index+1}}]</div>
+
+                                <div class="col-md-2"><Label Class="control-label">File Name</Label> <input type="text" ng-model="row.FileName" class="form-control" readonly /></div>
+                                <div class="col-md-2"><Label Class="control-label">File Time</Label> <input type="text" ng-model="row.FileTime" class="form-control" readonly /></div>
+                                <div class="col-md-2"><Label Class="control-label">File SizeKB</Label> <input type="text" ng-model="row.FileSizeKB" class="form-control" readonly /></div>
+                                <div class="col-md-2"><Label Class="control-label">URL</Label> <input type="text" ng-model="row.URL" class="form-control" readonly /></div>
+                            </div>
+
+
+
+
+
+                            <div class="row" style="background-color: #eeeeee;">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><Label Class="control-label">ErrorFileURL</Label><input type="text" ng-model="row.ErrorFileURL" class="form-control" readonly /></div>
+
+                                <div class="col-md-2"><Label Class="control-label">DataRowCount</Label><input type="text" ng-model="row.DataRowCount" Class="form-control" readonly /></div>
+
+                                <div class="col-md-2"><Label Class="control-label">DataRecordCount</Label><input type="text" ng-model="row.DataRecordCount" Class="form-control" readonly /></div>
+
+                                <div class="col-md-2"><Label Class="control-label"> </Label></div><div class="col-md-2"></div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="tab-pane active" id="tab{{$index}}_2" ng-show="frmTask.ActionType!='import'">
+                            <div class="row" style="background-color: #eeeeee;">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><Label Class="control-label">Descrip</Label><input type="text" ng-model="row.Descrip" class="form-control" readonly /></div>
+
+
+                                <div class="col-md-2"><Label Class="control-label">Success</Label><input type="text" ng-model="row.Successful" class="form-control" readonly /></div>
+
+
+
+                                <div class="col-md-2"><Label Class="control-label">Failed</Label><input type="text" Class="form-control" readonly /></div>
+                                <div class="col-md-2"><Label Class="control-label">In Process</Label><input type="text" ng-model="row.TInProcess" Class="form-control" readonly /></div>
+
+
+
+
+                            </div>
+
+
+                            <div class="row" style="background-color: #eeeeee;">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2"><Label Class="control-label">GSTIN</Label><input type="text" ng-model="row.GSTIN" class="form-control" readonly /></div>
+                                <div class="col-md-2"><Label Class="control-label">UserName</Label><input type="text" ng-model="row.UserName" class="form-control" readonly /></div>
+                                <div class="col-md-2"><Label Class="control-label">Dated</Label><input type="text" ng-model="row.Dated" class="form-control" readonly /></div>
+
+
+
+                                <div class="col-md-2"><Label Class="control-label">TransType</Label><input type="text" ng-model="row.TransType" Class="form-control" readonly /></div>
+                                <div class="col-md-2"></div>
+                            </div>
+
+
+
+                            <div class="row" style="background-color: #eeeeee;">
+                                <div class="col-md-1"></div>
+
+
+                                <div class="col-md-2"><Label Class="control-label">TransSubType</Label><input type="text" ng-model="row.TransSubType" Class="form-control" readonly /></div>
+
+                                <div class="col-md-2"><Label Class="control-label">RequestType</Label><input type="text" ng-model="row.RequestType" Class="form-control" readonly /></div>
+
+                                <div class="col-md-2"><Label Class="control-label">RequestURL</Label><input type="text" ng-model="row.RequestURL" Class="form-control" readonly /></div>
+
+                                <div class="col-md-2"><Label Class="control-label">Reference_ID</Label><input type="text" ng-model="row.Reference_ID" Class="form-control" readonly /></div><div class="col-md-2"></div>
+                            </div>
+                            <div class="row" style="background-color: #eeeeee;">
+
+                                <div class="col-md-1"></div>
+
+                                <div class="col-md-2"><Label Class="control-label">Status Code</Label><input type="text" ng-model="row.StatusCode" Class="form-control" readonly /></div>
+
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom:17px;padding-bottom: 26px;background-color: #eeeeee;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section BotScripts{
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http) {
+            $scope.model = JSON.parse($("#model_json").val());
+            $scope.status = 'loaded';
+            var loadmodel = function (result) {
+                $scope.model = result;
+                $scope.frmTask = $scope.model.dsForm.DT[0];
+                $scope.TransItem = $scope.model.dsForm.Trans;
+                $scope.dsCombo = $scope.model.dsCombo;
+            };
+
+            loadmodel($scope.model);
+
+            $scope.calculate = function (row) { };
+            $scope.calculateAll = function () { };
+            $scope.calculateAll();
+            $scope.cleanupmodel = function (datamodel) {
+                //empty function
+            };
+            $scope.calculatemodel = function () {
+                $scope.calculateAll();
+            };
+
+            $scope.visdel = true; $scope.visdelete = false;
+        @Html.RenderFile("~/scripts/rsforms.js")
+        });
+    </script>
+    @Html.RenderJsCss(false, "jqueryui")
+}

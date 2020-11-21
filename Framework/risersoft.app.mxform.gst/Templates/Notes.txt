@@ -1,0 +1,8 @@
+﻿Points to be check in Templates > Excel Files :-
+
+1. Worksheet Format should be Excel 2007-365(Extension of the file).
+2. Cursor Position should be on the First Row and First column of the worksheet.
+3. Columns Numbering done only for the columns present in the excel sheet, extra numbering should be removed.
+4. Borders should be removed from extra cells(where columns are blank).
+5. Sheet name & the name provided in Schema should be same.
+6. First Tab should be open, before saving the Sheet.

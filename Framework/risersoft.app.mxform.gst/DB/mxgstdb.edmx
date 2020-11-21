@@ -1,0 +1,2854 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mxgstdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Campus">
+          <Key>
+            <PropertyRef Name="CampusID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="CampusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartyID" Type="int" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="GSTRegID" Type="int" />
+          <Property Name="DispName" Type="varchar" MaxLength="50" />
+          <Property Name="TCName" Type="varchar" MaxLength="1000" />
+          <Property Name="CampusType" Type="varchar" MaxLength="2" />
+          <Property Name="PIDUnitID" Type="int" />
+          <Property Name="EmailPur" Type="varchar" MaxLength="50" />
+          <Property Name="EmailSls" Type="varchar" MaxLength="50" />
+          <Property Name="EmailGen" Type="varchar" MaxLength="50" />
+          <Property Name="SeqMult" Type="int" />
+          <Property Name="SeqOffset" Type="int" />
+          <Property Name="AccountMapCode" Type="varchar" MaxLength="10" />
+          <Property Name="PONote" Type="varchar" MaxLength="1000" />
+          <Property Name="FactoryLicenseNumber" Type="varchar" MaxLength="50" />
+          <Property Name="HasPunches" Type="bit" />
+          <Property Name="AcceptsOrder" Type="bit" />
+          <Property Name="AcceptsEnq" Type="bit" />
+          <Property Name="DivisionID" Type="int" />
+          <Property Name="DivisionCodeList" Type="varchar" MaxLength="50" />
+          <Property Name="GeoAreaList" Type="text" />
+          <Property Name="CampusCode" Type="varchar" MaxLength="10" />
+          <Property Name="InvoiceNote" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MainPartyID" Type="int" />
+          <Property Name="CompName" Type="varchar" MaxLength="100" />
+          <Property Name="BrandName" Type="varchar" MaxLength="50" />
+          <Property Name="SalesEmpID" Type="int" />
+          <Property Name="PurchaseEmpID" Type="int" />
+          <Property Name="HOCampusID" Type="int" />
+          <Property Name="ESIReasons" Type="varchar" MaxLength="50" />
+          <Property Name="HRStartDate" Type="datetime" />
+          <Property Name="FinStartDate" Type="datetime" />
+          <Property Name="BonusStartMonth" Type="int" />
+          <Property Name="LeaveStartMonth" Type="int" />
+          <Property Name="CurrFinYearID" Type="int" />
+          <Property Name="CurrLeaveMasterID" Type="int" />
+          <Property Name="GratuityDaysPerYear" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GratuityMinMonths" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LeaveCashDaysYear" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PrincipalEmpID" Type="int" />
+          <Property Name="Occupier" Type="varchar" MaxLength="100" />
+          <Property Name="CustCode" Type="varchar" MaxLength="50" />
+          <Property Name="PolicyNumGG" Type="varchar" MaxLength="50" />
+          <Property Name="PolicyNumEDLIP" Type="varchar" MaxLength="50" />
+          <Property Name="ARDGG" Type="datetime" />
+          <Property Name="ARDEDLIP" Type="datetime" />
+          <Property Name="LunchInterval" Type="int" />
+          <Property Name="Manager" Type="varchar" MaxLength="100" />
+          <Property Name="NatureIndustry" Type="varchar" MaxLength="100" />
+          <Property Name="EmploymentOffice" Type="varchar" MaxLength="1000" />
+          <Property Name="MainShiftID" Type="int" />
+          <Property Name="AdvAttAvgMin" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="AdvLimitPercent" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="AdvanceDay" Type="int" />
+          <Property Name="AdvanceRequestDays" Type="int" />
+          <Property Name="TPCertLogo1" Type="image" />
+          <Property Name="LoanRules" Type="text" />
+          <Property Name="PANNum" Type="varchar" MaxLength="50" />
+          <Property Name="CINNum" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CPInvoice">
+          <Key>
+            <PropertyRef Name="CPInvoiceID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="CPInvoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GstRegID" Type="int" />
+          <Property Name="VendorID" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="InvoiceID" Type="int" />
+          <Property Name="ReturnPeriodID" Type="int" />
+          <Property Name="CTIN" Type="varchar" MaxLength="50" />
+          <Property Name="CFS" Type="varchar" MaxLength="10" />
+          <Property Name="POS" Type="varchar" MaxLength="2" />
+          <Property Name="UpdBy" Type="varchar" MaxLength="1" />
+          <Property Name="Flag" Type="varchar" MaxLength="1" />
+          <Property Name="CFlag" Type="varchar" MaxLength="1" />
+          <Property Name="OPD" Type="varchar" MaxLength="6" />
+          <Property Name="POSTaxAreaID" Type="int" />
+          <Property Name="DocType" Type="varchar" MaxLength="2" />
+          <Property Name="GstInvoiceType" Type="varchar" MaxLength="10" />
+          <Property Name="Chksum" Type="varchar" MaxLength="50" />
+          <Property Name="INUM" Type="varchar" MaxLength="100" />
+          <Property Name="Idt" Type="datetime" />
+          <Property Name="inv_typ" Type="varchar" MaxLength="50" />
+          <Property Name="val" Type="money" />
+          <Property Name="BillOf" Type="varchar" MaxLength="2" />
+          <Property Name="RCHRG" Type="varchar" MaxLength="2" />
+          <Property Name="IsAmendment" Type="bit" />
+          <Property Name="PostingDate" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+          <Property Name="Remark" Type="varchar" MaxLength="1000" />
+          <Property Name="OINum" Type="varchar" MaxLength="50" />
+          <Property Name="OIdt" Type="datetime" />
+          <Property Name="ETIN" Type="varchar" MaxLength="50" />
+          <Property Name="port_code" Type="varchar" MaxLength="50" />
+          <Property Name="nt_num" Type="varchar" MaxLength="50" />
+          <Property Name="nt_dt" Type="datetime" />
+          <Property Name="ont_num" Type="varchar" MaxLength="50" />
+          <Property Name="ont_dt" Type="datetime" />
+          <Property Name="ntty" Type="varchar" MaxLength="50" />
+          <Property Name="MatchCode" Type="varchar" MaxLength="50" />
+          <Property Name="DLTransactionId" Type="uniqueidentifier" />
+          <Property Name="ActionFlag" Type="varchar" MaxLength="2" />
+          <Property Name="ActionTransactionId" Type="uniqueidentifier" />
+          <Property Name="MarkPending" Type="bit" />
+          <Property Name="Diff_Percent" Type="int" />
+          <Property Name="p_gst" Type="varchar" MaxLength="2" />
+          <Property Name="MMDescrip" Type="varchar" MaxLength="1000" />
+          <Property Name="ImportFileID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="CPInvoiceItem">
+          <Key>
+            <PropertyRef Name="CPInvoiceItemID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="CPInvoiceItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CPInvoiceID" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="SortIndex" Type="int" />
+          <Property Name="TY" Type="varchar" MaxLength="2" />
+          <Property Name="TXVAL" Type="money" />
+          <Property Name="RT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="IAMT" Type="money" />
+          <Property Name="CAMT" Type="money" />
+          <Property Name="SAMT" Type="money" />
+          <Property Name="CSAMT" Type="money" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartyID" Type="int" />
+          <Property Name="DocSysNum" Type="int" />
+          <Property Name="CustomerCode" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerClass" Type="varchar" MaxLength="50" />
+          <Property Name="Remark" Type="varchar" MaxLength="500" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="RegLastCorres" Type="datetime" />
+          <Property Name="RegUserID" Type="uniqueidentifier" />
+          <Property Name="RegPersPartyID" Type="int" />
+          <Property Name="RequireReg" Type="bit" />
+          <Property Name="RegDate" Type="datetime" />
+          <Property Name="RegExp" Type="datetime" />
+          <Property Name="STFPersPartyID" Type="int" />
+          <Property Name="TCAdd" Type="varchar" MaxLength="8000" />
+          <Property Name="Account_Name" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+          <Property Name="ImportFileID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="DivisionID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="DivisionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="DivisionCode" Type="varchar" MaxLength="10" />
+          <Property Name="DivisionName" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="EwayBill">
+          <Key>
+            <PropertyRef Name="EwayBillID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="EwayBillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EwayBillNum" Type="bigint" />
+          <Property Name="EwayBillDate" Type="datetime" />
+          <Property Name="CampusID" Type="int" />
+          <Property Name="ReturnPeriodID" Type="int" />
+          <Property Name="SupplyType" Type="varchar" MaxLength="50" />
+          <Property Name="SubSupplyType" Type="varchar" MaxLength="50" />
+          <Property Name="DocType" Type="varchar" MaxLength="50" />
+          <Property Name="DocumentID" Type="int" />
+          <Property Name="InvoiceID" Type="int" />
+          <Property Name="ODNoteID" Type="int" />
+          <Property Name="ChallanID" Type="int" />
+          <Property Name="TransVendorID" Type="int" />
+          <Property Name="TransDistance" Type="int" />
+          <Property Name="NoValidDays" Type="int" />
+          <Property Name="ValidUpto" Type="datetime" />
+          <Property Name="ewbRejectedDate" Type="datetime" />
+          <Property Name="cancelDate" Type="datetime" />
+          <Property Name="LastVehicleID" Type="int" />
+          <Property Name="fromAddr1" Type="varchar" MaxLength="1000" />
+          <Property Name="fromAddr2" Type="varchar" MaxLength="1000" />
+          <Property Name="fromPlace" Type="varchar" MaxLength="1000" />
+          <Property Name="fromPinCode" Type="int" />
+          <Property Name="fromStateCode" Type="int" />
+          <Property Name="toAddr1" Type="varchar" MaxLength="1000" />
+          <Property Name="toAddr2" Type="varchar" MaxLength="1000" />
+          <Property Name="toPlace" Type="varchar" MaxLength="1000" />
+          <Property Name="toPinCode" Type="int" />
+          <Property Name="toStateCode" Type="int" />
+          <Property Name="actFromStateCode" Type="int" />
+          <Property Name="actToStateCode" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+          <Property Name="transactionType" Type="int" />
+          <Property Name="dispatchFromGstin" Type="varchar" MaxLength="1000" />
+          <Property Name="dispatchFromTradeName" Type="varchar" MaxLength="1000" />
+          <Property Name="shipToGSTIN" Type="varchar" MaxLength="1000" />
+          <Property Name="shipToTradeName" Type="varchar" MaxLength="1000" />
+          <Property Name="otherValue" Type="money" />
+          <Property Name="cessNonAdvolValue" Type="money" />
+          <Property Name="cessNonAdvolRT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="SubSupplyDesc" Type="text" />
+          <Property Name="DocNum" Type="varchar" MaxLength="50" />
+          <Property Name="DocDate" Type="datetime" />
+          <Property Name="VendorID" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="VAL" Type="money" />
+          <Property Name="Sply_Ty" Type="varchar" MaxLength="50" />
+          <Property Name="ImportFileID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="EWayBillVehicle">
+          <Key>
+            <PropertyRef Name="EWayBillVehicleID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="EWayBillVehicleID" Type="decimal" Precision="12" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EwayBillID" Type="int" />
+          <Property Name="EnteredDate" Type="datetime" />
+          <Property Name="VehicleType" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleNo" Type="varchar" MaxLength="20" />
+          <Property Name="FromPlace" Type="varchar" MaxLength="50" />
+          <Property Name="FromState" Type="varchar" MaxLength="50" />
+          <Property Name="ReasonCode" Type="varchar" MaxLength="10" />
+          <Property Name="TransDocNo" Type="varchar" MaxLength="50" />
+          <Property Name="TransDocDate" Type="datetime" />
+          <Property Name="TransMode" Type="int" />
+          <Property Name="UserGSTINTransin" Type="varchar" MaxLength="50" />
+          <Property Name="TripshtNo" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FinYears">
+          <Key>
+            <PropertyRef Name="FinYearID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="FinYearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StDate" Type="datetime" />
+          <Property Name="EnDate" Type="datetime" />
+          <Property Name="Descrip" Type="nvarchar" MaxLength="61" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="GstAdvanceVouch">
+          <Key>
+            <PropertyRef Name="GstAdvanceVouchID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="GstAdvanceVouchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CampusID" Type="int" />
+          <Property Name="DivisionID" Type="int" />
+          <Property Name="PaymentID" Type="int" />
+          <Property Name="InvoiceID" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="VendorID" Type="int" />
+          <Property Name="DocType" Type="varchar" MaxLength="3" />
+          <Property Name="AdvanceVouchType" Type="varchar" MaxLength="1" />
+          <Property Name="OrigVouchID" Type="int" />
+          <Property Name="RefundVouchID" Type="int" />
+          <Property Name="RootVouchID" Type="int" />
+          <Property Name="POSTaxAreaID" Type="int" />
+          <Property Name="ReturnPeriodID" Type="int" />
+          <Property Name="ImportFileID" Type="uniqueidentifier" />
+          <Property Name="Dated" Type="datetime" />
+          <Property Name="VouchNum" Type="varchar" MaxLength="50" />
+          <Property Name="Remark" Type="varchar" MaxLength="100" />
+          <Property Name="StatusNum" Type="int" />
+          <Property Name="IsAmendment" Type="bit" />
+          <Property Name="Sply_Ty" Type="varchar" MaxLength="50" />
+          <Property Name="AmountTot" Type="money" />
+          <Property Name="LastUpdated" Type="smalldatetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="IsReturn" Type="bit" />
+          <Property Name="Diff_Percent" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RCHRG" Type="varchar" MaxLength="50" />
+          <Property Name="SupplyFromTaxAreaID" Type="int" />
+          <Property Name="DocumentType" Type="varchar" MaxLength="50" />
+          <Property Name="PartyGstRegType" Type="varchar" MaxLength="50" />
+          <Property Name="VouchNumDynamicPart" Type="bigint" />
+          <Property Name="InvoiceNumberTemplateId" Type="int" />
+        </EntityType>
+        <EntityType Name="GstAdvanceVouchItem">
+          <Key>
+            <PropertyRef Name="GstAdvanceVouchItemID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="GstAdvanceVouchItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GstAdvanceVouchID" Type="int" />
+          <Property Name="LineSNum" Type="int" />
+          <Property Name="DiffAD_AMT" Type="money" />
+          <Property Name="DiffIAMT" Type="money" />
+          <Property Name="DiffSAMT" Type="money" />
+          <Property Name="DiffCAMT" Type="money" />
+          <Property Name="DiffCSAMT" Type="money" />
+          <Property Name="AD_AMT" Type="money" />
+          <Property Name="I_RT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="C_RT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="S_RT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RT" Type="money" />
+          <Property Name="IAMT" Type="money" />
+          <Property Name="CAMT" Type="money" />
+          <Property Name="SAMT" Type="money" />
+          <Property Name="CSAMT" Type="money" />
+          <Property Name="Cess_Rt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GSTR3B31Section" Type="varchar" MaxLength="100" />
+          <Property Name="GSTR3B32Section" Type="varchar" MaxLength="100" />
+          <Property Name="GSTR3B5Section" Type="varchar" MaxLength="100" />
+          <Property Name="RemarkItem" Type="varchar" MaxLength="1000" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GSTReg">
+          <Key>
+            <PropertyRef Name="GSTRegID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="GSTRegID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="TaxAreaID" Type="int" />
+          <Property Name="GSTIN" Type="varchar" MaxLength="50" />
+          <Property Name="GSTNUserId" Type="varchar" MaxLength="50" />
+          <Property Name="ApplicationNum" Type="varchar" MaxLength="50" />
+          <Property Name="RegDate" Type="datetime" />
+          <Property Name="SearchResult" Type="text" />
+          <Property Name="PartialCredit" Type="bit" />
+          <Property Name="AuthPAN" Type="varchar" MaxLength="50" />
+          <Property Name="EWBUserName" Type="varchar" MaxLength="50" />
+          <Property Name="EWBPassword" Type="varchar" MaxLength="50" />
+          <Property Name="GSTRegType" Type="varchar" MaxLength="50" />
+          <Property Name="TurnOver" Type="money" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="InvoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CampusID" Type="int" />
+          <Property Name="CDNInvoiceID" Type="int" />
+          <Property Name="OrigInvoiceID" Type="int" />
+          <Property Name="RootInvoiceID" Type="int" />
+          <Property Name="DivisionID" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="ConsigneePrefix" Type="varchar" MaxLength="1000" />
+          <Property Name="VendorID" Type="int" />
+          <Property Name="ConsigneeID" Type="int" />
+          <Property Name="POSTaxAreaID" Type="int" />
+          <Property Name="ReturnPeriodID" Type="int" />
+          <Property Name="ImportFileID" Type="uniqueidentifier" />
+          <Property Name="DocType" Type="varchar" MaxLength="2" />
+          <Property Name="GSTInvoiceType" Type="varchar" MaxLength="10" />
+          <Property Name="GSTInvoiceSubType" Type="varchar" MaxLength="50" />
+          <Property Name="Sply_Ty" Type="varchar" MaxLength="50" />
+          <Property Name="ExportDutyType" Type="varchar" MaxLength="50" />
+          <Property Name="BillOf" Type="varchar" MaxLength="2" />
+          <Property Name="RCHRG" Type="varchar" MaxLength="2" />
+          <Property Name="IsAmendment" Type="bit" />
+          <Property Name="InvoiceNum" Type="varchar" MaxLength="100" />
+          <Property Name="InvoiceDate" Type="datetime" />
+          <Property Name="VAL" Type="money" />
+          <Property Name="StatusNum" Type="int" />
+          <Property Name="Remark" Type="varchar" MaxLength="1000" />
+          <Property Name="ETIN" Type="varchar" MaxLength="50" />
+          <Property Name="SBPCode" Type="varchar" MaxLength="50" />
+          <Property Name="SBNUM" Type="int" />
+          <Property Name="SBDT" Type="datetime" />
+          <Property Name="boe_num" Type="varchar" MaxLength="50" />
+          <Property Name="boe_dt" Type="datetime" />
+          <Property Name="boe_val" Type="money" />
+          <Property Name="port_code" Type="varchar" MaxLength="50" />
+          <Property Name="is_sez" Type="varchar" MaxLength="2" />
+          <Property Name="stin" Type="varchar" MaxLength="50" />
+          <Property Name="p_gst" Type="varchar" MaxLength="2" />
+          <Property Name="MatchCode" Type="varchar" MaxLength="50" />
+          <Property Name="Lastupdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+          <Property Name="LastTransactionId" Type="uniqueidentifier" />
+          <Property Name="ActionFlag" Type="varchar" MaxLength="1" />
+          <Property Name="Flag" Type="varchar" MaxLength="1" />
+          <Property Name="CFlag" Type="varchar" MaxLength="1" />
+          <Property Name="CPInvoiceID" Type="int" />
+          <Property Name="ShipFromTaxAreaID" Type="int" />
+          <Property Name="ShipToTaxAreaID" Type="int" />
+          <Property Name="UniqueKey" Type="varchar" MaxLength="700" />
+          <Property Name="Diff_Percent" Type="int" />
+          <Property Name="SaleBondedWH" Type="bit" />
+          <Property Name="Rsn" Type="varchar" MaxLength="100" />
+          <Property Name="CancelDate" Type="datetime" />
+          <Property Name="IsForeignCurrency" Type="bit" />
+          <Property Name="Ex_Rt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PartyGstRegType" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionType" Type="varchar" MaxLength="50" />
+          <Property Name="DocumentType" Type="varchar" MaxLength="50" />
+          <Property Name="gstn_status_cd" Type="varchar" MaxLength="50" />
+          <Property Name="gstn_error_cd" Type="varchar" MaxLength="50" />
+          <Property Name="gstn_error_msg" Type="varchar(max)" />
+          <Property Name="IsCreditISD" Type="bit" />
+          <Property Name="InvoiceNumDynamicPart" Type="bigint" />
+          <Property Name="InvoiceNumberTemplateId" Type="int" />
+        </EntityType>
+        <EntityType Name="InvoiceItemGst">
+          <Key>
+            <PropertyRef Name="InvoiceItemGSTID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="InvoiceItemGSTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InvoiceID" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="LineSNum" Type="int" />
+          <Property Name="TY" Type="varchar" MaxLength="2" />
+          <Property Name="Hsn_Sc" Type="varchar" MaxLength="50" />
+          <Property Name="TXVAL" Type="money" />
+          <Property Name="I_RT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="C_RT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="S_RT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="IAMT" Type="money" />
+          <Property Name="CAMT" Type="money" />
+          <Property Name="SAMT" Type="money" />
+          <Property Name="CSAMT" Type="money" />
+          <Property Name="Uqc" Type="varchar" MaxLength="50" />
+          <Property Name="Qty" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BasicRate" Type="money" />
+          <Property Name="tx_i" Type="money" />
+          <Property Name="tx_c" Type="money" />
+          <Property Name="tx_s" Type="money" />
+          <Property Name="tx_cs" Type="money" />
+          <Property Name="elg" Type="varchar" MaxLength="2" />
+          <Property Name="GstTaxType" Type="varchar" MaxLength="100" />
+          <Property Name="Details" Type="varchar" MaxLength="1000" />
+          <Property Name="GSTR3B31Section" Type="varchar" MaxLength="100" />
+          <Property Name="GSTR3B32Section" Type="varchar" MaxLength="100" />
+          <Property Name="GSTR3B4ASection" Type="varchar" MaxLength="100" />
+          <Property Name="GSTR3B4DSection" Type="varchar" MaxLength="100" />
+          <Property Name="GSTR3B5Section" Type="varchar" MaxLength="100" />
+          <Property Name="ChargeBeforeTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DiscountBeforeTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Cess_Rt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Hsn_Desc" Type="varchar" MaxLength="50" />
+          <Property Name="ITCReversal_4243" Type="bit" />
+          <Property Name="ITCDate" Type="datetime" />
+          <Property Name="RemarkItem" Type="varchar" MaxLength="1000" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="PartyID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="PartyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MainPartyID" Type="int" />
+          <Property Name="PartyCode" Type="varchar" MaxLength="50" />
+          <Property Name="PartyName" Type="varchar" MaxLength="1000" />
+          <Property Name="DocSysNum" Type="int" />
+          <Property Name="Division" Type="varchar" MaxLength="50" />
+          <Property Name="SelEmail" Type="varchar" MaxLength="50" />
+          <Property Name="SelWeb" Type="varchar" MaxLength="50" />
+          <Property Name="SelAddress" Type="varchar" MaxLength="500" />
+          <Property Name="SelCity" Type="varchar" MaxLength="255" />
+          <Property Name="SelState" Type="varchar" MaxLength="50" />
+          <Property Name="SelCountry" Type="varchar" MaxLength="50" />
+          <Property Name="SelStateCode" Type="varchar" MaxLength="50" />
+          <Property Name="SelCountryCode" Type="varchar" MaxLength="50" />
+          <Property Name="SelPinCode" Type="varchar" MaxLength="50" />
+          <Property Name="SelPhCountry" Type="varchar" MaxLength="50" />
+          <Property Name="SelPhArea" Type="varchar" MaxLength="50" />
+          <Property Name="SelFaxCountry" Type="varchar" MaxLength="50" />
+          <Property Name="SelFaxArea" Type="varchar" MaxLength="50" />
+          <Property Name="SelFaxNum" Type="varchar" MaxLength="50" />
+          <Property Name="SelPhNum" Type="varchar" MaxLength="50" />
+          <Property Name="SameAsHead" Type="bit" />
+          <Property Name="Shipterms" Type="varchar" MaxLength="1000" />
+          <Property Name="Payterms" Type="varchar" MaxLength="1000" />
+          <Property Name="Transmode" Type="varchar" MaxLength="1000" />
+          <Property Name="Insurance" Type="varchar" MaxLength="1000" />
+          <Property Name="Discount" Type="varchar" MaxLength="1000" />
+          <Property Name="Freight" Type="varchar" MaxLength="1000" />
+          <Property Name="Excise" Type="varchar" MaxLength="1000" />
+          <Property Name="SalesTax" Type="varchar" MaxLength="1000" />
+          <Property Name="ECCRange" Type="varchar" MaxLength="1000" />
+          <Property Name="ECCDiv" Type="varchar" MaxLength="1000" />
+          <Property Name="ECCNum" Type="varchar" MaxLength="100" />
+          <Property Name="SVTNum" Type="varchar" MaxLength="100" />
+          <Property Name="stnum" Type="varchar" MaxLength="100" />
+          <Property Name="cstnum" Type="varchar" MaxLength="100" />
+          <Property Name="PANNum" Type="varchar" MaxLength="100" />
+          <Property Name="PayTermStdID" Type="int" />
+          <Property Name="Creditdays" Type="smallint" />
+          <Property Name="perSTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="perExcise" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="varchar" MaxLength="500" />
+          <Property Name="CINNum" Type="varchar" MaxLength="50" />
+          <Property Name="TINNum" Type="varchar" MaxLength="50" />
+          <Property Name="GSTIN" Type="varchar" MaxLength="50" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="8000" />
+          <Property Name="CommunicAddress" Type="varchar" MaxLength="8000" />
+          <Property Name="TaxAddressHor" Type="varchar" MaxLength="8000" />
+          <Property Name="TaxAddressVer" Type="varchar" MaxLength="8000" />
+          <Property Name="TCAdd" Type="varchar" MaxLength="8000" />
+          <Property Name="TaxAreaID" Type="int" />
+          <Property Name="ChallanAddress" Type="varchar" MaxLength="8000" />
+          <Property Name="FreightIns" Type="varchar" MaxLength="50" />
+          <Property Name="ContactPersonName" Type="varchar" MaxLength="100" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="LastUpdatedGSTN" Type="datetime" />
+          <Property Name="SearchResult" Type="text" />
+          <Property Name="GstRegType" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PartyMain">
+          <Key>
+            <PropertyRef Name="MainPartyID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="MainPartyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MPName" Type="varchar" MaxLength="100" />
+          <Property Name="PartyType" Type="varchar" MaxLength="2" />
+          <Property Name="PartySubType" Type="varchar" MaxLength="2" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="StateCode" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="50" />
+          <Property Name="Pincode" Type="varchar" MaxLength="50" />
+          <Property Name="PhCountry" Type="varchar" MaxLength="50" />
+          <Property Name="PhArea" Type="varchar" MaxLength="50" />
+          <Property Name="FaxCountry" Type="varchar" MaxLength="50" />
+          <Property Name="FaxArea" Type="varchar" MaxLength="50" />
+          <Property Name="Phnum" Type="varchar" MaxLength="200" />
+          <Property Name="Faxnum" Type="varchar" MaxLength="200" />
+          <Property Name="Web" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="SegmentOther" Type="varchar" MaxLength="100" />
+          <Property Name="SegmentID" Type="int" />
+          <Property Name="TurnOver" Type="money" />
+          <Property Name="NumEmp" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Area" Type="varchar" MaxLength="100" />
+          <Property Name="Field" Type="varchar" MaxLength="100" />
+          <Property Name="Remark" Type="varchar" MaxLength="500" />
+          <Property Name="IsDealer" Type="bit" />
+          <Property Name="IsEmployer" Type="bit" />
+          <Property Name="IsCompetitor" Type="bit" />
+          <Property Name="IsGovt" Type="bit" />
+          <Property Name="IsEPC" Type="bit" />
+          <Property Name="IsConsultant" Type="bit" />
+          <Property Name="IsContractor" Type="bit" />
+          <Property Name="IsEndUser" Type="bit" />
+          <Property Name="IsTrader" Type="bit" />
+          <Property Name="IsInspAgency" Type="bit" />
+          <Property Name="EstdIn" Type="varchar" MaxLength="50" />
+          <Property Name="MPNick" Type="varchar" MaxLength="1000" />
+          <Property Name="NetName" Type="varchar" MaxLength="1000" StoreGeneratedPattern="Computed" />
+          <Property Name="TCName" Type="varchar" MaxLength="1000" />
+          <Property Name="TCLogo" Type="image" />
+          <Property Name="CreatedOn" Type="smalldatetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PostPeriod">
+          <Key>
+            <PropertyRef Name="PostPeriodID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="PostPeriodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FinYearID" Type="int" />
+          <Property Name="Month" Type="smallint" />
+          <Property Name="Year" Type="smallint" />
+          <Property Name="SDate" Type="date" />
+          <Property Name="EDate" Type="date" />
+          <Property Name="IsFinal" Type="bit" />
+          <Property Name="ret_pd" Type="varchar" MaxLength="61" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="TaxArea">
+          <Key>
+            <PropertyRef Name="TaxAreaID" />
+          </Key>
+          <Property Name="TaxAreaID" Type="int" Nullable="false" />
+          <Property Name="TaxAreaCode" Type="varchar" MaxLength="50" />
+          <Property Name="Descrip" Type="varchar" MaxLength="100" />
+          <Property Name="TINCode" Type="varchar" MaxLength="2" />
+          <Property Name="TaxAreaCode2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ValidationRule">
+          <Key>
+            <PropertyRef Name="ValidationRuleID" />
+          </Key>
+          <Property Name="ValidationRuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocType" Type="varchar" MaxLength="50" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="ValidationText" Type="varchar" MaxLength="1000" />
+          <Property Name="ResultType" Type="varchar" MaxLength="10" />
+          <Property Name="RuleType" Type="varchar" MaxLength="3" />
+          <Property Name="RuleLevel" Type="varchar" MaxLength="1" />
+          <Property Name="FieldName" Type="varchar" MaxLength="1000" />
+          <Property Name="Expression" Type="varchar" MaxLength="1000" />
+          <Property Name="ModeCSV" Type="varchar" MaxLength="50" />
+          <Property Name="Remark" Type="varchar" MaxLength="1000" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+          <Property Name="IsDisabled" Type="bit" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="VendorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartyID" Type="int" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="VendorClass" Type="varchar" MaxLength="50" />
+          <Property Name="VendorType" Type="varchar" MaxLength="2" />
+          <Property Name="VendorCode" Type="varchar" MaxLength="20" />
+          <Property Name="DocSysNum" Type="int" />
+          <Property Name="TimelySupply" Type="varchar" MaxLength="50" />
+          <Property Name="Rates" Type="varchar" MaxLength="50" />
+          <Property Name="Rejections" Type="varchar" MaxLength="50" />
+          <Property Name="Payments" Type="varchar" MaxLength="50" />
+          <Property Name="LastReview" Type="smalldatetime" />
+          <Property Name="Remark" Type="varchar" MaxLength="500" />
+          <Property Name="SuppType" Type="smallint" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="NoPOJWO" Type="bit" />
+          <Property Name="HRContractStart" Type="datetime" />
+          <Property Name="HRContractEnd" Type="datetime" />
+          <Property Name="WorkNature" Type="varchar" MaxLength="1000" />
+          <Property Name="HRContractSvcChgPer" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ImportAllow" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModApp" Type="varchar" MaxLength="50" />
+          <Property Name="AllowMultiOrigInv" Type="bit" />
+          <Property Name="IsCorporate" Type="bit" />
+          <Property Name="SwiftCode" Type="varchar" MaxLength="50" />
+          <Property Name="IFSCNum" Type="varchar" MaxLength="50" />
+          <Property Name="ImportFileID" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_AdvanceCustomerTax_AdvanceCustomer">
+          <End Role="GstAdvanceVouch" Type="Self.GstAdvanceVouch" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GstAdvanceVouchItem" Type="Self.GstAdvanceVouchItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GstAdvanceVouch">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GstAdvanceVouchID" />
+            </Principal>
+            <Dependent Role="GstAdvanceVouchItem">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GstAdvanceVouchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Campus_GSTRegID">
+          <End Role="GSTReg" Type="Self.GSTReg" Multiplicity="0..1" />
+          <End Role="Campus" Type="Self.Campus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GSTReg">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GSTRegID" />
+            </Principal>
+            <Dependent Role="Campus">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GSTRegID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Campus_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="Campus" Type="Self.Campus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="PartyID" />
+            </Principal>
+            <Dependent Role="Campus">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="PartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_PartyMain">
+          <End Role="PartyMain" Type="Self.PartyMain" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartyMain">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="MainPartyID" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="MainPartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CPInvoice_GSTReg">
+          <End Role="GSTReg" Type="Self.GSTReg" Multiplicity="0..1" />
+          <End Role="CPInvoice" Type="Self.CPInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GSTReg">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GSTRegID" />
+            </Principal>
+            <Dependent Role="CPInvoice">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GstRegID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CPInvoiceItemSale_InvoiceSale">
+          <End Role="CPInvoice" Type="Self.CPInvoice" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CPInvoiceItem" Type="Self.CPInvoiceItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CPInvoice">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CPInvoiceID" />
+            </Principal>
+            <Dependent Role="CPInvoiceItem">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CPInvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Division_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Division" Type="Self.Division" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Division">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EwayBill_Campus">
+          <End Role="Campus" Type="Self.Campus" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EwayBill" Type="Self.EwayBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campus">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CampusID" />
+            </Principal>
+            <Dependent Role="EwayBill">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CampusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EWayBillVehicle_EwayBill">
+          <End Role="EwayBill" Type="Self.EwayBill" Multiplicity="0..1" />
+          <End Role="EWayBillVehicle" Type="Self.EWayBillVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EwayBill">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="EwayBillID" />
+            </Principal>
+            <Dependent Role="EWayBillVehicle">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="EwayBillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GSTReg_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="GSTReg" Type="Self.GSTReg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="GSTReg">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GSTReg_TaxArea">
+          <End Role="TaxArea" Type="Self.TaxArea" Multiplicity="0..1" />
+          <End Role="GSTReg" Type="Self.GSTReg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaxArea">
+              <PropertyRef Name="TaxAreaID" />
+            </Principal>
+            <Dependent Role="GSTReg">
+              <PropertyRef Name="TaxAreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Campus">
+          <End Role="Campus" Type="Self.Campus" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campus">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CampusID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CampusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItemSale_InvoiceSale">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InvoiceItemGst" Type="Self.InvoiceItemGst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="InvoiceItemGst">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Party_PartyMain">
+          <End Role="PartyMain" Type="Self.PartyMain" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Party" Type="Self.Party" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartyMain">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="MainPartyID" />
+            </Principal>
+            <Dependent Role="Party">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="MainPartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostPeriod_FinYears">
+          <End Role="FinYears" Type="Self.FinYears" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PostPeriod" Type="Self.PostPeriod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinYears">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="FinYearID" />
+            </Principal>
+            <Dependent Role="PostPeriod">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="FinYearID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vendor_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="PartyID" />
+            </Principal>
+            <Dependent Role="Vendor">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="PartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mxgstdbModelStoreContainer">
+          <EntitySet Name="Campus" EntityType="Self.Campus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CPInvoice" EntityType="Self.CPInvoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CPInvoiceItem" EntityType="Self.CPInvoiceItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Division" EntityType="Self.Division" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EwayBill" EntityType="Self.EwayBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EWayBillVehicle" EntityType="Self.EWayBillVehicle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinYears" EntityType="Self.FinYears" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GstAdvanceVouch" EntityType="Self.GstAdvanceVouch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GstAdvanceVouchItem" EntityType="Self.GstAdvanceVouchItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GSTReg" EntityType="Self.GSTReg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceItemGst" EntityType="Self.InvoiceItemGst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Party" EntityType="Self.Party" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartyMain" EntityType="Self.PartyMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostPeriod" EntityType="Self.PostPeriod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaxArea" EntityType="Self.TaxArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ValidationRule" EntityType="Self.ValidationRule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AdvanceCustomerTax_AdvanceCustomer" Association="Self.FK_AdvanceCustomerTax_AdvanceCustomer">
+            <End Role="GstAdvanceVouch" EntitySet="GstAdvanceVouch" />
+            <End Role="GstAdvanceVouchItem" EntitySet="GstAdvanceVouchItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Campus_GSTRegID" Association="Self.FK_Campus_GSTRegID">
+            <End Role="GSTReg" EntitySet="GSTReg" />
+            <End Role="Campus" EntitySet="Campus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Campus_Party" Association="Self.FK_Campus_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Campus" EntitySet="Campus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_PartyMain" Association="Self.FK_Company_PartyMain">
+            <End Role="PartyMain" EntitySet="PartyMain" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CPInvoice_GSTReg" Association="Self.FK_CPInvoice_GSTReg">
+            <End Role="GSTReg" EntitySet="GSTReg" />
+            <End Role="CPInvoice" EntitySet="CPInvoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CPInvoiceItemSale_InvoiceSale" Association="Self.FK_CPInvoiceItemSale_InvoiceSale">
+            <End Role="CPInvoice" EntitySet="CPInvoice" />
+            <End Role="CPInvoiceItem" EntitySet="CPInvoiceItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Division_Company" Association="Self.FK_Division_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Division" EntitySet="Division" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EwayBill_Campus" Association="Self.FK_EwayBill_Campus">
+            <End Role="Campus" EntitySet="Campus" />
+            <End Role="EwayBill" EntitySet="EwayBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EWayBillVehicle_EwayBill" Association="Self.FK_EWayBillVehicle_EwayBill">
+            <End Role="EwayBill" EntitySet="EwayBill" />
+            <End Role="EWayBillVehicle" EntitySet="EWayBillVehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GSTReg_Company" Association="Self.FK_GSTReg_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="GSTReg" EntitySet="GSTReg" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GSTReg_TaxArea" Association="Self.FK_GSTReg_TaxArea">
+            <End Role="TaxArea" EntitySet="TaxArea" />
+            <End Role="GSTReg" EntitySet="GSTReg" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Campus" Association="Self.FK_Invoice_Campus">
+            <End Role="Campus" EntitySet="Campus" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItemSale_InvoiceSale" Association="Self.FK_InvoiceItemSale_InvoiceSale">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoiceItemGst" EntitySet="InvoiceItemGst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_PartyMain" Association="Self.FK_Party_PartyMain">
+            <End Role="PartyMain" EntitySet="PartyMain" />
+            <End Role="Party" EntitySet="Party" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostPeriod_FinYears" Association="Self.FK_PostPeriod_FinYears">
+            <End Role="FinYears" EntitySet="FinYears" />
+            <End Role="PostPeriod" EntitySet="PostPeriod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vendor_Party" Association="Self.FK_Vendor_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Vendor" EntitySet="Vendor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mxgstdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="mxgstEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Campus" EntityType="mxgstdbModel.Campus" />
+          <EntitySet Name="Company" EntityType="mxgstdbModel.Company" />
+          <EntitySet Name="CPInvoice" EntityType="mxgstdbModel.CPInvoice" />
+          <EntitySet Name="CPInvoiceItem" EntityType="mxgstdbModel.CPInvoiceItem" />
+          <EntitySet Name="Customer" EntityType="mxgstdbModel.Customer" />
+          <EntitySet Name="Division" EntityType="mxgstdbModel.Division" />
+          <EntitySet Name="EwayBill" EntityType="mxgstdbModel.EwayBill" />
+          <EntitySet Name="EWayBillVehicle" EntityType="mxgstdbModel.EWayBillVehicle" />
+          <EntitySet Name="FinYears" EntityType="mxgstdbModel.FinYears" />
+          <EntitySet Name="GstAdvanceVouch" EntityType="mxgstdbModel.GstAdvanceVouch" />
+          <EntitySet Name="GstAdvanceVouchItem" EntityType="mxgstdbModel.GstAdvanceVouchItem" />
+          <EntitySet Name="GSTReg" EntityType="mxgstdbModel.GSTReg" />
+          <EntitySet Name="Invoice" EntityType="mxgstdbModel.Invoice" />
+          <EntitySet Name="InvoiceItemGst" EntityType="mxgstdbModel.InvoiceItemGst" />
+          <EntitySet Name="Party" EntityType="mxgstdbModel.Party" />
+          <EntitySet Name="PartyMain" EntityType="mxgstdbModel.PartyMain" />
+          <EntitySet Name="PostPeriod" EntityType="mxgstdbModel.PostPeriod" />
+          <EntitySet Name="TaxArea" EntityType="mxgstdbModel.TaxArea" />
+          <EntitySet Name="ValidationRule" EntityType="mxgstdbModel.ValidationRule" />
+          <EntitySet Name="Vendor" EntityType="mxgstdbModel.Vendor" />
+          <AssociationSet Name="FK_Campus_GSTRegID" Association="mxgstdbModel.FK_Campus_GSTRegID">
+            <End Role="GSTReg" EntitySet="GSTReg" />
+            <End Role="Campus" EntitySet="Campus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Campus_Party" Association="mxgstdbModel.FK_Campus_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Campus" EntitySet="Campus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EwayBill_Campus" Association="mxgstdbModel.FK_EwayBill_Campus">
+            <End Role="Campus" EntitySet="Campus" />
+            <End Role="EwayBill" EntitySet="EwayBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Campus" Association="mxgstdbModel.FK_Invoice_Campus">
+            <End Role="Campus" EntitySet="Campus" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_PartyMain" Association="mxgstdbModel.FK_Company_PartyMain">
+            <End Role="PartyMain" EntitySet="PartyMain" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Division_Company" Association="mxgstdbModel.FK_Division_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Division" EntitySet="Division" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GSTReg_Company" Association="mxgstdbModel.FK_GSTReg_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="GSTReg" EntitySet="GSTReg" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CPInvoice_GSTReg" Association="mxgstdbModel.FK_CPInvoice_GSTReg">
+            <End Role="GSTReg" EntitySet="GSTReg" />
+            <End Role="CPInvoice" EntitySet="CPInvoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CPInvoiceItemSale_InvoiceSale" Association="mxgstdbModel.FK_CPInvoiceItemSale_InvoiceSale">
+            <End Role="CPInvoice" EntitySet="CPInvoice" />
+            <End Role="CPInvoiceItem" EntitySet="CPInvoiceItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EWayBillVehicle_EwayBill" Association="mxgstdbModel.FK_EWayBillVehicle_EwayBill">
+            <End Role="EwayBill" EntitySet="EwayBill" />
+            <End Role="EWayBillVehicle" EntitySet="EWayBillVehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostPeriod_FinYears" Association="mxgstdbModel.FK_PostPeriod_FinYears">
+            <End Role="FinYears" EntitySet="FinYears" />
+            <End Role="PostPeriod" EntitySet="PostPeriod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvanceCustomerTax_AdvanceCustomer" Association="mxgstdbModel.FK_AdvanceCustomerTax_AdvanceCustomer">
+            <End Role="GstAdvanceVouch" EntitySet="GstAdvanceVouch" />
+            <End Role="GstAdvanceVouchItem" EntitySet="GstAdvanceVouchItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GSTReg_TaxArea" Association="mxgstdbModel.FK_GSTReg_TaxArea">
+            <End Role="TaxArea" EntitySet="TaxArea" />
+            <End Role="GSTReg" EntitySet="GSTReg" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItemSale_InvoiceSale" Association="mxgstdbModel.FK_InvoiceItemSale_InvoiceSale">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoiceItemGst" EntitySet="InvoiceItemGst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_PartyMain" Association="mxgstdbModel.FK_Party_PartyMain">
+            <End Role="PartyMain" EntitySet="PartyMain" />
+            <End Role="Party" EntitySet="Party" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vendor_Party" Association="mxgstdbModel.FK_Vendor_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Vendor" EntitySet="Vendor" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Campus">
+          <Key>
+            <PropertyRef Name="CampusID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="CampusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="PartyID" Type="Int32" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="GSTRegID" Type="Int32" />
+          <Property Name="DispName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TCName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CampusType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PIDUnitID" Type="Int32" />
+          <Property Name="EmailPur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailSls" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailGen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SeqMult" Type="Int32" />
+          <Property Name="SeqOffset" Type="Int32" />
+          <Property Name="AccountMapCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PONote" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="FactoryLicenseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HasPunches" Type="Boolean" />
+          <Property Name="AcceptsOrder" Type="Boolean" />
+          <Property Name="AcceptsEnq" Type="Boolean" />
+          <Property Name="DivisionID" Type="Int32" />
+          <Property Name="DivisionCodeList" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GeoAreaList" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CampusCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceNote" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GSTReg" Relationship="mxgstdbModel.FK_Campus_GSTRegID" FromRole="Campus" ToRole="GSTReg" />
+          <NavigationProperty Name="Party" Relationship="mxgstdbModel.FK_Campus_Party" FromRole="Campus" ToRole="Party" />
+          <NavigationProperty Name="EwayBill" Relationship="mxgstdbModel.FK_EwayBill_Campus" FromRole="Campus" ToRole="EwayBill" />
+          <NavigationProperty Name="Invoice" Relationship="mxgstdbModel.FK_Invoice_Campus" FromRole="Campus" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="MainPartyID" Type="Int32" />
+          <Property Name="CompName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SalesEmpID" Type="Int32" />
+          <Property Name="PurchaseEmpID" Type="Int32" />
+          <Property Name="HOCampusID" Type="Int32" />
+          <Property Name="ESIReasons" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HRStartDate" Type="DateTime" Precision="3" />
+          <Property Name="FinStartDate" Type="DateTime" Precision="3" />
+          <Property Name="BonusStartMonth" Type="Int32" />
+          <Property Name="LeaveStartMonth" Type="Int32" />
+          <Property Name="CurrFinYearID" Type="Int32" />
+          <Property Name="CurrLeaveMasterID" Type="Int32" />
+          <Property Name="GratuityDaysPerYear" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GratuityMinMonths" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LeaveCashDaysYear" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PrincipalEmpID" Type="Int32" />
+          <Property Name="Occupier" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CustCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PolicyNumGG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PolicyNumEDLIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ARDGG" Type="DateTime" Precision="3" />
+          <Property Name="ARDEDLIP" Type="DateTime" Precision="3" />
+          <Property Name="LunchInterval" Type="Int32" />
+          <Property Name="Manager" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NatureIndustry" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmploymentOffice" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="MainShiftID" Type="Int32" />
+          <Property Name="AdvAttAvgMin" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="AdvLimitPercent" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="AdvanceDay" Type="Int32" />
+          <Property Name="AdvanceRequestDays" Type="Int32" />
+          <Property Name="TPCertLogo1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LoanRules" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PANNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PartyMain" Relationship="mxgstdbModel.FK_Company_PartyMain" FromRole="Company" ToRole="PartyMain" />
+          <NavigationProperty Name="Division" Relationship="mxgstdbModel.FK_Division_Company" FromRole="Company" ToRole="Division" />
+          <NavigationProperty Name="GSTReg" Relationship="mxgstdbModel.FK_GSTReg_Company" FromRole="Company" ToRole="GSTReg" />
+          <Property Name="CINNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CPInvoice">
+          <Key>
+            <PropertyRef Name="CPInvoiceID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="CPInvoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="GstRegID" Type="Int32" />
+          <Property Name="VendorID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="InvoiceID" Type="Int32" />
+          <Property Name="CTIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CFS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="POS" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="UpdBy" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Flag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="OPD" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="POSTaxAreaID" Type="Int32" />
+          <Property Name="DocType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="GstInvoiceType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Chksum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INUM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Idt" Type="DateTime" Precision="3" />
+          <Property Name="inv_typ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="val" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="BillOf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="RCHRG" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="IsAmendment" Type="Boolean" />
+          <Property Name="PostingDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="OINum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OIdt" Type="DateTime" Precision="3" />
+          <Property Name="ETIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="port_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nt_num" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nt_dt" Type="DateTime" Precision="3" />
+          <Property Name="ont_num" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ont_dt" Type="DateTime" Precision="3" />
+          <Property Name="ntty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MatchCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DLTransactionId" Type="Guid" />
+          <Property Name="ActionFlag" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ActionTransactionId" Type="Guid" />
+          <Property Name="MarkPending" Type="Boolean" />
+          <NavigationProperty Name="GSTReg" Relationship="mxgstdbModel.FK_CPInvoice_GSTReg" FromRole="CPInvoice" ToRole="GSTReg" />
+          <NavigationProperty Name="CPInvoiceItem" Relationship="mxgstdbModel.FK_CPInvoiceItemSale_InvoiceSale" FromRole="CPInvoice" ToRole="CPInvoiceItem" />
+          <Property Name="ReturnPeriodID" Type="Int32" />
+          <Property Name="Diff_Percent" Type="Int32" />
+          <Property Name="p_gst" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="MMDescrip" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ImportFileID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="CPInvoiceItem">
+          <Key>
+            <PropertyRef Name="CPInvoiceItemID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="CPInvoiceItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="CPInvoiceID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SortIndex" Type="Int32" />
+          <Property Name="TY" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="TXVAL" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="IAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CSAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CPInvoice" Relationship="mxgstdbModel.FK_CPInvoiceItemSale_InvoiceSale" FromRole="CPInvoiceItem" ToRole="CPInvoice" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="PartyID" Type="Int32" />
+          <Property Name="DocSysNum" Type="Int32" />
+          <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegLastCorres" Type="DateTime" Precision="3" />
+          <Property Name="RegUserID" Type="Guid" />
+          <Property Name="RegPersPartyID" Type="Int32" />
+          <Property Name="RequireReg" Type="Boolean" />
+          <Property Name="RegDate" Type="DateTime" Precision="3" />
+          <Property Name="RegExp" Type="DateTime" Precision="3" />
+          <Property Name="STFPersPartyID" Type="Int32" />
+          <Property Name="TCAdd" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="Account_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImportFileID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="DivisionID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="DivisionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="DivisionCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DivisionName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Company" Relationship="mxgstdbModel.FK_Division_Company" FromRole="Division" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="EwayBill">
+          <Key>
+            <PropertyRef Name="EwayBillID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="EwayBillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="EwayBillNum" Type="Int64" />
+          <Property Name="EwayBillDate" Type="DateTime" Precision="3" />
+          <Property Name="CampusID" Type="Int32" />
+          <Property Name="SupplyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubSupplyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DocType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentID" Type="Int32" />
+          <Property Name="InvoiceID" Type="Int32" />
+          <Property Name="ODNoteID" Type="Int32" />
+          <Property Name="TransVendorID" Type="Int32" />
+          <Property Name="TransDistance" Type="Int32" />
+          <Property Name="NoValidDays" Type="Int32" />
+          <Property Name="ValidUpto" Type="DateTime" Precision="3" />
+          <Property Name="ewbRejectedDate" Type="DateTime" Precision="3" />
+          <Property Name="cancelDate" Type="DateTime" Precision="3" />
+          <Property Name="LastVehicleID" Type="Int32" />
+          <Property Name="fromAddr1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="fromAddr2" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="fromPlace" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="fromPinCode" Type="Int32" />
+          <Property Name="fromStateCode" Type="Int32" />
+          <Property Name="toAddr1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="toAddr2" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="toPlace" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="toPinCode" Type="Int32" />
+          <Property Name="toStateCode" Type="Int32" />
+          <Property Name="actFromStateCode" Type="Int32" />
+          <Property Name="actToStateCode" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="transactionType" Type="Int32" />
+          <Property Name="dispatchFromGstin" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="shipToGSTIN" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="shipToTradeName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="otherValue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cessNonAdvolValue" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Campus" Relationship="mxgstdbModel.FK_EwayBill_Campus" FromRole="EwayBill" ToRole="Campus" />
+          <NavigationProperty Name="EWayBillVehicle" Relationship="mxgstdbModel.FK_EWayBillVehicle_EwayBill" FromRole="EwayBill" ToRole="EWayBillVehicle" />
+          <Property Name="ChallanID" Type="Int32" />
+          <Property Name="cessNonAdvolRT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="dispatchFromTradeName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SubSupplyDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReturnPeriodID" Type="Int32" />
+          <Property Name="DocNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DocDate" Type="DateTime" Precision="3" />
+          <Property Name="VendorID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="VAL" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Sply_Ty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImportFileID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="EWayBillVehicle">
+          <Key>
+            <PropertyRef Name="EWayBillVehicleID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="EWayBillVehicleID" Type="Decimal" Nullable="false" Precision="12" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="EwayBillID" Type="Int32" />
+          <Property Name="EnteredDate" Type="DateTime" Precision="3" />
+          <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FromPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FromState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReasonCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TransDocNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransDocDate" Type="DateTime" Precision="3" />
+          <Property Name="TransMode" Type="Int32" />
+          <Property Name="UserGSTINTransin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TripshtNo" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EwayBill" Relationship="mxgstdbModel.FK_EWayBillVehicle_EwayBill" FromRole="EWayBillVehicle" ToRole="EwayBill" />
+        </EntityType>
+        <EntityType Name="FinYears">
+          <Key>
+            <PropertyRef Name="FinYearID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="FinYearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="StDate" Type="DateTime" Precision="3" />
+          <Property Name="EnDate" Type="DateTime" Precision="3" />
+          <Property Name="Descrip" Type="String" MaxLength="61" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="PostPeriod" Relationship="mxgstdbModel.FK_PostPeriod_FinYears" FromRole="FinYears" ToRole="PostPeriod" />
+        </EntityType>
+        <EntityType Name="GstAdvanceVouch">
+          <Key>
+            <PropertyRef Name="GstAdvanceVouchID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="GstAdvanceVouchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="CampusID" Type="Int32" />
+          <Property Name="DivisionID" Type="Int32" />
+          <Property Name="PaymentID" Type="Int32" />
+          <Property Name="InvoiceID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="VendorID" Type="Int32" />
+          <Property Name="DocType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="AdvanceVouchType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="OrigVouchID" Type="Int32" />
+          <Property Name="RefundVouchID" Type="Int32" />
+          <Property Name="RootVouchID" Type="Int32" />
+          <Property Name="POSTaxAreaID" Type="Int32" />
+          <Property Name="ReturnPeriodID" Type="Int32" />
+          <Property Name="Dated" Type="DateTime" Precision="3" />
+          <Property Name="VouchNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StatusNum" Type="Int32" />
+          <Property Name="IsAmendment" Type="Boolean" />
+          <Property Name="Sply_Ty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AmountTot" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsReturn" Type="Boolean" />
+          <Property Name="Diff_Percent" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RCHRG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SupplyFromTaxAreaID" Type="Int32" />
+          <Property Name="DocumentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GstAdvanceVouchItem" Relationship="mxgstdbModel.FK_AdvanceCustomerTax_AdvanceCustomer" FromRole="GstAdvanceVouch" ToRole="GstAdvanceVouchItem" />
+          <Property Name="ImportFileID" Type="Guid" />
+          <Property Name="PartyGstRegType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VouchNumDynamicPart" Type="Int64" />
+          <Property Name="InvoiceNumberTemplateId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GstAdvanceVouchItem">
+          <Key>
+            <PropertyRef Name="GstAdvanceVouchItemID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="GstAdvanceVouchItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="GstAdvanceVouchID" Type="Int32" />
+          <Property Name="LineSNum" Type="Int32" />
+          <Property Name="DiffAD_AMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DiffIAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DiffSAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DiffCAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DiffCSAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AD_AMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="I_RT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="C_RT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="S_RT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CSAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="GSTR3B31Section" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GSTR3B32Section" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GSTR3B5Section" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GstAdvanceVouch" Relationship="mxgstdbModel.FK_AdvanceCustomerTax_AdvanceCustomer" FromRole="GstAdvanceVouchItem" ToRole="GstAdvanceVouch" />
+          <Property Name="Cess_Rt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RemarkItem" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GSTReg">
+          <Key>
+            <PropertyRef Name="GSTRegID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="GSTRegID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="TaxAreaID" Type="Int32" />
+          <Property Name="GSTIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GSTNUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicationNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegDate" Type="DateTime" Precision="3" />
+          <Property Name="SearchResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PartialCredit" Type="Boolean" />
+          <Property Name="AuthPAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EWBUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EWBPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TurnOver" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Campus" Relationship="mxgstdbModel.FK_Campus_GSTRegID" FromRole="GSTReg" ToRole="Campus" />
+          <NavigationProperty Name="Company" Relationship="mxgstdbModel.FK_GSTReg_Company" FromRole="GSTReg" ToRole="Company" />
+          <NavigationProperty Name="CPInvoice" Relationship="mxgstdbModel.FK_CPInvoice_GSTReg" FromRole="GSTReg" ToRole="CPInvoice" />
+          <NavigationProperty Name="TaxArea" Relationship="mxgstdbModel.FK_GSTReg_TaxArea" FromRole="GSTReg" ToRole="TaxArea" />
+          <Property Name="GSTRegType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="InvoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="CampusID" Type="Int32" />
+          <Property Name="CDNInvoiceID" Type="Int32" />
+          <Property Name="OrigInvoiceID" Type="Int32" />
+          <Property Name="RootInvoiceID" Type="Int32" />
+          <Property Name="DivisionID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="ConsigneePrefix" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="VendorID" Type="Int32" />
+          <Property Name="ConsigneeID" Type="Int32" />
+          <Property Name="POSTaxAreaID" Type="Int32" />
+          <Property Name="ReturnPeriodID" Type="Int32" />
+          <Property Name="DocType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="GSTInvoiceType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GSTInvoiceSubType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sply_Ty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ExportDutyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillOf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="RCHRG" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="IsAmendment" Type="Boolean" />
+          <Property Name="InvoiceNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+          <Property Name="VAL" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StatusNum" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ETIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SBPCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SBNUM" Type="Int32" />
+          <Property Name="SBDT" Type="DateTime" Precision="3" />
+          <Property Name="boe_num" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="boe_dt" Type="DateTime" Precision="3" />
+          <Property Name="boe_val" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="port_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_sez" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="stin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="p_gst" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="MatchCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lastupdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastTransactionId" Type="Guid" />
+          <Property Name="ActionFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Flag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CPInvoiceID" Type="Int32" />
+          <Property Name="ShipFromTaxAreaID" Type="Int32" />
+          <Property Name="ShipToTaxAreaID" Type="Int32" />
+          <Property Name="UniqueKey" Type="String" MaxLength="700" FixedLength="false" Unicode="false" />
+          <Property Name="Diff_Percent" Type="Int32" />
+          <Property Name="SaleBondedWH" Type="Boolean" />
+          <Property Name="Rsn" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CancelDate" Type="DateTime" Precision="3" />
+          <Property Name="IsForeignCurrency" Type="Boolean" />
+          <Property Name="Ex_Rt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PartyGstRegType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Campus" Relationship="mxgstdbModel.FK_Invoice_Campus" FromRole="Invoice" ToRole="Campus" />
+          <NavigationProperty Name="InvoiceItemGst" Relationship="mxgstdbModel.FK_InvoiceItemSale_InvoiceSale" FromRole="Invoice" ToRole="InvoiceItemGst" />
+          <Property Name="ImportFileID" Type="Guid" />
+          <Property Name="gstn_status_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gstn_error_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gstn_error_msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsCreditISD" Type="Boolean" />
+          <Property Name="InvoiceNumDynamicPart" Type="Int64" />
+          <Property Name="InvoiceNumberTemplateId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InvoiceItemGst">
+          <Key>
+            <PropertyRef Name="InvoiceItemGSTID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="InvoiceItemGSTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="InvoiceID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="LineSNum" Type="Int32" />
+          <Property Name="TY" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Hsn_Sc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TXVAL" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="I_RT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="C_RT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="S_RT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="IAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CSAMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Uqc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Qty" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BasicRate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="tx_i" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="tx_c" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="tx_s" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="tx_cs" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="elg" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="GstTaxType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Details" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="GSTR3B31Section" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GSTR3B32Section" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GSTR3B5Section" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ChargeBeforeTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DiscountBeforeTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cess_Rt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Hsn_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ITCReversal_4243" Type="Boolean" />
+          <Property Name="ITCDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Invoice" Relationship="mxgstdbModel.FK_InvoiceItemSale_InvoiceSale" FromRole="InvoiceItemGst" ToRole="Invoice" />
+          <Property Name="GSTR3B4ASection" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GSTR3B4DSection" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RemarkItem" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="PartyID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="PartyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="MainPartyID" Type="Int32" />
+          <Property Name="PartyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PartyName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="DocSysNum" Type="Int32" />
+          <Property Name="Division" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelWeb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SelCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SelState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelStateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelCountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelPinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelPhCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelPhArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelFaxCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelFaxArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelFaxNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelPhNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SameAsHead" Type="Boolean" />
+          <Property Name="Shipterms" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Payterms" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Transmode" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Insurance" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Discount" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Freight" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Excise" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SalesTax" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ECCRange" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ECCDiv" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ECCNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SVTNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="stnum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cstnum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PANNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PayTermStdID" Type="Int32" />
+          <Property Name="Creditdays" Type="Int16" />
+          <Property Name="perSTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="perExcise" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CINNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TINNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GSTIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MailingAddress" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="CommunicAddress" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="TaxAddressHor" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="TaxAddressVer" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="TCAdd" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="TaxAreaID" Type="Int32" />
+          <Property Name="ChallanAddress" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="FreightIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Campus" Relationship="mxgstdbModel.FK_Campus_Party" FromRole="Party" ToRole="Campus" />
+          <NavigationProperty Name="PartyMain" Relationship="mxgstdbModel.FK_Party_PartyMain" FromRole="Party" ToRole="PartyMain" />
+          <NavigationProperty Name="Vendor" Relationship="mxgstdbModel.FK_Vendor_Party" FromRole="Party" ToRole="Vendor" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedGSTN" Type="DateTime" Precision="3" />
+          <Property Name="SearchResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GstRegType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PartyMain">
+          <Key>
+            <PropertyRef Name="MainPartyID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="MainPartyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="MPName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PartyType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PartySubType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FaxCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FaxArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phnum" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Faxnum" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SegmentOther" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SegmentID" Type="Int32" />
+          <Property Name="NumEmp" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Area" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Field" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsDealer" Type="Boolean" />
+          <Property Name="IsEmployer" Type="Boolean" />
+          <Property Name="IsCompetitor" Type="Boolean" />
+          <Property Name="IsGovt" Type="Boolean" />
+          <Property Name="IsEPC" Type="Boolean" />
+          <Property Name="IsConsultant" Type="Boolean" />
+          <Property Name="IsContractor" Type="Boolean" />
+          <Property Name="IsEndUser" Type="Boolean" />
+          <Property Name="IsTrader" Type="Boolean" />
+          <Property Name="IsInspAgency" Type="Boolean" />
+          <Property Name="EstdIn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MPNick" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="NetName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="TCName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="TCLogo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Company" Relationship="mxgstdbModel.FK_Company_PartyMain" FromRole="PartyMain" ToRole="Company" />
+          <NavigationProperty Name="Party" Relationship="mxgstdbModel.FK_Party_PartyMain" FromRole="PartyMain" ToRole="Party" />
+          <Property Name="TurnOver" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="PostPeriod">
+          <Key>
+            <PropertyRef Name="PostPeriodID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="PostPeriodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="FinYearID" Type="Int32" />
+          <Property Name="Month" Type="Int16" />
+          <Property Name="Year" Type="Int16" />
+          <Property Name="SDate" Type="DateTime" Precision="0" />
+          <Property Name="EDate" Type="DateTime" Precision="0" />
+          <Property Name="IsFinal" Type="Boolean" />
+          <Property Name="ret_pd" Type="String" MaxLength="61" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="FinYears" Relationship="mxgstdbModel.FK_PostPeriod_FinYears" FromRole="PostPeriod" ToRole="FinYears" />
+        </EntityType>
+        <EntityType Name="TaxArea">
+          <Key>
+            <PropertyRef Name="TaxAreaID" />
+          </Key>
+          <Property Name="TaxAreaID" Type="Int32" Nullable="false" />
+          <Property Name="TaxAreaCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descrip" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TINCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GSTReg" Relationship="mxgstdbModel.FK_GSTReg_TaxArea" FromRole="TaxArea" ToRole="GSTReg" />
+          <Property Name="TaxAreaCode2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ValidationRule">
+          <Key>
+            <PropertyRef Name="ValidationRuleID" />
+          </Key>
+          <Property Name="ValidationRuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ValidationText" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ResultType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RuleType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="RuleLevel" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FieldName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Expression" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ModeCSV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDisabled" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorID" />
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="VendorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantID" Type="Guid" Nullable="false" />
+          <Property Name="PartyID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="VendorClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="VendorCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DocSysNum" Type="Int32" />
+          <Property Name="TimelySupply" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rates" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rejections" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Payments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastReview" Type="DateTime" Precision="0" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SuppType" Type="Int16" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NoPOJWO" Type="Boolean" />
+          <Property Name="HRContractStart" Type="DateTime" Precision="3" />
+          <Property Name="HRContractEnd" Type="DateTime" Precision="3" />
+          <Property Name="WorkNature" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="HRContractSvcChgPer" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ImportAllow" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModApp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AllowMultiOrigInv" Type="Boolean" />
+          <Property Name="IsCorporate" Type="Boolean" />
+          <Property Name="SwiftCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IFSCNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Party" Relationship="mxgstdbModel.FK_Vendor_Party" FromRole="Vendor" ToRole="Party" />
+          <Property Name="ImportFileID" Type="Guid" />
+        </EntityType>
+        <Association Name="FK_Campus_GSTRegID">
+          <End Type="mxgstdbModel.GSTReg" Role="GSTReg" Multiplicity="0..1" />
+          <End Type="mxgstdbModel.Campus" Role="Campus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GSTReg">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GSTRegID" />
+            </Principal>
+            <Dependent Role="Campus">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GSTRegID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Campus_Party">
+          <End Type="mxgstdbModel.Party" Role="Party" Multiplicity="0..1" />
+          <End Type="mxgstdbModel.Campus" Role="Campus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="PartyID" />
+            </Principal>
+            <Dependent Role="Campus">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="PartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EwayBill_Campus">
+          <End Type="mxgstdbModel.Campus" Role="Campus" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mxgstdbModel.EwayBill" Role="EwayBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campus">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CampusID" />
+            </Principal>
+            <Dependent Role="EwayBill">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CampusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Campus">
+          <End Type="mxgstdbModel.Campus" Role="Campus" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mxgstdbModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campus">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CampusID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CampusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_PartyMain">
+          <End Type="mxgstdbModel.PartyMain" Role="PartyMain" Multiplicity="0..1" />
+          <End Type="mxgstdbModel.Company" Role="Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartyMain">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="MainPartyID" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="MainPartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Division_Company">
+          <End Type="mxgstdbModel.Company" Role="Company" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mxgstdbModel.Division" Role="Division" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Division">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GSTReg_Company">
+          <End Type="mxgstdbModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="mxgstdbModel.GSTReg" Role="GSTReg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="GSTReg">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CPInvoice_GSTReg">
+          <End Type="mxgstdbModel.GSTReg" Role="GSTReg" Multiplicity="0..1" />
+          <End Type="mxgstdbModel.CPInvoice" Role="CPInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GSTReg">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GSTRegID" />
+            </Principal>
+            <Dependent Role="CPInvoice">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GstRegID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CPInvoiceItemSale_InvoiceSale">
+          <End Type="mxgstdbModel.CPInvoice" Role="CPInvoice" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mxgstdbModel.CPInvoiceItem" Role="CPInvoiceItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CPInvoice">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CPInvoiceID" />
+            </Principal>
+            <Dependent Role="CPInvoiceItem">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="CPInvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EWayBillVehicle_EwayBill">
+          <End Type="mxgstdbModel.EwayBill" Role="EwayBill" Multiplicity="0..1" />
+          <End Type="mxgstdbModel.EWayBillVehicle" Role="EWayBillVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EwayBill">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="EwayBillID" />
+            </Principal>
+            <Dependent Role="EWayBillVehicle">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="EwayBillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostPeriod_FinYears">
+          <End Type="mxgstdbModel.FinYears" Role="FinYears" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mxgstdbModel.PostPeriod" Role="PostPeriod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinYears">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="FinYearID" />
+            </Principal>
+            <Dependent Role="PostPeriod">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="FinYearID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvanceCustomerTax_AdvanceCustomer">
+          <End Type="mxgstdbModel.GstAdvanceVouch" Role="GstAdvanceVouch" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mxgstdbModel.GstAdvanceVouchItem" Role="GstAdvanceVouchItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GstAdvanceVouch">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GstAdvanceVouchID" />
+            </Principal>
+            <Dependent Role="GstAdvanceVouchItem">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="GstAdvanceVouchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GSTReg_TaxArea">
+          <End Type="mxgstdbModel.TaxArea" Role="TaxArea" Multiplicity="0..1" />
+          <End Type="mxgstdbModel.GSTReg" Role="GSTReg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaxArea">
+              <PropertyRef Name="TaxAreaID" />
+            </Principal>
+            <Dependent Role="GSTReg">
+              <PropertyRef Name="TaxAreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItemSale_InvoiceSale">
+          <End Type="mxgstdbModel.Invoice" Role="Invoice" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mxgstdbModel.InvoiceItemGst" Role="InvoiceItemGst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="InvoiceItemGst">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Party_PartyMain">
+          <End Type="mxgstdbModel.PartyMain" Role="PartyMain" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mxgstdbModel.Party" Role="Party" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartyMain">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="MainPartyID" />
+            </Principal>
+            <Dependent Role="Party">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="MainPartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vendor_Party">
+          <End Type="mxgstdbModel.Party" Role="Party" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mxgstdbModel.Vendor" Role="Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="PartyID" />
+            </Principal>
+            <Dependent Role="Vendor">
+              <PropertyRef Name="TenantID" />
+              <PropertyRef Name="PartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mxgstdbModelStoreContainer" CdmEntityContainer="mxgstEntities">
+          <EntitySetMapping Name="Campus">
+            <EntityTypeMapping TypeName="mxgstdbModel.Campus">
+              <MappingFragment StoreEntitySet="Campus">
+                <ScalarProperty Name="InvoiceNote" ColumnName="InvoiceNote" />
+                <ScalarProperty Name="CampusCode" ColumnName="CampusCode" />
+                <ScalarProperty Name="GeoAreaList" ColumnName="GeoAreaList" />
+                <ScalarProperty Name="DivisionCodeList" ColumnName="DivisionCodeList" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="AcceptsEnq" ColumnName="AcceptsEnq" />
+                <ScalarProperty Name="AcceptsOrder" ColumnName="AcceptsOrder" />
+                <ScalarProperty Name="HasPunches" ColumnName="HasPunches" />
+                <ScalarProperty Name="FactoryLicenseNumber" ColumnName="FactoryLicenseNumber" />
+                <ScalarProperty Name="PONote" ColumnName="PONote" />
+                <ScalarProperty Name="AccountMapCode" ColumnName="AccountMapCode" />
+                <ScalarProperty Name="SeqOffset" ColumnName="SeqOffset" />
+                <ScalarProperty Name="SeqMult" ColumnName="SeqMult" />
+                <ScalarProperty Name="EmailGen" ColumnName="EmailGen" />
+                <ScalarProperty Name="EmailSls" ColumnName="EmailSls" />
+                <ScalarProperty Name="EmailPur" ColumnName="EmailPur" />
+                <ScalarProperty Name="PIDUnitID" ColumnName="PIDUnitID" />
+                <ScalarProperty Name="CampusType" ColumnName="CampusType" />
+                <ScalarProperty Name="TCName" ColumnName="TCName" />
+                <ScalarProperty Name="DispName" ColumnName="DispName" />
+                <ScalarProperty Name="GSTRegID" ColumnName="GSTRegID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="PartyID" ColumnName="PartyID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="CampusID" ColumnName="CampusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="mxgstdbModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CINNum" ColumnName="CINNum" />
+                <ScalarProperty Name="PANNum" ColumnName="PANNum" />
+                <ScalarProperty Name="LoanRules" ColumnName="LoanRules" />
+                <ScalarProperty Name="TPCertLogo1" ColumnName="TPCertLogo1" />
+                <ScalarProperty Name="AdvanceRequestDays" ColumnName="AdvanceRequestDays" />
+                <ScalarProperty Name="AdvanceDay" ColumnName="AdvanceDay" />
+                <ScalarProperty Name="AdvLimitPercent" ColumnName="AdvLimitPercent" />
+                <ScalarProperty Name="AdvAttAvgMin" ColumnName="AdvAttAvgMin" />
+                <ScalarProperty Name="MainShiftID" ColumnName="MainShiftID" />
+                <ScalarProperty Name="EmploymentOffice" ColumnName="EmploymentOffice" />
+                <ScalarProperty Name="NatureIndustry" ColumnName="NatureIndustry" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="LunchInterval" ColumnName="LunchInterval" />
+                <ScalarProperty Name="ARDEDLIP" ColumnName="ARDEDLIP" />
+                <ScalarProperty Name="ARDGG" ColumnName="ARDGG" />
+                <ScalarProperty Name="PolicyNumEDLIP" ColumnName="PolicyNumEDLIP" />
+                <ScalarProperty Name="PolicyNumGG" ColumnName="PolicyNumGG" />
+                <ScalarProperty Name="CustCode" ColumnName="CustCode" />
+                <ScalarProperty Name="Occupier" ColumnName="Occupier" />
+                <ScalarProperty Name="PrincipalEmpID" ColumnName="PrincipalEmpID" />
+                <ScalarProperty Name="LeaveCashDaysYear" ColumnName="LeaveCashDaysYear" />
+                <ScalarProperty Name="GratuityMinMonths" ColumnName="GratuityMinMonths" />
+                <ScalarProperty Name="GratuityDaysPerYear" ColumnName="GratuityDaysPerYear" />
+                <ScalarProperty Name="CurrLeaveMasterID" ColumnName="CurrLeaveMasterID" />
+                <ScalarProperty Name="CurrFinYearID" ColumnName="CurrFinYearID" />
+                <ScalarProperty Name="LeaveStartMonth" ColumnName="LeaveStartMonth" />
+                <ScalarProperty Name="BonusStartMonth" ColumnName="BonusStartMonth" />
+                <ScalarProperty Name="FinStartDate" ColumnName="FinStartDate" />
+                <ScalarProperty Name="HRStartDate" ColumnName="HRStartDate" />
+                <ScalarProperty Name="ESIReasons" ColumnName="ESIReasons" />
+                <ScalarProperty Name="HOCampusID" ColumnName="HOCampusID" />
+                <ScalarProperty Name="PurchaseEmpID" ColumnName="PurchaseEmpID" />
+                <ScalarProperty Name="SalesEmpID" ColumnName="SalesEmpID" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="CompName" ColumnName="CompName" />
+                <ScalarProperty Name="MainPartyID" ColumnName="MainPartyID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CPInvoice">
+            <EntityTypeMapping TypeName="mxgstdbModel.CPInvoice">
+              <MappingFragment StoreEntitySet="CPInvoice">
+                <ScalarProperty Name="ImportFileID" ColumnName="ImportFileID" />
+                <ScalarProperty Name="MMDescrip" ColumnName="MMDescrip" />
+                <ScalarProperty Name="p_gst" ColumnName="p_gst" />
+                <ScalarProperty Name="Diff_Percent" ColumnName="Diff_Percent" />
+                <ScalarProperty Name="ReturnPeriodID" ColumnName="ReturnPeriodID" />
+                <ScalarProperty Name="MarkPending" ColumnName="MarkPending" />
+                <ScalarProperty Name="ActionTransactionId" ColumnName="ActionTransactionId" />
+                <ScalarProperty Name="ActionFlag" ColumnName="ActionFlag" />
+                <ScalarProperty Name="DLTransactionId" ColumnName="DLTransactionId" />
+                <ScalarProperty Name="MatchCode" ColumnName="MatchCode" />
+                <ScalarProperty Name="ntty" ColumnName="ntty" />
+                <ScalarProperty Name="ont_dt" ColumnName="ont_dt" />
+                <ScalarProperty Name="ont_num" ColumnName="ont_num" />
+                <ScalarProperty Name="nt_dt" ColumnName="nt_dt" />
+                <ScalarProperty Name="nt_num" ColumnName="nt_num" />
+                <ScalarProperty Name="port_code" ColumnName="port_code" />
+                <ScalarProperty Name="ETIN" ColumnName="ETIN" />
+                <ScalarProperty Name="OIdt" ColumnName="OIdt" />
+                <ScalarProperty Name="OINum" ColumnName="OINum" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="PostingDate" ColumnName="PostingDate" />
+                <ScalarProperty Name="IsAmendment" ColumnName="IsAmendment" />
+                <ScalarProperty Name="RCHRG" ColumnName="RCHRG" />
+                <ScalarProperty Name="BillOf" ColumnName="BillOf" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="inv_typ" ColumnName="inv_typ" />
+                <ScalarProperty Name="Idt" ColumnName="Idt" />
+                <ScalarProperty Name="INUM" ColumnName="INUM" />
+                <ScalarProperty Name="Chksum" ColumnName="Chksum" />
+                <ScalarProperty Name="GstInvoiceType" ColumnName="GstInvoiceType" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="POSTaxAreaID" ColumnName="POSTaxAreaID" />
+                <ScalarProperty Name="OPD" ColumnName="OPD" />
+                <ScalarProperty Name="CFlag" ColumnName="CFlag" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="UpdBy" ColumnName="UpdBy" />
+                <ScalarProperty Name="POS" ColumnName="POS" />
+                <ScalarProperty Name="CFS" ColumnName="CFS" />
+                <ScalarProperty Name="CTIN" ColumnName="CTIN" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="GstRegID" ColumnName="GstRegID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="CPInvoiceID" ColumnName="CPInvoiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CPInvoiceItem">
+            <EntityTypeMapping TypeName="mxgstdbModel.CPInvoiceItem">
+              <MappingFragment StoreEntitySet="CPInvoiceItem">
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CSAMT" ColumnName="CSAMT" />
+                <ScalarProperty Name="SAMT" ColumnName="SAMT" />
+                <ScalarProperty Name="CAMT" ColumnName="CAMT" />
+                <ScalarProperty Name="IAMT" ColumnName="IAMT" />
+                <ScalarProperty Name="RT" ColumnName="RT" />
+                <ScalarProperty Name="TXVAL" ColumnName="TXVAL" />
+                <ScalarProperty Name="TY" ColumnName="TY" />
+                <ScalarProperty Name="SortIndex" ColumnName="SortIndex" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CPInvoiceID" ColumnName="CPInvoiceID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="CPInvoiceItemID" ColumnName="CPInvoiceItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="mxgstdbModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="ImportFileID" ColumnName="ImportFileID" />
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Account_Name" ColumnName="Account_Name" />
+                <ScalarProperty Name="TCAdd" ColumnName="TCAdd" />
+                <ScalarProperty Name="STFPersPartyID" ColumnName="STFPersPartyID" />
+                <ScalarProperty Name="RegExp" ColumnName="RegExp" />
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="RequireReg" ColumnName="RequireReg" />
+                <ScalarProperty Name="RegPersPartyID" ColumnName="RegPersPartyID" />
+                <ScalarProperty Name="RegUserID" ColumnName="RegUserID" />
+                <ScalarProperty Name="RegLastCorres" ColumnName="RegLastCorres" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CustomerClass" ColumnName="CustomerClass" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="DocSysNum" ColumnName="DocSysNum" />
+                <ScalarProperty Name="PartyID" ColumnName="PartyID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Division">
+            <EntityTypeMapping TypeName="mxgstdbModel.Division">
+              <MappingFragment StoreEntitySet="Division">
+                <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+                <ScalarProperty Name="DivisionCode" ColumnName="DivisionCode" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EwayBill">
+            <EntityTypeMapping TypeName="mxgstdbModel.EwayBill">
+              <MappingFragment StoreEntitySet="EwayBill">
+                <ScalarProperty Name="ImportFileID" ColumnName="ImportFileID" />
+                <ScalarProperty Name="Sply_Ty" ColumnName="Sply_Ty" />
+                <ScalarProperty Name="VAL" ColumnName="VAL" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="DocNum" ColumnName="DocNum" />
+                <ScalarProperty Name="ReturnPeriodID" ColumnName="ReturnPeriodID" />
+                <ScalarProperty Name="SubSupplyDesc" ColumnName="SubSupplyDesc" />
+                <ScalarProperty Name="dispatchFromTradeName" ColumnName="dispatchFromTradeName" />
+                <ScalarProperty Name="cessNonAdvolRT" ColumnName="cessNonAdvolRT" />
+                <ScalarProperty Name="ChallanID" ColumnName="ChallanID" />
+                <ScalarProperty Name="cessNonAdvolValue" ColumnName="cessNonAdvolValue" />
+                <ScalarProperty Name="otherValue" ColumnName="otherValue" />
+                <ScalarProperty Name="shipToTradeName" ColumnName="shipToTradeName" />
+                <ScalarProperty Name="shipToGSTIN" ColumnName="shipToGSTIN" />
+                <ScalarProperty Name="dispatchFromGstin" ColumnName="dispatchFromGstin" />
+                <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="actToStateCode" ColumnName="actToStateCode" />
+                <ScalarProperty Name="actFromStateCode" ColumnName="actFromStateCode" />
+                <ScalarProperty Name="toStateCode" ColumnName="toStateCode" />
+                <ScalarProperty Name="toPinCode" ColumnName="toPinCode" />
+                <ScalarProperty Name="toPlace" ColumnName="toPlace" />
+                <ScalarProperty Name="toAddr2" ColumnName="toAddr2" />
+                <ScalarProperty Name="toAddr1" ColumnName="toAddr1" />
+                <ScalarProperty Name="fromStateCode" ColumnName="fromStateCode" />
+                <ScalarProperty Name="fromPinCode" ColumnName="fromPinCode" />
+                <ScalarProperty Name="fromPlace" ColumnName="fromPlace" />
+                <ScalarProperty Name="fromAddr2" ColumnName="fromAddr2" />
+                <ScalarProperty Name="fromAddr1" ColumnName="fromAddr1" />
+                <ScalarProperty Name="LastVehicleID" ColumnName="LastVehicleID" />
+                <ScalarProperty Name="cancelDate" ColumnName="cancelDate" />
+                <ScalarProperty Name="ewbRejectedDate" ColumnName="ewbRejectedDate" />
+                <ScalarProperty Name="ValidUpto" ColumnName="ValidUpto" />
+                <ScalarProperty Name="NoValidDays" ColumnName="NoValidDays" />
+                <ScalarProperty Name="TransDistance" ColumnName="TransDistance" />
+                <ScalarProperty Name="TransVendorID" ColumnName="TransVendorID" />
+                <ScalarProperty Name="ODNoteID" ColumnName="ODNoteID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="SubSupplyType" ColumnName="SubSupplyType" />
+                <ScalarProperty Name="SupplyType" ColumnName="SupplyType" />
+                <ScalarProperty Name="CampusID" ColumnName="CampusID" />
+                <ScalarProperty Name="EwayBillDate" ColumnName="EwayBillDate" />
+                <ScalarProperty Name="EwayBillNum" ColumnName="EwayBillNum" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="EwayBillID" ColumnName="EwayBillID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EWayBillVehicle">
+            <EntityTypeMapping TypeName="mxgstdbModel.EWayBillVehicle">
+              <MappingFragment StoreEntitySet="EWayBillVehicle">
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="TripshtNo" ColumnName="TripshtNo" />
+                <ScalarProperty Name="UserGSTINTransin" ColumnName="UserGSTINTransin" />
+                <ScalarProperty Name="TransMode" ColumnName="TransMode" />
+                <ScalarProperty Name="TransDocDate" ColumnName="TransDocDate" />
+                <ScalarProperty Name="TransDocNo" ColumnName="TransDocNo" />
+                <ScalarProperty Name="ReasonCode" ColumnName="ReasonCode" />
+                <ScalarProperty Name="FromState" ColumnName="FromState" />
+                <ScalarProperty Name="FromPlace" ColumnName="FromPlace" />
+                <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="EwayBillID" ColumnName="EwayBillID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="EWayBillVehicleID" ColumnName="EWayBillVehicleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinYears">
+            <EntityTypeMapping TypeName="mxgstdbModel.FinYears">
+              <MappingFragment StoreEntitySet="FinYears">
+                <ScalarProperty Name="Descrip" ColumnName="Descrip" />
+                <ScalarProperty Name="EnDate" ColumnName="EnDate" />
+                <ScalarProperty Name="StDate" ColumnName="StDate" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="FinYearID" ColumnName="FinYearID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GstAdvanceVouch">
+            <EntityTypeMapping TypeName="mxgstdbModel.GstAdvanceVouch">
+              <MappingFragment StoreEntitySet="GstAdvanceVouch">
+                <ScalarProperty Name="InvoiceNumberTemplateId" ColumnName="InvoiceNumberTemplateId" />
+                <ScalarProperty Name="VouchNumDynamicPart" ColumnName="VouchNumDynamicPart" />
+                <ScalarProperty Name="PartyGstRegType" ColumnName="PartyGstRegType" />
+                <ScalarProperty Name="ImportFileID" ColumnName="ImportFileID" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="SupplyFromTaxAreaID" ColumnName="SupplyFromTaxAreaID" />
+                <ScalarProperty Name="RCHRG" ColumnName="RCHRG" />
+                <ScalarProperty Name="Diff_Percent" ColumnName="Diff_Percent" />
+                <ScalarProperty Name="IsReturn" ColumnName="IsReturn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="AmountTot" ColumnName="AmountTot" />
+                <ScalarProperty Name="Sply_Ty" ColumnName="Sply_Ty" />
+                <ScalarProperty Name="IsAmendment" ColumnName="IsAmendment" />
+                <ScalarProperty Name="StatusNum" ColumnName="StatusNum" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="VouchNum" ColumnName="VouchNum" />
+                <ScalarProperty Name="Dated" ColumnName="Dated" />
+                <ScalarProperty Name="ReturnPeriodID" ColumnName="ReturnPeriodID" />
+                <ScalarProperty Name="POSTaxAreaID" ColumnName="POSTaxAreaID" />
+                <ScalarProperty Name="RootVouchID" ColumnName="RootVouchID" />
+                <ScalarProperty Name="RefundVouchID" ColumnName="RefundVouchID" />
+                <ScalarProperty Name="OrigVouchID" ColumnName="OrigVouchID" />
+                <ScalarProperty Name="AdvanceVouchType" ColumnName="AdvanceVouchType" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="CampusID" ColumnName="CampusID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="GstAdvanceVouchID" ColumnName="GstAdvanceVouchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GstAdvanceVouchItem">
+            <EntityTypeMapping TypeName="mxgstdbModel.GstAdvanceVouchItem">
+              <MappingFragment StoreEntitySet="GstAdvanceVouchItem">
+                <ScalarProperty Name="RemarkItem" ColumnName="RemarkItem" />
+                <ScalarProperty Name="Cess_Rt" ColumnName="Cess_Rt" />
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="GSTR3B5Section" ColumnName="GSTR3B5Section" />
+                <ScalarProperty Name="GSTR3B32Section" ColumnName="GSTR3B32Section" />
+                <ScalarProperty Name="GSTR3B31Section" ColumnName="GSTR3B31Section" />
+                <ScalarProperty Name="CSAMT" ColumnName="CSAMT" />
+                <ScalarProperty Name="SAMT" ColumnName="SAMT" />
+                <ScalarProperty Name="CAMT" ColumnName="CAMT" />
+                <ScalarProperty Name="IAMT" ColumnName="IAMT" />
+                <ScalarProperty Name="RT" ColumnName="RT" />
+                <ScalarProperty Name="S_RT" ColumnName="S_RT" />
+                <ScalarProperty Name="C_RT" ColumnName="C_RT" />
+                <ScalarProperty Name="I_RT" ColumnName="I_RT" />
+                <ScalarProperty Name="AD_AMT" ColumnName="AD_AMT" />
+                <ScalarProperty Name="DiffCSAMT" ColumnName="DiffCSAMT" />
+                <ScalarProperty Name="DiffCAMT" ColumnName="DiffCAMT" />
+                <ScalarProperty Name="DiffSAMT" ColumnName="DiffSAMT" />
+                <ScalarProperty Name="DiffIAMT" ColumnName="DiffIAMT" />
+                <ScalarProperty Name="DiffAD_AMT" ColumnName="DiffAD_AMT" />
+                <ScalarProperty Name="LineSNum" ColumnName="LineSNum" />
+                <ScalarProperty Name="GstAdvanceVouchID" ColumnName="GstAdvanceVouchID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="GstAdvanceVouchItemID" ColumnName="GstAdvanceVouchItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GSTReg">
+            <EntityTypeMapping TypeName="mxgstdbModel.GSTReg">
+              <MappingFragment StoreEntitySet="GSTReg">
+                <ScalarProperty Name="GSTRegType" ColumnName="GSTRegType" />
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="TurnOver" ColumnName="TurnOver" />
+                <ScalarProperty Name="EWBPassword" ColumnName="EWBPassword" />
+                <ScalarProperty Name="EWBUserName" ColumnName="EWBUserName" />
+                <ScalarProperty Name="AuthPAN" ColumnName="AuthPAN" />
+                <ScalarProperty Name="PartialCredit" ColumnName="PartialCredit" />
+                <ScalarProperty Name="SearchResult" ColumnName="SearchResult" />
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="ApplicationNum" ColumnName="ApplicationNum" />
+                <ScalarProperty Name="GSTNUserId" ColumnName="GSTNUserId" />
+                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
+                <ScalarProperty Name="TaxAreaID" ColumnName="TaxAreaID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="GSTRegID" ColumnName="GSTRegID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoice">
+            <EntityTypeMapping TypeName="mxgstdbModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="InvoiceNumberTemplateId" ColumnName="InvoiceNumberTemplateId" />
+                <ScalarProperty Name="InvoiceNumDynamicPart" ColumnName="InvoiceNumDynamicPart" />
+                <ScalarProperty Name="IsCreditISD" ColumnName="IsCreditISD" />
+                <ScalarProperty Name="gstn_error_msg" ColumnName="gstn_error_msg" />
+                <ScalarProperty Name="gstn_error_cd" ColumnName="gstn_error_cd" />
+                <ScalarProperty Name="gstn_status_cd" ColumnName="gstn_status_cd" />
+                <ScalarProperty Name="ImportFileID" ColumnName="ImportFileID" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="PartyGstRegType" ColumnName="PartyGstRegType" />
+                <ScalarProperty Name="Ex_Rt" ColumnName="Ex_Rt" />
+                <ScalarProperty Name="IsForeignCurrency" ColumnName="IsForeignCurrency" />
+                <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
+                <ScalarProperty Name="Rsn" ColumnName="Rsn" />
+                <ScalarProperty Name="SaleBondedWH" ColumnName="SaleBondedWH" />
+                <ScalarProperty Name="Diff_Percent" ColumnName="Diff_Percent" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
+                <ScalarProperty Name="ShipToTaxAreaID" ColumnName="ShipToTaxAreaID" />
+                <ScalarProperty Name="ShipFromTaxAreaID" ColumnName="ShipFromTaxAreaID" />
+                <ScalarProperty Name="CPInvoiceID" ColumnName="CPInvoiceID" />
+                <ScalarProperty Name="CFlag" ColumnName="CFlag" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="ActionFlag" ColumnName="ActionFlag" />
+                <ScalarProperty Name="LastTransactionId" ColumnName="LastTransactionId" />
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Lastupdated" ColumnName="Lastupdated" />
+                <ScalarProperty Name="MatchCode" ColumnName="MatchCode" />
+                <ScalarProperty Name="p_gst" ColumnName="p_gst" />
+                <ScalarProperty Name="stin" ColumnName="stin" />
+                <ScalarProperty Name="is_sez" ColumnName="is_sez" />
+                <ScalarProperty Name="port_code" ColumnName="port_code" />
+                <ScalarProperty Name="boe_val" ColumnName="boe_val" />
+                <ScalarProperty Name="boe_dt" ColumnName="boe_dt" />
+                <ScalarProperty Name="boe_num" ColumnName="boe_num" />
+                <ScalarProperty Name="SBDT" ColumnName="SBDT" />
+                <ScalarProperty Name="SBNUM" ColumnName="SBNUM" />
+                <ScalarProperty Name="SBPCode" ColumnName="SBPCode" />
+                <ScalarProperty Name="ETIN" ColumnName="ETIN" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="StatusNum" ColumnName="StatusNum" />
+                <ScalarProperty Name="VAL" ColumnName="VAL" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="InvoiceNum" ColumnName="InvoiceNum" />
+                <ScalarProperty Name="IsAmendment" ColumnName="IsAmendment" />
+                <ScalarProperty Name="RCHRG" ColumnName="RCHRG" />
+                <ScalarProperty Name="BillOf" ColumnName="BillOf" />
+                <ScalarProperty Name="ExportDutyType" ColumnName="ExportDutyType" />
+                <ScalarProperty Name="Sply_Ty" ColumnName="Sply_Ty" />
+                <ScalarProperty Name="GSTInvoiceSubType" ColumnName="GSTInvoiceSubType" />
+                <ScalarProperty Name="GSTInvoiceType" ColumnName="GSTInvoiceType" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="ReturnPeriodID" ColumnName="ReturnPeriodID" />
+                <ScalarProperty Name="POSTaxAreaID" ColumnName="POSTaxAreaID" />
+                <ScalarProperty Name="ConsigneeID" ColumnName="ConsigneeID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="ConsigneePrefix" ColumnName="ConsigneePrefix" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="RootInvoiceID" ColumnName="RootInvoiceID" />
+                <ScalarProperty Name="OrigInvoiceID" ColumnName="OrigInvoiceID" />
+                <ScalarProperty Name="CDNInvoiceID" ColumnName="CDNInvoiceID" />
+                <ScalarProperty Name="CampusID" ColumnName="CampusID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceItemGst">
+            <EntityTypeMapping TypeName="mxgstdbModel.InvoiceItemGst">
+              <MappingFragment StoreEntitySet="InvoiceItemGst">
+                <ScalarProperty Name="RemarkItem" ColumnName="RemarkItem" />
+                <ScalarProperty Name="GSTR3B4DSection" ColumnName="GSTR3B4DSection" />
+                <ScalarProperty Name="GSTR3B4ASection" ColumnName="GSTR3B4ASection" />
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ITCDate" ColumnName="ITCDate" />
+                <ScalarProperty Name="ITCReversal_4243" ColumnName="ITCReversal_4243" />
+                <ScalarProperty Name="Hsn_Desc" ColumnName="Hsn_Desc" />
+                <ScalarProperty Name="Cess_Rt" ColumnName="Cess_Rt" />
+                <ScalarProperty Name="DiscountBeforeTax" ColumnName="DiscountBeforeTax" />
+                <ScalarProperty Name="ChargeBeforeTax" ColumnName="ChargeBeforeTax" />
+                <ScalarProperty Name="GSTR3B5Section" ColumnName="GSTR3B5Section" />
+                <ScalarProperty Name="GSTR3B32Section" ColumnName="GSTR3B32Section" />
+                <ScalarProperty Name="GSTR3B31Section" ColumnName="GSTR3B31Section" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="GstTaxType" ColumnName="GstTaxType" />
+                <ScalarProperty Name="elg" ColumnName="elg" />
+                <ScalarProperty Name="tx_cs" ColumnName="tx_cs" />
+                <ScalarProperty Name="tx_s" ColumnName="tx_s" />
+                <ScalarProperty Name="tx_c" ColumnName="tx_c" />
+                <ScalarProperty Name="tx_i" ColumnName="tx_i" />
+                <ScalarProperty Name="BasicRate" ColumnName="BasicRate" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Uqc" ColumnName="Uqc" />
+                <ScalarProperty Name="CSAMT" ColumnName="CSAMT" />
+                <ScalarProperty Name="SAMT" ColumnName="SAMT" />
+                <ScalarProperty Name="CAMT" ColumnName="CAMT" />
+                <ScalarProperty Name="IAMT" ColumnName="IAMT" />
+                <ScalarProperty Name="RT" ColumnName="RT" />
+                <ScalarProperty Name="S_RT" ColumnName="S_RT" />
+                <ScalarProperty Name="C_RT" ColumnName="C_RT" />
+                <ScalarProperty Name="I_RT" ColumnName="I_RT" />
+                <ScalarProperty Name="TXVAL" ColumnName="TXVAL" />
+                <ScalarProperty Name="Hsn_Sc" ColumnName="Hsn_Sc" />
+                <ScalarProperty Name="TY" ColumnName="TY" />
+                <ScalarProperty Name="LineSNum" ColumnName="LineSNum" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="InvoiceItemGSTID" ColumnName="InvoiceItemGSTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Party">
+            <EntityTypeMapping TypeName="mxgstdbModel.Party">
+              <MappingFragment StoreEntitySet="Party">
+                <ScalarProperty Name="GstRegType" ColumnName="GstRegType" />
+                <ScalarProperty Name="SearchResult" ColumnName="SearchResult" />
+                <ScalarProperty Name="LastUpdatedGSTN" ColumnName="LastUpdatedGSTN" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+                <ScalarProperty Name="FreightIns" ColumnName="FreightIns" />
+                <ScalarProperty Name="ChallanAddress" ColumnName="ChallanAddress" />
+                <ScalarProperty Name="TaxAreaID" ColumnName="TaxAreaID" />
+                <ScalarProperty Name="TCAdd" ColumnName="TCAdd" />
+                <ScalarProperty Name="TaxAddressVer" ColumnName="TaxAddressVer" />
+                <ScalarProperty Name="TaxAddressHor" ColumnName="TaxAddressHor" />
+                <ScalarProperty Name="CommunicAddress" ColumnName="CommunicAddress" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
+                <ScalarProperty Name="TINNum" ColumnName="TINNum" />
+                <ScalarProperty Name="CINNum" ColumnName="CINNum" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="perExcise" ColumnName="perExcise" />
+                <ScalarProperty Name="perSTax" ColumnName="perSTax" />
+                <ScalarProperty Name="Creditdays" ColumnName="Creditdays" />
+                <ScalarProperty Name="PayTermStdID" ColumnName="PayTermStdID" />
+                <ScalarProperty Name="PANNum" ColumnName="PANNum" />
+                <ScalarProperty Name="cstnum" ColumnName="cstnum" />
+                <ScalarProperty Name="stnum" ColumnName="stnum" />
+                <ScalarProperty Name="SVTNum" ColumnName="SVTNum" />
+                <ScalarProperty Name="ECCNum" ColumnName="ECCNum" />
+                <ScalarProperty Name="ECCDiv" ColumnName="ECCDiv" />
+                <ScalarProperty Name="ECCRange" ColumnName="ECCRange" />
+                <ScalarProperty Name="SalesTax" ColumnName="SalesTax" />
+                <ScalarProperty Name="Excise" ColumnName="Excise" />
+                <ScalarProperty Name="Freight" ColumnName="Freight" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Insurance" ColumnName="Insurance" />
+                <ScalarProperty Name="Transmode" ColumnName="Transmode" />
+                <ScalarProperty Name="Payterms" ColumnName="Payterms" />
+                <ScalarProperty Name="Shipterms" ColumnName="Shipterms" />
+                <ScalarProperty Name="SameAsHead" ColumnName="SameAsHead" />
+                <ScalarProperty Name="SelPhNum" ColumnName="SelPhNum" />
+                <ScalarProperty Name="SelFaxNum" ColumnName="SelFaxNum" />
+                <ScalarProperty Name="SelFaxArea" ColumnName="SelFaxArea" />
+                <ScalarProperty Name="SelFaxCountry" ColumnName="SelFaxCountry" />
+                <ScalarProperty Name="SelPhArea" ColumnName="SelPhArea" />
+                <ScalarProperty Name="SelPhCountry" ColumnName="SelPhCountry" />
+                <ScalarProperty Name="SelPinCode" ColumnName="SelPinCode" />
+                <ScalarProperty Name="SelCountryCode" ColumnName="SelCountryCode" />
+                <ScalarProperty Name="SelStateCode" ColumnName="SelStateCode" />
+                <ScalarProperty Name="SelCountry" ColumnName="SelCountry" />
+                <ScalarProperty Name="SelState" ColumnName="SelState" />
+                <ScalarProperty Name="SelCity" ColumnName="SelCity" />
+                <ScalarProperty Name="SelAddress" ColumnName="SelAddress" />
+                <ScalarProperty Name="SelWeb" ColumnName="SelWeb" />
+                <ScalarProperty Name="SelEmail" ColumnName="SelEmail" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="DocSysNum" ColumnName="DocSysNum" />
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="PartyCode" ColumnName="PartyCode" />
+                <ScalarProperty Name="MainPartyID" ColumnName="MainPartyID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="PartyID" ColumnName="PartyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartyMain">
+            <EntityTypeMapping TypeName="mxgstdbModel.PartyMain">
+              <MappingFragment StoreEntitySet="PartyMain">
+                <ScalarProperty Name="TurnOver" ColumnName="TurnOver" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="TCLogo" ColumnName="TCLogo" />
+                <ScalarProperty Name="TCName" ColumnName="TCName" />
+                <ScalarProperty Name="NetName" ColumnName="NetName" />
+                <ScalarProperty Name="MPNick" ColumnName="MPNick" />
+                <ScalarProperty Name="EstdIn" ColumnName="EstdIn" />
+                <ScalarProperty Name="IsInspAgency" ColumnName="IsInspAgency" />
+                <ScalarProperty Name="IsTrader" ColumnName="IsTrader" />
+                <ScalarProperty Name="IsEndUser" ColumnName="IsEndUser" />
+                <ScalarProperty Name="IsContractor" ColumnName="IsContractor" />
+                <ScalarProperty Name="IsConsultant" ColumnName="IsConsultant" />
+                <ScalarProperty Name="IsEPC" ColumnName="IsEPC" />
+                <ScalarProperty Name="IsGovt" ColumnName="IsGovt" />
+                <ScalarProperty Name="IsCompetitor" ColumnName="IsCompetitor" />
+                <ScalarProperty Name="IsEmployer" ColumnName="IsEmployer" />
+                <ScalarProperty Name="IsDealer" ColumnName="IsDealer" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Field" ColumnName="Field" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NumEmp" ColumnName="NumEmp" />
+                <ScalarProperty Name="SegmentID" ColumnName="SegmentID" />
+                <ScalarProperty Name="SegmentOther" ColumnName="SegmentOther" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Web" ColumnName="Web" />
+                <ScalarProperty Name="Faxnum" ColumnName="Faxnum" />
+                <ScalarProperty Name="Phnum" ColumnName="Phnum" />
+                <ScalarProperty Name="FaxArea" ColumnName="FaxArea" />
+                <ScalarProperty Name="FaxCountry" ColumnName="FaxCountry" />
+                <ScalarProperty Name="PhArea" ColumnName="PhArea" />
+                <ScalarProperty Name="PhCountry" ColumnName="PhCountry" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PartySubType" ColumnName="PartySubType" />
+                <ScalarProperty Name="PartyType" ColumnName="PartyType" />
+                <ScalarProperty Name="MPName" ColumnName="MPName" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="MainPartyID" ColumnName="MainPartyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostPeriod">
+            <EntityTypeMapping TypeName="mxgstdbModel.PostPeriod">
+              <MappingFragment StoreEntitySet="PostPeriod">
+                <ScalarProperty Name="ret_pd" ColumnName="ret_pd" />
+                <ScalarProperty Name="IsFinal" ColumnName="IsFinal" />
+                <ScalarProperty Name="EDate" ColumnName="EDate" />
+                <ScalarProperty Name="SDate" ColumnName="SDate" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="FinYearID" ColumnName="FinYearID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="PostPeriodID" ColumnName="PostPeriodID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaxArea">
+            <EntityTypeMapping TypeName="mxgstdbModel.TaxArea">
+              <MappingFragment StoreEntitySet="TaxArea">
+                <ScalarProperty Name="TaxAreaCode2" ColumnName="TaxAreaCode2" />
+                <ScalarProperty Name="TINCode" ColumnName="TINCode" />
+                <ScalarProperty Name="Descrip" ColumnName="Descrip" />
+                <ScalarProperty Name="TaxAreaCode" ColumnName="TaxAreaCode" />
+                <ScalarProperty Name="TaxAreaID" ColumnName="TaxAreaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValidationRule">
+            <EntityTypeMapping TypeName="mxgstdbModel.ValidationRule">
+              <MappingFragment StoreEntitySet="ValidationRule">
+                <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="ModeCSV" ColumnName="ModeCSV" />
+                <ScalarProperty Name="Expression" ColumnName="Expression" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="RuleLevel" ColumnName="RuleLevel" />
+                <ScalarProperty Name="RuleType" ColumnName="RuleType" />
+                <ScalarProperty Name="ResultType" ColumnName="ResultType" />
+                <ScalarProperty Name="ValidationText" ColumnName="ValidationText" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="ValidationRuleID" ColumnName="ValidationRuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendor">
+            <EntityTypeMapping TypeName="mxgstdbModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendor">
+                <ScalarProperty Name="ImportFileID" ColumnName="ImportFileID" />
+                <ScalarProperty Name="IFSCNum" ColumnName="IFSCNum" />
+                <ScalarProperty Name="SwiftCode" ColumnName="SwiftCode" />
+                <ScalarProperty Name="IsCorporate" ColumnName="IsCorporate" />
+                <ScalarProperty Name="AllowMultiOrigInv" ColumnName="AllowMultiOrigInv" />
+                <ScalarProperty Name="LastModApp" ColumnName="LastModApp" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ImportAllow" ColumnName="ImportAllow" />
+                <ScalarProperty Name="HRContractSvcChgPer" ColumnName="HRContractSvcChgPer" />
+                <ScalarProperty Name="WorkNature" ColumnName="WorkNature" />
+                <ScalarProperty Name="HRContractEnd" ColumnName="HRContractEnd" />
+                <ScalarProperty Name="HRContractStart" ColumnName="HRContractStart" />
+                <ScalarProperty Name="NoPOJWO" ColumnName="NoPOJWO" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="SuppType" ColumnName="SuppType" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="LastReview" ColumnName="LastReview" />
+                <ScalarProperty Name="Payments" ColumnName="Payments" />
+                <ScalarProperty Name="Rejections" ColumnName="Rejections" />
+                <ScalarProperty Name="Rates" ColumnName="Rates" />
+                <ScalarProperty Name="TimelySupply" ColumnName="TimelySupply" />
+                <ScalarProperty Name="DocSysNum" ColumnName="DocSysNum" />
+                <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
+                <ScalarProperty Name="VendorType" ColumnName="VendorType" />
+                <ScalarProperty Name="VendorClass" ColumnName="VendorClass" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="PartyID" ColumnName="PartyID" />
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

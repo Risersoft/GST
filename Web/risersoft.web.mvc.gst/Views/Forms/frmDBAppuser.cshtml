@@ -1,0 +1,129 @@
+﻿@using risersoft.app.mxform
+@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+
+@model frmDBAppUserModel
+@{
+    ViewData["Title"] = "Appuser";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = JsonConvert.SerializeObject(Model, Formatting.Indented,
+                            new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml, NullValueHandling = NullValueHandling.Ignore });
+}
+
+<link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<div class="container cbackground">
+    <form action="" method="post" name="userform" id="userform" ng-controller="FormController">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+        <div Class="form-horizontal">
+            <div class="row"></div>
+            <div Class="row" style="margin-top: 40px;">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">App <label class="hdisp" id="party">Required Field</label></Label>
+                    <select name="Appc" ng-model="DBAppuser.AppCodeSelected"
+                            ng-options="item.appcode for item in dsCombo.AppCode track by item.appcode" ng-change="partyfn(PaymentInfo.VendorIDSelected)" Class="form-control" required ng-class="{true: 'error'}[submitted() && userform.appc.$invalid]"></select>
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">User</Label>
+                    <select name="userc" ng-model="DBAppuser.UserIdSelected" ng-options="itemc.UserName for itemc in dsCombo.users track by itemc.UserId" class="form-control" required ng-class="{true: 'error'}[submitted() && userform.userc.$invalid]"></select>
+
+                </div>
+            </div>
+            <div Class="row">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Custom Title</Label>
+                    <input type="text" ng-model="DBAppuser.AppTitle" Class="form-control" />
+                </div>
+            </div>
+            <div Class="row">
+                <hr />
+                <div class="col-md-1"></div>
+                <div class="col-md-2"><Button type="button" id="items" Class="btn btn-primary" ng-click="itemCampus()">ADD Campus</Button></div>
+                <div class="col-md-2"><Button type="button" id="items" Class="btn btn-primary" ng-click="itemDivision()">ADD Division</Button></div>
+            </div>
+            <div Class="row">
+                <label style="float:right;margin-top:17px;margin-bottom:17px"></label>
+            </div>
+            <div class="row">
+                <div class="container marb" ng-repeat="row in AppItem" style="padding-top:5px;">
+                    <div class="row" style="background-color: #eeeeee;padding-bottom:17px;padding-top:17px;">
+                        <a href="" class="delete" ng-click="delete($index)"><span class="glyphicon glyphicon-remove-circle" style="color: #d83e3b;margin-right: 8px;"></span></a>
+                        <div class="col-md-1"><label class="labeltextc" style="font-size:16px">[{{$index+1}}]</label></div>
+                        <div class="col-md-2"><Label Class="control-label labeltextc">Field Name</Label><input type="text" ng-model="row.FieldName" class="form-control" readonly /></div>
+                        <div class="col-md-2"><Label Class="control-label labeltextc">Field Text</Label><input type="text" ng-model="row.FieldText" class="form-control" readonly /></div>
+                        <div class="col-md-2" ng-show="row.FieldName=='campusid'"><Label Class="control-label labeltextc">Field Value</Label><select name="cl" ng-model="row.FieldValueSelected" ng-options="itemtn.dispname for itemtn in model.DatasetCollection.Dic.campusid track by itemtn.campusid" Class="form-control" style="padding:5px"></select></div>
+                        <div class="col-md-2" ng-show="row.FieldName=='divisionid'"><Label Class="control-label labeltextc">Field Value</Label><select name="c" ng-model="row.FieldValueSelected" ng-options="itemty.divisionname for itemty in model.DatasetCollection.Dic.divisionid track by itemty.divisionid" Class="form-control" style="padding:5px"></select></div>
+                    </div>
+                </div>
+            </div>
+            @Html.Partial("_SavePanel")
+        </div>
+    </form>
+</div>
+
+@section botscripts{
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http) {
+            $scope.model = JSON.parse($("#model_json").val());
+            $scope.status = 'loaded';
+
+            var loadmodel = function (result) {
+                $scope.model = result;
+                $scope.DBAppuser = $scope.model.dsForm.DT[0];
+                $scope.AppItem = $scope.model.GridViews.DBApp.MainGrid.myDS.dt;
+                //alert($scope.AppItem);
+
+                $scope.itemCampus = function () {
+                    var item = {};
+                    item.FieldName = 'campusid';
+                    item.FieldText = 'Campus';
+                    $scope.AppItem.push(item);
+                };
+
+                $scope.itemDivision = function () {
+
+                    var item = {};
+                    item.FieldName = 'divisionid';
+                    item.FieldText = 'Division';
+                    $scope.AppItem.push(item);
+                };
+
+                $scope.delete = function (index) {
+                    $scope.AppItem.splice(index, 1);
+                };
+
+                $scope.ValueLists = $scope.model.ValueLists;
+                $scope.dsCombo = $scope.model.dsCombo;
+                $scope.DBAppuser.AppCodeSelected = $.grep($scope.dsCombo.AppCode, function (item, index) { return item.appcode === $scope.DBAppuser.AppCode })[0];
+
+                @Html.RenderLookup("DBAppuser", Model, Model.dsForm.Tables[0]);
+
+                $.each($scope.AppItem, function (index, row) {
+                    if ($scope.AppItem[index].FieldName == 'campusid') {
+                        row.FieldText = 'Campus'
+                        row.FieldValueSelected = $.grep($scope.model.DatasetCollection.Dic.campusid, function (item, index) { return item.campusid == row.FieldValue })[0];
+                    }
+                    if ($scope.AppItem[index].FieldName == 'divisionid') {
+                        row.FieldText = 'Division'
+                        row.FieldValueSelected = $.grep($scope.model.DatasetCollection.Dic.divisionid, function (item, index) { return item.divisionid == row.FieldValue })[0];
+                    }
+                });
+            };
+
+            loadmodel($scope.model);
+
+            $scope.cleanupmodel = function (datamodel) { };
+            $scope.calculatemodel = function () { };
+            $scope.visdel = true;
+            @Html.RenderFile("~/scripts/rsforms.js")
+        });
+    </script>
+    @Html.RenderJsCss(false, "jqueryui")
+}

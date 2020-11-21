@@ -1,0 +1,148 @@
+﻿@using GSTN.API.Library.Models.GstNirvana
+@model ConvertModel
+@{
+    ViewData["Title"] = "GST Returns format conversion utility";
+    string returnkey = Model.ReturnKey;
+    string tablekey = Model.TableName;
+}
+
+<div class="clearfix"></div>
+<div class="container content-part">
+    <div class="col-sm-9">
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="accounts">
+                @*<h2>GST Community Services</h2>*@
+                <br />
+                <br />
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken();
+                    <div class="form-horizontal">
+                        <h4>Conversion Utility</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ReturnKey, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                <select class="form-control" name="ReturnKey" id="ReturnKey" required>
+                                    <option value="">--Select Type--</option>
+                                    <option value="GSTR1" @if (returnkey == "GSTR1") { Html.Raw("selected"); }> GSTR1</option>
+                                    <option value="GSTR2" @if (returnkey == "GSTR2") { Html.Raw("selected"); }> GSTR2</option>
+                                    <option value="GSTR3" @if (returnkey == "GSTR3") { Html.Raw("selected"); }> GSTR3</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.ReturnKey, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div Class="form-group">
+                            @Html.LabelFor(model => model.TableName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div Class="col-md-3">
+                                <select Class="form-control" name="TableName" id="TableName" required>
+                                    <option value=""> --Choose() Table--</option>
+                                    <option value="b2b" @if (tablekey == "b2b") { Html.Raw("selected"); }> b2b</option>
+                                    <option value="b2ba" @if (tablekey == "b2ba") { Html.Raw("selected"); }> b2ba</option>
+                                    <option value="b2cl" @if (tablekey == "b2cl") { Html.Raw("selected"); }> b2cl</option>
+                                    <option value="b2cla" @if (tablekey == "b2cla") { Html.Raw("selected"); }> b2cla</option>
+                                    <option value="b2cs" @if (tablekey == "b2cs") { Html.Raw("selected"); }> b2cs</option>
+                                    <option value="b2csa" @if (tablekey == "b2csa") { Html.Raw("selected"); }> b2csa</option>
+                                    <option value="nil" @if (tablekey == "nil") { Html.Raw("selected"); }> nil</option>
+                                    <option value="exp" @if (tablekey == "exp") { Html.Raw("selected"); }> exp</option>
+                                    <option value="expa" @if (tablekey == "expa") { Html.Raw("selected"); }> expa</option>
+                                    <option value="cdna" @if (tablekey == "cdna") { Html.Raw("selected"); }> cdna</option>
+                                    <option value="at" @if (tablekey == "at") { Html.Raw("selected"); }> at</option>
+                                    <option value="cdn" @if (tablekey == "cdn") { Html.Raw("selected"); }> cdn</option>
+                                    <option value="txpd" @if (tablekey == "txpd") { Html.Raw("selected"); }> txpd</option>
+                                    <option value="ecom_invocies" @if (tablekey == "ecom_invocies") { Html.Raw("selected"); }> ecom_invocies</option>
+                                    <option value="imp_g" @if (tablekey == "imp_g") { Html.Raw("selected"); }> imp_g</option>
+                                    <option value="imp_ga" @if (tablekey == "imp_ga") { Html.Raw("selected"); }> imp_ga</option>
+                                    <option value="imp_s" @if (tablekey == "imp_s") { Html.Raw("selected"); }> imp_s</option>
+                                    <option value="imp_sa" @if (tablekey == "imp_sa") { Html.Raw("selected"); }> imp_sa</option>
+                                    <option value="nil_supplies" @if (tablekey == "nil_supplies") { Html.Raw("selected"); }> nil_supplies</option>
+                                    <option value="isd_rcd" @if (tablekey == "isd_rcd") { Html.Raw("selected"); }> isd_rcd</option>
+                                    <option value="tds_credit" @if (tablekey == "tds_credit") { Html.Raw("selected"); }> tds_credit</option>
+                                    <option value="tcs_data" @if (tablekey == "tcs_data") { Html.Raw("selected"); }> tcs_data</option>
+                                    <option value="itc_rcd" @if (tablekey == "itc_rcd") { Html.Raw("selected"); }> itc_rcd</option>
+                                    <option value="txi" @if (tablekey == "txi") { Html.Raw("selected"); }> txi</option>
+                                    <option value="atxi" @if (tablekey == "atxi") { Html.Raw("selected"); }> atxi</option>
+                                    <option value="itc_rvsl" @if (tablekey == "itc_rvsl") { Html.Raw("selected"); }> itc_rvsl</option>
+                                    <option value="tod" @if (tablekey == "tod") { Html.Raw("selected"); }> tod</option>
+                                    <option value="out_s" @if (tablekey == "out_s") { Html.Raw("selected"); }> out_s</option>
+                                    <option value="in_s" @if (tablekey == "in_s") { Html.Raw("selected"); }> in_s</option>
+                                    <option value="ttl" @if (tablekey == "ttl") { Html.Raw("selected"); }> ttl</option>
+                                    <option value="tds_rcd" @if (tablekey == "tds_rcd") { Html.Raw("selected"); }> tds_rcd</option>
+                                    <option value="pay_det" @if (tablekey == "pay_det") { Html.Raw("selected"); }> pay_det</option>
+                                    <option value="rf_clm" @if (tablekey == "rf_clm") { Html.Raw("selected"); }> rf_clm</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.TableName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var returnkey = @Model.ReturnKey;
+        var tablename = @Model.TableName;
+
+        $('#ReturnKeyy').on('change', function () {
+            $('#TableName').html('');
+            if($('#ReturnKey').val()=='GSTR1')
+            {
+                $('#TableName').append('<option value="b2b">b2b</option>');
+                $('#TableName').append('<option value="b2ba">b2ba</option>');
+                $('#TableName').append('<option value="b2cl">b2cl</option>');
+                $('#TableName').append('<option value="b2cla">b2cla</option>');
+                $('#TableName').append('<option value="b2cs">b2cs</option>');
+                $('#TableName').append('<option value="b2csa">b2csa</option>');
+                $('#TableName').append('<option value="nil">nil</option>');
+                $('#TableName').append('<option value="exp">exp</option>');
+                $('#TableName').append('<option value="expa">expa</option>');
+                $('#TableName').append('<option value="cdna">cdna</option>');
+                $('#TableName').append('<option value="at">at</option>');
+                $('#TableName').append('<option value="ata">ata</option>');
+                $('#TableName').append('<option value="cdn">cdn</option>');
+                $('#TableName').append('<option value="txpd">txpd</option>');
+                $('#TableName').append('<option value="ecom_invocies">ecom_invocies</option>');
+            }
+            if ($('#ReturnKey').val() == 'GSTR2') {
+                $('#TableName').append('<option value="b2b">b2b</option>');
+                $('#TableName').append('<option value="b2ba">b2ba</option>');
+                $('#TableName').append('<option value="imp_g">imp_g</option>');
+                $('#TableName').append('<option value="imp_ga">imp_ga</option>');
+                $('#TableName').append('<option value="imp_s">imp_s</option>');
+                $('#TableName').append('<option value="imp_sa">imp_sa</option>');
+                $('#TableName').append('<option value="cdn">cdn</option>');
+                $('#TableName').append('<option value="cdna">cdna</option>');
+                $('#TableName').append('<option value="nil_supplies">nil_supplies</option>');
+                $('#TableName').append('<option value="isd_rcd">isd_rcd</option>');
+                $('#TableName').append('<option value="tds_credit">tds_credit</option>');
+                $('#TableName').append('<option value="tcs_data">tcs_data</option>');
+                $('#TableName').append('<option value="itc_rcd">itc_rcd</option>');
+                $('#TableName').append('<option value="txi">txi</option>');
+                $('#TableName').append('<option value="atxi">atxi</option>');
+                $('#TableName').append('<option value="txpd">txpd</option>');
+                $('#TableName').append('<option value="itc_rvsl">itc_rvsl</option>');
+            }
+            if ($('#ReturnKey').val() == 'GSTR3') {
+                $('#TableName').append('<option value="tod">tod</option>');
+                $('#TableName').append('<option value="out_s">out_s</option>');
+                $('#TableName').append('<option value="in_s">in_s</option>');
+                $('#TableName').append('<option value="ttl">ttl</option>');
+                $('#TableName').append('<option value="tds_rcd">tds_rcd</option>');
+                $('#TableName').append('<option value="itc_rcd">itc_rcd</option>');
+                $('#TableName').append('<option value="pay_det">pay_det</option>');
+                $('#TableName').append('<option value="rf_clm">rf_clm</option>');
+            }
+        });
+    });
+</script>
+
+

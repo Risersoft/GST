@@ -1,0 +1,644 @@
+﻿@using risersoft.shared.web.Extensions
+@using System.Data
+
+@model DataSet
+@{
+    ViewData["Title"] = "Data Import utility";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+}
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<style>
+    /*#progressc {
+        display: none;
+    }*/
+
+    .progress {
+        height: 25px !important;
+    }
+
+    .progressdis {
+        display: block !important;
+        width: 750px
+    }
+
+    .cresult {
+        display: none;
+    }
+
+    .cresultdis {
+        display: block !important;
+    }
+
+    .cprocess {
+        display: none;
+    }
+
+    .cLink {
+        display: none;
+    }
+
+    .cfailure {
+        display: none;
+        width: 750px
+    }
+
+    #dfilen {
+        display: none;
+    }
+
+    #dfilec {
+        display: none;
+    }
+
+    #loading {
+        display: none
+    }
+
+    .percent {
+        position: absolute;
+        /*color: #fff;*/
+        margin-left: 325px;
+    }
+</style>
+
+<div id="loading" class="row">
+    <div class="col-md-12" id="loading-text"><img src="/Content/images/imgechange.gif" width="80" height="80" /></div>
+</div>
+
+<div class="container content-part" ng-controller="FormController">
+    <div class="col-md-11">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="accounts">
+                <h2 id="importTitle">Data Import</h2>
+
+                @*@Using (Html.BeginForm("File", "frmGstImportVouch", FormMethod.Post, New With {.name = "frm", .id = "frm", .enctype = "multipart/form-data"}))
+                    @Html.AntiForgeryToken()*@
+                <input type="hidden" id="serverApiTaskId" />
+                <input type="hidden" id="jsonFileTaskId" />
+                <div class="form-horizontal">
+                    @if (!string.IsNullOrWhiteSpace(ViewBag.FileName))
+                    {
+                        <div data-import-fileId="@ViewBag.FileId" id="impFileId"><b>File Name : </b><i class="fa fa-file-excel-o" style="color:green;font-size:14px;"></i> @ViewBag.FileName</div>
+                    }
+
+                    <div id="dfile"></div> <br /><hr />
+                    @Html.Hidden("data", "", new Dictionary<string, string> { { "id", "data" } })
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.Label("Document Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3 cfilen displ">
+                                @*onchange="fnOpt()"*@
+                                <select class="form-control" name="DocType" id="DocType" required>
+                                    <option value="">--Select Type--</option>
+                                    <option value="IS">Invoice Sale</option>
+                                    <option value="IP">Invoice Purchase</option>
+                                    <option value="PC">Advance Recieved</option>
+                                    <option value="PV">Advance Paid</option>
+                                    <option value="GSTR2A">GSTR2A</option>
+                                    <option value="Recon">Manual Reconciliation</option>
+                                    <option value="Defer">Invoice Defer</option>
+                                    <option value="GSTR1">GSTR1</option>
+                                    <option value="HSN">HSN</option>
+                                    <option value="ISD">ITC Distribution</option>
+                                    <option value="GSTR6IP">ISD Inward</option>
+                                    <option value="EWB">Eway Bill</option>
+                                    <option value="EWBOp">Eway Bill Operation</option>
+                                    <option value="CHL">ITC04 Challan</option>
+                                    <option value="TDS">TDS</option>
+                                    <option value="TCS">TCS</option>
+                                    <option value="Role">Role</option>
+                                    <option value="TP">Company+Campus</option>
+                                    <option value="Vendor">Vendor</option>
+                                    <option value="Customer">Customer</option>
+                                    <option value="GSTIN">GSTIN</option>
+                                    <option value="PAN">PAN</option>
+                                    <option value="Track">Vendor Return Status</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3 cfile displ">
+                                <select class="form-control" name="DocTypeC" id="DocTypeC" required>
+                                    <option value="">--Select Type--</option>
+                                    <option value="GSTR1">GSTR1</option>
+                                    <option value="GSTR2A">GSTR2A</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3 cfilen displ">
+                                <input type="file" id="filename" name="file" Class="form-control" autocomplete="off" accept=".xlsx,.xls,.zip" required />
+                            </div>
+                            <div class="col-md-3 cfile displ">
+                                <input type="file" id="filenamec" name="file" Class="form-control" autocomplete="off" accept=".json,.zip" required />
+                            </div>
+                            <div class="col-md-2">
+                                <input type="submit" value="Submit" class="btn btn-primary" id="btnUpload" name="btnUpload" style="display:none;" />
+                                <input type="submit" value="Submit" class="btn btn-primary" id="btnJsonUpload" name="btnJsonUpload" style="display:none;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" id="dfilen">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
+                            <label class="control-label" style="color:red">
+                                Please provide _MAP_ in between the file name, in case of upload of OLD KGCP format. Make sure that the sheet name is “GST Inward Transactions STD” and System Options should be configured with MAP NAME as “A”
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row" id="dfilec">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
+                            <label class="control-label" style="color:red">
+                                Please provide _MAP_ in between the file name, in case of upload of OLD KGCP format. Make sure that the sheet name is “GST Outward Transaction STD” and System Options should be configured with MAP NAME as “A”
+                            </label>
+                        </div>
+                    </div>
+                    <div id="msgContainer">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                        <div class="table-overflowt">
+                            <div id="displayTable1" style="color: #007acc;font-weight:bold;" Class="cresult control-label"></div>
+                        </div>
+                    </div><div class="col-md-8"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section BotScripts{
+    <script type="text/javascript">
+        rsApp.controller('FormController', function ($scope, $http, $interval, usSpinnerService) {
+            $scope.$watch('serverApiTaskId', function (serverApiTaskId) {
+                if (serverApiTaskId) {
+                    var valNew = serverApiTaskId.split('===');
+                    var sApiTaskId = valNew[0];
+                    var importFileId = valNew[1];
+                    if (sApiTaskId) {
+                        $scope.checkStatusInterval(sApiTaskId, importFileId);
+                    }
+                }
+            });
+
+            var msgString = '';
+            $scope.apiTaskId = '';
+            var msgHTML = ' <div class="form-group" style="min-height: 75px;font-size: 10px;background-color: #efefef;" id="messagePanel">';
+            msgHTML += '<div class="col-md-12"><a href="#" class="delete" id="removeCurrentDiv">';
+            msgHTML += '<span class="fa fa-remove" style="color: #d83e3b;margin-right: 8px;"></span>';
+            msgHTML += '</a><div class="row" style="padding-top:5px;">';
+            msgHTML += '<div id="executedMsg" style="padding:5px;"></div>';
+            msgHTML += '<i class="fa fa-2x fa-link" style="color:green; display:none; padding: 5px;" id="downloadLink"></i>';
+            msgHTML += '</div></div></div>';
+
+            $scope.checkStatusInterval = function (taskId, fileID) {
+                $scope.apiTaskId = taskId;
+
+                var stop = $interval(function () {
+                    $http({
+                        method: 'GET',
+                        url: '/frmGstImportVouch/GetStatus/' + taskId + location.search
+                    }).then(function successCallback(result) {
+                        var msg = $('#msgContainer').find("[data-taskid='" + taskId + "']");
+                        if (msg.length <= 0) {
+                            msg = $(msgHTML).attr("data-taskid", taskId);
+                            $('#msgContainer').prepend(msg);
+                        }
+
+                        if (result.data.success) {
+                            if (result.data.taskStatus == "Executed") {
+                                $scope.stopFight(stop);
+                                //debugger;
+                                var actionType = getUrlParameter("ActionType");
+                                if (actionType === "Import" || actionType === "import") {
+                                    var linkURL = "/frmGstImportVouch/FileDetails/" + fileID + "/" + fileID + location.search;
+                                    msg.find("div#executedMsg").html('<i class="fa fa-2x fa-check" style="color:green">' + result.data.message + '</i><br/><i class="fa fa-2x fa-link" style="color:green"> File details can be viewed <a href=' + linkURL + '>click here.</a></i>');
+                                }
+                                else {
+                                    msg.find("div#executedMsg").html('<i class="fa fa-2x fa-check" style="color:green"> ' + result.data.message + '</i>');
+                                    $('#downloadLink').show();
+                                    $('#downloadLink').append("You can download File from <a href='#' id='downloadExcelFile' data-jsonFileTaskId='" + taskId + "'>click here.</a>");
+                                }
+                            }
+                            else {
+                                msg.find("div#executedMsg").html('<i class="fa fa-2x fa-check" style="color:green"> ' + result.data.message + '</i>');
+                            }
+                        }
+                        else {
+                            msg.find("div#executedMsg").html('<i class="fa fa-2x fa-remove" style="color:red"> ' + result.data.message + '</i>');
+                        }
+                    })
+                }, 1000);
+                return;
+            }
+
+            $scope.stopFight = function (stop) {
+                $interval.cancel(stop);
+                $scope.IsInitializing = false;
+            };
+        });
+    </script>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.import').on('click', function (e) {
+                $("#dialogFilterfile").dialog({
+                    autoOpen: false,
+                    modal: true,
+                    width: 600,
+                    hide: {
+                        effect: "fade",
+                        duration: 1000
+                    }
+                });
+                $("#dialogFilterfile").dialog("open");
+            });
+
+            var docTypeValue = getUrlParameter("DocType");
+            if (docTypeValue) {
+                $('#DocType').val(docTypeValue);
+                $('#DocType').prop("disabled", true);
+                $('.cfilen').addClass('displb').show();
+                $('.cfile').removeClass('displb').hide();
+                $('#btnJsonUpload').hide();
+                $('#importTitle').html('Data Import Utility');
+                $('#btnUpload').show();
+                $('.cfile').removeClass('displb'); $('.cfile').addClass('displ'); $('.cfilen').addClass('displb');
+                if (docTypeValue == 'GSTR1' || docTypeValue == 'GSTR2A') { $('#dfile').addClass('displ') };
+                if (docTypeValue == 'IS') { $('#dfilec').addClass('displb') };
+                if (docTypeValue == 'IP') { $('#dfilen').addClass('displb') };
+                $('#dfile').html('<a href="/frmGstImportVouch/Template' + location.search + '&code=' + $('#DocType').val() + '" class="file"><i class="fa fa-file filed"></i> Download Template</a>');
+
+                //fnOpt();
+            }
+            else {
+                $('.cfile').addClass('displb').show();
+                $('.cfilen').removeClass('displb').hide();
+                $('#btnJsonUpload').show();
+                $('#importTitle').html('Data Conversion Utility');
+            }
+
+            var bar = $('.progress-bar');
+            var percent = $('.percent');
+            var status = $('#status');
+
+            var table;
+            var tabledata;
+            $('#frm').ajaxForm({
+                beforeSend: function () {
+                    status.empty();
+                    $('.progress').addClass('');
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                complete: function (result) {
+                    if (JSON.parse(result.responseText).status == 200) {
+                        table = JSON.parse(result.responseText);
+                        table = table.message;
+                        tabledata = table.message;
+                        $('#btnSavetab').addClass('btnSavedis');
+                        $('#displayTable1').addClass('cresultdis');
+                        $('#displayTable1').html(table);
+                        $('#progressc').removeClass('');
+                        $('.cprocess').addClass('progressdis');
+                        $('.cfailure').removeClass('progressdis');
+                    }
+                    else {
+                        $('#progressc').removeClass('');
+                        $('.cprocess').removeClass('progressdis');
+                        $('.cfailure').addClass('progressdis');
+                    }
+                }
+            });
+
+            $("#btnSavetab").on("click", function () {
+                var data = {
+                    DocType: $('#DocType').val(),
+                    TableName: '',
+                    data: tabledata
+                };
+
+                $.post("/frmGstImportVouch/Index" + location.search, data, function (result) {
+                    if (result.status == '200') {
+                        $('#statuc').addClass('displb');
+                        $('#failurc').removeClass('displb');
+                        $('#displayTable1').text('');
+                        $('#displayTable2').text('');
+                        $('#displayTable3').text('');
+                        $('#btnSavetab').removeClass('btnSavedis');
+                    }
+                    else {
+                        $('#failurc').addClass('displb');
+                        $('#statuc').removeClass('displb');
+                        $('#btnSavetab').removeClass('btnSavedis');
+                    }
+                });
+            });
+        });
+
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+        }
+    </script>
+    <link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var submitUri = null;
+            var bar = $('.progress-bar');
+            var percent = $('.percent');
+            var _fileName = "";
+            var fileSize = "";
+            var pFileId = "";
+            var iFileId = "";
+            var lstModifiedDateTime = "";
+
+            $('#btnUpload, #btnJsonUpload').on('click', function () {
+                if (($('#DocTypeC').val() == 'GSTR1') || ($('#DocTypeC').val() == 'GSTR2A') || ($('#DocTypeC').val() == 'GSTR3B')) {
+                    if ($('#filenamec').val() == '') {
+                        alert("please select the file"); return;
+                    }
+                }
+                else {
+                    if ($('#filename').val() == '') {
+                        alert("please select the file"); return;
+                    }
+                }
+                //debugger;
+                addDisable();
+                addJsonDisable();
+
+                var filc = '', filec = '', docType = '';
+                //var action_type = $(this).attr("id") == "btnUpload" ? "import" : "convertjson";
+                var action_type = getUrlParameter("ActionType");
+
+                // For Progress baar
+                $("#loading").show();
+
+                $('.cprocess').removeClass('progressdis');
+                $('.cfailure').removeClass('progressdis');
+                $('.cprocess').html('');
+                $('.cfailure').html('');
+
+                if (($('#DocTypeC').val() == 'GSTR1') || ($('#DocTypeC').val() == 'GSTR2A') || ($('#DocTypeC').val() == 'GSTR3B')) {
+                    docType = $('#DocTypeC').val();
+                    filc = $('#filenamec');
+                    filec = $('#filenamec').val();
+                    if ($('#filenamec').val() == '') {
+                        alert("please select the file");
+                        return;
+                    }
+                }
+                else {
+                    docType = $('#DocType').val();
+                    filc = $('#filename');
+                    filec = $('#filename').val();
+                    if ($('#filename').val() == '') {
+                        alert("please select the file");
+                        return;
+                    }
+                }
+
+                $.post("/frmGstImportVouch/GenerateSAS", { file: filec }, function (result) {
+                    //debugger;
+                    if (result.success) {
+                        // create submit uri
+                        submitUri = result.Data;
+                        // If one file has been selected in the HTML file input element
+                        var file = filc.get(0).files[0];
+                        fileSize = file.size;
+                        _fileName = result.flName;
+                        debugger;
+                        if ($('#impFileId').attr("data-import-fileId")) {
+                            pFileId = $('#impFileId').attr("data-import-fileId")
+                        }
+                        else {
+                            pFileId = result.previousFileID = "" ? null : result.previousFileID;
+                        }
+
+
+                        iFileId = result.ImportFileID;
+                        lstModifiedDateTime = file.lastModified ? file.lastModified : new Date(file.lastModifiedDate).getTime();
+
+                        // calculate the start and end byte index for each blocks(chunks)
+                        // with the index, file name and index list for future using
+
+                        // define the function array and push all chunk upload operation into this array
+                        var blockIdPrefix = "block-";
+                        var blockSizeInKB = 500;
+                        var blockSize = blockSizeInKB * 1024;
+                        var blocks = [];
+                        var offset = 0;
+                        var index = 0;
+                        var blockList = "";
+
+                        while (offset < fileSize) {
+                            var start = offset;
+                            var end = Math.min(offset + blockSize, fileSize);
+                            var blockId = blockIdPrefix + pad(index, 6);
+                            blockId = btoa(blockId);
+
+                            blocks.push({
+                                name: _fileName,
+                                blockId: blockId,
+                                index: index,
+                                start: start,
+                                end: end
+                            });
+
+                            blockList += '<Latest>' + blockId + '</Latest>';
+                            offset = end;
+                            index++;
+                        }
+
+                        // define the function array and push all chunk upload operation into this array
+                        var putBlocks = [];
+                        var uploadedChunks = 0;
+
+                        blocks.forEach(function (block) {
+                            putBlocks.push(function (callback) {
+                                //debugger;
+                                // load blob based on the start and end index for each chunks
+                                var blob = file.slice(block.start, block.end);
+                                var uri = submitUri + '&comp=block&blockid=' + block.blockId;
+
+                                $.ajax({
+                                    url: uri,
+                                    type: "PUT",
+                                    data: blob,
+                                    processData: false,
+                                    beforeSend: function (xhr) {
+                                        //debugger;
+                                        xhr.setRequestHeader('x-ms-blob-type', 'BlockBlob');
+                                        xhr.setRequestHeader('Content-Type', file.type);
+                                    },
+                                    success: function (data, status) {
+                                        //debugger;
+                                        if (status == "success") {
+                                            // upload files in chunks
+                                            if ((uploadedChunks++) === putBlocks.length - 1)
+                                                callback(null, block.index);
+                                        }
+                                        else {
+                                            $("#loading").hide();
+                                            console.log(data);
+                                            removeDisable();
+                                            removeJsonDisable();
+                                        }
+                                    },
+                                    error: function (xhr, desc, err) {
+                                        $("#loading").hide();
+                                        $('.cprocess').removeClass('progressdis');
+                                        $('.cfailure').addClass('progressdis');
+                                        $('.cfailure').html("Unable to connect server. Please check your internet connection!!!");
+                                        removeDisable();
+                                        removeJsonDisable();
+                                    }
+                                });
+                            });
+                        });
+
+                        var commitCallback = function (error, result) {
+                            var params = location.search.split('?')[1];
+                            var uri = submitUri + '&comp=blocklist';
+                            var requestBody = '<?xml version="1.0" encoding="utf-8"?><BlockList>';
+                            requestBody += blockList
+                            requestBody += '</BlockList>';
+
+                            $.ajax({
+                                url: uri,
+                                type: "PUT",
+                                data: requestBody,
+                                beforeSend: function (xhr) {
+                                    //debugger;
+                                    xhr.setRequestHeader('x-ms-blob-content-type', file.type);
+                                },
+                                success: function (data, status) {
+                                    debugger;
+                                    // For Progress baar
+
+                                    $.get("/frmGstImportVouch/File?DocType=" + docType + "&fileName=" + _fileName + "&pfileID=" + pFileId + "&ifileID=" + iFileId + "&url=" + submitUri + "&fSize=" + fileSize + "&timeStamp=" + lstModifiedDateTime + "&actionType=" + action_type + "&" + params, function (result) {
+                                        if (result.success) {
+                                            //debugger;
+                                            console.log(result.message);
+                                            //TODO
+                                            var scope = angular.element(document.getElementById("serverApiTaskId")).scope();
+                                            scope.$apply(function () {
+                                                scope.serverApiTaskId = result.description + "===" + result.impFileId;
+                                            });
+                                        }
+                                        else {
+                                            //debugger;
+                                            console.log(result.message);
+                                            //TODO
+                                        }
+                                        $("#loading").hide();
+                                        removeDisable();
+                                        removeJsonDisable();
+                                    });
+                                },
+                                error: function (xhr, desc, err) {
+                                    $("#loading").hide();
+                                    console.log(result.message);
+                                    //TODO
+
+                                    removeDisable();
+                                    removeJsonDisable();
+                                }
+                            });
+                        }
+
+                        $('#progressc').addClass('');
+                        putBlocks.forEach(function (putBlock, index) {
+                            putBlock.call(this, commitCallback);
+                        });
+                    }
+                    else {
+                        //TODO
+                        $("#loading").hide();
+                        console.log(result.message);
+                        removeDisable();
+                        removeJsonDisable();
+                    }
+                });
+            });
+        });
+
+        function removeDisable() {
+            //$('#DocType').removeAttr("disabled");
+            $('#filename').val('');
+            $('#filename').removeAttr("disabled");
+            $('#btnUpload').removeAttr("disabled");
+        }
+
+        function addDisable() {
+            $('#DocType').attr("disabled", true);
+            $('#filename').attr("disabled", true);
+            $('#btnUpload').attr("disabled", true);
+        }
+
+        function addJsonDisable() {
+            $('#DocTypeC').attr("disabled", true);
+            $('#filenamec').attr("disabled", true);
+            $('#btnJsonUpload').attr("disabled", true);
+        }
+
+        function removeJsonDisable() {
+            $('#DocTypeC').removeAttr("disabled");
+            $('#filenamec').removeAttr("disabled");
+            $('#filenamec').val('');
+            $('#btnJsonUpload').removeAttr("disabled");
+        }
+
+        function pad(number, length) {
+            var str = '' + number;
+            while (str.length < length) {
+                str = '0' + str;
+            }
+            return str;
+        }
+
+        $(document).ready(function () {
+            $(document).on('click', '#removeCurrentDiv', function (e) {
+                //debugger;
+                e.preventDefault();
+                $(this).closest('div#messagePanel').hide();
+                return;
+            });
+
+            $(document).on('click', '#downloadExcelFile', function (e) {
+                //debugger;
+                e.preventDefault();
+                var currId = $(this).attr("data-jsonFileTaskId");
+                $.get("/frmGstImportVouch/DownloadExcelFile/" + currId + location.search, function (result) {
+                    window.location.href = result.data;
+                });
+            });
+        });
+
+    </script>
+
+    @Html.RenderJsCss(false, "jqueryui")
+}
+

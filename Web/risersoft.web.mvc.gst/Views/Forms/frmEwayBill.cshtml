@@ -1,0 +1,1000 @@
+﻿@using risersoft.app.mxform.gst
+@using risersoft.shared.web.Extensions
+@using Newtonsoft.Json
+
+@model frmEwayBillModel
+@{
+    ViewData["Title"] = "Eway Bill";
+    Layout = "~/Views/Shared/_FrameworkLayout.vbhtml";
+    var modelJson = JsonConvert.SerializeObject(Model, Formatting.Indented,
+                    new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml, NullValueHandling = NullValueHandling.Ignore });
+}
+
+<link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+<div class="container cbackground">
+    <form action="" method="post" name="userform" ng-controller="FormController">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" id="model_json" value='@Html.Raw(modelJson)' />
+        <div Class="form-horizontal">
+            <div class="row"></div>
+            <div Class="row" style="margin-top: 40px;" ng-show="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">E-Way Bill No</Label>
+                    <div>{{EwayBillInfo.EwayBillNum}}</div>
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">E-Way Bill Date</Label>
+                    <div>{{EwayBillInfo.EwayBillDate}}</div>
+                </div>
+                <div class="col-md-3"><Label Class="control-label labeltext">Transaction Type</Label><div>{{EwayBillInfo.SupplyTypeSelected.descriptot}}</div> </div>
+            </div>
+
+            <div Class="row" style="margin-top: 40px;" ng-hide="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">E-Way Bill No</Label>
+                    <input type="text" ng-model="EwayBillInfo.EwayBillNum" class="form-control" readonly />
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">E-Way Bill Date</Label>
+                    <input type="text" ng-model="EwayBillInfo.EwayBillDate" class="form-control" readonly />
+                </div>
+                <div class="col-md-3"><Label Class="control-label labeltext">Transaction Type</Label> <select ng-model="EwayBillInfo.SupplyTypeSelected" ng-options="traw.descriptot for traw in dsCombo.SupplyType track by traw.codeword" class="form-control" style="max-width:800px;"></select></div>
+            </div>
+            <div Class="row" ng-show="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Document Type</Label>
+                    <div>{{EwayBillInfo.DocTypeSelected.descriptot}}</div>
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Document Date</Label>
+
+                    <div>{{EwayBillInfo.DocDate}}</div>
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Document No.</Label>
+                    <div>{{EwayBillInfo.DocNum}}</div>
+                </div>
+            </div>
+
+            <div Class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Document Type</Label>
+                    <select ng-model="EwayBillInfo.DocTypeSelected" ng-options="transdoc.descriptot for transdoc in dsCombo.DocumentType track by transdoc.codeword" class="form-control" style="max-width:800px;"></select>
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Document Date</Label>
+                    <input type="text" ng-model="EwayBillInfo.DocDate" Class="form-control my-datepicker" />
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Document No.</Label>
+                    <input type="text" ng-model="EwayBillInfo.DocNum" Class="form-control" />
+                </div>
+            </div>
+            <div Class="row" ng-show="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Sub Type</Label>
+                    <div>{{EwayBillInfo.SubSupplyTypeSelected.descriptot}}</div>
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">SubType Description</Label>
+                    <div>{{EwayBillInfo.SubSupplyDesc}}</div>
+                </div>
+                <div class="col-md-3"><Label Class="control-label labeltext">MovementType</Label> <div>{{EwayBillInfo.movementtypeSelected.descriptot}}</div> </div>
+
+            </div>
+
+            <div Class="row" ng-hide="EwayBillInfo.EwayBillNum">
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Sub Type</Label>
+                    <select ng-model="EwayBillInfo.SubSupplyTypeSelected" ng-options="itemsp.descriptot for itemsp in dsCombo.SubSupplyType track by itemsp.codeword" Class="form-control"></select>
+
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">SubType Description</Label>
+                    <input type="text" ng-model="EwayBillInfo.SubSupplyDesc" Class="form-control" />
+
+                </div>
+                <div class="col-md-3"><Label Class="control-label labeltext">MovementType</Label> <select ng-model="EwayBillInfo.movementtypeSelected" ng-options="traw.descriptot for traw in dsCombo.MovementType track by traw.codeword" class="form-control" style="max-width:800px;"></select></div>
+
+            </div>
+
+            <div Class="row" ng-show="EwayBillInfo.EwayBillNum">
+
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Campus</Label>
+                    <div>{{EwayBillInfo.CampusIDSelected.DispName}}</div>
+
+                </div>
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Total Value</Label>
+                    <div>{{EwayBillInfo.VAL}}</div>
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Other Value</Label>
+
+                    <div>{{EwayBillInfo.otherValue}}</div>
+                </div>
+            </div>
+            <div Class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Campus</Label>
+                    <select ng-model="EwayBillInfo.CampusIDSelected" ng-options="tranc.DispName for tranc in dsCombo.Campus track by tranc.CampusID" class="form-control" style="max-width:800px;"></select>
+                </div>
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Total Value</Label>
+                    <input type="text" ng-model="EwayBillInfo.VAL" Class="form-control" />
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Other Value</Label>
+                    <input type="text" ng-model="EwayBillInfo.otherValue" Class="form-control" />
+                </div>
+            </div>
+
+            <div Class="row" ng-show="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">No of Valid Days</Label>
+                    <div>{{EwayBillInfo.NoValidDays}}</div>
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">CessNonAdvol Rate</Label>
+                    <div>{{EwayBillInfo.cessNonAdvolValue}}</div>
+                </div>
+
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Amount</Label>
+                    <div>{{EwayBillInfo.cessNonAdvolValue}}</div>
+                </div>
+            </div>
+
+            <div Class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">No of Valid Days</Label>
+                    <input type="text" ng-model="EwayBillInfo.NoValidDays" Class="form-control" />
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">CessNonAdvol Rate</Label>
+                    <input type="text" ng-model="EwayBillInfo.cessNonAdvolValue" Class="form-control" />
+                </div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Amount</Label>
+                    <input type="text" name="POS" ng-model="EwayBillInfo.cessNonAdvolValue" Class="form-control" />
+                </div>
+            </div>
+
+            <div Class="row" ng-show="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Distance</Label>
+                    <div>{{EwayBillInfo.TransDistance}}</div>
+                </div>
+
+                <div class="col-md-3">
+                    <Label Class="control-label labeltext">ValidUpto</Label>
+                    <div>{{EwayBillInfo.ValidUpto}}</div>
+                </div>
+                <div class="col-md-3">
+                    <Label Class="control-label labeltext">ERP Ref No.</Label> <div>{{EwayBillInfo.ERPRefNum}}</div>
+                </div>
+            </div>
+
+            <div Class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-3">
+                    <Label Class="control-label labeltext">Distance</Label>
+
+                    <input type="text" name="division" ng-model="EwayBillInfo.TransDistance" Class="form-control" />
+                </div>
+
+                <div class="col-md-3">
+                    <Label Class="control-label labeltext">ValidUpto</Label>
+                    <input type="text" name="difftax" ng-model="EwayBillInfo.ValidUpto"
+                           Class="form-control" readonly />
+                </div>
+                <div class="col-md-3"><Label Class="control-label labeltext">ERP Ref No.</Label><input type="text" ng-model="EwayBillInfo.ERPRefNum" class="form-control" /></div>
+
+            </div>
+
+            <div Class="row" ng-show="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+
+                <div Class="col-md-6">
+                    <Label Class="control-label labeltext">Transporter</Label>
+                    <div>{{EwayBillInfo.TransVendorIDSelected.Column1}}</div>
+                </div>
+            </div>
+            <div Class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-6">
+                    <Label Class="control-label labeltext">Transporter</Label>
+                    <select ng-model="EwayBillInfo.TransVendorIDSelected" ng-options="trans.Column1 for trans in dsCombo.Transporter track by trans.VendorID" class="form-control" style="max-width:540px;"></select>
+
+                </div>
+            </div>
+            <div Class="row" ng-show="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div class="col-md-6" ng-show="EwayBillInfo.SupplyTypeSelected.descriptot=='O-Outward'"><Label Class="control-label labeltext">Customer</Label> <div>{{EwayBillInfo.CustomerIDSelected.PartyName}}</div> </div>
+                <div class="col-md-6" ng-show="EwayBillInfo.SupplyTypeSelected.descriptot=='I-Inward'"><Label Class="control-label labeltext">Vendor</Label>  <div>{{EwayBillInfo.VendorIDSelected.PartyName}}</div> </div>
+            </div>
+
+            <div Class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                <div Class="col-md-1"></div>
+                <div class="col-md-6" ng-show="EwayBillInfo.SupplyTypeSelected.descriptot=='O-Outward'"><Label Class="control-label labeltext">Customer</Label> <select ng-model="EwayBillInfo.CustomerIDSelected" ng-options="trawc.PartyName for trawc in dsCombo.Customer track by trawc.CustomerID" class="form-control" style="max-width:540px;"></select></div>
+                <div class="col-md-6" ng-show="EwayBillInfo.SupplyTypeSelected.descriptot=='I-Inward'"><Label Class="control-label labeltext">Vendor</Label> <select ng-model="EwayBillInfo.VendorIDSelected" ng-options="trawn.PartyName for trawn in dsCombo.Vendor track by trawn.VendorID" class="form-control" style="max-width:540px;"></select></div>
+
+            </div>
+            <div Class="row">
+                <div Class="col-md-1"></div>
+                <div class="col-md-1" ng-hide="EwayBillInfo.EwayBillNum">
+                    <button ng-click="postc('generate','')" type="button" id="btnUpload" class="btn btn-default sync" style="background: #2d475d;color: #ffffff;padding-right:7px;margin-top:31px;border-color: #868686;">
+                        Generate
+                    </button>
+                </div>
+
+                <div class="col-md-1">
+                    <button ng-click="postc('','')" type="button" id="btnUpload" class="btn btn-default sync" style="background: #2d475d;color: #ffffff;padding-right: 24px;padding-left:26px;margin-top:31px;border-color: #868686;">
+                        Print
+                    </button>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="postc('cancel','')" type="button" id="btnUpload" class="btn btn-default sync" style="background:#b94040;color: #ffffff;padding-right: 13px;margin-top:31px;border-color: #868686;">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            <div Class="row">
+                <div Class="col-md-1"></div>
+                <div Class="col-md-10"><hr /></div>
+            </div>
+            <ul class="nav nav-tabs">
+                <li class="active labeltext"><a href="#tab" class="nav-link active labeltext" data-toggle="tab">Bill From</a></li>
+                <li class="labeltext" ng-show="EwayBillInfo.movementtypeSelected.codeword==3 || EwayBillInfo.movementtypeSelected.codeword==4"><a href="#tabd" class="nav-link labeltext" data-toggle="tab">Dispatch From</a></li>
+
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab">
+                    <div class="row" ng-show="EwayBillInfo.EwayBillNum">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6"><label class="control-label labeltext">Name</label> <div>{{EwayBillInfo.EwayBillNum}}</div></div>
+                        <div class="col-md-3"><label class="control-label labeltext">GSTIN</label> <div>{{EwayBillInfo.EwayBillNum}}</div></div>
+                    </div>
+                    <div class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6"><label class="control-label labeltext">Name</label><input type="text" style="max-width:540px" class="form-control" ng-model="EwayBillInfo.fromTrdName" readonly /></div>
+                        <div class="col-md-3"><label class="control-label labeltext">GSTIN</label><input type="text" ng-model="EwayBillInfo.fromGstin" class="form-control" readonly /></div>
+                    </div>
+                    <div class="row" ng-show="EwayBillInfo.EwayBillNum">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6"><label class="control-label labeltext">Address</label><div>{{EwayBillInfo.fromAddr1}}</div></div>
+                        <div class="col-md-3"><label class="control-label labeltext">PinCode</label><div>{{EwayBillInfo.fromPincode}}</div></div>
+                    </div>
+                    <div class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6"><label class="control-label labeltext">Address</label><input type="text" style="max-width:540px" class="form-control" ng-model="EwayBillInfo.fromAddr1" /></div>
+                        <div class="col-md-3"><label class="control-label labeltext">PinCode</label><input type="text" ng-model="EwayBillInfo.fromPincode" class="form-control" /></div>
+                    </div>
+                    <div class="row" ng-show="EwayBillInfo.EwayBillNum">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3"><label class="control-label labeltext">Place</label><div>{{EwayBillInfo.fromPlace}}</div></div>
+                        <div class="col-md-3"><label class="control-label labeltext">State</label><div>{{EwayBillInfo.fromStateCodeSelected.Column1}}</div> </div>
+                    </div>
+                    <div class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3"><label class="control-label labeltext">Place</label><input type="text" class="form-control" ng-model="EwayBillInfo.fromPlace" /></div>
+                        <div class="col-md-3"><label class="control-label labeltext">State</label> <select name="" ng-model="EwayBillInfo.fromStateCodeSelected" ng-options="trans.Column1 for trans in dsCombo.StateCode track by trans.code" class="form-control" style="max-width:800px;"></select></div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="tabd">
+                    <div class="row" ng-show="EwayBillInfo.EwayBillNum">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3"><label class="control-label labeltext">Name</label><div>{{EwayBillInfo.dispatchFromTradeName}}</div></div>
+                        <div class="col-md-3"><label class="control-label labeltext">GSTIN</label><div>{{EwayBillInfo.dispatchFromGstin}}</div></div>
+                    </div>
+                    <div class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3"><label class="control-label labeltext">Name</label><input type="text" class="form-control" ng-model="EwayBillInfo.dispatchFromTradeName" /></div>
+                        <div class="col-md-3"><label class="control-label labeltext">GSTIN</label><input type="text" ng-model="EwayBillInfo.dispatchFromGstin" class="form-control" /></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <ul class="nav nav-tabs" style="margin-top:40px">
+
+
+            <li class="labeltext"><a href="#tabc" class="nav-link active labeltext" data-toggle="tab">Bill To</a></li>
+            <li class="labeltext" ng-show="EwayBillInfo.movementtypeSelected.codeword==2 || EwayBillInfo.movementtypeSelected.codeword==4"><a href="#tabdc" class="nav-link labeltext" data-toggle="tab">Ship To</a></li>
+
+        </ul>
+
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="tabc">
+
+                <div class="row" ng-show="EwayBillInfo.EwayBillNum">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-6"><label class="control-label labeltext">Name</label> <div>{{EwayBillInfo.toTrdName}}</div></div>
+                    <div class="col-md-3"><label class="control-label labeltext">GSTIN</label> <div>{{EwayBillInfo.toGstin}}</div></div>
+                </div>
+                <div class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-6"><label class="control-label labeltext">Name</label><input type="text" style="max-width:540px" class="form-control" ng-model="EwayBillInfo.toTrdName" readonly /></div>
+                    <div class="col-md-3"><label class="control-label labeltext">GSTIN</label><input type="text" ng-model="EwayBillInfo.toGstin" class="form-control" readonly /></div>
+                </div>
+                <div class="row" ng-show="EwayBillInfo.EwayBillNum">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-6"><label class="control-label labeltext">Address</label> <div>{{EwayBillInfo.toAddr1}}</div></div>
+                    <div class="col-md-3"><label class="control-label labeltext">PinCode</label> <div>{{EwayBillInfo.toPincode}}</div></div>
+                </div>
+                <div class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-6"><label class="control-label labeltext">Address</label><input type="text" style="max-width:540px" class="form-control" ng-model="EwayBillInfo.toAddr1" /></div>
+                    <div class="col-md-3"><label class="control-label labeltext">PinCode</label><input type="text" ng-model="EwayBillInfo.toPincode" class="form-control" /></div>
+                </div>
+                <div class="row" ng-show="EwayBillInfo.EwayBillNum">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"><label class="control-label labeltext">Place</label> <div>{{EwayBillInfo.toPlace}}</div></div>
+                    <div class="col-md-3"><label class="control-label labeltext">State</label> <div>{{EwayBillInfo.toStateCodeSelected.Column1}}</div></div>
+                </div>
+
+
+
+                <div class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"><label class="control-label labeltext">Place</label> <input type="text" ng-model="EwayBillInfo.toPlace" class="form-control" /></div>
+                    <div class="col-md-3"><label class="control-label labeltext">State</label> <select name="" ng-model="EwayBillInfo.toStateCodeSelected" ng-options="trans.Column1 for trans in dsCombo.StateCode track by trans.code" class="form-control" style="max-width:800px;"></select></div>
+                </div>
+                <div class="row" ng-show="EwayBillInfo.EwayBillNum">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"><label class="control-label labeltext">Name</label> <div>{{EwayBillInfo.shipToTradeName}}</div> </div>
+                    <div class="col-md-3"><label class="control-label labeltext">GSTIN</label> <div>{{EwayBillInfo.shipToGSTIN}}</div> </div>
+                </div>
+                <div class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"><label class="control-label labeltext">Name</label><input type="text" class="form-control" ng-model="EwayBillInfo.shipToTradeName" /></div>
+                    <div class="col-md-3"><label class="control-label labeltext">GSTIN</label><input type="text" ng-model="EwayBillInfo.shipToGSTIN" class="form-control" /></div>
+                </div>
+            </div>
+
+
+            <div class="tab-pane" id="tabdc">
+                <div class="row" ng-show="EwayBillInfo.EwayBillNum">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"><label class="control-label labeltext">Name</label> <div>{{EwayBillInfo.shipToTradeName}}</div> </div>
+                    <div class="col-md-3"><label class="control-label labeltext">GSTIN</label> <div>{{EwayBillInfo.shipToGSTIN}}</div> </div>
+                </div>
+                <div class="row" ng-hide="EwayBillInfo.EwayBillNum">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"><label class="control-label labeltext">Name</label><input type="text" class="form-control" ng-model="EwayBillInfo.shipToTradeName" /></div>
+                    <div class="col-md-3"><label class="control-label labeltext">GSTIN</label><input type="text" ng-model="EwayBillInfo.shipToGSTIN" class="form-control" /></div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div Class="row">
+
+
+            <div Class="col-md-1"></div>
+            <div Class="col-md-10"><hr /></div>
+
+        </div>
+
+
+
+
+
+        <ul class="nav nav-tabs">
+
+
+            <li class="labeltext"><a href="#tabitem" class="nav-link active labeltext" data-toggle="tab">Items</a></li>
+
+
+            <li class="labeltext"><a href="#tabn" class="nav-link labeltext" data-toggle="tab">Part B</a></li>
+
+        </ul>
+
+
+
+
+
+        <div class="tab-content" style="margin-bottom: 35px;">
+            <div class="tab-pane active" id="tabitem">
+                <div Class="row dipbtnc" style="margin-top:31px">
+
+
+
+                    <Label Class="control-label" style="margin-left:17px;font-size:25px;">Item Details</Label>
+
+
+                    <Button ng-hide="EwayBillInfo.EwayBillNum" type="button" id="items" Class="btn btn-primary btnf" ng-click="itemc()">ADD Item</Button>
+
+
+
+                </div>
+                <div Class="row">
+
+                    <label style="float:right"></label>
+
+                </div>
+                <div class="container marb" ng-repeat="row in Itemsdata" style="padding-top:5px;">
+
+                    <div ng-show="EwayBillInfo.EwayBillNum" Class="row" style="background-color: #eeeeee;padding-top: 17px;">
+
+
+
+                        <div Class="col-md-1"></div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">LineSNum</Label>
+                            <div>{{row.LineSNum}}</div>
+
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Product</Label>
+                            <div>{{row.Details}}</div>
+
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Description</Label>
+                            <div>{{row.Description}}</div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div ng-hide="EwayBillInfo.EwayBillNum" Class="row" style="background-color: #eeeeee;padding-top: 17px;">
+
+
+
+                        <div Class="col-md-1"></div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">LineSNum</Label>
+                            <input type="text" ng-model="row.LineSNum" class="form-control" />
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Product</Label>
+                            <input type="text" ng-model="row.Details" class="form-control" />
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Description</Label>
+                            <input type="text" ng-model="row.Description" class="form-control" />
+
+
+                        </div>
+                        <div> <a href="" class="delete" ng-click="deletedata($index)" ng-hide="row.EnteredDate"><span class="fa fa-trash" style="color: #d83e3b;margin-right: 8px;"></span></a></div>
+
+                    </div>
+
+
+                    <div ng-show="EwayBillInfo.EwayBillNum" Class="row" style="background-color: #eeeeee;">
+
+
+                        <div Class="col-md-1"></div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">HSN Code</Label>
+                            <div>{{row.Hsn_sc}}</div>
+
+
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Unit Name</Label>
+                            <div>{{row.UqcSelected.Column1}}</div>
+
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Qty</Label>
+                            <div>{{row.Qty}}</div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div ng-hide="EwayBillInfo.EwayBillNum" Class="row" style="background-color: #eeeeee;">
+
+
+                        <div Class="col-md-1"></div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">HSN Code</Label>
+
+
+                            <input type="text" ng-model="row.Hsn_sc" class="form-control" />
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Unit Name</Label>
+                            <select name="" ng-model="row.UqcSelected" ng-options="trans.Column1 for trans in Items.MainGrid.dsLookup.Table0 track by trans.GstUqcid" class="form-control" style="max-width:800px;"></select>
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Qty</Label>
+                            <input type="text" ng-model="row.Qty" class="form-control" />
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div ng-show="EwayBillInfo.EwayBillNum" Class="row" style="background-color: #eeeeee;">
+
+
+                        <div Class="col-md-1"></div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Taxable Amount</Label>
+                            <div>{{row.TXVAL}}</div>
+
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Rate</Label>
+                            <div>{{row.RTSelected.DisplayText}}</div>
+
+
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Cess Rate</Label>
+
+                            <div>{{row.Cess_RT}}</div>
+
+                        </div>
+
+
+
+                    </div>
+                    <div ng-hide="EwayBillInfo.EwayBillNum" Class="row" style="background-color: #eeeeee;">
+
+
+                        <div Class="col-md-1"></div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Taxable Amount</Label>
+                            <input type="text" ng-model="row.TXVAL" class="form-control" />
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Rate</Label>
+
+
+                            <select name="" ng-model="row.RTSelected" ng-options="trans.DisplayText for trans in ValueLists.gstrate.ValueListItems track by trans.DataValue" class="form-control" style="max-width:800px;"></select>
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Cess Rate</Label>
+
+
+                            <input type="text" ng-model="row.Cess_RT" class="form-control" />
+                        </div>
+
+
+
+                    </div>
+                    <div ng-show="EwayBillInfo.EwayBillNum" Class="row" style="background-color: #eeeeee;">
+
+
+                        <div Class="col-md-1"></div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">IGST</Label>
+                            <div>{{row.IAMT}}</div>
+
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">CGST</Label>
+                            <div>{{row.CAMT}}</div>
+
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">SGST</Label>
+
+                            <div>{{row.SAMT}}</div>
+
+                        </div>
+
+
+                    </div>
+                    <div ng-hide="EwayBillInfo.EwayBillNum" Class="row" style="background-color: #eeeeee;">
+
+
+                        <div Class="col-md-1"></div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">IGST</Label>
+                            <input type="text" ng-model="row.IAMT" class="form-control" />
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">CGST</Label>
+                            <input type="text" ng-model="row.CAMT" class="form-control" />
+                        </div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">SGST</Label>
+
+
+                            <input type="text" ng-model="row.SAMT" class="form-control" />
+                        </div>
+
+
+                    </div>
+
+                    <div ng-show="EwayBillInfo.EwayBillNum" Class="row" style="background-color: #eeeeee;padding-bottom: 17px">
+
+
+                        <div Class="col-md-1"></div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Cess</Label>
+                            <div>{{row.CSAMT}}</div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                    <div ng-hide="EwayBillInfo.EwayBillNum" Class="row" style="background-color: #eeeeee;padding-bottom: 17px">
+
+
+                        <div Class="col-md-1"></div>
+                        <div Class="col-md-3">
+                            <Label Class="control-label labeltext">Cess</Label>
+                            <input type="text" ng-model="row.CSAMT" class="form-control" />
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="tabn">
+                <div Class="row dipbtnc" style="margin-top:31px">
+
+
+
+                    <Label Class="control-label" style="margin-left:17px;font-size:25px;">Transport Details</Label>
+
+
+                    <Button type="button" id="items" Class="btn btn-primary btnf" ng-click="item()">ADD NEW</Button>
+
+
+
+                </div>
+                <div Class="row">
+
+                    <label style="float:right"></label>
+
+                </div>
+
+                <div class="row">
+                    <div class="container marb" ng-repeat="row in TranspoterItem" style="padding-top:5px;">
+
+
+
+                        <label class="labeltext" style="font-size:16px">[{{$index+1}}]  {{row.Description}}</label>
+                        <div ng-show="row.EnteredDate" class="row" style="background-color: #eeeeee;padding-top:17px;">
+                            <a href="" class="delete" ng-click="delete($index)" ng-hide="row.EnteredDate"><span class="glyphicon glyphicon-remove-circle" style="color: #d83e3b;margin-right: 8px;"></span></a>
+
+
+
+                            <div class="col-md-1"><Label Class="control-label labeltext">S.No.</Label><br />[{{$index+1}}]</div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">Mode</Label> <div>{{row.TransModeSelected.descriptot}}</div></div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">TransDocNo</Label> <div>{{row.TransDocNo}}</div></div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">VehicleNo</Label> <div>{{row.VehicleNo}}</div></div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">Vehile Type</Label> <div>{{row.VehicleTypeSelected}}</div></div>
+
+
+
+
+                            <div class="col-md-2"><Label Class="control-label">From</Label> <div>{{row.FromPlace}}</div></div>
+
+                        </div>
+                        <div ng-hide="row.EnteredDate" class="row" style="background-color: #eeeeee;padding-top:17px;">
+                            <a href="" class="delete" ng-click="delete($index)" ng-hide="row.EnteredDate"><span class="glyphicon glyphicon-remove-circle" style="color: #d83e3b;margin-right: 8px;"></span></a>
+
+
+
+                            <div class="col-md-1"><Label Class="control-label labeltext">S.No.</Label><br />[{{$index+1}}]</div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">Mode</Label><select name="transmode" ng-model="row.TransModeSelected" ng-options="itemport.descriptot for itemport in dsCombo.TransMode track by itemport.Code" Class="form-control"></select></div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">TransDocNo</Label><input type="text" ng-model="row.TransDocNo" Class="form-control" /></div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">VehicleNo</Label><input type="text" name="vehicleno" ng-model="row.VehicleNo" Class="form-control" /></div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">Vehile Type</Label><select name="transmodec" ng-model="row.VehicleTypeSelected" ng-options="itemport.descriptot for itemport in dsCombo.VehicleType track by itemport.Code" Class="form-control"></select></div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">From</Label><input type="text" name="fromplace" ng-model="row.FromPlace" class="form-control" /></div>
+
+                        </div>
+
+
+
+
+                        <div ng-show="row.EnteredDate" class="row" style="background-color: #eeeeee;">
+
+
+                            <div class="col-md-1"></div>
+
+                            <div class="col-md-2"><Label Class="control-label labeltext">TransDocDate</Label> <div>{{row.TransDocDate}}</div></div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">Entered Date</Label> <div>{{row.EnteredDate}}</div></div>
+
+
+
+                            <div class="col-md-2"><Label Class="control-label labeltext">Entered By</Label> <div>{{row.UserGSTINTransin}}</div></div>
+
+
+
+
+
+                            <div class="col-md-2"><Label Class="control-label labeltext">CEWB No.</Label> <div>{{row.TripshtNo}}</div></div>
+
+
+
+                            <div Class="col-md-2">
+                                <Label Class="control-label labeltext">From State</Label><div>{{row.StateCodeSelected.Column1}}</div>
+
+                            </div>
+
+                        </div>
+
+                        <div ng-hide="row.EnteredDate" class="row" style="background-color: #eeeeee;">
+
+
+                            <div class="col-md-1"></div>
+
+                            <div class="col-md-2"><Label Class="control-label labeltext">TransDocDate</Label><input type="text" ng-model="row.TransDocDate" class="form-control my-datepicker" /></div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">Entered Date</Label><input type="text" numbers-only ng-model="row.EnteredDate" class="form-control" readonly /></div>
+
+
+
+                            <div class="col-md-2"><Label Class="control-label labeltext">Entered By</Label><input type="text" ng-model="row.UserGSTINTransin" readonly Class="form-control" /></div>
+
+
+
+
+
+                            <div class="col-md-2"><Label Class="control-label labeltext">CEWB No.</Label><input type="text" ng-model="row.TripshtNo" readonly Class="form-control" /></div>
+                            <div Class="col-md-2">
+                                <Label Class="control-label labeltext">From State</Label>
+                                <select ng-model="row.StateCodeSelected" ng-options="itempos.Column1 for itempos in dsCombo.StateCode track by itempos.code" Class="form-control" d]"></select>
+                            </div>
+
+                        </div>
+
+
+                        <div ng-show="row.EnteredDate" class="row" style="background-color: #eeeeee;">
+
+
+                            <div class="col-md-1"></div>
+
+                            <div class="col-md-2"><Label Class="control-label labeltext">ReasonRem</Label> <div>{{row.ReasonRem}}</div></div>
+                            <div class="col-md-2"><Label Class="control-label labeltext">Reasoncode</Label> <div>{{row.ReasonCodeSelected.descriptot}}</div></div>
+
+
+
+                        </div>
+
+
+
+
+
+                        <div ng-hide="row.EnteredDate" class="row" style="background-color: #eeeeee;">
+
+
+                            <div class="col-md-1"></div>
+
+                            <div class="col-md-2"><Label Class="control-label labeltext">ReasonRem</Label> <input type="text" ng-model="row.ReasonRem" readonly Class="form-control" /></div>
+                            <div class="col-md-2">
+                                <Label Class="control-label labeltext">Reasoncode</Label>
+
+                                <select ng-model="row.ReasonCodeSelected" ng-options="itempn.descriptot for itempn in dsCombo.ReasonCode track by itempn.codeword" Class="form-control" d]"></select>
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                        <div class="row" style="background-color: #eeeeee;">
+                            <div class="col-md-1"></div>
+
+                            <div class="col-md-1" ng-hide="row.EnteredDate">
+                                <button ng-click="postc('update',row)" type="button" id="btnUpload" class="btn btn-default sync" style="background: #2d475d;
+    color: #ffffff;padding-right:23px;padding-left:23px;margin-top:31px;border-color: #868686;">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:17px;padding-bottom: 26px;background-color: #eeeeee;">
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+        <div id="dialog-confirm"></div>
+
+
+        <div Class="row marb">
+
+
+            <button type="button" ng-hide="EwayBillInfo.EwayBillNum" id="btndele" ng-click="btndel()" Class="btn btne">Delete</button><button type="button" ng-disabled="(status=='posted')" id="btnsave" Class="btn btn-primary btnf" ng-click="btnsave()">Save</button>
+            <div id="loading" class="row marb" ng-show="(status=='posted')">
+                <div class="col-md-12" id="loading-text"><img src="~/Content/images/imgechange.gif" ng-show="(status=='posted')" width="80" height="80" /></div>
+            </div>
+
+
+
+            <button type="button" id="btnback" onclick="window.history.back()" Class="btn btn-default btnf">Back</button>
+
+
+        </div>
+        <i class="fa fa-2x fa-check" id="status" ng-show="(result=='success')">Success</i>
+
+
+        <i class="fa fa-2x fa-remove" id="failure" ng-show="(result=='failure')">Failure</i>
+        <div class="row" style="color: red;
+    float: left;
+    margin-left: 40px;">{{message}}</div>
+
+
+    </form>
+</div>
+
+@section BotScripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+        setInterval(function () {
+            $(".my-datepicker").removeClass("my-datepicker").each(function () {
+                $(this).datepicker({ dateFormat: 'yy-mm-dd' });
+
+
+            });
+        }, 10);
+    });
+
+    rsApp.controller('FormController', function ($scope, $http) {
+        $scope.model = JSON.parse($("#model_json").val());
+        $scope.status = 'loaded';
+        var loadmodel = function (result) {
+
+            $scope.model = result;
+            $scope.EwayBillInfo = $scope.model.dsForm.DT[0];
+            $scope.Items = $scope.model.GridViews.Items;
+
+            if ($scope.model.DatasetCollection.invoice) { $scope.OrgInvoice = $scope.model.DatasetCollection.invoice.invoice[0]; }
+            if ($scope.model.DatasetCollection.challan) { $scope.challan = $scope.model.DatasetCollection.challan.challan[0]; }
+            //$scope.OrgParty = $scope.model.DatasetCollection.party.party[0];
+
+            $scope.TranspoterItem = $scope.model.GridViews.PartB.MainGrid.myDS.dt;
+            $scope.Itemsdata = $scope.model.dsForm.EWayBillItem;
+
+            $scope.item = function () {
+                var itemrow = true;
+                if ($scope.model.frmMode == 2) { alert('You need to save first before proceeding.') }
+                else {
+                    $.each($scope.TranspoterItem, function (index) {
+                        if ($scope.TranspoterItem[index].EnteredDate === undefined || $scope.TranspoterItem[index].EnteredDate === null) {
+                            alert("First Update");
+                            itemrow = false;
+                            return false;
+                        }
+                    });
+                    if (itemrow) {
+                        $scope.TranspoterItem.unshift({});
+                    }
+                }
+            };
+
+            $scope.delete = function (index) {
+                $scope.TranspoterItem.splice(index, 1);
+            };
+
+            $scope.itemc = function () {
+                $scope.Itemsdata.push({});
+            };
+
+            $scope.deletedata = function (index) {
+                $scope.Itemsdata.splice(index, 1);
+            };
+
+            $scope.dsCombo = $scope.model.dsCombo;
+            $scope.ValueLists = $scope.model.ValueLists;
+            @Html.RenderLookup("EwayBillInfo", Model, Model.dsForm.Tables[0]);
+
+            $scope.EwayBillInfo.movementtypeSelected = $.grep($scope.dsCombo.MovementType, function (item, index) {
+                return item.codeword == $scope.EwayBillInfo.transactionType
+            })[0];
+
+            $scope.postc = function (key, row) {
+                var payload = '';
+                if(key=='update'){
+                    payload = { GstRegID: $scope.EwayBillInfo.CampusIDSelected.GstRegID, EWayBillVehicleID: row.EWayBillVehicleID };
+                } else {
+                    payload = { GstRegID: $scope.EwayBillInfo.CampusIDSelected.GstRegID, EwayBillID: $scope.EwayBillInfo.EwayBillID };
+                }
+
+                $scope.result = '';
+                $scope.status = 'postedc';
+                var url = '/frmEwayBill/ParamsOutput' + location.search;
+                payload = JSON.stringify(payload);
+                var token = $('input[name="__RequestVerificationToken"]').val();
+                var payloaddata = { key: key, Params: payload, __RequestVerificationToken: token };
+                $.post(url, payloaddata, function (result) {
+                    if (result.success) {
+                        alert(result.Data.Data);
+                    }
+                    else {
+                        alert(result.message);
+                        $scope.result = 'failure';
+                    }
+                    $scope.$apply();
+                    return;
+                });
+            };
+
+            $.each($scope.TranspoterItem, function (index, row) {
+                row.TransModeSelected = $.grep($scope.dsCombo.TransMode, function (item, index) { return item.Code == row.TransMode })[0];
+                row.StateCodeSelected = $.grep($scope.dsCombo.StateCode, function (item, index) { return item.code == row.StateCode })[0];
+                row.ReasonCodeSelected = $.grep($scope.dsCombo.ReasonCode, function (item, index) { return item.codeword == row.ReasonCode })[0];
+                row.VehicleTypeSelected = $.grep($scope.dsCombo.VehicleType, function (item, index) { return item.Code == row.VehicleType })[0];
+            });
+
+            $.each($scope.Itemsdata, function (index, row) {
+                row.UqcSelected = $.grep($scope.Items.MainGrid.dsLookup.Table0, function (item, index) { return item.GstUqcid == row.Uqc })[0];
+                row.RTSelected = $.grep($scope.ValueLists.gstrate.ValueListItems, function (item, index) { return item.DataValue == row.RT })[0];
+
+            });
+        };
+
+        $scope.calculatemodel = function () { };
+        $scope.cleanupmodel = function (datamodel) {
+            //empty function
+        };
+
+        loadmodel($scope.model);
+
+        @Html.RenderFile("~/scripts/rsforms.js")
+    });
+    </script>
+
+    <link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    @Html.RenderJsCss(false, "jqueryui")
+}
+

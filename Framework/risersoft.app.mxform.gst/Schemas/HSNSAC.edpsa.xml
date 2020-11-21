@@ -1,0 +1,163 @@
+<Schema connectioncode="" connectiontype="Source" createdby="user">
+  <RecordTypes>
+    <RecordType Name="HSNSAC Master">
+      <Fields>
+        <Field Name="ServiceType">
+          <Name>ServiceType</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>Type</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="Code">
+          <Name>Code</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>HSN/SAC</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="Description">
+          <Name>Description</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>HSN/SAC Description</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="True" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="TxRT">
+          <Name>TxRT</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>Tax Rate</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="Cess_Rt">
+          <Name>Cess_Rt</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>Cess Rate</Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="CSAMT">
+          <Name>CSAMT</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>
+            Cess Amount
+          </Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="Uqc">
+          <Name>Uqc</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>
+            UQC
+          </Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" DecimalChar="." NumDecimals="2" ThousandsChar="None" />
+        </Field>
+        <Field Name="Discount">
+          <Name>Discount</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>
+            Discount %
+          </Description>
+          <DataType>Decimal</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" NumDecimals="2" DecimalChar="." ThousandsChar="None" />
+        </Field>
+        <Field Name="IncTxRt">
+          <Name>IncTxRt</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>
+            Rate Inclusive of Tax
+          </Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" DecimalChar="." NumDecimals="2" ThousandsChar="None" />
+        </Field>
+        <Field Name="EwayBillReqd">
+          <Name>EwayBillReqd</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>
+            Eway Bill Required
+          </Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" DecimalChar="." NumDecimals="2" ThousandsChar="None" />
+        </Field>
+        <Field Name="ITCInElg">
+          <Name>ITCInElg</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>ITC Ineligible</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ITCInElgKeyword">
+          <Name>ITCInElgKeyword</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>ITC Ineligible Keyword</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="Remark">
+          <Name>Remark</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>Remarks</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="1" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningCode">
+          <Name>WarningCode</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>Warning Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="WarningText">
+          <Name>WarningText</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>Warning Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorCode">
+          <Name>ErrorCode</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>Error Codes</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+        <Field Name="ErrorText">
+          <Name>ErrorText</Name>
+          <RecordType>HSNSAC Master</RecordType>
+          <Description>Error Descriptions</Description>
+          <DataType>Text</DataType>
+          <Size>0</Size>
+          <Config DefaultExpr="" Level="2" Mandatory="False" PadChar=" " Alignment="Left" />
+        </Field>
+      </Fields>
+      <ValidationExpressions />
+      <Name>HSNSAC Master</Name>
+      <Config Ignore="False" IgnoreRows="2" />
+    </RecordType>
+    <RecordType Name="Look_Up_Values">
+      <Fields />
+      <ValidationExpressions />
+      <Name>Look_Up_Values</Name>
+      <Config Ignore="False" IgnoreRows="0" />
+    </RecordType>
+  </RecordTypes>
+</Schema>
